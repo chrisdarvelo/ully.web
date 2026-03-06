@@ -2,6 +2,17 @@
 
 import { useState, useEffect, useCallback } from 'react'
 
+const SERVICE_TYPES = ['routine', 'repair', 'calibration', 'cleaning', 'inspection', 'other']
+
+interface ServiceRecord {
+  id: string
+  date: number
+  type: string
+  description: string | null
+  technician: string | null
+  cost: number | null
+}
+
 interface Equipment {
   id: string
   name: string
@@ -48,6 +59,14 @@ export default function EquipmentPage() {
   const [error, setError] = useState('')
   const [editId, setEditId] = useState<string | null>(null)
 
+  // Service records panel
+  const [serviceEquipId, setServiceEquipId] = useState<string | null>(null)
+  const [serviceRecords, setServiceRecords] = useState<ServiceRecord[]>([])
+  const [serviceLoading, setServiceLoading] = useState(false)
+  const [serviceForm, setServiceForm] = useState({ date: new Date().toISOString().slice(0, 10), type: 'routine', description: '', technician: '', cost: '' })
+  const [serviceSaving, setServiceSaving] = useState(false)
+  const [showServiceForm, setShowServiceForm] = useState(false)
+
   const load = useCallback(async () => {
     setLoading(true)
     const res = await fetch('/api/equipment')
@@ -92,6 +111,39 @@ export default function EquipmentPage() {
     setEditId(null)
     setSaving(false)
     load()
+  }
+
+  async function openServiceLog(equipId: string) {
+    if (serviceEquipId === equipId) { setServiceEquipId(null); return }
+    setServiceEquipId(equipId)
+    setServiceLoading(true)
+    setShowServiceForm(false)
+    const res = await fetch(`/api/service-records?equipmentId=${equipId}`)
+    if (res.ok) setServiceRecords(await res.json())
+    setServiceLoading(false)
+  }
+
+  async function addServiceRecord() {
+    if (!serviceEquipId) return
+    setServiceSaving(true)
+    const res = await fetch('/api/service-records', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ equipmentId: serviceEquipId, ...serviceForm, date: new Date(serviceForm.date).getTime() })
+    })
+    if (res.ok) {
+      const record = await res.json()
+      setServiceRecords(prev => [record, ...prev])
+      setServiceForm({ date: new Date().toISOString().slice(0, 10), type: 'routine', description: '', technician: '', cost: '' })
+      setShowServiceForm(false)
+      load() // refresh to update lastService
+    }
+    setServiceSaving(false)
+  }
+
+  async function deleteServiceRecord(id: string) {
+    await fetch('/api/service-records', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) })
+    setServiceRecords(prev => prev.filter(r => r.id !== id))
   }
 
   async function handleDelete(id: string) {
@@ -191,7 +243,8 @@ export default function EquipmentPage() {
             ))}
           </div>
           {items.map(item => (
-            <div key={item.id} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr auto', gap: 16, padding: '14px 20px', borderBottom: '1px solid #1E1A17', alignItems: 'center', transition: 'background 0.1s' }}
+            <div key={item.id}>
+            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr auto', gap: 16, padding: '14px 20px', borderBottom: '1px solid #1E1A17', alignItems: 'center', transition: 'background 0.1s' }}
               onMouseEnter={e => (e.currentTarget.style.background = '#1E1B18')}
               onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
             >
@@ -204,9 +257,60 @@ export default function EquipmentPage() {
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440' }}>{formatDate(item.lastService)}</div>
               <div><StatusBadge status={item.status} /></div>
               <div style={{ display: 'flex', gap: 8 }}>
+                <button onClick={() => openServiceLog(item.id)} style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: serviceEquipId === item.id ? '#C8923C' : '#4A4440', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px', letterSpacing: '0.1em' }}>Log</button>
                 <button onClick={() => startEdit(item)} style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px', letterSpacing: '0.1em' }}>Edit</button>
                 <button onClick={() => handleDelete(item.id)} style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px', letterSpacing: '0.1em' }}>Del</button>
               </div>
+            </div>
+
+            {/* Service log panel */}
+            {serviceEquipId === item.id && (
+              <div style={{ background: '#13100E', borderTop: '1px solid rgba(200,146,60,0.15)', borderBottom: '1px solid #1E1A17', padding: '20px 20px 16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8923C' }}>Service Log — {item.name}</div>
+                  <button onClick={() => setShowServiceForm(v => !v)} style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#C8923C', background: 'none', border: '1px solid rgba(200,146,60,0.3)', borderRadius: 2, padding: '4px 10px', cursor: 'pointer', letterSpacing: '0.1em' }}>+ Add Record</button>
+                </div>
+
+                {showServiceForm && (
+                  <div style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 3, padding: 16, marginBottom: 14 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 2fr 1fr', gap: 10, marginBottom: 10 }}>
+                      <div><label style={lbl}>Date</label><input type="date" style={inp} value={serviceForm.date} onChange={e => setServiceForm(p => ({ ...p, date: e.target.value }))} onFocus={e => (e.target.style.borderColor = '#C8923C')} onBlur={e => (e.target.style.borderColor = '#1E1A17')} /></div>
+                      <div><label style={lbl}>Type</label>
+                        <select style={{ ...inp, cursor: 'pointer' }} value={serviceForm.type} onChange={e => setServiceForm(p => ({ ...p, type: e.target.value }))} onFocus={e => (e.target.style.borderColor = '#C8923C')} onBlur={e => (e.target.style.borderColor = '#1E1A17')}>
+                          {SERVICE_TYPES.map(t => <option key={t} value={t} style={{ background: '#1A1614' }}>{t.charAt(0).toUpperCase() + t.slice(1)}</option>)}
+                        </select>
+                      </div>
+                      <div><label style={lbl}>Technician</label><input style={inp} value={serviceForm.technician} onChange={e => setServiceForm(p => ({ ...p, technician: e.target.value }))} onFocus={e => (e.target.style.borderColor = '#C8923C')} onBlur={e => (e.target.style.borderColor = '#1E1A17')} /></div>
+                      <div><label style={lbl}>Description</label><input style={inp} value={serviceForm.description} onChange={e => setServiceForm(p => ({ ...p, description: e.target.value }))} onFocus={e => (e.target.style.borderColor = '#C8923C')} onBlur={e => (e.target.style.borderColor = '#1E1A17')} /></div>
+                      <div><label style={lbl}>Cost ($)</label><input type="number" step="0.01" style={inp} value={serviceForm.cost} onChange={e => setServiceForm(p => ({ ...p, cost: e.target.value }))} onFocus={e => (e.target.style.borderColor = '#C8923C')} onBlur={e => (e.target.style.borderColor = '#1E1A17')} /></div>
+                    </div>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <button onClick={addServiceRecord} disabled={serviceSaving} style={{ background: '#C8923C', color: '#0E0C0A', border: 'none', borderRadius: 2, padding: '6px 14px', fontFamily: 'var(--font-mono)', fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer' }}>{serviceSaving ? 'Saving...' : 'Save'}</button>
+                      <button onClick={() => setShowServiceForm(false)} style={{ background: 'none', color: '#4A4440', border: '1px solid #1E1A17', borderRadius: 2, padding: '6px 14px', fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer' }}>Cancel</button>
+                    </div>
+                  </div>
+                )}
+
+                {serviceLoading ? (
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440' }}>Loading...</div>
+                ) : serviceRecords.length === 0 ? (
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440', letterSpacing: '0.1em' }}>No service records yet.</div>
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                    {serviceRecords.map(r => (
+                      <div key={r.id} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 2fr 1fr 1fr auto', gap: 12, padding: '10px 0', borderBottom: '1px solid #1E1A17', alignItems: 'center' }}>
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440' }}>{formatDate(r.date)}</div>
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#C8923C', letterSpacing: '0.06em', textTransform: 'capitalize' }}>{r.type}</div>
+                        <div style={{ fontSize: 12, color: '#6B5E52' }}>{r.description ?? '—'}</div>
+                        <div style={{ fontSize: 12, color: '#6B5E52' }}>{r.technician ?? '—'}</div>
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C4B8AA' }}>{r.cost ? `$${r.cost}` : '—'}</div>
+                        <button onClick={() => deleteServiceRecord(r.id)} style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440', background: 'none', border: 'none', cursor: 'pointer' }}>Del</button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             </div>
           ))}
         </div>

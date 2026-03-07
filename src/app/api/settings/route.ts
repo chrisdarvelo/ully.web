@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
-import { getSession } from '@/lib/auth'
+import { getSession, clearSessionCookie } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { organizations, users } from '@/lib/schema'
 import { eq } from 'drizzle-orm'
@@ -115,6 +115,8 @@ export async function DELETE() {
   db.delete(invites).where(eq(invites.orgId, session.orgId)).run()
   db.delete(users).where(eq(users.orgId, session.orgId)).run()
   db.delete(organizations).where(eq(organizations.id, session.orgId)).run()
+
+  await clearSessionCookie()
 
   return NextResponse.json({ ok: true })
 }

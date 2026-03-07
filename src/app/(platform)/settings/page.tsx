@@ -1,7 +1,16 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+
+interface Invite {
+  id: string
+  code: string
+  role: string
+  usedBy: string | null
+  expiresAt: number
+  createdAt: number
+}
 
 const ORG_TYPES = [
   { value: 'cafe', label: 'Cafe / Coffee Shop' },
@@ -49,9 +58,20 @@ export default function SettingsPage() {
   const [pwSaving, setPwSaving] = useState(false)
   const [pwMsg, setPwMsg] = useState('')
 
+  // Invites
+  const [invites, setInvites] = useState<Invite[]>([])
+  const [inviteRole, setInviteRole] = useState('member')
+  const [inviteLoading, setInviteLoading] = useState(false)
+  const [newCode, setNewCode] = useState<string | null>(null)
+
   // Delete confirm
   const [deleteConfirm, setDeleteConfirm] = useState('')
   const [deleting, setDeleting] = useState(false)
+
+  const loadInvites = useCallback(async () => {
+    const res = await fetch('/api/invites')
+    if (res.ok) setInvites(await res.json())
+  }, [])
 
   useEffect(() => {
     fetch('/api/settings')
@@ -68,7 +88,8 @@ export default function SettingsPage() {
         setAccountForm({ name: d.user.name, email: d.user.email })
         setLoading(false)
       })
-  }, [])
+    loadInvites()
+  }, [loadInvites])
 
   async function saveOrg() {
     setOrgSaving(true); setOrgMsg('')
@@ -117,6 +138,27 @@ export default function SettingsPage() {
       setPwMsg(d.error ?? 'Failed.')
     }
     setPwSaving(false)
+  }
+
+  async function generateInvite() {
+    setInviteLoading(true)
+    setNewCode(null)
+    const res = await fetch('/api/invites', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ role: inviteRole }),
+    })
+    const data = await res.json()
+    if (res.ok) {
+      setNewCode(data.code)
+      loadInvites()
+    }
+    setInviteLoading(false)
+  }
+
+  async function revokeInvite(id: string) {
+    await fetch('/api/invites', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) })
+    loadInvites()
   }
 
   async function deleteAccount() {
@@ -283,6 +325,66 @@ export default function SettingsPage() {
           {pwMsg && <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: pwMsg === 'Password updated.' ? '#6EAB7E' : '#E07070' }}>{pwMsg}</span>}
         </div>
       </div>
+
+      {/* Team Invites */}
+      {(data?.user.role === 'owner' || data?.user.role === 'manager') && (
+        <div style={section}>
+          <div style={sectionTitle}>Team Invites</div>
+          <p style={{ fontSize: 13, color: '#C4B8AA', lineHeight: 1.7, marginBottom: 20 }}>
+            Generate invite codes to let team members join your organization. Codes expire after 7 days.
+          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+            <select
+              style={{ background: '#0E0C0A', border: '1px solid #1E1A17', borderRadius: 3, padding: '9px 12px', color: 'white', fontSize: 13, outline: 'none', cursor: 'pointer' }}
+              value={inviteRole}
+              onChange={e => setInviteRole(e.target.value)}
+            >
+              <option value="member" style={{ background: '#1A1614' }}>Member</option>
+              <option value="manager" style={{ background: '#1A1614' }}>Manager</option>
+            </select>
+            <button onClick={generateInvite} disabled={inviteLoading} style={btnPrimary}>
+              {inviteLoading ? 'Generating...' : 'Generate Invite'}
+            </button>
+          </div>
+
+          {newCode && (
+            <div style={{ background: '#0E0C0A', border: '1px solid rgba(200,146,60,0.4)', borderRadius: 4, padding: '16px 20px', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 6 }}>New invite code (share this)</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 20, color: '#C8923C', letterSpacing: '0.3em', fontWeight: 700 }}>{newCode}</div>
+              </div>
+              <button
+                onClick={() => navigator.clipboard.writeText(newCode)}
+                style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440', background: 'none', border: '1px solid #1E1A17', borderRadius: 3, padding: '6px 12px', cursor: 'pointer', letterSpacing: '0.1em', textTransform: 'uppercase' }}
+              >
+                Copy
+              </button>
+            </div>
+          )}
+
+          {invites.filter(i => !i.usedBy && i.expiresAt > Date.now()).length > 0 && (
+            <div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 10 }}>Active invites</div>
+              {invites.filter(i => !i.usedBy && i.expiresAt > Date.now()).map(invite => (
+                <div key={invite.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#0E0C0A', border: '1px solid #1E1A17', borderRadius: 3, marginBottom: 6 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#C4B8AA', letterSpacing: '0.2em' }}>{invite.code}</span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{invite.role}</span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440' }}>
+                      expires {new Date(invite.expiresAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    </span>
+                  </div>
+                  <button onClick={() => revokeInvite(invite.id)} style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440', background: 'none', border: 'none', cursor: 'pointer' }}>Revoke</button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440', letterSpacing: '0.1em', marginTop: 12 }}>
+            Share the join link: <span style={{ color: '#6B5E52' }}>/join</span>
+          </div>
+        </div>
+      )}
 
       {/* Danger zone */}
       <div style={{ ...section, borderColor: 'rgba(200,64,64,0.2)', background: 'rgba(200,64,64,0.04)' }}>

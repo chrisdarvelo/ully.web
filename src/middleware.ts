@@ -11,6 +11,7 @@ const PROTECTED_PREFIXES = [
   '/chat',
   '/equipment',
   '/team',
+  '/training',
   '/inventory',
   '/schedule',
   '/revenue',
@@ -18,12 +19,16 @@ const PROTECTED_PREFIXES = [
   '/api/chat',
   '/api/equipment',
   '/api/team',
+  '/api/training',
   '/api/inventory',
   '/api/schedule',
   '/api/revenue',
+  '/api/service-records',
+  '/api/settings',
+  '/api/invites',
 ]
 
-const AUTH_ONLY_PATHS = ['/login', '/signup']
+const AUTH_ONLY_PATHS = ['/login', '/signup', '/join']
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl

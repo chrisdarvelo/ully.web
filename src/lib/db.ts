@@ -132,6 +132,32 @@ function createDb() {
       description TEXT,
       created_at INTEGER NOT NULL
     );
+
+    CREATE TABLE IF NOT EXISTS invites (
+      id TEXT PRIMARY KEY,
+      org_id TEXT NOT NULL REFERENCES organizations(id),
+      code TEXT NOT NULL UNIQUE,
+      role TEXT NOT NULL DEFAULT 'member',
+      created_by TEXT NOT NULL REFERENCES users(id),
+      used_by TEXT REFERENCES users(id),
+      used_at INTEGER,
+      expires_at INTEGER NOT NULL,
+      created_at INTEGER NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS training_logs (
+      id TEXT PRIMARY KEY,
+      org_id TEXT NOT NULL REFERENCES organizations(id),
+      member_id TEXT NOT NULL REFERENCES team_members(id),
+      member_name TEXT NOT NULL,
+      date INTEGER NOT NULL,
+      topic TEXT NOT NULL,
+      description TEXT,
+      score INTEGER,
+      trainer TEXT,
+      notes TEXT,
+      created_at INTEGER NOT NULL
+    );
   `)
 
   return db

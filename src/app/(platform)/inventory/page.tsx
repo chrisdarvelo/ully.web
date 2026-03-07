@@ -78,6 +78,26 @@ export default function InventoryPage() {
     load()
   }
 
+  async function adjustQty(item: Item, delta: number) {
+    const newQty = Math.max(0, item.quantity + delta)
+    await fetch('/api/inventory', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: item.id,
+        name: item.name,
+        category: item.category,
+        quantity: newQty.toString(),
+        unit: item.unit,
+        parLevel: item.parLevel?.toString() ?? '',
+        costPerUnit: item.costPerUnit?.toString() ?? '',
+        supplier: item.supplier ?? '',
+        sku: item.sku ?? '',
+      }),
+    })
+    load()
+  }
+
   const inp: React.CSSProperties = { width: '100%', background: '#0E0C0A', border: '1px solid #1E1A17', borderRadius: 3, padding: '9px 12px', color: 'white', fontSize: 13, outline: 'none' }
   const lbl: React.CSSProperties = { display: 'block', fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 5 }
 
@@ -169,9 +189,13 @@ export default function InventoryPage() {
                   {item.sku && <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440', marginTop: 2 }}>SKU {item.sku}</div>}
                 </div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#6B5E52', letterSpacing: '0.06em', textTransform: 'capitalize' }}>{item.category}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: low ? '#E07070' : '#C4B8AA', fontWeight: low ? 700 : 400 }}>
-                  {item.quantity} {item.unit}
-                  {low && <span style={{ marginLeft: 6, fontSize: 8, color: '#E07070' }}>LOW</span>}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <button onClick={() => adjustQty(item, -1)} style={{ width: 20, height: 20, background: '#13100E', border: '1px solid #1E1A17', borderRadius: 2, color: '#6B5E52', fontSize: 14, lineHeight: 1, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>−</button>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: low ? '#E07070' : '#C4B8AA', fontWeight: low ? 700 : 400, minWidth: 40, textAlign: 'center' }}>
+                    {item.quantity} {item.unit}
+                    {low && <span style={{ display: 'block', fontSize: 7, color: '#E07070' }}>LOW</span>}
+                  </span>
+                  <button onClick={() => adjustQty(item, 1)} style={{ width: 20, height: 20, background: '#13100E', border: '1px solid #1E1A17', borderRadius: 2, color: '#6B5E52', fontSize: 14, lineHeight: 1, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>+</button>
                 </div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440' }}>{item.parLevel ? `${item.parLevel} ${item.unit}` : '—'}</div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440' }}>{item.costPerUnit ? `$${item.costPerUnit}` : '—'}</div>

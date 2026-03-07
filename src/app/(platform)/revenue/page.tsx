@@ -32,6 +32,17 @@ function formatDate(ts: number) {
   return new Date(ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 }
 
+function downloadCSV(rows: string[][], filename: string) {
+  const content = rows.map(r => r.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n')
+  const blob = new Blob([content], { type: 'text/csv' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
 type Tab = 'overview' | 'revenue' | 'expenses'
 
 export default function RevenuePage() {
@@ -189,7 +200,21 @@ export default function RevenuePage() {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A8C5C' }}>Total: {formatCurrency(totalRevenue)}</div>
-                <button onClick={() => setShowRevForm(v => !v)} style={{ background: 'rgba(74,140,92,0.1)', color: '#6EAB7E', border: '1px solid rgba(74,140,92,0.3)', borderRadius: 3, padding: '8px 14px', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}>+ Log Revenue</button>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  {revenue.length > 0 && (
+                    <button
+                      onClick={() => downloadCSV(
+                        [['Date', 'Amount', 'Category', 'Description', 'Payment Method'],
+                          ...revenue.map(r => [formatDate(r.date), r.amount.toFixed(2), r.category, r.description ?? '', r.paymentMethod ?? ''])],
+                        'revenue.csv'
+                      )}
+                      style={{ background: 'none', color: '#4A4440', border: '1px solid #1E1A17', borderRadius: 3, padding: '8px 14px', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}
+                    >
+                      Export CSV
+                    </button>
+                  )}
+                  <button onClick={() => setShowRevForm(v => !v)} style={{ background: 'rgba(74,140,92,0.1)', color: '#6EAB7E', border: '1px solid rgba(74,140,92,0.3)', borderRadius: 3, padding: '8px 14px', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}>+ Log Revenue</button>
+                </div>
               </div>
 
               {showRevForm && (
@@ -240,7 +265,21 @@ export default function RevenuePage() {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C84040' }}>Total: {formatCurrency(totalExpenses)}</div>
-                <button onClick={() => setShowExpForm(v => !v)} style={{ background: 'rgba(200,64,64,0.08)', color: '#E07070', border: '1px solid rgba(200,64,64,0.2)', borderRadius: 3, padding: '8px 14px', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}>+ Log Expense</button>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  {expenses.length > 0 && (
+                    <button
+                      onClick={() => downloadCSV(
+                        [['Date', 'Amount', 'Category', 'Vendor', 'Description'],
+                          ...expenses.map(r => [formatDate(r.date), r.amount.toFixed(2), r.category, r.vendor ?? '', r.description ?? ''])],
+                        'expenses.csv'
+                      )}
+                      style={{ background: 'none', color: '#4A4440', border: '1px solid #1E1A17', borderRadius: 3, padding: '8px 14px', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}
+                    >
+                      Export CSV
+                    </button>
+                  )}
+                  <button onClick={() => setShowExpForm(v => !v)} style={{ background: 'rgba(200,64,64,0.08)', color: '#E07070', border: '1px solid rgba(200,64,64,0.2)', borderRadius: 3, padding: '8px 14px', fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}>+ Log Expense</button>
+                </div>
               </div>
 
               {showExpForm && (

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { teamMembers } from '@/lib/schema'
+import { teamMembers, schedules, trainingLogs } from '@/lib/schema'
 import { eq, and } from 'drizzle-orm'
 
 export const runtime = 'nodejs'
@@ -72,6 +72,9 @@ export async function DELETE(req: NextRequest) {
   const { id } = await req.json()
   if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 })
 
+  // Cascade: remove schedules and training logs first
+  db.delete(schedules).where(and(eq(schedules.memberId, id), eq(schedules.orgId, session.orgId))).run()
+  db.delete(trainingLogs).where(and(eq(trainingLogs.memberId, id), eq(trainingLogs.orgId, session.orgId))).run()
   db.delete(teamMembers).where(and(eq(teamMembers.id, id), eq(teamMembers.orgId, session.orgId))).run()
   return NextResponse.json({ ok: true })
 }

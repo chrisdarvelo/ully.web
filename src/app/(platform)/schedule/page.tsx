@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 
-interface TeamMember { id: string; name: string; role: string }
+interface TeamMember { id: string; name: string; role: string; hourlyRate?: number | null }
 interface Shift {
   id: string
   memberId: string
@@ -91,6 +91,24 @@ export default function SchedulePage() {
 
   const DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
+  function shiftHours(start: string, end: string) {
+    const [sh, sm] = start.split(':').map(Number)
+    const [eh, em] = end.split(':').map(Number)
+    const mins = (eh * 60 + em) - (sh * 60 + sm)
+    return Math.max(0, mins / 60)
+  }
+
+  // Labor cost summary per member for the week
+  const laborRows = team.map(member => {
+    const memberShifts = shifts.filter(s => s.memberId === member.id)
+    const hours = memberShifts.reduce((acc, s) => acc + shiftHours(s.shiftStart, s.shiftEnd), 0)
+    const cost = member.hourlyRate ? hours * member.hourlyRate : null
+    return { member, hours, cost }
+  }).filter(r => r.hours > 0)
+
+  const totalLaborCost = laborRows.reduce((s, r) => s + (r.cost ?? 0), 0)
+  const totalHours = laborRows.reduce((s, r) => s + r.hours, 0)
+
   return (
     <div style={{ padding: 40, maxWidth: 1200 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 32 }}>
@@ -136,6 +154,43 @@ export default function SchedulePage() {
         <button onClick={nextWeek} style={{ background: 'none', border: '1px solid #1E1A17', borderRadius: 3, padding: '6px 12px', color: '#4A4440', fontFamily: 'var(--font-mono)', fontSize: 10, cursor: 'pointer' }}>→</button>
         <button onClick={() => setAnchor(new Date())} style={{ background: 'none', border: '1px solid #1E1A17', borderRadius: 3, padding: '6px 10px', color: '#4A4440', fontFamily: 'var(--font-mono)', fontSize: 9, cursor: 'pointer', letterSpacing: '0.1em' }}>Today</button>
       </div>
+
+      {/* Labor cost summary */}
+      {!loading && laborRows.length > 0 && (
+        <div style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, padding: '16px 20px', marginBottom: 16, display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+          <div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 6 }}>Weekly Hours</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 18, color: '#C4B8AA', fontWeight: 700 }}>{totalHours.toFixed(1)}h</div>
+          </div>
+          {totalLaborCost > 0 && (
+            <div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 6 }}>Est. Labor Cost</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 18, color: '#C8923C', fontWeight: 700 }}>
+                ${totalLaborCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              </div>
+            </div>
+          )}
+          <div style={{ flex: 1, minWidth: 200 }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 8 }}>By Member</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              {laborRows.map(r => (
+                <div key={r.member.id} style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+                  <span style={{ fontSize: 12, color: '#6B5E52', minWidth: 120 }}>{r.member.name}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440' }}>{r.hours.toFixed(1)}h</span>
+                  {r.cost !== null && (
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440' }}>
+                      ${r.cost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </span>
+                  )}
+                  {r.member.hourlyRate === null && (
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#2A2218' }}>no rate set</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {loading ? (
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440' }}>Loading...</div>

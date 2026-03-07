@@ -101,10 +101,10 @@ export async function DELETE() {
     return NextResponse.json({ error: 'Only org owners can delete the organization' }, { status: 403 })
   }
 
-  // Delete all org data (cascades via foreign keys are not enforced in SQLite unless pragma is set)
-  // We explicitly delete in reverse dependency order
-  const { schedules, inventory, expenseRecords, revenueRecords, serviceRecords, teamMembers, equipment } = await import('@/lib/schema')
+  // Delete all org data in reverse dependency order (FK enforcement is on)
+  const { schedules, inventory, expenseRecords, revenueRecords, serviceRecords, teamMembers, equipment, invites, trainingLogs } = await import('@/lib/schema')
 
+  db.delete(trainingLogs).where(eq(trainingLogs.orgId, session.orgId)).run()
   db.delete(schedules).where(eq(schedules.orgId, session.orgId)).run()
   db.delete(inventory).where(eq(inventory.orgId, session.orgId)).run()
   db.delete(expenseRecords).where(eq(expenseRecords.orgId, session.orgId)).run()
@@ -112,6 +112,7 @@ export async function DELETE() {
   db.delete(serviceRecords).where(eq(serviceRecords.orgId, session.orgId)).run()
   db.delete(teamMembers).where(eq(teamMembers.orgId, session.orgId)).run()
   db.delete(equipment).where(eq(equipment.orgId, session.orgId)).run()
+  db.delete(invites).where(eq(invites.orgId, session.orgId)).run()
   db.delete(users).where(eq(users.orgId, session.orgId)).run()
   db.delete(organizations).where(eq(organizations.id, session.orgId)).run()
 

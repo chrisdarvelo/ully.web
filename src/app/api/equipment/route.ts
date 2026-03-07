@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { equipment } from '@/lib/schema'
+import { equipment, serviceRecords } from '@/lib/schema'
 import { eq, and } from 'drizzle-orm'
 
 export const runtime = 'nodejs'
@@ -72,6 +72,8 @@ export async function DELETE(req: NextRequest) {
   const { id } = await req.json()
   if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 })
 
+  // Cascade: delete service records first, then equipment
+  db.delete(serviceRecords).where(and(eq(serviceRecords.equipmentId, id), eq(serviceRecords.orgId, session.orgId))).run()
   db.delete(equipment).where(and(eq(equipment.id, id), eq(equipment.orgId, session.orgId))).run()
   return NextResponse.json({ ok: true })
 }

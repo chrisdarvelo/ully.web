@@ -157,6 +157,12 @@ export default function LoginPage() {
             Create one →
           </Link>
         </p>
+        <p style={{ textAlign: 'center', marginTop: 10, fontFamily: 'var(--font-mono)', fontSize: 9, color: '#2A2218', letterSpacing: '0.1em' }}>
+          Have an invite code?{' '}
+          <Link href="/join" style={{ color: '#4A4440' }}>
+            Join team →
+          </Link>
+        </p>
       </div>
     </div>
   )

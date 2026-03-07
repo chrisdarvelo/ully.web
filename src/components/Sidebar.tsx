@@ -54,6 +54,17 @@ const NAV_ITEMS = [
     ),
   },
   {
+    href: '/training',
+    label: 'Training',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <path d="M1 3h13M1 7.5h9M1 12h6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
+        <circle cx="12.5" cy="10.5" r="2" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+        <path d="M12.5 8.5V9m0 3v.5M10.5 10.5H11m3 0h.5M11.1 9.1l.4.4m2 2l.4.4M11.1 11.9l.4-.4m2-2l.4-.4" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" opacity="0.5" />
+      </svg>
+    ),
+  },
+  {
     href: '/inventory',
     label: 'Inventory',
     icon: (

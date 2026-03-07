@@ -6,9 +6,9 @@ export default function PrivacyPage() {
   return (
     <>
       <div style={{ padding: '80px 48px 48px', borderBottom: '1px solid #1E1A17', maxWidth: 1080, margin: '0 auto' }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Legal</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Legal</div>
         <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, color: 'white', lineHeight: 1, letterSpacing: '-0.01em', marginBottom: 16 }}>Privacy Policy</h1>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440', letterSpacing: '0.12em' }}>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52', letterSpacing: '0.12em' }}>
           Last updated February 21, 2026 · Effective February 21, 2026
         </p>
       </div>
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
           }
         ].map(section => (
           <div key={section.title}>
-            <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', margin: '48px 0 18px', paddingTop: 48, borderTop: '1px solid #1E1A17' }}>
+            <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8923C', margin: '48px 0 18px', paddingTop: 48, borderTop: '1px solid #1E1A17' }}>
               {section.title}
             </h2>
             {section.callout && (

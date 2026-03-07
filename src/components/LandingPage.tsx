@@ -54,9 +54,9 @@ export default function LandingPage({ loggedIn }: Props) {
         backdropFilter: 'blur(12px)',
         borderBottom: `1px solid ${token.line}`,
       }}>
-        <span style={{ fontFamily: token.pixel, fontSize: 13, color: token.gold, letterSpacing: '0.1em', textShadow: '0 0 12px rgba(200,146,60,0.5)' }}>
+        <a href="/" style={{ fontFamily: token.pixel, fontSize: 13, color: token.gold, letterSpacing: '0.1em', textShadow: '0 0 12px rgba(200,146,60,0.5)', textDecoration: 'none' }}>
           ULLY
-        </span>
+        </a>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           {loggedIn ? (

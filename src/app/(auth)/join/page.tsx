@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, Suspense } from 'react'
+import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 function JoinForm() {
@@ -27,10 +28,10 @@ function JoinForm() {
   const lbl: React.CSSProperties = {
     display: 'block',
     fontFamily: 'var(--font-mono)',
-    fontSize: 8,
+    fontSize: 11,
     letterSpacing: '0.18em',
     textTransform: 'uppercase',
-    color: '#4A4440',
+    color: '#C4B8AA',
     marginBottom: 6,
   }
 
@@ -65,12 +66,12 @@ function JoinForm() {
       <div style={{ width: '100%', maxWidth: 420 }}>
         {/* Brand */}
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 18, fontWeight: 700, color: '#C8923C', letterSpacing: '0.3em', marginBottom: 6 }}>ULLY</div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440', letterSpacing: '0.2em', textTransform: 'uppercase' }}>Join your team</div>
+          <Link href="/" style={{ display: 'block', fontFamily: 'var(--font-pixel-family)', fontSize: 22, fontWeight: 400, color: '#C8923C', letterSpacing: '0.1em', textShadow: '0 0 8px rgba(200,146,60,0.9), 0 0 24px rgba(200,146,60,0.4)', marginBottom: 10, textDecoration: 'none' }}>ULLY</Link>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C4B8AA', letterSpacing: '0.2em', textTransform: 'uppercase' }}>Join your team</div>
         </div>
 
         <div style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, padding: 32 }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 24 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 24 }}>
             Enter invite code
           </div>
 
@@ -135,7 +136,7 @@ function JoinForm() {
             <button
               type="submit"
               disabled={loading}
-              style={{ width: '100%', background: '#C8923C', color: '#0E0C0A', border: 'none', borderRadius: 3, padding: '13px', fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1 }}
+              style={{ width: '100%', background: '#C8923C', color: '#0E0C0A', border: 'none', borderRadius: 3, padding: '13px', fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.7 : 1 }}
             >
               {loading ? 'Joining...' : 'Join Team'}
             </button>
@@ -143,7 +144,7 @@ function JoinForm() {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: 20 }}>
-          <a href="/login" style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440', letterSpacing: '0.12em', textDecoration: 'none' }}>
+          <a href="/login" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C4B8AA', letterSpacing: '0.12em', textDecoration: 'none' }}>
             Already have an account? Sign in →
           </a>
         </div>

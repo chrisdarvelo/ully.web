@@ -16,35 +16,35 @@ export default function SupportPage() {
   return (
     <>
       <div style={{ padding: '80px 48px 48px', borderBottom: '1px solid #1E1A17', maxWidth: 1080, margin: '0 auto' }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Help</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Help</div>
         <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, color: 'white', lineHeight: 1, letterSpacing: '-0.01em' }}>Support</h1>
       </div>
 
       <div style={{ maxWidth: 680, margin: '0 auto', padding: '64px 48px 120px' }}>
         {/* Contact */}
         <div style={{ padding: '48px 0', borderTop: '1px solid #1E1A17', borderBottom: '1px solid #1E1A17', marginBottom: 56 }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 14 }}>Contact</div>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 14 }}>Contact</div>
           <a href="mailto:support@ullycoffee.com" style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(18px, 3vw, 32px)', fontWeight: 700, color: 'white', letterSpacing: '0.02em', display: 'block', marginBottom: 10, transition: 'color 0.15s' }}>
             support@ullycoffee.com
           </a>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440', letterSpacing: '0.08em' }}>We respond within 24 hours.</div>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52', letterSpacing: '0.08em' }}>We respond within 24 hours.</div>
         </div>
 
         {/* FAQ */}
-        <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 24 }}>
+        <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 24 }}>
           Frequently Asked Questions
         </h2>
 
         {FAQ.map(({ q, a }) => (
           <div key={q} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, padding: '24px 0', borderTop: '1px solid #1E1A17' }}>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, color: 'white', letterSpacing: '0.02em', lineHeight: 1.5 }}>{q}</div>
-            <div style={{ fontSize: 14, color: '#4A4440', lineHeight: 1.75 }}>{a}</div>
+            <div style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.75 }}>{a}</div>
           </div>
         ))}
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, padding: '24px 0', borderTop: '1px solid #1E1A17' }}>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, color: 'white', letterSpacing: '0.02em', lineHeight: 1.5 }}>Where can I find the mobile app?</div>
-          <div style={{ fontSize: 14, color: '#4A4440', lineHeight: 1.75 }}>
+          <div style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.75 }}>
             The Ully AI mobile app for iOS and Android is coming soon.{' '}
             <Link href="/login" style={{ color: '#C4B8AA', borderBottom: '1px solid #4A4440' }}>Use the platform →</Link>
           </div>

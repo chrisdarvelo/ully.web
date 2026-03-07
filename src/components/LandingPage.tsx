@@ -175,95 +175,145 @@ export default function LandingPage({ loggedIn }: Props) {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 2 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2 }}>
           {[
             {
               icon: (
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <circle cx="9" cy="9" r="7.5" stroke="#C8923C" strokeWidth="1" opacity="0.4" />
-                  <path d="M5 9h2l2-4 2 8 2-4h2" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
+                  <circle cx="9" cy="9" r="7.5" stroke="#C8923C" strokeWidth="1" opacity="0.5" />
+                  <path d="M5 9h2l2-4 2 8 2-4h2" stroke="#C8923C" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               ),
               label: 'Ully AI',
               title: 'Context-aware intelligence',
               desc: 'Your AI assistant knows your active equipment, team size, low-stock items, and org type. Every answer is grounded in your actual operation.',
+              href: '/chat',
             },
             {
               icon: (
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <rect x="2" y="3" width="14" height="10" rx="1.5" stroke="#C8923C" strokeWidth="1" opacity="0.4" />
-                  <path d="M6 13v2M12 13v2M4 16h10" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" />
-                  <path d="M5.5 8.5h7M5.5 6.5h4" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
+                <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
+                  <rect x="2" y="3" width="14" height="10" rx="1.5" stroke="#C8923C" strokeWidth="1" opacity="0.5" />
+                  <path d="M6 13v2M12 13v2M4 16h10" stroke="#C8923C" strokeWidth="1.4" strokeLinecap="round" />
+                  <path d="M5.5 8.5h7M5.5 6.5h4" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" opacity="0.7" />
                 </svg>
               ),
               label: 'Equipment',
               title: 'Machine registry & service history',
               desc: 'Track every machine, brand, model, and serial number. Log service records and maintenance events. Know what was done and when.',
+              href: '/equipment',
             },
             {
               icon: (
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <circle cx="7" cy="6" r="2.5" stroke="#C8923C" strokeWidth="1" opacity="0.4" />
-                  <path d="M2 15c0-3 2-5 5-5" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" opacity="0.4" />
-                  <circle cx="13" cy="10" r="3" stroke="#C8923C" strokeWidth="1" />
-                  <path d="M13 8.5v1.5l1 1" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" />
+                <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
+                  <circle cx="6" cy="6" r="2.5" stroke="#C8923C" strokeWidth="1" opacity="0.5" />
+                  <path d="M1.5 15c0-2.8 2-4.5 4.5-4.5" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />
+                  <circle cx="12.5" cy="10.5" r="3.2" stroke="#C8923C" strokeWidth="1.2" />
+                  <path d="M12.5 8.8v1.7l1.2 1.2" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" />
                 </svg>
               ),
               label: 'Team',
-              title: 'Staff, training & scheduling',
-              desc: 'Manage your full team roster, track training sessions with scores, schedule weekly shifts, and onboard new members with invite codes.',
+              title: 'Staff, scheduling & training',
+              desc: 'Manage your full team roster, schedule weekly shifts, track training sessions, and onboard new members via invite codes.',
+              href: '/team',
             },
             {
               icon: (
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M3 14l3-4 3 2 3-5 3 3" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M3 4h12" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" opacity="0.3" />
+                <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
+                  <path d="M2 14.5l3.5-4.5 3 2.5 3-6 3.5 3.5" stroke="#C8923C" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M2 4h14" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" opacity="0.35" />
+                  <path d="M2 4v11" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" opacity="0.35" />
                 </svg>
               ),
               label: 'Revenue',
               title: 'Revenue & expense tracking',
               desc: 'Log daily revenue by category and track expenses by vendor. Get a clear view of your financial position without a spreadsheet.',
+              href: '/revenue',
             },
             {
               icon: (
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <rect x="2.5" y="2.5" width="6" height="6" rx="1" stroke="#C8923C" strokeWidth="1" opacity="0.4" />
-                  <rect x="9.5" y="2.5" width="6" height="6" rx="1" stroke="#C8923C" strokeWidth="1" opacity="0.4" />
-                  <rect x="2.5" y="9.5" width="6" height="6" rx="1" stroke="#C8923C" strokeWidth="1" opacity="0.4" />
-                  <path d="M12.5 12.5h1.5M12.5 14h1.5M9.5 12.5h1.5" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
+                <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
+                  <rect x="2" y="2" width="6.5" height="6.5" rx="1" stroke="#C8923C" strokeWidth="1.1" opacity="0.5" />
+                  <rect x="9.5" y="2" width="6.5" height="6.5" rx="1" stroke="#C8923C" strokeWidth="1.1" opacity="0.5" />
+                  <rect x="2" y="9.5" width="6.5" height="6.5" rx="1" stroke="#C8923C" strokeWidth="1.1" opacity="0.5" />
+                  <path d="M12.5 12.5h2M12.5 14.5h2M9.5 12.5h1.5" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" />
                 </svg>
               ),
               label: 'Inventory',
               title: 'Stock levels & par alerts',
               desc: 'Track every product, bean, and supply by quantity and unit. Set par levels and get instant alerts when stock falls below threshold.',
-            },
-            {
-              icon: (
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <rect x="2" y="4" width="14" height="12" rx="1.5" stroke="#C8923C" strokeWidth="1" opacity="0.4" />
-                  <path d="M6 2v4M12 2v4M2 8h14" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />
-                  <path d="M5 11h2M8 11h2M11 11h2M5 13.5h2M8 13.5h2" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" opacity="0.5" />
-                </svg>
-              ),
-              label: 'Schedule',
-              title: 'Weekly shift calendar',
-              desc: 'Build and view your weekly schedule by team member. Assign positions, set shift times, and keep your floor covered.',
+              href: '/inventory',
             },
           ].map((f, i) => (
-            <div key={f.label} className={`fade-up delay-${(i % 3) + 1}`} style={{
-              background: token.card, border: `1px solid ${token.line}`,
-              padding: '32px 28px', transition: 'background 0.2s',
-            }}
-              onMouseEnter={e => (e.currentTarget.style.background = token.cardHover)}
-              onMouseLeave={e => (e.currentTarget.style.background = token.card)}
+            <a
+              key={f.label}
+              href={f.href}
+              className={`fade-up delay-${(i % 3) + 1}`}
+              style={{
+                display: 'block',
+                textDecoration: 'none',
+                color: 'inherit',
+                background: token.card,
+                border: `1px solid ${token.line}`,
+                padding: '36px 32px',
+                transition: 'background 0.22s, border-color 0.22s, transform 0.22s, box-shadow 0.22s',
+                cursor: 'pointer',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget
+                el.style.background = token.cardHover
+                el.style.borderColor = 'rgba(200,146,60,0.55)'
+                el.style.transform = 'translateY(-4px)'
+                el.style.boxShadow = '0 12px 40px rgba(200,146,60,0.1), 0 2px 8px rgba(0,0,0,0.4)'
+                const accent = el.querySelector<HTMLElement>('.card-accent')
+                if (accent) accent.style.opacity = '1'
+                const iconWrap = el.querySelector<HTMLElement>('.card-icon')
+                if (iconWrap) {
+                  iconWrap.style.background = 'rgba(200,146,60,0.12)'
+                  iconWrap.style.borderColor = 'rgba(200,146,60,0.35)'
+                }
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget
+                el.style.background = token.card
+                el.style.borderColor = token.line
+                el.style.transform = 'translateY(0)'
+                el.style.boxShadow = 'none'
+                const accent = el.querySelector<HTMLElement>('.card-accent')
+                if (accent) accent.style.opacity = '0'
+                const iconWrap = el.querySelector<HTMLElement>('.card-icon')
+                if (iconWrap) {
+                  iconWrap.style.background = 'rgba(200,146,60,0.06)'
+                  iconWrap.style.borderColor = 'rgba(200,146,60,0.12)'
+                }
+              }}
             >
-              <div style={{ marginBottom: 20 }}>{f.icon}</div>
+              {/* top gold accent line */}
+              <div className="card-accent" style={{
+                position: 'absolute', top: 0, left: 0, right: 0, height: 2,
+                background: 'linear-gradient(to right, transparent, #C8923C, transparent)',
+                opacity: 0, transition: 'opacity 0.22s',
+              }} />
+
+              {/* icon container */}
+              <div className="card-icon" style={{
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                width: 48, height: 48, borderRadius: 3,
+                background: 'rgba(200,146,60,0.06)',
+                border: '1px solid rgba(200,146,60,0.12)',
+                marginBottom: 24,
+                transition: 'background 0.22s, border-color 0.22s',
+              }}>
+                {f.icon}
+              </div>
+
               <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: token.gold, marginBottom: 10 }}>
                 {f.label}
               </p>
-              <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12, lineHeight: 1.3 }}>{f.title}</h3>
-              <p style={{ fontSize: 13, color: token.subtle, lineHeight: 1.7 }}>{f.desc}</p>
-            </div>
+              <h3 style={{ fontSize: 17, fontWeight: 600, marginBottom: 12, lineHeight: 1.3 }}>{f.title}</h3>
+              <p style={{ fontSize: 13, color: token.subtle, lineHeight: 1.75, margin: 0 }}>{f.desc}</p>
+            </a>
           ))}
         </div>
       </section>

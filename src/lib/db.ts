@@ -163,8 +163,21 @@ function createDb() {
   return db
 }
 
-export const db = globalForDb._ullyDb ?? createDb()
+let _lazyDb: ReturnType<typeof drizzle> | undefined
 
-if (process.env.NODE_ENV !== 'production') {
-  globalForDb._ullyDb = db
+function getDb(): ReturnType<typeof drizzle> {
+  if (!_lazyDb) {
+    _lazyDb = globalForDb._ullyDb ?? createDb()
+    if (process.env.NODE_ENV !== 'production') {
+      globalForDb._ullyDb = _lazyDb
+    }
+  }
+  return _lazyDb
 }
+
+// Lazy proxy: safe to import at module level — createDb() only runs on first db access
+export const db = new Proxy({} as ReturnType<typeof drizzle>, {
+  get(_target, prop: string) {
+    return (getDb() as unknown as Record<string, unknown>)[prop]
+  },
+})

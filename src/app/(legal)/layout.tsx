@@ -1,10 +1,13 @@
 import Link from 'next/link'
+import FlowerIcon from '@/components/FlowerIcon'
 
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ minHeight: '100vh', background: '#0E0C0A' }}>
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 48px', height: 56, borderBottom: '1px solid #1E1A17', background: 'rgba(14,12,10,0.96)', backdropFilter: 'blur(20px)' }}>
-        <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 12, color: '#C8923C', letterSpacing: '0.1em', textShadow: '0 0 8px rgba(200,146,60,0.7)' }}>ULLY</Link>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <FlowerIcon size={28} glow />
+        </Link>
         <ul style={{ display: 'flex', gap: 32, listStyle: 'none' }}>
           {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Support', '/support'], ['Platform', '/login']].map(([label, href]) => (
             <li key={href}>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import FlowerIcon from './FlowerIcon'
 
 interface Props {
   loggedIn: boolean
@@ -54,9 +55,18 @@ export default function LandingPage({ loggedIn }: Props) {
         backdropFilter: 'blur(12px)',
         borderBottom: `1px solid ${token.line}`,
       }}>
-        <a href="/" style={{ fontFamily: token.pixel, fontSize: 13, color: token.gold, letterSpacing: '0.1em', textShadow: '0 0 12px rgba(200,146,60,0.5)', textDecoration: 'none' }}>
-          ULLY
-        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+          <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+            <FlowerIcon size={30} glow />
+          </a>
+          <div style={{ display: 'flex', gap: 24 }}>
+            {[['Products', '/products'], ['About', '/about'], ['Pricing', '/pricing']].map(([label, href]) => (
+              <a key={href} href={href} style={{ fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: token.subtle, textDecoration: 'none' }}>
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           {loggedIn ? (
@@ -401,11 +411,12 @@ export default function LandingPage({ loggedIn }: Props) {
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
           {[
+            { label: 'Products', href: '/products' },
+            { label: 'About', href: '/about' },
+            { label: 'Pricing', href: '/pricing' },
             { label: 'Privacy', href: '/privacy' },
             { label: 'Terms', href: '/terms' },
             { label: 'Support', href: '/support' },
-            { label: 'Data', href: '/data' },
-            { label: 'Delete Account', href: '/delete-account' },
           ].map(l => (
             <a key={l.href} href={l.href} style={{
               fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',

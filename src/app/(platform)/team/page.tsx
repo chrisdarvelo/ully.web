@@ -29,6 +29,7 @@ export default function TeamPage() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [editId, setEditId] = useState<string | null>(null)
+  const [successMsg, setSuccessMsg] = useState('')
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -56,7 +57,11 @@ export default function TeamPage() {
     const res = await fetch('/api/team', { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
     const data = await res.json()
     if (!res.ok) { setError(data.error ?? 'Save failed'); setSaving(false); return }
-    setShowForm(false); setEditId(null); setSaving(false); load()
+    const wasEdit = !!editId
+    setShowForm(false); setEditId(null); setSaving(false)
+    setSuccessMsg(wasEdit ? 'Member updated.' : 'Member added.')
+    setTimeout(() => setSuccessMsg(''), 3000)
+    load()
   }
 
   async function handleDelete(id: string) {
@@ -81,9 +86,12 @@ export default function TeamPage() {
             {active.length > 0 && <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#4A4440', marginLeft: 12, fontWeight: 400 }}>{active.length} active</span>}
           </h1>
         </div>
-        <button onClick={startAdd} style={{ background: '#C8923C', color: '#0E0C0A', border: 'none', borderRadius: 3, padding: '9px 18px', fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}>
-          + Add Member
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          {successMsg && <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#6EAB7E' }}>{successMsg}</span>}
+          <button onClick={startAdd} style={{ background: '#C8923C', color: '#0E0C0A', border: 'none', borderRadius: 3, padding: '9px 18px', fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}>
+            + Add Member
+          </button>
+        </div>
       </div>
 
       {showForm && (

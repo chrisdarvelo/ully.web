@@ -9,6 +9,7 @@ import {
   expenseRecords,
 } from '@/lib/schema'
 import { eq, and, gte, lte, sum, count, sql } from 'drizzle-orm'
+import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Dashboard' }
@@ -177,7 +178,7 @@ export default async function DashboardPage() {
         <div style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, overflow: 'hidden' }}>
           <div style={{ padding: '16px 20px', borderBottom: '1px solid #1E1A17', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C4B8AA' }}>Recent Revenue</span>
-            <a href="/revenue" style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#C8923C', letterSpacing: '0.1em' }}>View all →</a>
+            <Link href="/revenue" style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#C8923C', letterSpacing: '0.1em' }}>View all →</Link>
           </div>
           {recentRevenue.length === 0 ? (
             <div style={{ padding: '24px 20px', fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440', letterSpacing: '0.08em' }}>
@@ -202,7 +203,7 @@ export default async function DashboardPage() {
         <div style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, overflow: 'hidden' }}>
           <div style={{ padding: '16px 20px', borderBottom: '1px solid #1E1A17', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C4B8AA' }}>Recent Expenses</span>
-            <a href="/revenue" style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#C8923C', letterSpacing: '0.1em' }}>View all →</a>
+            <Link href="/revenue" style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#C8923C', letterSpacing: '0.1em' }}>View all →</Link>
           </div>
           {recentExpenses.length === 0 ? (
             <div style={{ padding: '24px 20px', fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440', letterSpacing: '0.08em' }}>
@@ -232,21 +233,21 @@ export default async function DashboardPage() {
           </div>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             {totalEquipment === 0 && (
-              <a href="/equipment" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
+              <Link href="/equipment" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
                 + Add equipment
-              </a>
+              </Link>
             )}
             {teamCount === 0 && (
-              <a href="/team" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
+              <Link href="/team" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
                 + Add team members
-              </a>
+              </Link>
             )}
-            <a href="/inventory" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
+            <Link href="/inventory" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
               + Set up inventory
-            </a>
-            <a href="/chat" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid rgba(200,146,60,0.3)', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C8923C', letterSpacing: '0.1em', textDecoration: 'none' }}>
+            </Link>
+            <Link href="/chat" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid rgba(200,146,60,0.3)', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C8923C', letterSpacing: '0.1em', textDecoration: 'none' }}>
               Ask Ully AI →
-            </a>
+            </Link>
           </div>
         </div>
       )}

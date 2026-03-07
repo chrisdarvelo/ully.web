@@ -262,7 +262,7 @@ export default function ChatInterface({ orgName }: ChatInterfaceProps) {
             </svg>
           </button>
         </div>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#2A2218', letterSpacing: '0.1em', textAlign: 'center', marginTop: 8 }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440', letterSpacing: '0.1em', textAlign: 'center', marginTop: 8 }}>
           Enter to send · Shift+Enter for new line
         </div>
       </div>

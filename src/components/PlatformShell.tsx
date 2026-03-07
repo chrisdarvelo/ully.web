@@ -63,7 +63,6 @@ export default function PlatformShell({
       >
         <Sidebar
           orgName={orgName}
-          orgId={orgId}
           userName={userName}
           role={role}
           onClose={() => setOpen(false)}

@@ -32,6 +32,7 @@ export default function InventoryPage() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [editId, setEditId] = useState<string | null>(null)
+  const [successMsg, setSuccessMsg] = useState('')
   const [filterCat, setFilterCat] = useState('all')
 
   const load = useCallback(async () => {
@@ -69,7 +70,11 @@ export default function InventoryPage() {
     const res = await fetch('/api/inventory', { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
     const data = await res.json()
     if (!res.ok) { setError(data.error ?? 'Save failed'); setSaving(false); return }
-    setShowForm(false); setEditId(null); setSaving(false); load()
+    const wasEdit = !!editId
+    setShowForm(false); setEditId(null); setSaving(false)
+    setSuccessMsg(wasEdit ? 'Item updated.' : 'Item added.')
+    setTimeout(() => setSuccessMsg(''), 3000)
+    load()
   }
 
   async function handleDelete(id: string) {
@@ -114,9 +119,12 @@ export default function InventoryPage() {
             {lowCount > 0 && <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#E07070', marginLeft: 12, fontWeight: 400 }}>{lowCount} low</span>}
           </h1>
         </div>
-        <button onClick={startAdd} style={{ background: '#C8923C', color: '#0E0C0A', border: 'none', borderRadius: 3, padding: '9px 18px', fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}>
-          + Add Item
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          {successMsg && <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#6EAB7E' }}>{successMsg}</span>}
+          <button onClick={startAdd} style={{ background: '#C8923C', color: '#0E0C0A', border: 'none', borderRadius: 3, padding: '9px 18px', fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}>
+            + Add Item
+          </button>
+        </div>
       </div>
 
       {showForm && (

@@ -97,7 +97,7 @@ export default function RevenuePage() {
     const res = await fetch('/api/revenue', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'revenue', ...revForm, date: new Date(revForm.date).getTime() })
+      body: JSON.stringify({ type: 'revenue', ...revForm, date: new Date(revForm.date + 'T00:00:00').getTime() })
     })
     const data = await res.json()
     if (!res.ok) { setError(data.error ?? 'Save failed'); setSaving(false); return }
@@ -113,7 +113,7 @@ export default function RevenuePage() {
     const res = await fetch('/api/revenue', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'expense', ...expForm, date: new Date(expForm.date).getTime() })
+      body: JSON.stringify({ type: 'expense', ...expForm, date: new Date(expForm.date + 'T00:00:00').getTime() })
     })
     const data = await res.json()
     if (!res.ok) { setError(data.error ?? 'Save failed'); setSaving(false); return }

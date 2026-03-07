@@ -58,6 +58,7 @@ export default function EquipmentPage() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [editId, setEditId] = useState<string | null>(null)
+  const [successMsg, setSuccessMsg] = useState('')
 
   // Service records panel
   const [serviceEquipId, setServiceEquipId] = useState<string | null>(null)
@@ -110,6 +111,8 @@ export default function EquipmentPage() {
     setShowForm(false)
     setEditId(null)
     setSaving(false)
+    setSuccessMsg(editId ? 'Equipment updated.' : 'Equipment added.')
+    setTimeout(() => setSuccessMsg(''), 3000)
     load()
   }
 
@@ -129,7 +132,7 @@ export default function EquipmentPage() {
     const res = await fetch('/api/service-records', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ equipmentId: serviceEquipId, ...serviceForm, date: new Date(serviceForm.date).getTime() })
+      body: JSON.stringify({ equipmentId: serviceEquipId, ...serviceForm, date: new Date(serviceForm.date + 'T00:00:00').getTime() })
     })
     if (res.ok) {
       const record = await res.json()
@@ -163,12 +166,15 @@ export default function EquipmentPage() {
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 6 }}>Equipment</div>
           <h1 style={{ fontSize: 24, fontWeight: 700, color: 'white' }}>Machine Registry</h1>
         </div>
-        <button
-          onClick={startAdd}
-          style={{ background: '#C8923C', color: '#0E0C0A', border: 'none', borderRadius: 3, padding: '9px 18px', fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}
-        >
-          + Add Equipment
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          {successMsg && <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#6EAB7E' }}>{successMsg}</span>}
+          <button
+            onClick={startAdd}
+            style={{ background: '#C8923C', color: '#0E0C0A', border: 'none', borderRadius: 3, padding: '9px 18px', fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer' }}
+          >
+            + Add Equipment
+          </button>
+        </div>
       </div>
 
       {/* Add/Edit form */}

@@ -71,7 +71,7 @@ export default function SchedulePage() {
     const res = await fetch('/api/schedule', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...form, date: new Date(form.date).getTime() })
+      body: JSON.stringify({ ...form, date: new Date(form.date + 'T00:00:00').getTime() })
     })
     const data = await res.json()
     if (!res.ok) { setError(data.error ?? 'Save failed'); setSaving(false); return }
@@ -82,6 +82,7 @@ export default function SchedulePage() {
   }
 
   async function deleteShift(id: string) {
+    if (!confirm('Remove this shift?')) return
     await fetch('/api/schedule', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) })
     load()
   }

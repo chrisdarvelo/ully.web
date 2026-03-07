@@ -5,7 +5,6 @@ import { usePathname, useRouter } from 'next/navigation'
 
 interface SidebarProps {
   orgName: string
-  orgId: string
   userName: string
   role: string
   onClose?: () => void
@@ -108,7 +107,7 @@ const NAV_ITEMS = [
   },
 ]
 
-export default function Sidebar({ orgName, orgId, userName, role, onClose }: SidebarProps) {
+export default function Sidebar({ orgName, userName, role, onClose }: SidebarProps) {
   const pathname = usePathname()
   const router = useRouter()
 
@@ -171,18 +170,8 @@ export default function Sidebar({ orgName, orgId, userName, role, onClose }: Sid
         >
           {role}
         </div>
-        <div style={{ fontSize: 13, color: '#C4B8AA', fontWeight: 500, marginBottom: 2 }}>
+        <div style={{ fontSize: 13, color: '#C4B8AA', fontWeight: 500 }}>
           {orgName}
-        </div>
-        <div
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 9,
-            color: '#4A4440',
-            letterSpacing: '0.1em',
-          }}
-        >
-          {orgId.slice(0, 12).toUpperCase()}
         </div>
       </div>
 

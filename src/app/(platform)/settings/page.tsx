@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 interface Invite {
@@ -381,7 +382,8 @@ export default function SettingsPage() {
           )}
 
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440', letterSpacing: '0.1em', marginTop: 12 }}>
-            Share the join link: <span style={{ color: '#6B5E52' }}>/join</span>
+            Share the join link:{' '}
+            <Link href="/join" style={{ color: '#C8923C' }}>/join</Link>
           </div>
         </div>
       )}

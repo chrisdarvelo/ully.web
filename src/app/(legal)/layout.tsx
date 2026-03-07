@@ -11,8 +11,10 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         <ul style={{ display: 'flex', gap: 32, listStyle: 'none' }}>
           {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Support', '/support'], ['Platform', '/login']].map(([label, href]) => (
             <li key={href}>
-              <Link href={href} style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C4B8AA', transition: 'color 0.15s' }}>
+              <Link href={href} className="t-nav">
+                <span className="t-brk" aria-hidden="true">[</span>
                 {label}
+                <span className="t-brk" aria-hidden="true">]</span>
               </Link>
             </li>
           ))}
@@ -28,7 +30,11 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         <ul style={{ display: 'flex', gap: 24, listStyle: 'none', flexWrap: 'wrap' }}>
           {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Data Usage', '/data'], ['Delete Account', '/delete-account'], ['Support', '/support']].map(([label, href]) => (
             <li key={href}>
-              <Link href={href} style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C4B8AA' }}>{label}</Link>
+              <Link href={href} className="t-nav">
+                <span className="t-brk" aria-hidden="true">[</span>
+                {label}
+                <span className="t-brk" aria-hidden="true">]</span>
+              </Link>
             </li>
           ))}
         </ul>

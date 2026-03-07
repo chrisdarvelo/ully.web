@@ -31,10 +31,12 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
             <FlowerIcon size={30} glow />
           </Link>
-          <div style={{ display: 'flex', gap: 28 }}>
+          <div style={{ display: 'flex', gap: 24 }}>
             {NAV_LINKS.map(([label, href]) => (
-              <Link key={href} href={href} style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C4B8AA', textDecoration: 'none' }}>
+              <Link key={href} href={href} className="t-nav">
+                <span className="t-brk" aria-hidden="true">[</span>
                 {label}
+                <span className="t-brk" aria-hidden="true">]</span>
               </Link>
             ))}
           </div>
@@ -59,8 +61,10 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 11, color: '#C8923C', letterSpacing: '0.1em', textDecoration: 'none' }}>ULLY</Link>
         <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
           {FOOTER_LINKS.map(([label, href]) => (
-            <Link key={href} href={href} style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C4B8AA', textDecoration: 'none' }}>
+            <Link key={href} href={href} className="t-nav">
+              <span className="t-brk" aria-hidden="true">[</span>
               {label}
+              <span className="t-brk" aria-hidden="true">]</span>
             </Link>
           ))}
         </div>

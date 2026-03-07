@@ -99,3 +99,31 @@ input, textarea, select, button {
 .badge-retired { background: rgba(74, 68, 64, 0.4); color: var(--color-muted); border: 1px solid var(--color-line); }
 .badge-low     { background: rgba(200, 64, 64, 0.15); color: #E07070; border: 1px solid rgba(200, 64, 64, 0.3); }
 .badge-ok      { background: rgba(74, 140, 92, 0.15); color: #6EAB7E; border: 1px solid rgba(74, 140, 92, 0.3); }
+
+/* ── Terminal nav links ──────────────────────────────────────── */
+.t-nav {
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #C4B8AA;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.15s, text-shadow 0.15s;
+}
+.t-nav .t-brk {
+  color: #2A2218;
+  transition: color 0.15s;
+  font-weight: 400;
+  user-select: none;
+}
+.t-nav:hover {
+  color: #C8923C;
+  text-shadow: 0 0 12px rgba(200, 146, 60, 0.45);
+}
+.t-nav:hover .t-brk {
+  color: #C8923C;
+}
+

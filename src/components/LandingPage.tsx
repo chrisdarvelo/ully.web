@@ -61,8 +61,10 @@ export default function LandingPage({ loggedIn }: Props) {
           </a>
           <div style={{ display: 'flex', gap: 24 }}>
             {[['Products', '/products'], ['About', '/about'], ['Pricing', '/pricing']].map(([label, href]) => (
-              <a key={href} href={href} style={{ fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: token.subtle, textDecoration: 'none' }}>
+              <a key={href} href={href} className="t-nav">
+                <span className="t-brk" aria-hidden="true">[</span>
                 {label}
+                <span className="t-brk" aria-hidden="true">]</span>
               </a>
             ))}
           </div>
@@ -468,14 +470,10 @@ export default function LandingPage({ loggedIn }: Props) {
             { label: 'Terms', href: '/terms' },
             { label: 'Support', href: '/support' },
           ].map(l => (
-            <a key={l.href} href={l.href} style={{
-              fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
-              color: token.subtle, transition: 'color 0.15s',
-            }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'white')}
-              onMouseLeave={e => (e.currentTarget.style.color = token.subtle)}
-            >
+            <a key={l.href} href={l.href} className="t-nav">
+              <span className="t-brk" aria-hidden="true">[</span>
               {l.label}
+              <span className="t-brk" aria-hidden="true">]</span>
             </a>
           ))}
         </div>

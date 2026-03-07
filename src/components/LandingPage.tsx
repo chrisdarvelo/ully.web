@@ -32,9 +32,10 @@ const token = {
   gold: '#C8923C',
   goldDim: 'rgba(200, 146, 60, 0.15)',
   line: '#1E1A17',
-  muted: '#4A4440',
+  muted: '#6B5E52',
   subtle: '#C4B8AA',
   mono: "'Menlo', 'Monaco', 'Courier New', monospace",
+  pixel: "var(--font-pixel-family)",
   sans: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
 }
 
@@ -53,29 +54,29 @@ export default function LandingPage({ loggedIn }: Props) {
         backdropFilter: 'blur(12px)',
         borderBottom: `1px solid ${token.line}`,
       }}>
-        <span style={{ fontFamily: token.mono, fontSize: 14, fontWeight: 700, color: token.gold, letterSpacing: '0.3em' }}>
+        <span style={{ fontFamily: token.pixel, fontSize: 13, color: token.gold, letterSpacing: '0.1em', textShadow: '0 0 12px rgba(200,146,60,0.5)' }}>
           ULLY
         </span>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           {loggedIn ? (
             <a href="/dashboard" style={{
-              fontFamily: token.mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase',
-              background: token.gold, color: token.bg, padding: '9px 18px', borderRadius: 3, fontWeight: 700,
+              fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
+              background: token.gold, color: token.bg, padding: '10px 20px', borderRadius: 3, fontWeight: 700,
             }}>
               Open Dashboard
             </a>
           ) : (
             <>
               <a href="/login" style={{
-                fontFamily: token.mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase',
-                color: token.subtle, padding: '9px 14px',
+                fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
+                color: 'white', padding: '10px 16px', opacity: 0.85,
               }}>
                 Sign In
               </a>
               <a href="/signup" style={{
-                fontFamily: token.mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase',
-                background: token.gold, color: token.bg, padding: '9px 18px', borderRadius: 3, fontWeight: 700,
+                fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
+                background: token.gold, color: token.bg, padding: '10px 20px', borderRadius: 3, fontWeight: 700,
               }}>
                 Get Started
               </a>
@@ -93,9 +94,9 @@ export default function LandingPage({ loggedIn }: Props) {
       }}>
         <div className="fade-up" style={{ marginBottom: 20 }}>
           <span style={{
-            fontFamily: token.mono, fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase',
-            color: token.gold, border: `1px solid rgba(200, 146, 60, 0.3)`,
-            padding: '5px 14px', borderRadius: 2,
+            fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',
+            color: token.gold, border: `1px solid rgba(200, 146, 60, 0.4)`,
+            padding: '7px 16px', borderRadius: 2,
           }}>
             Ully Business Platform
           </span>
@@ -156,7 +157,7 @@ export default function LandingPage({ loggedIn }: Props) {
       {/* ── Platform Features ───────────────────────────── */}
       <section style={{ padding: 'clamp(80px, 10vw, 140px) clamp(24px, 8vw, 120px)' }}>
         <div className="fade-up" style={{ marginBottom: 64, maxWidth: 560 }}>
-          <p style={{ fontFamily: token.mono, fontSize: 9, letterSpacing: '0.24em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
+          <p style={{ fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
             Platform
           </p>
           <h2 style={{ fontSize: 'clamp(26px, 4vw, 42px)', fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.01em' }}>
@@ -247,7 +248,7 @@ export default function LandingPage({ loggedIn }: Props) {
               onMouseLeave={e => (e.currentTarget.style.background = token.card)}
             >
               <div style={{ marginBottom: 20 }}>{f.icon}</div>
-              <p style={{ fontFamily: token.mono, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: token.gold, marginBottom: 10 }}>
+              <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: token.gold, marginBottom: 10 }}>
                 {f.label}
               </p>
               <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12, lineHeight: 1.3 }}>{f.title}</h3>
@@ -263,7 +264,7 @@ export default function LandingPage({ loggedIn }: Props) {
       {/* ── Coming Soon ─────────────────────────────────── */}
       <section style={{ padding: 'clamp(80px, 10vw, 140px) clamp(24px, 8vw, 120px)' }}>
         <div className="fade-up" style={{ marginBottom: 56 }}>
-          <p style={{ fontFamily: token.mono, fontSize: 9, letterSpacing: '0.24em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
+          <p style={{ fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
             Coming Soon
           </p>
           <h2 style={{ fontSize: 'clamp(26px, 4vw, 42px)', fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.01em', maxWidth: 520 }}>
@@ -285,7 +286,7 @@ export default function LandingPage({ loggedIn }: Props) {
                 position: 'absolute', top: 0, left: 0, right: 0, height: 1,
                 background: `linear-gradient(to right, transparent, rgba(200, 146, 60, 0.3), transparent)`,
               }} />
-              <p style={{ fontFamily: token.mono, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: token.muted, marginBottom: 12 }}>
+              <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: token.subtle, marginBottom: 12 }}>
                 Planned
               </p>
               <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: 10 }}>{item.title}</h3>
@@ -328,7 +329,7 @@ export default function LandingPage({ loggedIn }: Props) {
       <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 40, justifyContent: 'space-between' }}>
           <div style={{ maxWidth: 480 }}>
-            <p className="fade-up" style={{ fontFamily: token.mono, fontSize: 9, letterSpacing: '0.24em', textTransform: 'uppercase', color: token.muted, marginBottom: 16 }}>
+            <p className="fade-up" style={{ fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
               Mobile
             </p>
             <h2 className="fade-up delay-1" style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, marginBottom: 16, lineHeight: 1.2 }}>
@@ -350,8 +351,8 @@ export default function LandingPage({ loggedIn }: Props) {
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                   <path d="M11.182 9.996c-.02 1.81.791 3.176 2.41 4.178-.367 1.005-1.316 3.32-3.077 3.32-.723 0-1.21-.434-2.075-.434-.89 0-1.484.44-2.11.44-1.67 0-3.374-2.2-3.374-4.777 0-2.493 1.554-4.167 3.52-4.167.88 0 1.614.485 2.18.485.533 0 1.37-.52 2.41-.52.394 0 1.55.056 2.116 1.475zm-1.14-5.376C10.533 3.682 9.964 2.5 8.5 2c.013 1.455.757 2.568 1.542 3.62z" />
                 </svg>
-                <span style={{ fontFamily: token.mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase' }}>App Store</span>
-                <span style={{ fontFamily: token.mono, fontSize: 8, color: token.muted, letterSpacing: '0.1em' }}>Coming Soon</span>
+                <span style={{ fontFamily: token.mono, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase' }}>App Store</span>
+                <span style={{ fontFamily: token.mono, fontSize: 10, color: token.subtle, letterSpacing: '0.1em' }}>Coming Soon</span>
               </a>
               <a href="#" style={{
                 display: 'flex', alignItems: 'center', gap: 10,
@@ -364,8 +365,8 @@ export default function LandingPage({ loggedIn }: Props) {
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                   <path d="M1.5 1L8.7 8 1.5 15H3l6.4-6.4L15 15h1.5L9 8l7.5-7h-1.5L9.4 7.4 3 1H1.5z" />
                 </svg>
-                <span style={{ fontFamily: token.mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase' }}>Google Play</span>
-                <span style={{ fontFamily: token.mono, fontSize: 8, color: token.muted, letterSpacing: '0.1em' }}>Coming Soon</span>
+                <span style={{ fontFamily: token.mono, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase' }}>Google Play</span>
+                <span style={{ fontFamily: token.mono, fontSize: 10, color: token.subtle, letterSpacing: '0.1em' }}>Coming Soon</span>
               </a>
             </div>
           </div>
@@ -394,7 +395,7 @@ export default function LandingPage({ loggedIn }: Props) {
       <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
 
       <footer style={{ padding: '32px clamp(24px, 8vw, 120px)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
-        <span style={{ fontFamily: token.mono, fontSize: 10, fontWeight: 700, color: token.gold, letterSpacing: '0.3em' }}>
+        <span style={{ fontFamily: token.pixel, fontSize: 11, color: token.gold, letterSpacing: '0.1em' }}>
           ULLY
         </span>
 
@@ -407,18 +408,18 @@ export default function LandingPage({ loggedIn }: Props) {
             { label: 'Delete Account', href: '/delete-account' },
           ].map(l => (
             <a key={l.href} href={l.href} style={{
-              fontFamily: token.mono, fontSize: 8, letterSpacing: '0.16em', textTransform: 'uppercase',
-              color: token.muted, transition: 'color 0.15s',
+              fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
+              color: token.subtle, transition: 'color 0.15s',
             }}
-              onMouseEnter={e => (e.currentTarget.style.color = token.subtle)}
-              onMouseLeave={e => (e.currentTarget.style.color = token.muted)}
+              onMouseEnter={e => (e.currentTarget.style.color = 'white')}
+              onMouseLeave={e => (e.currentTarget.style.color = token.subtle)}
             >
               {l.label}
             </a>
           ))}
         </div>
 
-        <span style={{ fontFamily: token.mono, fontSize: 8, color: token.muted, letterSpacing: '0.1em' }}>
+        <span style={{ fontFamily: token.mono, fontSize: 10, color: token.muted, letterSpacing: '0.1em' }}>
           © {new Date().getFullYear()} Ully AI
         </span>
       </footer>

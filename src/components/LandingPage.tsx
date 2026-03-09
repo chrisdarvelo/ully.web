@@ -60,7 +60,7 @@ export default function LandingPage({ loggedIn }: Props) {
             <FlowerIcon size={30} glow />
           </a>
           <div style={{ display: 'flex', gap: 24 }}>
-            {[['Products', '/products'], ['About', '/about'], ['Pricing', '/pricing']].map(([label, href]) => (
+            {[['Products', '/products'], ['Pricing', '/pricing']].map(([label, href]) => (
               <a key={href} href={href} className="t-nav">
                 <span className="t-brk" aria-hidden="true">[</span>
                 {label}
@@ -163,204 +163,6 @@ export default function LandingPage({ loggedIn }: Props) {
         </div>
       </section>
 
-      {/* ── Divider ─────────────────────────────────────── */}
-      <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
-
-      {/* ── Platform Features ───────────────────────────── */}
-      <section style={{ padding: 'clamp(80px, 10vw, 140px) clamp(24px, 8vw, 120px)' }}>
-        <div className="fade-up" style={{ marginBottom: 64, maxWidth: 560 }}>
-          <p style={{ fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
-            Platform
-          </p>
-          <h2 style={{ fontSize: 'clamp(26px, 4vw, 42px)', fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.01em' }}>
-            Everything your operation needs in one place.
-          </h2>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2 }}>
-          {[
-            {
-              icon: (
-                <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
-                  <circle cx="9" cy="9" r="7.5" stroke="#C8923C" strokeWidth="1" opacity="0.5" />
-                  <path d="M5 9h2l2-4 2 8 2-4h2" stroke="#C8923C" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              ),
-              label: 'Ully AI',
-              title: 'Context-aware intelligence',
-              desc: 'Your AI assistant knows your active equipment, team size, low-stock items, and org type. Every answer is grounded in your actual operation.',
-              href: '/chat',
-            },
-            {
-              icon: (
-                <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
-                  <rect x="2" y="3" width="14" height="10" rx="1.5" stroke="#C8923C" strokeWidth="1" opacity="0.5" />
-                  <path d="M6 13v2M12 13v2M4 16h10" stroke="#C8923C" strokeWidth="1.4" strokeLinecap="round" />
-                  <path d="M5.5 8.5h7M5.5 6.5h4" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" opacity="0.7" />
-                </svg>
-              ),
-              label: 'Equipment',
-              title: 'Machine registry & service history',
-              desc: 'Track every machine, brand, model, and serial number. Log service records and maintenance events. Know what was done and when.',
-              href: '/equipment',
-            },
-            {
-              icon: (
-                <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
-                  <circle cx="6" cy="6" r="2.5" stroke="#C8923C" strokeWidth="1" opacity="0.5" />
-                  <path d="M1.5 15c0-2.8 2-4.5 4.5-4.5" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />
-                  <circle cx="12.5" cy="10.5" r="3.2" stroke="#C8923C" strokeWidth="1.2" />
-                  <path d="M12.5 8.8v1.7l1.2 1.2" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" />
-                </svg>
-              ),
-              label: 'Team',
-              title: 'Staff, scheduling & training',
-              desc: 'Manage your full team roster, schedule weekly shifts, track training sessions, and onboard new members via invite codes.',
-              href: '/team',
-            },
-            {
-              icon: (
-                <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
-                  <path d="M2 14.5l3.5-4.5 3 2.5 3-6 3.5 3.5" stroke="#C8923C" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M2 4h14" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" opacity="0.35" />
-                  <path d="M2 4v11" stroke="#C8923C" strokeWidth="1" strokeLinecap="round" opacity="0.35" />
-                </svg>
-              ),
-              label: 'Revenue',
-              title: 'Revenue & expense tracking',
-              desc: 'Log daily revenue by category and track expenses by vendor. Get a clear view of your financial position without a spreadsheet.',
-              href: '/revenue',
-            },
-            {
-              icon: (
-                <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
-                  <rect x="2" y="2" width="6.5" height="6.5" rx="1" stroke="#C8923C" strokeWidth="1.1" opacity="0.5" />
-                  <rect x="9.5" y="2" width="6.5" height="6.5" rx="1" stroke="#C8923C" strokeWidth="1.1" opacity="0.5" />
-                  <rect x="2" y="9.5" width="6.5" height="6.5" rx="1" stroke="#C8923C" strokeWidth="1.1" opacity="0.5" />
-                  <path d="M12.5 12.5h2M12.5 14.5h2M9.5 12.5h1.5" stroke="#C8923C" strokeWidth="1.2" strokeLinecap="round" />
-                </svg>
-              ),
-              label: 'Inventory',
-              title: 'Stock levels & par alerts',
-              desc: 'Track every product, bean, and supply by quantity and unit. Set par levels and get instant alerts when stock falls below threshold.',
-              href: '/inventory',
-            },
-          ].map((f, i) => (
-            <a
-              key={f.label}
-              href={f.href}
-              className={`fade-up delay-${(i % 3) + 1}`}
-              style={{
-                display: 'block',
-                textDecoration: 'none',
-                color: 'inherit',
-                background: token.card,
-                border: `1px solid ${token.line}`,
-                padding: '36px 32px',
-                transition: 'background 0.22s, border-color 0.22s, transform 0.22s, box-shadow 0.22s',
-                cursor: 'pointer',
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget
-                el.style.background = token.cardHover
-                el.style.borderColor = 'rgba(200,146,60,0.55)'
-                el.style.transform = 'translateY(-4px)'
-                el.style.boxShadow = '0 12px 40px rgba(200,146,60,0.1), 0 2px 8px rgba(0,0,0,0.4)'
-                const accent = el.querySelector<HTMLElement>('.card-accent')
-                if (accent) accent.style.opacity = '1'
-                const iconWrap = el.querySelector<HTMLElement>('.card-icon')
-                if (iconWrap) {
-                  iconWrap.style.background = 'rgba(200,146,60,0.12)'
-                  iconWrap.style.borderColor = 'rgba(200,146,60,0.35)'
-                }
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget
-                el.style.background = token.card
-                el.style.borderColor = token.line
-                el.style.transform = 'translateY(0)'
-                el.style.boxShadow = 'none'
-                const accent = el.querySelector<HTMLElement>('.card-accent')
-                if (accent) accent.style.opacity = '0'
-                const iconWrap = el.querySelector<HTMLElement>('.card-icon')
-                if (iconWrap) {
-                  iconWrap.style.background = 'rgba(200,146,60,0.06)'
-                  iconWrap.style.borderColor = 'rgba(200,146,60,0.12)'
-                }
-              }}
-            >
-              {/* top gold accent line */}
-              <div className="card-accent" style={{
-                position: 'absolute', top: 0, left: 0, right: 0, height: 2,
-                background: 'linear-gradient(to right, transparent, #C8923C, transparent)',
-                opacity: 0, transition: 'opacity 0.22s',
-              }} />
-
-              {/* icon container */}
-              <div className="card-icon" style={{
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                width: 48, height: 48, borderRadius: 3,
-                background: 'rgba(200,146,60,0.06)',
-                border: '1px solid rgba(200,146,60,0.12)',
-                marginBottom: 24,
-                transition: 'background 0.22s, border-color 0.22s',
-              }}>
-                {f.icon}
-              </div>
-
-              <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: token.gold, marginBottom: 10 }}>
-                {f.label}
-              </p>
-              <h3 style={{ fontSize: 17, fontWeight: 600, marginBottom: 12, lineHeight: 1.3 }}>{f.title}</h3>
-              <p style={{ fontSize: 13, color: token.subtle, lineHeight: 1.75, margin: 0 }}>{f.desc}</p>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Divider ─────────────────────────────────────── */}
-      <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
-
-      {/* ── Coming Soon ─────────────────────────────────── */}
-      <section style={{ padding: 'clamp(80px, 10vw, 140px) clamp(24px, 8vw, 120px)' }}>
-        <div className="fade-up" style={{ marginBottom: 56 }}>
-          <p style={{ fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
-            Coming Soon
-          </p>
-          <h2 style={{ fontSize: 'clamp(26px, 4vw, 42px)', fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.01em', maxWidth: 520 }}>
-            What&apos;s next for Ully.
-          </h2>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2 }}>
-          {[
-            { title: 'Automated Reports', desc: 'Weekly and monthly reports generated automatically — revenue summaries, training completion, service logs.' },
-            { title: 'Multi-location Support', desc: 'Manage multiple cafes from a single organization account with per-location dashboards and staff.' },
-            { title: 'Supplier Integration', desc: 'Connect directly with your coffee suppliers for automated reorder suggestions based on inventory par levels.' },
-            { title: 'Knowledge Base', desc: 'A curated, searchable library of coffee technique, extraction science, and equipment maintenance — offline-ready.' },
-          ].map((item, i) => (
-            <div key={item.title} className={`fade-up delay-${(i % 4) + 1}`} style={{
-              padding: '28px 24px', border: `1px solid ${token.line}`, position: 'relative', overflow: 'hidden',
-            }}>
-              <div style={{
-                position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-                background: `linear-gradient(to right, transparent, rgba(200, 146, 60, 0.3), transparent)`,
-              }} />
-              <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: token.subtle, marginBottom: 12 }}>
-                Planned
-              </p>
-              <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: 10 }}>{item.title}</h3>
-              <p style={{ fontSize: 13, color: token.subtle, lineHeight: 1.7 }}>{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Divider ─────────────────────────────────────── */}
-      <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
-
       {/* ── CTA ─────────────────────────────────────────── */}
       {!loggedIn && (
         <section style={{
@@ -461,14 +263,10 @@ export default function LandingPage({ loggedIn }: Props) {
           ULLY
         </span>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 24 }}>
           {[
-            { label: 'Products', href: '/products' },
-            { label: 'About', href: '/about' },
-            { label: 'Pricing', href: '/pricing' },
             { label: 'Privacy', href: '/privacy' },
             { label: 'Terms', href: '/terms' },
-            { label: 'Support', href: '/support' },
           ].map(l => (
             <a key={l.href} href={l.href} className="t-nav">
               <span className="t-brk" aria-hidden="true">[</span>
@@ -476,6 +274,15 @@ export default function LandingPage({ loggedIn }: Props) {
               <span className="t-brk" aria-hidden="true">]</span>
             </a>
           ))}
+          <a href="mailto:support@ullycoffee.com" style={{
+            fontFamily: token.mono, fontSize: 10, letterSpacing: '0.12em',
+            color: token.muted, textDecoration: 'none', transition: 'color 0.2s',
+          }}
+            onMouseEnter={e => { e.currentTarget.style.color = token.gold }}
+            onMouseLeave={e => { e.currentTarget.style.color = token.muted }}
+          >
+            support@ullycoffee.com
+          </a>
         </div>
 
         <span style={{ fontFamily: token.mono, fontSize: 10, color: token.muted, letterSpacing: '0.1em' }}>

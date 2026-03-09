@@ -11,7 +11,7 @@ export default async function ChatPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <ChatInterface orgName={session.orgName} />
+      <ChatInterface orgName={session.orgName} userName={session.name} />
     </div>
   )
 }

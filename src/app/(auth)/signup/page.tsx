@@ -115,7 +115,7 @@ export default function SignupPage() {
                     required
                     value={form.orgName}
                     onChange={e => update('orgName', e.target.value)}
-                    placeholder="Blue Bottle Coffee"
+                    placeholder="Your Coffee Business"
                     style={inputStyle}
                     onFocus={e => (e.target.style.borderColor = '#C8923C')}
                     onBlur={e => (e.target.style.borderColor = '#1E1A17')}
@@ -218,7 +218,7 @@ export default function SignupPage() {
               {loading ? 'Creating...' : 'Create account'}
             </button>
 
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em', lineHeight: 1.8, textAlign: 'center' }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52', letterSpacing: '0.08em', lineHeight: 1.8, textAlign: 'center' }}>
               By creating an account you agree to our{' '}
               <Link href="/terms" style={{ color: '#C4B8AA' }}>Terms of Use</Link>
               {' '}and{' '}
@@ -227,7 +227,7 @@ export default function SignupPage() {
           </form>
         </div>
 
-        <p style={{ textAlign: 'center', marginTop: 20, fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C4B8AA', letterSpacing: '0.1em' }}>
+        <p style={{ textAlign: 'center', marginTop: 20, fontFamily: 'var(--font-mono)', fontSize: 13, color: '#C4B8AA', letterSpacing: '0.1em' }}>
           Already have an account?{' '}
           <Link href="/login" style={{ color: '#C8923C' }}>Sign in →</Link>
         </p>

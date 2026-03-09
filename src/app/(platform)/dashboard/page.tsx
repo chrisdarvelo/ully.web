@@ -8,9 +8,11 @@ import {
   revenueRecords,
   expenseRecords,
 } from '@/lib/schema'
-import { eq, and, gte, lte, sum, count, sql } from 'drizzle-orm'
+import { eq, and, gte, sum, count, sql } from 'drizzle-orm'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import DashboardCharts from '@/components/DashboardCharts'
+import type { ChartDay } from '@/components/DashboardCharts'
 
 export const metadata: Metadata = { title: 'Dashboard' }
 
@@ -42,6 +44,7 @@ export default async function DashboardPage() {
   const orgId = session.orgId
   const todayStart = startOfToday()
   const monthStart = startOfMonth()
+  const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
 
   // Today's revenue
   const todayRevResult = db
@@ -116,6 +119,32 @@ export default async function DashboardPage() {
     .limit(5)
     .all()
 
+  // 7-day chart data
+  const rev7d = db
+    .select({ date: revenueRecords.date, amount: revenueRecords.amount })
+    .from(revenueRecords)
+    .where(and(eq(revenueRecords.orgId, orgId), gte(revenueRecords.date, sevenDaysAgo)))
+    .all()
+
+  const exp7d = db
+    .select({ date: expenseRecords.date, amount: expenseRecords.amount })
+    .from(expenseRecords)
+    .where(and(eq(expenseRecords.orgId, orgId), gte(expenseRecords.date, sevenDaysAgo)))
+    .all()
+
+  const chartDays: ChartDay[] = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date()
+    d.setDate(d.getDate() - (6 - i))
+    d.setHours(0, 0, 0, 0)
+    const start = d.getTime()
+    const end = start + 86_400_000
+    return {
+      label: d.toLocaleDateString('en-US', { weekday: 'short' }),
+      revenue: rev7d.filter(r => r.date >= start && r.date < end).reduce((s, r) => s + r.amount, 0),
+      expenses: exp7d.filter(r => r.date >= start && r.date < end).reduce((s, r) => s + r.amount, 0),
+    }
+  })
+
   const metrics = [
     { label: "Today's Revenue", value: formatCurrency(todayRevenue), sub: 'recorded today', color: '#C8923C' },
     { label: 'Month Revenue', value: formatCurrency(monthRevenue), sub: `${formatCurrency(monthProfit)} profit`, color: monthProfit >= 0 ? '#4A8C5C' : '#C84040' },
@@ -126,30 +155,31 @@ export default async function DashboardPage() {
 
   return (
     <div style={{ padding: 40, maxWidth: 1100 }}>
+
       {/* Header */}
       <div style={{ marginBottom: 40 }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 8 }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 8 }}>
           Business Overview
         </div>
-        <h1 style={{ fontSize: 28, fontWeight: 700, color: 'white', letterSpacing: '-0.01em' }}>
+        <h1 style={{ fontSize: 32, fontWeight: 700, color: 'white', letterSpacing: '-0.01em' }}>
           {session.orgName}
         </h1>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440', letterSpacing: '0.1em', marginTop: 4 }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#4A4440', letterSpacing: '0.1em', marginTop: 4 }}>
           {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         </div>
       </div>
 
       {/* Metric cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12, marginBottom: 40 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12, marginBottom: 32 }}>
         {metrics.map(m => (
           <div key={m.label} style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, padding: '20px 20px 16px' }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 12 }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#6B5E52', marginBottom: 12 }}>
               {m.label}
             </div>
-            <div style={{ fontSize: 28, fontWeight: 700, color: m.color, letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 6 }}>
+            <div style={{ fontSize: 30, fontWeight: 700, color: m.color, letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 8 }}>
               {m.value}
             </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440', letterSpacing: '0.08em' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', letterSpacing: '0.08em' }}>
               {m.sub}
             </div>
           </div>
@@ -159,12 +189,12 @@ export default async function DashboardPage() {
       {/* Low stock alert */}
       {lowItems.length > 0 && (
         <div style={{ background: 'rgba(200,64,64,0.08)', border: '1px solid rgba(200,64,64,0.2)', borderRadius: 4, padding: '16px 20px', marginBottom: 32 }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#E07070', marginBottom: 8 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#E07070', marginBottom: 8 }}>
             Low Stock Alert
           </div>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {lowItems.map(item => (
-              <span key={item.id} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C4B8AA', background: 'rgba(200,64,64,0.1)', border: '1px solid rgba(200,64,64,0.2)', borderRadius: 2, padding: '3px 8px' }}>
+              <span key={item.id} style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#C4B8AA', background: 'rgba(200,64,64,0.1)', border: '1px solid rgba(200,64,64,0.2)', borderRadius: 2, padding: '3px 8px' }}>
                 {item.name} — {item.quantity} {item.unit} (par: {item.parLevel})
               </span>
             ))}
@@ -172,26 +202,30 @@ export default async function DashboardPage() {
         </div>
       )}
 
+      {/* Charts */}
+      <DashboardCharts days={chartDays} />
+
       {/* Recent activity */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+
         {/* Recent Revenue */}
         <div style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, overflow: 'hidden' }}>
           <div style={{ padding: '16px 20px', borderBottom: '1px solid #1E1A17', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C4B8AA' }}>Recent Revenue</span>
-            <Link href="/revenue" style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#C8923C', letterSpacing: '0.1em' }}>View all →</Link>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C4B8AA' }}>Recent Revenue</span>
+            <Link href="/revenue" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C8923C', letterSpacing: '0.1em' }}>View all →</Link>
           </div>
           {recentRevenue.length === 0 ? (
-            <div style={{ padding: '24px 20px', fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440', letterSpacing: '0.08em' }}>
+            <div style={{ padding: '24px 20px', fontFamily: 'var(--font-mono)', fontSize: 12, color: '#4A4440', letterSpacing: '0.08em' }}>
               No revenue recorded yet
             </div>
           ) : (
             recentRevenue.map(r => (
-              <div key={r.id} style={{ padding: '12px 20px', borderBottom: '1px solid #1E1A17', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div key={r.id} style={{ padding: '13px 20px', borderBottom: '1px solid #1E1A17', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <div style={{ fontSize: 13, color: '#C4B8AA', marginBottom: 2 }}>{r.category}</div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440', letterSpacing: '0.08em' }}>{formatDate(r.date)}</div>
+                  <div style={{ fontSize: 15, color: '#C4B8AA', marginBottom: 3 }}>{r.category}</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', letterSpacing: '0.08em' }}>{formatDate(r.date)}</div>
                 </div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#4A8C5C', fontWeight: 700 }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 15, color: '#4A8C5C', fontWeight: 700 }}>
                   +{formatCurrency(r.amount)}
                 </div>
               </div>
@@ -202,21 +236,21 @@ export default async function DashboardPage() {
         {/* Recent Expenses */}
         <div style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, overflow: 'hidden' }}>
           <div style={{ padding: '16px 20px', borderBottom: '1px solid #1E1A17', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C4B8AA' }}>Recent Expenses</span>
-            <Link href="/revenue" style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#C8923C', letterSpacing: '0.1em' }}>View all →</Link>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C4B8AA' }}>Recent Expenses</span>
+            <Link href="/revenue" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C8923C', letterSpacing: '0.1em' }}>View all →</Link>
           </div>
           {recentExpenses.length === 0 ? (
-            <div style={{ padding: '24px 20px', fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440', letterSpacing: '0.08em' }}>
+            <div style={{ padding: '24px 20px', fontFamily: 'var(--font-mono)', fontSize: 12, color: '#4A4440', letterSpacing: '0.08em' }}>
               No expenses recorded yet
             </div>
           ) : (
             recentExpenses.map(r => (
-              <div key={r.id} style={{ padding: '12px 20px', borderBottom: '1px solid #1E1A17', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div key={r.id} style={{ padding: '13px 20px', borderBottom: '1px solid #1E1A17', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <div style={{ fontSize: 13, color: '#C4B8AA', marginBottom: 2 }}>{r.category}{r.vendor ? ` — ${r.vendor}` : ''}</div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#4A4440', letterSpacing: '0.08em' }}>{formatDate(r.date)}</div>
+                  <div style={{ fontSize: 15, color: '#C4B8AA', marginBottom: 3 }}>{r.category}{r.vendor ? ` — ${r.vendor}` : ''}</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', letterSpacing: '0.08em' }}>{formatDate(r.date)}</div>
                 </div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#C84040', fontWeight: 700 }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 15, color: '#C84040', fontWeight: 700 }}>
                   -{formatCurrency(r.amount)}
                 </div>
               </div>
@@ -228,24 +262,24 @@ export default async function DashboardPage() {
       {/* Quick links */}
       {(teamCount === 0 || totalEquipment === 0) && (
         <div style={{ marginTop: 32, background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, padding: '20px 24px' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 16 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 16 }}>
             Get started
           </div>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             {totalEquipment === 0 && (
-              <Link href="/equipment" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
+              <Link href="/equipment" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 16px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 12, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
                 + Add equipment
               </Link>
             )}
             {teamCount === 0 && (
-              <Link href="/team" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
+              <Link href="/team" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 16px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 12, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
                 + Add team members
               </Link>
             )}
-            <Link href="/inventory" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
+            <Link href="/inventory" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 16px', border: '1px solid #1E1A17', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 12, color: '#C4B8AA', letterSpacing: '0.1em', textDecoration: 'none' }}>
               + Set up inventory
             </Link>
-            <Link href="/chat" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 14px', border: '1px solid rgba(200,146,60,0.3)', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C8923C', letterSpacing: '0.1em', textDecoration: 'none' }}>
+            <Link href="/chat" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 16px', border: '1px solid rgba(200,146,60,0.3)', borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 12, color: '#C8923C', letterSpacing: '0.1em', textDecoration: 'none' }}>
               Ask Ully AI →
             </Link>
           </div>

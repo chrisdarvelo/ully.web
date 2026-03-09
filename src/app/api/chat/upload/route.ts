@@ -1,0 +1,98 @@
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
+import { NextRequest, NextResponse } from 'next/server'
+import { getSession } from '@/lib/auth'
+import ExcelJS from 'exceljs'
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const mammoth = require('mammoth')
+
+const MAX_BYTES = 10 * 1024 * 1024 // 10 MB
+
+function parseCSV(text: string): string {
+  const lines = text.trim().split('\n').filter(Boolean)
+  if (lines.length === 0) return '(empty file)'
+  // Cap at 500 rows to stay within context limits
+  const capped = lines.slice(0, 500)
+  const suffix = lines.length > 500 ? `\n... (${lines.length - 500} more rows truncated)` : ''
+  return capped.join('\n') + suffix
+}
+
+async function parseXLSX(buffer: Buffer<ArrayBufferLike>): Promise<string> {
+  const workbook = new ExcelJS.Workbook()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  await workbook.xlsx.load(buffer as any)
+
+  const parts: string[] = []
+
+  workbook.eachSheet(sheet => {
+    parts.push(`=== Sheet: ${sheet.name} ===`)
+    const rows: string[] = []
+    sheet.eachRow({ includeEmpty: false }, row => {
+      const cells = (row.values as (string | number | null | undefined)[])
+        .slice(1) // exceljs row.values is 1-indexed with undefined at [0]
+        .map(v => {
+          if (v === null || v === undefined) return ''
+          if (typeof v === 'object' && 'result' in v) return String((v as { result: unknown }).result ?? '')
+          return String(v)
+        })
+      rows.push(cells.join('\t'))
+    })
+    // Cap at 500 rows per sheet
+    const capped = rows.slice(0, 500)
+    if (rows.length > 500) capped.push(`... (${rows.length - 500} more rows truncated)`)
+    parts.push(capped.join('\n'))
+  })
+
+  return parts.join('\n\n') || '(empty workbook)'
+}
+
+async function parseDOCX(buffer: Buffer<ArrayBufferLike>): Promise<string> {
+  const result = await mammoth.extractRawText({ buffer })
+  const text = result.value?.trim()
+  if (!text) return '(empty document)'
+  // Cap at ~8000 chars to stay within context
+  if (text.length > 8000) return text.slice(0, 8000) + '\n... (document truncated)'
+  return text
+}
+
+export async function POST(req: NextRequest) {
+  const session = await getSession()
+  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  try {
+    const formData = await req.formData()
+    const file = formData.get('file') as File | null
+
+    if (!file) return NextResponse.json({ error: 'No file provided' }, { status: 400 })
+    if (file.size > MAX_BYTES) return NextResponse.json({ error: 'File too large (max 10 MB)' }, { status: 413 })
+
+    const name = file.name.toLowerCase()
+    const buffer = Buffer.from(await file.arrayBuffer())
+
+    let content = ''
+    let fileType = ''
+
+    if (name.endsWith('.csv') || name.endsWith('.txt')) {
+      content = parseCSV(buffer.toString('utf-8'))
+      fileType = name.endsWith('.csv') ? 'CSV spreadsheet' : 'text file'
+    } else if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
+      content = await parseXLSX(buffer)
+      fileType = 'Excel spreadsheet'
+    } else if (name.endsWith('.docx')) {
+      content = await parseDOCX(buffer)
+      fileType = 'Word document'
+    } else {
+      return NextResponse.json({ error: 'Unsupported file type. Supported: .csv, .txt, .xlsx, .xls, .docx' }, { status: 400 })
+    }
+
+    return NextResponse.json({
+      filename: file.name,
+      fileType,
+      content,
+    })
+  } catch (err) {
+    console.error('[upload]', err)
+    return NextResponse.json({ error: 'Failed to parse file' }, { status: 500 })
+  }
+}

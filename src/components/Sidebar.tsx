@@ -111,7 +111,7 @@ export default function Sidebar({ orgName, userName, role, onClose }: SidebarPro
               <path d="M1 2.5A1.5 1.5 0 012.5 1h10A1.5 1.5 0 0114 2.5v7A1.5 1.5 0 0112.5 11H9l-3 3v-3H2.5A1.5 1.5 0 011 9.5v-7z" fill="currentColor" opacity="0.8" />
             </svg>
           </span>
-          Ully AI
+          Chat
         </Link>
 
         {/* Equipment */}

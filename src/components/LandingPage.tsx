@@ -265,7 +265,7 @@ export default function LandingPage({ loggedIn }: Props) {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             <a href="/" style={{ fontFamily: token.pixel, fontSize: 14, color: '#D9A04A', letterSpacing: '0.12em', textDecoration: 'none' }}>ULLY</a>
-            <span style={{ fontFamily: token.mono, fontSize: 12, color: '#9B8B7E', letterSpacing: '0.09em' }}>© 2026 Ully AI</span>
+            <span style={{ fontFamily: token.mono, fontSize: 12, color: '#9B8B7E', letterSpacing: '0.09em' }}>© 2026 Ully</span>
           </div>
           <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
             {[['Products', '/products'], ['Pricing', '/pricing'], ['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (

@@ -3,7 +3,7 @@ import { getSession } from '@/lib/auth'
 import ChatInterface from '@/components/ChatInterface'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'Ully AI' }
+export const metadata: Metadata = { title: 'Chat' }
 
 export default async function ChatPage() {
   const session = await getSession()

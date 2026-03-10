@@ -20,8 +20,8 @@ const MODULE_CARD_STYLES = `
 const MODULES = [
   {
     num: '01',
-    name: 'Ully AI',
-    tag: 'Command Center',
+    name: 'Command Center',
+    tag: 'AI Assistant',
     desc: 'The AI assistant that knows your entire operation. Ask anything — in plain language — and get instant, context-aware answers grounded in your real business data.',
     points: [
       'Powered by Claude Sonnet — the same model used by leading AI teams',

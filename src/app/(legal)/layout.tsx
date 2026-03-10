@@ -41,7 +41,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
             </li>
           ))}
         </ul>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em' }}>© 2026 Ully AI</span>
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em' }}>© 2026 Ully</span>
       </footer>
     </div>
   )

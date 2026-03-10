@@ -473,7 +473,7 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <FlowerIcon size={20} glow />
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C4B8AA' }}>
-            Ully AI
+            Ully
           </span>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#3A3228', letterSpacing: '0.08em' }}>
             {orgName}

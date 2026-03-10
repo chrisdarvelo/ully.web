@@ -12,7 +12,6 @@ const FOOTER_LINKS = [
   ['Pricing', '/pricing'],
   ['Privacy', '/privacy'],
   ['Terms', '/terms'],
-  ['Support', '/support'],
 ]
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {

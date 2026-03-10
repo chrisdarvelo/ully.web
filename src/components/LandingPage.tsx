@@ -127,7 +127,7 @@ export default function LandingPage({ loggedIn }: Props) {
           fontSize: 'clamp(15px, 2vw, 18px)', color: token.subtle, maxWidth: 520,
           lineHeight: 1.7, marginBottom: 44,
         }}>
-          Manage your team, track your business performance with AI intelligence.
+          Manage your team, track your business performance with intelligence.
         </p>
 
         <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -173,7 +173,7 @@ export default function LandingPage({ loggedIn }: Props) {
             Ready to run a smarter cafe?
           </h2>
           <p className="fade-up delay-1" style={{ fontSize: 16, color: token.subtle, marginBottom: 40, maxWidth: 420, margin: '0 auto 40px' }}>
-            Create your organization, add your team, and let Ully AI do the heavy lifting.
+            Create your organization, add your team, and let Ully do the heavy lifting.
           </p>
           <div className="fade-up delay-2">
             <a href="/signup" style={{
@@ -200,7 +200,7 @@ export default function LandingPage({ loggedIn }: Props) {
               Download the app.
             </h2>
             <p className="fade-up delay-2" style={{ fontSize: 14, color: token.subtle, lineHeight: 1.8, marginBottom: 32 }}>
-              Ully AI is available in all app stores. Dial-in assistance, troubleshoot your setup,
+              Ully is available in all app stores. Dial-in assistance, troubleshoot your setup,
               and unlimited resources to unleash the barista champion inside you.
             </p>
             <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>

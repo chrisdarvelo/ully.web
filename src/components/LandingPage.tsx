@@ -111,7 +111,7 @@ export default function LandingPage({ loggedIn }: Props) {
             color: token.gold, border: `1px solid rgba(200, 146, 60, 0.4)`,
             padding: '7px 16px', borderRadius: 2,
           }}>
-            Ully Business Suite
+            Ully Business Platform
           </span>
         </div>
 

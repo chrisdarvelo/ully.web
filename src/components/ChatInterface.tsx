@@ -1,10 +1,12 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import FlowerIcon from './FlowerIcon'
 
 interface Message {
   role: 'user' | 'assistant'
   content: string
+  thinking?: boolean
 }
 
 interface UploadedDoc {
@@ -18,8 +20,10 @@ interface ChatInterfaceProps {
   userName: string
 }
 
+// ── Rotating quotes (like mobile app) ────────────────────────────────────────
+
 const QUOTES = [
-  'espresso o\'clock.',
+  "espresso o'clock.",
   'brewing with ully.',
   'your beans, your data.',
   'shots pulled. insights ready.',
@@ -39,7 +43,7 @@ function useRotatingQuote() {
       setTimeout(() => {
         setIdx(i => (i + 1) % QUOTES.length)
         setVisible(true)
-      }, 400)
+      }, 350)
     }, 4000)
     return () => clearInterval(timer)
   }, [])
@@ -47,43 +51,88 @@ function useRotatingQuote() {
   return { quote: QUOTES[idx], visible }
 }
 
+// ── Message bubble ────────────────────────────────────────────────────────────
+
 function MessageBubble({ msg }: { msg: Message }) {
   const isUser = msg.role === 'user'
+
   return (
-    <div style={{ display: 'flex', justifyContent: isUser ? 'flex-end' : 'flex-start', marginBottom: 16 }}>
+    <div style={{
+      display: 'flex',
+      justifyContent: isUser ? 'flex-end' : 'flex-start',
+      alignItems: 'flex-start',
+      marginBottom: 20,
+      gap: 10,
+    }}>
+      {/* Ully avatar / thinking flower */}
       {!isUser && (
-        <div style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: 10,
-          fontWeight: 700,
-          color: '#C8923C',
-          letterSpacing: '0.16em',
-          marginRight: 10,
-          marginTop: 4,
-          flexShrink: 0,
-        }}>
-          U
+        <div style={{ flexShrink: 0, marginTop: 2 }}>
+          {msg.thinking ? (
+            <div className="ully-spin">
+              <FlowerIcon size={22} glow />
+            </div>
+          ) : (
+            <FlowerIcon size={22} glow />
+          )}
         </div>
       )}
+
       <div style={{
         maxWidth: '72%',
-        padding: '12px 16px',
-        borderRadius: isUser ? '8px 8px 2px 8px' : '8px 8px 8px 2px',
-        background: isUser ? 'rgba(200,146,60,0.10)' : '#1A1614',
-        border: isUser ? '1px solid rgba(200,146,60,0.22)' : '1px solid #1E1A17',
+        padding: msg.thinking ? '14px 18px' : '12px 16px',
+        borderRadius: isUser ? '12px 12px 3px 12px' : '3px 12px 12px 12px',
+        background: isUser
+          ? 'rgba(200,146,60,0.10)'
+          : '#1A1614',
+        border: isUser
+          ? '1px solid rgba(200,146,60,0.22)'
+          : '1px solid #1E1A17',
         fontSize: 15,
         lineHeight: 1.75,
         color: isUser ? '#E8D8C0' : '#C4B8AA',
         whiteSpace: 'pre-wrap',
         wordBreak: 'break-word',
       }}>
-        {msg.content || (
-          <span style={{ color: '#4A4440', fontFamily: 'var(--font-mono)', fontSize: 12 }}>▊</span>
+        {msg.thinking ? (
+          <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
+            {[0, 1, 2].map(i => (
+              <div key={i} style={{
+                width: 5, height: 5, borderRadius: '50%',
+                background: '#C8923C',
+                opacity: 0.4,
+                animation: `ully-spin 1.2s ease-in-out ${i * 0.2}s infinite alternate`,
+              }} />
+            ))}
+          </div>
+        ) : (
+          msg.content || null
         )}
       </div>
+
+      {/* User badge */}
+      {isUser && (
+        <div style={{
+          flexShrink: 0,
+          marginTop: 2,
+          width: 22, height: 22,
+          borderRadius: '50%',
+          background: 'rgba(200,146,60,0.15)',
+          border: '1px solid rgba(200,146,60,0.3)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontFamily: 'var(--font-mono)',
+          fontSize: 9,
+          color: '#C8923C',
+          letterSpacing: '0.05em',
+          fontWeight: 700,
+        }}>
+          ME
+        </div>
+      )}
     </div>
   )
 }
+
+// ── Doc pill ──────────────────────────────────────────────────────────────────
 
 function DocPill({ doc, onRemove }: { doc: UploadedDoc; onRemove: () => void }) {
   return (
@@ -104,19 +153,20 @@ function DocPill({ doc, onRemove }: { doc: UploadedDoc; onRemove: () => void }) 
       <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C8923C', letterSpacing: '0.08em' }}>
         {doc.filename}
       </span>
-      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.06em' }}>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52' }}>
         {doc.fileType}
       </span>
       <button
         onClick={onRemove}
-        style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6B5E52', padding: 0, lineHeight: 1, fontSize: 14, marginLeft: 2 }}
-        title="Remove file"
+        style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6B5E52', padding: 0, fontSize: 16, lineHeight: 1, marginLeft: 2 }}
       >
         ×
       </button>
     </div>
   )
 }
+
+// ── Main component ────────────────────────────────────────────────────────────
 
 export default function ChatInterface({ orgName, userName }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([])
@@ -131,12 +181,14 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const { quote, visible } = useRotatingQuote()
-  const firstName = userName.split(' ')[0]
+  const firstName = userName?.split(' ')[0] ?? 'there'
   const hasMessages = messages.length > 0
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  // ── File upload ─────────────────────────────────────────────────────────────
 
   const handleFileChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -148,7 +200,6 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
     try {
       const formData = new FormData()
       formData.append('file', file)
-
       const res = await fetch('/api/chat/upload', { method: 'POST', body: formData })
       const data = await res.json()
 
@@ -156,42 +207,43 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
         setUploadError(data.error ?? 'Upload failed')
         return
       }
-
       setUploadedDoc(data)
       textareaRef.current?.focus()
     } catch {
       setUploadError('Upload failed. Try again.')
     } finally {
       setUploading(false)
-      // Reset file input so same file can be re-uploaded
       if (fileInputRef.current) fileInputRef.current.value = ''
     }
   }, [])
+
+  // ── Send message ────────────────────────────────────────────────────────────
 
   async function sendMessage() {
     const text = input.trim()
     if ((!text && !uploadedDoc) || loading) return
 
     let content = text
-
-    // Prepend document content to the message
     if (uploadedDoc) {
       const docContext = `I'm sharing a ${uploadedDoc.fileType} called "${uploadedDoc.filename}" for you to analyze:\n\n${uploadedDoc.content}`
       content = text ? `${docContext}\n\n${text}` : docContext
     }
 
-    const newMessages: Message[] = [...messages, { role: 'user', content }]
-    setMessages(newMessages)
+    // ⚠️ Capture history BEFORE adding current message — avoids duplicate in Claude API
+    const historyForAPI = messages
+      .filter(m => !m.thinking)
+      .slice(-20)
+
+    setMessages(prev => [
+      ...prev,
+      { role: 'user', content },
+      { role: 'assistant', content: '', thinking: true },
+    ])
     setInput('')
     setUploadedDoc(null)
     setLoading(true)
 
-    // Resize textarea back
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto'
-    }
-
-    setMessages(prev => [...prev, { role: 'assistant', content: '' }])
+    if (textareaRef.current) textareaRef.current.style.height = 'auto'
 
     try {
       const res = await fetch('/api/chat', {
@@ -199,14 +251,15 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: content,
-          history: newMessages.slice(-20),
+          history: historyForAPI,
         }),
       })
 
       if (!res.ok || !res.body) {
+        const err = await res.text().catch(() => 'Unknown error')
         setMessages(prev => [
           ...prev.slice(0, -1),
-          { role: 'assistant', content: 'Something went wrong. Please try again.' },
+          { role: 'assistant', content: `Something went wrong. ${err}` },
         ])
         return
       }
@@ -221,7 +274,15 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
         fullText += decoder.decode(value, { stream: true })
         setMessages(prev => [
           ...prev.slice(0, -1),
-          { role: 'assistant', content: fullText },
+          { role: 'assistant', content: fullText, thinking: false },
+        ])
+      }
+
+      // Safety: if stream closes with no content
+      if (!fullText) {
+        setMessages(prev => [
+          ...prev.slice(0, -1),
+          { role: 'assistant', content: 'No response received. Please try again.' },
         ])
       }
     } catch {
@@ -241,212 +302,190 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
     }
   }
 
-  // ── Input bar (shared between welcome + chat mode) ──────────────────────────
-  const inputBar = (
-    <div style={{ width: '100%' }}>
-      {/* Uploaded doc pill */}
-      {uploadedDoc && (
-        <DocPill doc={uploadedDoc} onRemove={() => setUploadedDoc(null)} />
-      )}
+  // ── Input bar ───────────────────────────────────────────────────────────────
 
-      {/* Upload error */}
-      {uploadError && (
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#E07070', letterSpacing: '0.08em', marginBottom: 6 }}>
-          {uploadError}
-        </div>
-      )}
+  function InputBar() {
+    const canSend = (input.trim() || uploadedDoc) && !loading
 
-      {/* Hidden file input */}
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept=".csv,.txt,.xlsx,.xls,.docx"
-        onChange={handleFileChange}
-        style={{ display: 'none' }}
-      />
+    return (
+      <div style={{ width: '100%' }}>
+        {uploadedDoc && <DocPill doc={uploadedDoc} onRemove={() => setUploadedDoc(null)} />}
 
-      {/* Input row */}
-      <div
-        style={{
-          display: 'flex',
-          gap: 8,
-          alignItems: 'flex-end',
-          background: '#1A1614',
-          border: '1px solid #1E1A17',
-          borderRadius: 6,
-          padding: '10px 12px',
-          transition: 'border-color 0.15s',
-        }}
-        onFocus={() => {}}
-      >
-        {/* Attach button */}
-        <button
-          onClick={() => fileInputRef.current?.click()}
-          disabled={uploading}
-          title="Attach spreadsheet or document (.csv, .xlsx, .docx, .txt)"
+        {uploadError && (
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#E07070', marginBottom: 6 }}>
+            {uploadError}
+          </div>
+        )}
+
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".csv,.txt,.xlsx,.xls,.docx"
+          onChange={handleFileChange}
+          style={{ display: 'none' }}
+        />
+
+        <div
           style={{
-            background: 'none',
-            border: 'none',
-            cursor: uploading ? 'wait' : 'pointer',
-            color: uploading ? '#C8923C' : '#4A4440',
-            padding: '2px 4px',
-            flexShrink: 0,
             display: 'flex',
-            alignItems: 'center',
-            transition: 'color 0.15s',
-            marginBottom: 2,
+            gap: 8,
+            alignItems: 'flex-end',
+            background: '#1A1614',
+            border: '1px solid #1E1A17',
+            borderRadius: 8,
+            padding: '10px 12px',
+            transition: 'border-color 0.15s',
           }}
-          onMouseEnter={e => { if (!uploading) (e.currentTarget as HTMLElement).style.color = '#C8923C' }}
-          onMouseLeave={e => { if (!uploading) (e.currentTarget as HTMLElement).style.color = '#4A4440' }}
         >
-          {uploading ? (
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ animation: 'spin 1s linear infinite' }}>
-              <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" strokeDasharray="28" strokeDashoffset="10" />
-            </svg>
-          ) : (
+          {/* Attach */}
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploading}
+            title="Attach spreadsheet or document"
+            style={{
+              background: 'none', border: 'none',
+              cursor: uploading ? 'wait' : 'pointer',
+              color: uploading ? '#C8923C' : '#4A4440',
+              padding: '2px 4px', flexShrink: 0,
+              display: 'flex', alignItems: 'center',
+              transition: 'color 0.15s', marginBottom: 2,
+            }}
+            onMouseEnter={e => { if (!uploading) (e.currentTarget as HTMLElement).style.color = '#C8923C' }}
+            onMouseLeave={e => { if (!uploading) (e.currentTarget as HTMLElement).style.color = '#4A4440' }}
+          >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M13.5 9.5v2.5a1 1 0 01-1 1h-9a1 1 0 01-1-1V9.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
               <path d="M8 2v8M5.5 4.5L8 2l2.5 2.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          )}
-        </button>
+          </button>
 
-        <textarea
-          ref={textareaRef}
-          value={input}
-          onChange={e => {
-            setInput(e.target.value)
-            e.target.style.height = 'auto'
-            e.target.style.height = Math.min(e.target.scrollHeight, 160) + 'px'
-          }}
-          onKeyDown={handleKeyDown}
-          onFocus={e => (e.currentTarget.parentElement!.style.borderColor = '#C8923C')}
-          onBlur={e => (e.currentTarget.parentElement!.style.borderColor = '#1E1A17')}
-          placeholder={uploadedDoc ? 'Ask anything about this document…' : 'How can I help you?'}
-          rows={1}
-          disabled={loading}
-          style={{
-            flex: 1,
-            background: 'none',
-            border: 'none',
-            outline: 'none',
-            color: '#C4B8AA',
-            fontSize: 15,
-            lineHeight: 1.6,
-            resize: 'none',
-            maxHeight: 160,
-            overflow: 'auto',
-            fontFamily: 'inherit',
-          }}
-        />
+          <textarea
+            ref={textareaRef}
+            value={input}
+            onChange={e => {
+              setInput(e.target.value)
+              e.target.style.height = 'auto'
+              e.target.style.height = Math.min(e.target.scrollHeight, 160) + 'px'
+            }}
+            onKeyDown={handleKeyDown}
+            onFocus={e => (e.currentTarget.parentElement!.style.borderColor = '#C8923C')}
+            onBlur={e => (e.currentTarget.parentElement!.style.borderColor = '#1E1A17')}
+            placeholder={uploadedDoc ? 'Ask anything about this document…' : 'How can I help you?'}
+            rows={1}
+            disabled={loading}
+            style={{
+              flex: 1, background: 'none', border: 'none', outline: 'none',
+              color: '#C4B8AA', fontSize: 15, lineHeight: 1.6,
+              resize: 'none', maxHeight: 160, overflow: 'auto',
+              fontFamily: 'inherit',
+            }}
+          />
 
-        {/* Send button */}
-        <button
-          onClick={sendMessage}
-          disabled={loading || (!input.trim() && !uploadedDoc)}
-          style={{
-            background: (loading || (!input.trim() && !uploadedDoc)) ? 'transparent' : '#C8923C',
-            color: (loading || (!input.trim() && !uploadedDoc)) ? '#4A4440' : '#0E0C0A',
-            border: (loading || (!input.trim() && !uploadedDoc)) ? '1px solid #1E1A17' : 'none',
-            borderRadius: 4,
-            width: 32,
-            height: 32,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: (loading || (!input.trim() && !uploadedDoc)) ? 'not-allowed' : 'pointer',
-            flexShrink: 0,
-            transition: 'all 0.15s',
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M1 13L13 7L1 1V5.5L9 7L1 8.5V13Z" fill="currentColor" />
-          </svg>
-        </button>
+          {/* Send */}
+          <button
+            onClick={sendMessage}
+            disabled={!canSend}
+            style={{
+              background: canSend ? '#C8923C' : 'transparent',
+              color: canSend ? '#0E0C0A' : '#4A4440',
+              border: canSend ? 'none' : '1px solid #1E1A17',
+              borderRadius: 6,
+              width: 34, height: 34,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: canSend ? 'pointer' : 'not-allowed',
+              flexShrink: 0, transition: 'all 0.15s',
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 13L13 7L1 1V5.5L9 7L1 8.5V13Z" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+
+        <div style={{
+          fontFamily: 'var(--font-mono)', fontSize: 9, color: '#2A2218',
+          letterSpacing: '0.1em', textAlign: 'center', marginTop: 7,
+        }}>
+          supports .csv · .xlsx · .xls · .docx · .txt
+        </div>
       </div>
-
-      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: '#2E2A26', letterSpacing: '0.1em', textAlign: 'center', marginTop: 8 }}>
-        supports .csv · .xlsx · .xls · .docx · .txt
-      </div>
-    </div>
-  )
+    )
+  }
 
   // ── Welcome state ───────────────────────────────────────────────────────────
+
   if (!hasMessages) {
     return (
       <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-        padding: '40px 24px',
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        height: '100vh', padding: '40px 24px',
         background: `radial-gradient(ellipse 50% 40% at 50% 45%, rgba(200,146,60,0.05) 0%, transparent 70%)`,
       }}>
-        {/* Wordmark */}
-        <div style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: 32,
-          fontWeight: 700,
-          color: '#C8923C',
-          letterSpacing: '0.22em',
-          textShadow: '0 0 16px rgba(200,146,60,0.5), 0 0 40px rgba(200,146,60,0.2)',
-          marginBottom: 14,
-        }}>
-          ULLY
+        {/* Flower + wordmark */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, marginBottom: 24 }}>
+          <FlowerIcon size={52} glow />
+          <div style={{
+            fontFamily: 'var(--font-mono)', fontSize: 28, fontWeight: 700,
+            color: '#C8923C', letterSpacing: '0.24em',
+            textShadow: '0 0 16px rgba(200,146,60,0.5), 0 0 40px rgba(200,146,60,0.2)',
+          }}>
+            ULLY
+          </div>
         </div>
 
         {/* Rotating quote */}
         <div style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: 12,
-          color: '#6B5E52',
-          letterSpacing: '0.2em',
-          textTransform: 'lowercase',
-          marginBottom: 32,
-          height: 18,
-          opacity: visible ? 1 : 0,
-          transition: 'opacity 0.35s ease',
+          fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52',
+          letterSpacing: '0.2em', textTransform: 'lowercase',
+          marginBottom: 10, height: 18,
+          opacity: visible ? 1 : 0, transition: 'opacity 0.35s ease',
         }}>
           {quote}
         </div>
 
         {/* Personalized greeting */}
         <div style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: 13,
-          color: '#4A4440',
-          letterSpacing: '0.14em',
-          marginBottom: 28,
-          textAlign: 'center',
+          fontFamily: 'var(--font-mono)', fontSize: 13, color: '#4A4440',
+          letterSpacing: '0.14em', marginBottom: 36, textAlign: 'center',
         }}>
           how can I assist you today, {firstName}?
         </div>
 
-        {/* Input bar — centered, constrained width */}
+        {/* Centered input */}
         <div style={{ width: '100%', maxWidth: 640 }}>
-          {inputBar}
+          <InputBar />
         </div>
       </div>
     )
   }
 
-  // ── Chat mode ───────────────────────────────────────────────────────────────
+  // ── Chat view ───────────────────────────────────────────────────────────────
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      {/* Toolbar */}
-      <div style={{ padding: '12px 24px', borderBottom: '1px solid #1E1A17', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
-        <div>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#C4B8AA' }}>
+      {/* Header */}
+      <div style={{
+        padding: '12px 24px', borderBottom: '1px solid #1E1A17',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        flexShrink: 0, background: 'rgba(8,6,4,0.95)', backdropFilter: 'blur(8px)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <FlowerIcon size={20} glow />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C4B8AA' }}>
             Ully AI
           </span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', marginLeft: 12, letterSpacing: '0.08em' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#3A3228', letterSpacing: '0.08em' }}>
             {orgName}
           </span>
         </div>
         <button
           onClick={() => setMessages([])}
-          style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440', background: 'none', border: 'none', cursor: 'pointer', letterSpacing: '0.12em', textTransform: 'uppercase', transition: 'color 0.15s' }}
+          style={{
+            fontFamily: 'var(--font-mono)', fontSize: 10, color: '#4A4440',
+            background: 'none', border: 'none', cursor: 'pointer',
+            letterSpacing: '0.12em', textTransform: 'uppercase', transition: 'color 0.15s',
+          }}
           onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#C4B8AA')}
           onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#4A4440')}
         >
@@ -455,7 +494,7 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
       </div>
 
       {/* Messages */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '24px 24px 8px' }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '28px 24px 12px' }}>
         {messages.map((msg, i) => (
           <MessageBubble key={i} msg={msg} />
         ))}
@@ -464,7 +503,7 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
 
       {/* Input */}
       <div style={{ padding: '12px 20px 16px', borderTop: '1px solid #1E1A17', flexShrink: 0 }}>
-        {inputBar}
+        <InputBar />
       </div>
     </div>
   )

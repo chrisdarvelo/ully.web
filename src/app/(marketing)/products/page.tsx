@@ -37,7 +37,7 @@ const MODULES = [
       'Add team members with role, hourly rate, and contact info',
       'Invite staff via secure invite codes — no admin overhead',
       'View your team at a glance with active / inactive status',
-      'Foundation for AI-powered shift optimization (roadmap)',
+      'Ask Ully who is available and get shift suggestions instantly',
     ],
   },
   {
@@ -85,19 +85,11 @@ const MODULES = [
       'Record training type, staff member, and outcome',
       'Build an evidence-based picture of team capability over time',
       'Use Ully AI to generate training plans tailored to your team',
-      'Foundation for certifications and SCA-aligned progression (roadmap)',
+      'Build an auditable record of team capability over time',
     ],
   },
 ]
 
-const ROADMAP = [
-  { name: 'Multi-location dashboard', desc: 'One view across all your sites' },
-  { name: 'POS integration', desc: 'Square, Toast, Lightspeed connectivity' },
-  { name: 'Machine telemetry', desc: 'Real-time shot data from your espresso machines' },
-  { name: 'Roast intelligence', desc: 'Profile logging and curve analysis for roasters' },
-  { name: 'Public API', desc: 'Connect Ully to your existing tools' },
-  { name: 'QuickBooks sync', desc: 'Automated financial exports' },
-]
 
 export default function ProductsPage() {
   return (
@@ -117,8 +109,8 @@ export default function ProductsPage() {
             <span style={{ color: '#C8923C' }}>One AI that connects them all.</span>
           </h1>
           <p style={{ fontSize: 'clamp(15px, 2vw, 18px)', color: '#C4B8AA', lineHeight: 1.7, maxWidth: 560, marginBottom: 40 }}>
-            Ully gives cafe operators a unified platform where every tool — equipment, team, schedule,
-            inventory, revenue — feeds a single AI assistant that answers your questions in plain language.
+            Built for cafe operators who are tired of switching between tools, losing context, and spending
+            time on admin instead of coffee. Every module feeds one AI that knows your whole operation.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <a href="/signup" style={{
@@ -219,32 +211,6 @@ export default function ProductsPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Roadmap */}
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)', borderBottom: '1px solid #1E1A17' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ marginBottom: 48 }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#6B5E52', marginBottom: 14 }}>
-              Roadmap
-            </div>
-            <h2 style={{ fontSize: 'clamp(24px, 3vw, 38px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white' }}>
-              Building toward the full supply chain.
-            </h2>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 16 }}>
-            {ROADMAP.map(item => (
-              <div key={item.name} style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 3, padding: '20px 24px', display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#2A2218', marginTop: 2 }}>◌</span>
-                <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#C4B8AA', fontWeight: 700, marginBottom: 4 }}>{item.name}</div>
-                  <div style={{ fontSize: 13, color: '#6B5E52', lineHeight: 1.5 }}>{item.desc}</div>
-                </div>
               </div>
             ))}
           </div>

@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import FlowerIcon from './FlowerIcon'
+import CoffeeFarmScene from './CoffeeFarmScene'
 
 interface Props {
   loggedIn: boolean
@@ -200,8 +201,8 @@ export default function LandingPage({ loggedIn }: Props) {
               Also available as a mobile companion.
             </h2>
             <p className="fade-up delay-2" style={{ fontSize: 14, color: token.subtle, lineHeight: 1.8, marginBottom: 32 }}>
-              Ully AI is available as a consumer mobile app for individual baristas and coffee enthusiasts.
-              Personal recipe library, AI chat, cafe discovery, and curated barista content — all on your phone.
+              Ully AI is available as a mobile app for individual baristas and coffee enthusiasts.
+              AI chat, espresso dial-in assistant, and expert coffee knowledge — always in your pocket.
             </p>
             <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <a href="#" style={{
@@ -254,6 +255,9 @@ export default function LandingPage({ loggedIn }: Props) {
           </div>
         </div>
       </section>
+
+      {/* ── Coffee Farm Scene ───────────────────────────── */}
+      <CoffeeFarmScene />
 
       {/* ── Footer ──────────────────────────────────────── */}
       <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />

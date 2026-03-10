@@ -1,15 +1,14 @@
 import Link from 'next/link'
 import FlowerIcon from '@/components/FlowerIcon'
+import CoffeeFarmScene from '@/components/CoffeeFarmScene'
 
 const NAV_LINKS = [
   ['Products', '/products'],
-  ['About', '/about'],
   ['Pricing', '/pricing'],
 ]
 
 const FOOTER_LINKS = [
   ['Products', '/products'],
-  ['About', '/about'],
   ['Pricing', '/pricing'],
   ['Privacy', '/privacy'],
   ['Terms', '/terms'],
@@ -55,7 +54,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         {children}
       </div>
 
-      <div style={{ height: 1, background: 'linear-gradient(to right, transparent, #1E1A17, transparent)', margin: '0 48px' }} />
+      <CoffeeFarmScene />
 
       <footer style={{ padding: '32px 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
         <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 11, color: '#C8923C', letterSpacing: '0.1em', textDecoration: 'none' }}>ULLY</Link>

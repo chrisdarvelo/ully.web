@@ -5,11 +5,14 @@ export const metadata: Metadata = { title: 'Terms of Use' }
 export default function TermsPage() {
   return (
     <>
-      <div style={{ padding: '80px 48px 48px', borderBottom: '1px solid #1E1A17', maxWidth: 1080, margin: '0 auto' }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Legal</div>
-        <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, color: 'white', lineHeight: 1, letterSpacing: '-0.01em', marginBottom: 16 }}>Terms of Use</h1>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52', letterSpacing: '0.12em' }}>
-          Last updated February 21, 2026 · Effective February 21, 2026
+      <div style={{ padding: '80px 48px 56px', borderBottom: '1px solid #1E1A17', maxWidth: 1080, margin: '0 auto' }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Legal</div>
+        <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, color: 'white', lineHeight: 1, letterSpacing: '-0.01em', marginBottom: 20 }}>Terms of Use</h1>
+        <p style={{ fontSize: 17, color: '#C4B8AA', lineHeight: 1.6, maxWidth: 540, marginBottom: 24 }}>
+          Plain language. Clear rules. No surprises — just what you need to know about using Ully.
+        </p>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', letterSpacing: '0.1em' }}>
+          Effective February 21, 2026 &nbsp;·&nbsp; Last updated February 21, 2026
         </p>
       </div>
 

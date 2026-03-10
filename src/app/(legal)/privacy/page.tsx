@@ -5,11 +5,14 @@ export const metadata: Metadata = { title: 'Privacy Policy' }
 export default function PrivacyPage() {
   return (
     <>
-      <div style={{ padding: '80px 48px 48px', borderBottom: '1px solid #1E1A17', maxWidth: 1080, margin: '0 auto' }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Legal</div>
-        <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, color: 'white', lineHeight: 1, letterSpacing: '-0.01em', marginBottom: 16 }}>Privacy Policy</h1>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52', letterSpacing: '0.12em' }}>
-          Last updated February 21, 2026 · Effective February 21, 2026
+      <div style={{ padding: '80px 48px 56px', borderBottom: '1px solid #1E1A17', maxWidth: 1080, margin: '0 auto' }}>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Legal</div>
+        <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, color: 'white', lineHeight: 1, letterSpacing: '-0.01em', marginBottom: 20 }}>Privacy Policy</h1>
+        <p style={{ fontSize: 17, color: '#C4B8AA', lineHeight: 1.6, maxWidth: 540, marginBottom: 24 }}>
+          We collect the minimum necessary to run the service. Your business data is private by default — and always will be.
+        </p>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', letterSpacing: '0.1em' }}>
+          Effective February 21, 2026 &nbsp;·&nbsp; Last updated February 21, 2026
         </p>
       </div>
 
@@ -34,11 +37,10 @@ export default function PrivacyPage() {
           {
             title: 'What We Do Not Collect',
             list: [
-              'Chat messages — processed in real-time, not stored on our servers',
-              'Photos — sent to Anthropic\'s API for real-time analysis, never stored',
-              'Location — used only for weather context when relevant, never logged',
-              'Analytics, advertising IDs, or behavioral data',
-              'Contacts, call logs, or browsing history',
+              'Chat messages — processed in real-time, never stored on our servers',
+              'Analytics, advertising IDs, or behavioral tracking data',
+              'Browsing history or cross-site activity',
+              'Your data is never sold or shared with third parties',
             ]
           },
           {

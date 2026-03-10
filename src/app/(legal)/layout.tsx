@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import FlowerIcon from '@/components/FlowerIcon'
+import CoffeeFarmScene from '@/components/CoffeeFarmScene'
 
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,10 +26,12 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         {children}
       </div>
 
+      <CoffeeFarmScene />
+
       <footer style={{ padding: '32px 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, borderTop: '1px solid #1E1A17' }}>
         <span style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 11, color: '#C8923C', letterSpacing: '0.1em' }}>ULLY</span>
         <ul style={{ display: 'flex', gap: 24, listStyle: 'none', flexWrap: 'wrap' }}>
-          {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Data Usage', '/data'], ['Delete Account', '/delete-account'], ['Support', '/support']].map(([label, href]) => (
+          {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Support', '/support']].map(([label, href]) => (
             <li key={href}>
               <Link href={href} className="t-nav">
                 <span className="t-brk" aria-hidden="true">[</span>

@@ -111,7 +111,7 @@ export default function LandingPage({ loggedIn }: Props) {
             color: token.gold, border: `1px solid rgba(200, 146, 60, 0.4)`,
             padding: '7px 16px', borderRadius: 2,
           }}>
-            Ully Business Platform
+            Ully Business Suite
           </span>
         </div>
 
@@ -119,16 +119,15 @@ export default function LandingPage({ loggedIn }: Props) {
           fontSize: 'clamp(36px, 6vw, 72px)', fontWeight: 700, lineHeight: 1.1,
           letterSpacing: '-0.02em', maxWidth: 780, marginBottom: 24,
         }}>
-          The AI operations platform<br />
-          <span style={{ color: token.gold }}>for coffee professionals.</span>
+          Brewing with AI<br />
+          <span style={{ color: token.gold }}>at the edge of technology.</span>
         </h1>
 
         <p className="fade-up delay-2" style={{
           fontSize: 'clamp(15px, 2vw, 18px)', color: token.subtle, maxWidth: 520,
           lineHeight: 1.7, marginBottom: 44,
         }}>
-          Manage your cafe, team, and equipment with an AI assistant that knows your business —
-          from espresso machines to shift schedules.
+          Manage your team, track your business performance with AI intelligence.
         </p>
 
         <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>

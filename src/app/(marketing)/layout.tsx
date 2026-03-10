@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import FlowerIcon from '@/components/FlowerIcon'
 import CoffeeFarmScene from '@/components/CoffeeFarmScene'
+import SocialFooterBar from '@/components/SocialFooterBar'
 
 const NAV_LINKS = [
   ['Products', '/products'],
@@ -52,6 +53,9 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       <div style={{ paddingTop: 60 }}>
         {children}
       </div>
+
+      {/* Social + Newsletter */}
+      <SocialFooterBar />
 
       {/* Farm scene + footer overlaid */}
       <div style={{ position: 'relative' }}>

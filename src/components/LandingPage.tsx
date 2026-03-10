@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import FlowerIcon from './FlowerIcon'
 import CoffeeFarmScene from './CoffeeFarmScene'
+import SocialFooterBar from './SocialFooterBar'
 
 interface Props {
   loggedIn: boolean
@@ -254,6 +255,9 @@ export default function LandingPage({ loggedIn }: Props) {
           </div>
         </div>
       </section>
+
+      {/* ── Social + Newsletter ─────────────────────────── */}
+      <SocialFooterBar />
 
       {/* ── Farm Scene + Footer ──────────────────────────── */}
       <div style={{ position: 'relative' }}>

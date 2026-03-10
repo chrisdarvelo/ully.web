@@ -108,9 +108,7 @@ function EmptyItem({ text }: { text: string }) {
 export default function PricingPage() {
   const [annual, setAnnual] = useState(false)
   const gridRef = useRef<HTMLDivElement>(null)
-  const taglineRef = useRef<HTMLDivElement>(null)
   const gridVisible = useInView(gridRef as React.RefObject<HTMLElement>)
-  const taglineVisible = useInView(taglineRef as React.RefObject<HTMLElement>)
 
   return (
     <>
@@ -273,26 +271,6 @@ export default function PricingPage() {
         </p>
       </section>
 
-      {/* ── Tagline ──────────────────────────────────────────────────────── */}
-      <section
-        ref={taglineRef}
-        style={{
-          padding: 'clamp(60px,8vw,100px) clamp(24px,8vw,120px)',
-          borderTop: '1px solid #1E1A17', borderBottom: '1px solid #1E1A17',
-          textAlign: 'center',
-          opacity: taglineVisible ? 1 : 0,
-          transform: taglineVisible ? 'none' : 'translateY(20px)',
-          transition: 'opacity 0.6s ease, transform 0.6s ease',
-        }}
-      >
-        <h2 style={{ fontSize: 'clamp(28px,5vw,56px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: 16, color: 'white' }}>
-          Simple. No per-module fees.
-        </h2>
-        <p style={{ fontSize: 'clamp(15px,2vw,18px)', color: '#C4B8AA', maxWidth: 480, margin: '0 auto 0' }}>
-          Other platforms charge separately for scheduling, equipment, and inventory.
-          Ully includes everything in one price.
-        </p>
-      </section>
 
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,8vw,120px)', textAlign: 'center' }}>

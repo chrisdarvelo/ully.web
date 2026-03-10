@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import FlowerIcon from './FlowerIcon'
+import CoffeeFarmScene from './CoffeeFarmScene'
 
 interface Props {
   loggedIn: boolean
@@ -200,8 +201,8 @@ export default function LandingPage({ loggedIn }: Props) {
               Download the app.
             </h2>
             <p className="fade-up delay-2" style={{ fontSize: 14, color: token.subtle, lineHeight: 1.8, marginBottom: 32 }}>
-              Ully AI is available as a mobile app for individual baristas and coffee enthusiasts.
-              AI chat, espresso dial-in assistant, and expert coffee knowledge — always in your pocket.
+              Ully AI is available in all app stores. Dial-in assistance, troubleshoot your setup,
+              and unlimited resources to unleash the barista champion inside you.
             </p>
             <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <a href="#" style={{
@@ -255,6 +256,29 @@ export default function LandingPage({ loggedIn }: Props) {
         </div>
       </section>
 
+      {/* ── Farm Scene + Footer ──────────────────────────── */}
+      <div style={{ position: 'relative' }}>
+        <CoffeeFarmScene />
+        <footer style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0,
+          padding: '22px 48px',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <a href="/" style={{ fontFamily: token.pixel, fontSize: 14, color: '#D9A04A', letterSpacing: '0.12em', textDecoration: 'none' }}>ULLY</a>
+            <span style={{ fontFamily: token.mono, fontSize: 12, color: '#9B8B7E', letterSpacing: '0.09em' }}>© 2026 Ully AI</span>
+          </div>
+          <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+            {[['Products', '/products'], ['Pricing', '/pricing'], ['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
+              <a key={href} href={href} className="t-nav" style={{ fontSize: 12 }}>
+                <span className="t-brk" aria-hidden="true">[</span>
+                {label}
+                <span className="t-brk" aria-hidden="true">]</span>
+              </a>
+            ))}
+          </div>
+        </footer>
+      </div>
 
     </div>
   )

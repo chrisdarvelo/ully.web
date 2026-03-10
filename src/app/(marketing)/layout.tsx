@@ -62,8 +62,8 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 13, color: '#C8923C', letterSpacing: '0.12em', textDecoration: 'none' }}>ULLY</Link>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#8A7A6E', letterSpacing: '0.09em' }}>© 2026 Ully AI</span>
+            <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 14, color: '#D9A04A', letterSpacing: '0.12em', textDecoration: 'none' }}>ULLY</Link>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#9B8B7E', letterSpacing: '0.09em' }}>© 2026 Ully AI</span>
           </div>
           <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
             {FOOTER_LINKS.map(([label, href]) => (

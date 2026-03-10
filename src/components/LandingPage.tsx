@@ -198,7 +198,7 @@ export default function LandingPage({ loggedIn }: Props) {
               Mobile
             </p>
             <h2 className="fade-up delay-1" style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, marginBottom: 16, lineHeight: 1.2 }}>
-              Also available as a mobile companion.
+              Download the app.
             </h2>
             <p className="fade-up delay-2" style={{ fontSize: 14, color: token.subtle, lineHeight: 1.8, marginBottom: 32 }}>
               Ully AI is available as a mobile app for individual baristas and coffee enthusiasts.

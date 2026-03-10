@@ -238,14 +238,14 @@ export default function LandingPage({ loggedIn }: Props) {
           {/* Decorative terminal block */}
           <div className="fade-up delay-2" style={{
             background: token.card, border: `1px solid ${token.line}`, borderRadius: 4,
-            padding: '24px 28px', minWidth: 260, maxWidth: 340,
+            padding: '29px 34px', minWidth: 312, maxWidth: 408,
           }}>
-            <div style={{ display: 'flex', gap: 6, marginBottom: 20 }}>
+            <div style={{ display: 'flex', gap: 7, marginBottom: 24 }}>
               {['#C84040', '#C89040', '#4A8C5C'].map(c => (
-                <div key={c} style={{ width: 9, height: 9, borderRadius: '50%', background: c, opacity: 0.7 }} />
+                <div key={c} style={{ width: 11, height: 11, borderRadius: '50%', background: c, opacity: 0.7 }} />
               ))}
             </div>
-            <div style={{ fontFamily: token.mono, fontSize: 11, lineHeight: 2, color: token.subtle }}>
+            <div style={{ fontFamily: token.mono, fontSize: 13, lineHeight: 2, color: token.subtle }}>
               <div><span style={{ color: token.gold }}>ully</span> &gt; what&apos;s my espresso extraction?</div>
               <div style={{ color: '#6EAB7E', marginTop: 4 }}>— Your Slayer has 3 active shots.</div>
               <div style={{ color: '#6EAB7E' }}>  Check your last service: 12 days ago.</div>

@@ -48,6 +48,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Message is required' }, { status: 400 })
     }
 
+    if (message.length > 2000) {
+      return NextResponse.json({ error: 'Message too long (max 2000 characters)' }, { status: 400 })
+    }
+
     const orgId = session.orgId
     const monthStart = startOfMonth()
     const sevenDaysFromNow = nowPlusDays(7)
@@ -55,6 +59,10 @@ export async function POST(req: NextRequest) {
     // ── Fetch all org data ────────────────────────────────────────────────────
 
     const org = db.select().from(organizations).where(eq(organizations.id, orgId)).get()
+
+    if (!org) {
+      return NextResponse.json({ error: 'Organization not found' }, { status: 500 })
+    }
 
     const allEquipment = db.select().from(equipment).where(eq(equipment.orgId, orgId)).all()
 
@@ -131,9 +139,9 @@ export async function POST(req: NextRequest) {
     // ── Build context ─────────────────────────────────────────────────────────
 
     const ctx: OrgContext = {
-      orgName: org?.name ?? session.orgName,
-      orgType: org?.type ?? 'cafe',
-      orgEmail: org?.email,
+      orgName: org.name,
+      orgType: org.type,
+      orgEmail: org.email,
       userName: session.name,
       userEmail: session.email,
 

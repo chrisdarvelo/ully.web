@@ -82,8 +82,8 @@ export default function ProductsPage() {
             Platform
           </div>
           <h1 style={{ fontSize: 'clamp(36px, 6vw, 68px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: 24, color: 'white' }}>
-            Seven capabilities.<br />
-            <span style={{ color: '#C8923C' }}>One AI that connects them all.</span>
+            Multiple capabilities.<br />
+            <span style={{ color: '#C8923C' }}>One subscription.</span>
           </h1>
           <p style={{ fontSize: 'clamp(15px, 2vw, 18px)', color: '#C4B8AA', lineHeight: 1.7, maxWidth: 560, marginBottom: 40 }}>
             Built for cafe operators who are tired of switching between tools, losing context, and spending

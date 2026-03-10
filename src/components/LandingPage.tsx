@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react'
 import FlowerIcon from './FlowerIcon'
-import CoffeeFarmScene from './CoffeeFarmScene'
 
 interface Props {
   loggedIn: boolean
@@ -256,43 +255,6 @@ export default function LandingPage({ loggedIn }: Props) {
         </div>
       </section>
 
-      {/* ── Coffee Farm Scene ───────────────────────────── */}
-      <CoffeeFarmScene />
-
-      {/* ── Footer ──────────────────────────────────────── */}
-      <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
-
-      <footer style={{ padding: '32px clamp(24px, 8vw, 120px)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
-        <span style={{ fontFamily: token.pixel, fontSize: 11, color: token.gold, letterSpacing: '0.1em' }}>
-          ULLY
-        </span>
-
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 24 }}>
-          {[
-            { label: 'Privacy', href: '/privacy' },
-            { label: 'Terms', href: '/terms' },
-          ].map(l => (
-            <a key={l.href} href={l.href} className="t-nav">
-              <span className="t-brk" aria-hidden="true">[</span>
-              {l.label}
-              <span className="t-brk" aria-hidden="true">]</span>
-            </a>
-          ))}
-          <a href="mailto:support@ullycoffee.com" style={{
-            fontFamily: token.mono, fontSize: 10, letterSpacing: '0.12em',
-            color: token.muted, textDecoration: 'none', transition: 'color 0.2s',
-          }}
-            onMouseEnter={e => { e.currentTarget.style.color = token.gold }}
-            onMouseLeave={e => { e.currentTarget.style.color = token.muted }}
-          >
-            support@ullycoffee.com
-          </a>
-        </div>
-
-        <span style={{ fontFamily: token.mono, fontSize: 10, color: token.muted, letterSpacing: '0.1em' }}>
-          © {new Date().getFullYear()} Ully AI
-        </span>
-      </footer>
 
     </div>
   )

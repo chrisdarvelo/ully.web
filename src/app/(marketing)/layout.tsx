@@ -58,16 +58,16 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         <CoffeeFarmScene />
         <footer style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
-          padding: '20px 48px',
+          padding: '22px 48px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 11, color: '#C8923C', letterSpacing: '0.1em', textDecoration: 'none' }}>ULLY</Link>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em' }}>© 2026 Ully AI</span>
+            <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 13, color: '#C8923C', letterSpacing: '0.12em', textDecoration: 'none' }}>ULLY</Link>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#8A7A6E', letterSpacing: '0.09em' }}>© 2026 Ully AI</span>
           </div>
-          <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
             {FOOTER_LINKS.map(([label, href]) => (
-              <Link key={href} href={href} className="t-nav">
+              <Link key={href} href={href} className="t-nav" style={{ fontSize: 12 }}>
                 <span className="t-brk" aria-hidden="true">[</span>
                 {label}
                 <span className="t-brk" aria-hidden="true">]</span>

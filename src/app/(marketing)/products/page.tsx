@@ -2,6 +2,21 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Products' }
 
+const MODULE_CARD_STYLES = `
+  .mod-card {
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    border: 1px solid #1E1A17;
+  }
+  .mod-card:hover {
+    transform: translateY(-6px);
+    background: #201C18 !important;
+    border-color: #C8923C !important;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    z-index: 1;
+    position: relative;
+  }
+`
+
 const MODULES = [
   {
     num: '01',
@@ -94,6 +109,7 @@ const MODULES = [
 export default function ProductsPage() {
   return (
     <>
+      <style>{MODULE_CARD_STYLES}</style>
       {/* Hero */}
       <section style={{
         padding: 'clamp(80px, 12vw, 140px) clamp(24px, 8vw, 120px) clamp(60px, 8vw, 100px)',
@@ -190,9 +206,9 @@ export default function ProductsPage() {
             </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 1, border: '1px solid #1E1A17', borderRadius: 4, overflow: 'hidden' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
             {MODULES.slice(1).map(mod => (
-              <div key={mod.num} style={{ background: '#1A1614', padding: '32px 28px', borderRight: '1px solid #1E1A17', borderBottom: '1px solid #1E1A17' }}>
+              <div key={mod.num} className="mod-card" style={{ background: '#1A1614', padding: '32px 28px', borderRadius: 4 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C8923C', letterSpacing: '0.16em' }}>{mod.num}</span>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B5E52', background: '#0E0C0A', padding: '3px 8px', borderRadius: 2 }}>{mod.tag}</span>

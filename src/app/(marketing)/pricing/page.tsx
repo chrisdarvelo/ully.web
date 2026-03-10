@@ -1,6 +1,44 @@
-import type { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = { title: 'Pricing' }
+import { useState, useEffect, useRef } from 'react'
+
+const STYLES = `
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes arrowBounce {
+    0%, 100% { transform: translateX(0) scale(1); opacity: 0.4; }
+    50%       { transform: translateX(5px) scale(1.15); opacity: 1; }
+  }
+  @keyframes goldPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(200,146,60,0); }
+    50%       { box-shadow: 0 0 0 6px rgba(200,146,60,0.12); }
+  }
+  @keyframes badgeSlide {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .pricing-card {
+    opacity: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .pricing-card.visible {
+    animation: fadeInUp 0.55s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  .pricing-card:hover {
+    transform: translateY(-6px);
+  }
+  .card-free:hover     { box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+  .card-pro:hover      { box-shadow: 0 16px 56px rgba(200,146,60,0.22); animation: goldPulse 2s ease infinite; }
+  .card-biz:hover      { box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+  .tier-arrow          { animation: arrowBounce 1.8s ease-in-out infinite; display: inline-block; }
+  .badge-slide         { animation: badgeSlide 0.4s 0.3s ease both; }
+  .toggle-pill {
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+`
 
 const PRO_FEATURES = [
   'Unlimited Ully AI messages',
@@ -20,205 +58,258 @@ const BUSINESS_FEATURES = [
   'POS integration — Square, Toast, Lightspeed',
   'QuickBooks expense sync',
   'Machine telemetry & shot data',
-  'Priority support with 4-hour SLA',
-  'Custom AI training on your recipes & SOPs',
+  'Priority support — 4-hour SLA',
+  'Custom AI on your recipes & SOPs',
   'Team performance analytics',
   'API access',
 ]
 
-const FAQ = [
-  {
-    q: 'What happens after the 14-day trial?',
-    a: 'You choose a plan or stay on Free — which gives you 20 AI messages per day and read access to your data. Nothing is deleted. No credit card is required to start.',
-  },
-  {
-    q: 'How does per-location pricing work for Business?',
-    a: '$24.99 per location per month. A single-location cafe is $24.99. A 10-location group is $249.90/month — with one unified AI that knows all your sites.',
-  },
-  {
-    q: 'Can I cancel anytime?',
-    a: 'Yes. No contracts, no cancellation fees. Cancel from your settings page and your plan reverts to Free at the end of the billing period.',
-  },
-  {
-    q: 'Do you offer annual billing?',
-    a: 'Yes. Annual Pro is $79/year — two months free vs monthly. Annual Business pricing is available on request.',
-  },
-  {
-    q: 'Is there a plan for individual baristas or home users?',
-    a: 'The Ully AI mobile app (iOS + Android) is designed for individual coffee professionals and enthusiasts. The web platform is built for cafe businesses. Both use the same AI engine.',
-  },
-]
+function useInView(ref: React.RefObject<HTMLElement | null>) {
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    if (!ref.current) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect() } },
+      { threshold: 0.12 }
+    )
+    obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [ref])
+  return visible
+}
+
+function CheckItem({ text, gold }: { text: string; gold?: boolean }) {
+  return (
+    <li style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+      <span style={{
+        fontFamily: 'var(--font-mono)', fontSize: 11, flexShrink: 0, marginTop: 2,
+        color: gold ? '#C8923C' : '#4A8C5C',
+      }}>
+        {gold ? '↑' : '✓'}
+      </span>
+      <span style={{
+        fontSize: 13, lineHeight: 1.55,
+        color: gold ? '#C8923C' : '#C4B8AA',
+        fontWeight: gold ? 600 : 400,
+      }}>{text}</span>
+    </li>
+  )
+}
+
+function EmptyItem({ text }: { text: string }) {
+  return (
+    <li style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#2E2A27', flexShrink: 0, marginTop: 2 }}>○</span>
+      <span style={{ fontSize: 13, color: '#4A4440', lineHeight: 1.55 }}>{text}</span>
+    </li>
+  )
+}
 
 export default function PricingPage() {
+  const [annual, setAnnual] = useState(false)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const taglineRef = useRef<HTMLDivElement>(null)
+  const gridVisible = useInView(gridRef as React.RefObject<HTMLElement>)
+  const taglineVisible = useInView(taglineRef as React.RefObject<HTMLElement>)
+
   return (
     <>
-      {/* Hero */}
-      <section style={{
-        padding: 'clamp(80px, 12vw, 140px) clamp(24px, 8vw, 120px) clamp(60px, 8vw, 100px)',
-        borderBottom: '1px solid #1E1A17',
-        background: 'radial-gradient(ellipse 70% 60% at 50% 0%, rgba(200,146,60,0.05) 0%, transparent 70%)',
-        textAlign: 'center',
-      }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>
-          Pricing
+      <style>{STYLES}</style>
+
+      {/* ── Plans ──────────────────────────────────────────────────────── */}
+      <section style={{ padding: 'clamp(80px,12vw,140px) clamp(24px,8vw,100px) clamp(60px,8vw,100px)' }}>
+
+        {/* Billing toggle */}
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14, marginBottom: 56 }}>
+          <span
+            className="toggle-pill"
+            onClick={() => setAnnual(false)}
+            style={{
+              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase',
+              padding: '7px 18px', borderRadius: 99, border: '1px solid',
+              borderColor: !annual ? '#C8923C' : '#1E1A17',
+              background: !annual ? 'rgba(200,146,60,0.1)' : 'transparent',
+              color: !annual ? '#C8923C' : '#4A4440',
+            }}
+          >
+            Monthly
+          </span>
+          <span
+            className="toggle-pill"
+            onClick={() => setAnnual(true)}
+            style={{
+              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase',
+              padding: '7px 18px', borderRadius: 99, border: '1px solid',
+              borderColor: annual ? '#C8923C' : '#1E1A17',
+              background: annual ? 'rgba(200,146,60,0.1)' : 'transparent',
+              color: annual ? '#C8923C' : '#4A4440',
+            }}
+          >
+            Annual
+            <span style={{ marginLeft: 8, fontSize: 9, color: '#4A8C5C', fontWeight: 700 }}>2 MO FREE</span>
+          </span>
         </div>
-        <h1 style={{ fontSize: 'clamp(36px, 6vw, 68px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: 20, color: 'white' }}>
+
+        {/* Cards + arrows */}
+        <div ref={gridRef} style={{ maxWidth: 1060, margin: '0 auto', display: 'flex', alignItems: 'flex-start', gap: 0, flexWrap: 'wrap', justifyContent: 'center' }}>
+
+          {/* ── Free ── */}
+          <div
+            className={`pricing-card card-free${gridVisible ? ' visible' : ''}`}
+            style={{ animationDelay: '0ms', flex: '1 1 280px', maxWidth: 320, background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, padding: '36px 28px' }}
+          >
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 20 }}>Free</div>
+            <div style={{ marginBottom: 4 }}>
+              <span style={{ fontSize: 52, fontWeight: 700, color: 'white', letterSpacing: '-0.03em' }}>$0</span>
+            </div>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', marginBottom: 28 }}>After your 14-day Pro trial</p>
+            <a href="/signup" style={{
+              display: 'block', textAlign: 'center', marginBottom: 28,
+              border: '1px solid #2A2218', color: '#6B5E52', padding: '11px',
+              borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10,
+              letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none',
+              transition: 'color 0.15s, border-color 0.15s',
+            }}>
+              Start Free Trial
+            </a>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 9 }}>
+              <EmptyItem text="20 AI messages / day" />
+              <EmptyItem text="Equipment (read-only)" />
+              <EmptyItem text="Team & schedule (read-only)" />
+              <EmptyItem text="Inventory (read-only)" />
+              <EmptyItem text="Revenue (read-only)" />
+            </ul>
+          </div>
+
+          {/* Arrow Free → Pro */}
+          <div style={{ display: 'flex', alignItems: 'center', padding: '0 10px', marginTop: 140, flexShrink: 0, alignSelf: 'flex-start' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div className="tier-arrow" style={{ fontSize: 18, color: '#C8923C', animationDelay: '0.2s' }}>→</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440', letterSpacing: '0.14em', marginTop: 4, textTransform: 'uppercase' }}>upgrade</div>
+            </div>
+          </div>
+
+          {/* ── Pro ── */}
+          <div
+            className={`pricing-card card-pro${gridVisible ? ' visible' : ''}`}
+            style={{ animationDelay: '120ms', flex: '1 1 300px', maxWidth: 340, background: '#1C1712', border: '1px solid #C8923C', borderRadius: 4, padding: '36px 28px', position: 'relative' }}
+          >
+            <div className="badge-slide" style={{
+              position: 'absolute', top: -1, left: 24,
+              background: '#C8923C', color: '#0E0C0A',
+              fontFamily: 'var(--font-mono)', fontSize: 9, fontWeight: 700,
+              letterSpacing: '0.2em', textTransform: 'uppercase',
+              padding: '4px 14px', borderRadius: '0 0 3px 3px',
+            }}>
+              Most popular
+            </div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Pro</div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 4 }}>
+              <span style={{ fontSize: 52, fontWeight: 700, color: 'white', letterSpacing: '-0.03em' }}>
+                {annual ? '$4.99' : '$7.99'}
+              </span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#6B5E52' }}>/month</span>
+            </div>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C8923C', marginBottom: 28 }}>
+              {annual ? 'Billed $59.99/year — 2 months free' : 'or $59.99/year — save 37%'}
+            </p>
+            <a href="/signup" style={{
+              display: 'block', textAlign: 'center', marginBottom: 28,
+              background: '#C8923C', color: '#0E0C0A', padding: '13px',
+              borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10,
+              fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none',
+            }}>
+              Start Free Trial
+            </a>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 9 }}>
+              {PRO_FEATURES.map(f => <CheckItem key={f} text={f} />)}
+            </ul>
+          </div>
+
+          {/* Arrow Pro → Business */}
+          <div style={{ display: 'flex', alignItems: 'center', padding: '0 10px', marginTop: 140, flexShrink: 0, alignSelf: 'flex-start' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div className="tier-arrow" style={{ fontSize: 18, color: '#6B5E52', animationDelay: '0.5s' }}>→</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#3A3430', letterSpacing: '0.14em', marginTop: 4, textTransform: 'uppercase' }}>scale</div>
+            </div>
+          </div>
+
+          {/* ── Business ── */}
+          <div
+            className={`pricing-card card-biz${gridVisible ? ' visible' : ''}`}
+            style={{ animationDelay: '240ms', flex: '1 1 280px', maxWidth: 320, background: '#1A1614', border: '1px solid #2A2218', borderRadius: 4, padding: '36px 28px' }}
+          >
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#6B5E52', marginBottom: 20 }}>Business</div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 4 }}>
+              <span style={{ fontSize: 52, fontWeight: 700, color: 'white', letterSpacing: '-0.03em' }}>
+                {annual ? '$33' : '$49.99'}
+              </span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#6B5E52' }}>
+                {annual ? '/loc/month' : '/location/mo'}
+              </span>
+            </div>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#6B5E52', marginBottom: 28 }}>
+              {annual ? 'Billed $399/location/year' : 'or $399/location/year — save 33%'}
+            </p>
+            <a href="/signup" style={{
+              display: 'block', textAlign: 'center', marginBottom: 28,
+              border: '1px solid #2A2218', color: '#C4B8AA', padding: '11px',
+              borderRadius: 3, fontFamily: 'var(--font-mono)', fontSize: 10,
+              letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none',
+            }}>
+              Start Free Trial
+            </a>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 9 }}>
+              {BUSINESS_FEATURES.map(f => <CheckItem key={f} text={f} gold={f === 'Everything in Pro'} />)}
+            </ul>
+          </div>
+
+        </div>
+
+        {/* Business Pro note */}
+        <p style={{ textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', marginTop: 32, letterSpacing: '0.08em' }}>
+          Multi-location Business Pro at $79/location/month —{' '}
+          <a href="mailto:support@ullycoffee.com" style={{ color: '#6B5E52', textDecoration: 'none', borderBottom: '1px solid #2A2218' }}>contact us</a>
+        </p>
+      </section>
+
+      {/* ── Tagline ──────────────────────────────────────────────────────── */}
+      <section
+        ref={taglineRef}
+        style={{
+          padding: 'clamp(60px,8vw,100px) clamp(24px,8vw,120px)',
+          borderTop: '1px solid #1E1A17', borderBottom: '1px solid #1E1A17',
+          textAlign: 'center',
+          opacity: taglineVisible ? 1 : 0,
+          transform: taglineVisible ? 'none' : 'translateY(20px)',
+          transition: 'opacity 0.6s ease, transform 0.6s ease',
+        }}
+      >
+        <h2 style={{ fontSize: 'clamp(28px,5vw,56px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: 16, color: 'white' }}>
           Simple. No per-module fees.
-        </h1>
-        <p style={{ fontSize: 'clamp(15px, 2vw, 18px)', color: '#C4B8AA', maxWidth: 500, margin: '0 auto 16px' }}>
-          Other platforms charge you separately for scheduling, equipment, and inventory.
+        </h2>
+        <p style={{ fontSize: 'clamp(15px,2vw,18px)', color: '#C4B8AA', maxWidth: 480, margin: '0 auto 16px' }}>
+          Other platforms charge separately for scheduling, equipment, and inventory.
           Ully includes everything in one price.
         </p>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52', letterSpacing: '0.08em' }}>
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#4A4440', letterSpacing: '0.1em' }}>
           14-day full trial · No credit card required · Cancel anytime
         </p>
       </section>
 
-      {/* Plans */}
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)', borderBottom: '1px solid #1E1A17' }}>
-        <div style={{ maxWidth: 1000, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, alignItems: 'start' }}>
-
-          {/* Free */}
-          <div style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, padding: '36px 32px' }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#6B5E52', marginBottom: 20 }}>Free</div>
-            <div style={{ marginBottom: 8 }}>
-              <span style={{ fontSize: 48, fontWeight: 700, color: 'white', letterSpacing: '-0.02em' }}>$0</span>
-            </div>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52', marginBottom: 32 }}>After your 14-day Pro trial</p>
-            <a href="/signup" style={{
-              display: 'block', textAlign: 'center',
-              border: '1px solid #1E1A17', color: '#C4B8AA', padding: '12px', borderRadius: 3,
-              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', textDecoration: 'none',
-              marginBottom: 32,
-            }}>
-              Start Free Trial
-            </a>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {['20 AI messages / day', 'Equipment (read-only)', 'Team & schedule (read-only)', 'Inventory (read-only)', 'Revenue (read-only)'].map(f => (
-                <li key={f} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', flexShrink: 0, marginTop: 1 }}>○</span>
-                  <span style={{ fontSize: 13, color: '#6B5E52', lineHeight: 1.5 }}>{f}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Pro — featured */}
-          <div style={{ background: '#1A1614', border: '1px solid #C8923C', borderRadius: 4, padding: '36px 32px', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: -1, left: 24, background: '#C8923C', color: '#0E0C0A', fontFamily: 'var(--font-mono)', fontSize: 9, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '4px 12px', borderRadius: '0 0 3px 3px' }}>
-              Most popular
-            </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Pro</div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
-              <span style={{ fontSize: 48, fontWeight: 700, color: 'white', letterSpacing: '-0.02em' }}>$9.99</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52' }}>/month</span>
-            </div>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#C8923C', marginBottom: 32 }}>or $79/year — 2 months free</p>
-            <a href="/signup" style={{
-              display: 'block', textAlign: 'center',
-              background: '#C8923C', color: '#0E0C0A', padding: '13px', borderRadius: 3,
-              fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', textDecoration: 'none',
-              marginBottom: 32,
-            }}>
-              Start Free Trial
-            </a>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {PRO_FEATURES.map(f => (
-                <li key={f} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A8C5C', flexShrink: 0, marginTop: 1 }}>✓</span>
-                  <span style={{ fontSize: 13, color: '#C4B8AA', lineHeight: 1.5 }}>{f}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Business */}
-          <div style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, padding: '36px 32px' }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#6B5E52', marginBottom: 20 }}>Business</div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
-              <span style={{ fontSize: 48, fontWeight: 700, color: 'white', letterSpacing: '-0.02em' }}>$24.99</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52' }}>/location/mo</span>
-            </div>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52', marginBottom: 32 }}>Billed monthly per location</p>
-            <a href="/signup" style={{
-              display: 'block', textAlign: 'center',
-              border: '1px solid #1E1A17', color: '#C4B8AA', padding: '12px', borderRadius: 3,
-              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', textDecoration: 'none',
-              marginBottom: 32,
-            }}>
-              Start Free Trial
-            </a>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {BUSINESS_FEATURES.map(f => (
-                <li key={f} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: f === 'Everything in Pro' ? '#C8923C' : '#4A8C5C', flexShrink: 0, marginTop: 1 }}>
-                    {f === 'Everything in Pro' ? '↑' : '✓'}
-                  </span>
-                  <span style={{ fontSize: 13, color: f === 'Everything in Pro' ? '#C8923C' : '#C4B8AA', lineHeight: 1.5, fontWeight: f === 'Everything in Pro' ? 600 : 400 }}>{f}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Competitor context */}
-      <section style={{ padding: 'clamp(40px, 6vw, 80px) clamp(24px, 8vw, 120px)', borderBottom: '1px solid #1E1A17' }}>
-        <div style={{ maxWidth: 760, margin: '0 auto', background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 4, padding: '40px 48px' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>
-            Why Ully?
-          </div>
-          <h3 style={{ fontSize: 'clamp(20px, 3vw, 32px)', fontWeight: 700, color: 'white', lineHeight: 1.2, marginBottom: 24, letterSpacing: '-0.01em' }}>
-            Competitors charge $79/month for one module. Ully charges $79/year for everything.
-          </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}>
-            {[
-              { label: 'Legacy platform — equipment only', price: '$79–199/mo', note: 'Per module. No AI.' },
-              { label: 'Legacy platform — cafe telemetry', price: '$149+/mo', note: 'Requires IoT hardware purchase.' },
-              { label: 'Ully Pro — full platform', price: '$79/year', note: 'Everything. AI included.' },
-            ].map(item => (
-              <div key={item.label} style={{ padding: '20px 0', borderTop: '1px solid #1E1A17' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52', marginBottom: 8, lineHeight: 1.4 }}>{item.label}</div>
-                <div style={{ fontSize: 22, fontWeight: 700, color: item.label.startsWith('Ully') ? '#C8923C' : '#C4B8AA', marginBottom: 4 }}>{item.price}</div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440' }}>{item.note}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)', borderBottom: '1px solid #1E1A17' }}>
-        <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 40 }}>
-            FAQ
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {FAQ.map((item, i) => (
-              <div key={item.q} style={{ padding: '28px 0', borderTop: i === 0 ? 'none' : '1px solid #1E1A17' }}>
-                <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 700, color: 'white', marginBottom: 12, lineHeight: 1.4 }}>
-                  {item.q}
-                </h3>
-                <p style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.75, margin: 0 }}>{item.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)', textAlign: 'center' }}>
-        <h2 style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 16 }}>
+      {/* ── CTA ──────────────────────────────────────────────────────────── */}
+      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,8vw,120px)', textAlign: 'center' }}>
+        <h2 style={{ fontSize: 'clamp(26px,4vw,44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 14 }}>
           Start your free trial today.
         </h2>
-        <p style={{ fontSize: 16, color: '#C4B8AA', marginBottom: 36 }}>
+        <p style={{ fontSize: 16, color: '#6B5E52', marginBottom: 36 }}>
           Full Pro access for 14 days. No credit card required.
         </p>
         <a href="/signup" style={{
           display: 'inline-block',
-          background: '#C8923C', color: '#0E0C0A', padding: '14px 36px', borderRadius: 3,
-          fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', textDecoration: 'none',
+          background: '#C8923C', color: '#0E0C0A', padding: '14px 40px', borderRadius: 3,
+          fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700,
+          letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none',
         }}>
           Get Started Free
         </a>

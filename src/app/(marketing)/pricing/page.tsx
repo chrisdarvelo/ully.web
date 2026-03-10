@@ -288,22 +288,19 @@ export default function PricingPage() {
         <h2 style={{ fontSize: 'clamp(28px,5vw,56px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: 16, color: 'white' }}>
           Simple. No per-module fees.
         </h2>
-        <p style={{ fontSize: 'clamp(15px,2vw,18px)', color: '#C4B8AA', maxWidth: 480, margin: '0 auto 16px' }}>
+        <p style={{ fontSize: 'clamp(15px,2vw,18px)', color: '#C4B8AA', maxWidth: 480, margin: '0 auto 0' }}>
           Other platforms charge separately for scheduling, equipment, and inventory.
           Ully includes everything in one price.
-        </p>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#4A4440', letterSpacing: '0.1em' }}>
-          14-day full trial · No credit card required · Cancel anytime
         </p>
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,8vw,120px)', textAlign: 'center' }}>
-        <h2 style={{ fontSize: 'clamp(26px,4vw,44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 14 }}>
+        <h2 style={{ fontSize: 'clamp(26px,4vw,44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 12 }}>
           Start your free trial today.
         </h2>
-        <p style={{ fontSize: 16, color: '#6B5E52', marginBottom: 36 }}>
-          Full Pro access for 14 days. No credit card required.
+        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#4A4440', letterSpacing: '0.1em', marginBottom: 36 }}>
+          14-day full trial · No credit card required · Cancel anytime
         </p>
         <a href="/signup" style={{
           display: 'inline-block',

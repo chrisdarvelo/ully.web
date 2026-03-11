@@ -18,12 +18,17 @@ export default function CoffeeFarmScene() {
         preserveAspectRatio="xMidYMax slice"
         aria-hidden="true"
       >
-        {/* ── Sky ─────────────────────────────────────────────────── */}
-        <rect width="1440" height="320" fill="#5BA3D0" />
+        <defs>
+          {/* Sky gradient — bright at top, slightly lighter toward horizon (suggests distant sea) */}
+          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#4A90C0" />
+            <stop offset="60%"  stopColor="#5BA3D0" />
+            <stop offset="100%" stopColor="#7EC8E8" />
+          </linearGradient>
+        </defs>
 
-        {/* ── Sea — distant strip behind far mountains ─────────────── */}
-        <rect x="0" y="64" width="1440" height="20" fill="#3A8CC8" opacity="0.55" />
-        <rect x="0" y="64" width="1440" height="3"  fill="#6ACAE8" opacity="0.35" />
+        {/* ── Sky ─────────────────────────────────────────────────── */}
+        <rect width="1440" height="320" fill="url(#skyGrad)" />
 
         {/* ── Sun — centered ───────────────────────────────────────── */}
         <circle cx="720" cy="88" r="64" fill="#F5D140" opacity="0.13" />
@@ -31,44 +36,35 @@ export default function CoffeeFarmScene() {
         <circle cx="720" cy="88" r="28" fill="#F8E04A" />
 
         {/* ── Seagulls near sun ────────────────────────────────────── */}
-        {/* Seagull 1 — left of sun, mid-high */}
-        <path d="M658,70 Q664,63 670,70" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-        <path d="M670,70 Q676,63 682,70" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-        {/* Seagull 2 — right of sun, higher */}
-        <path d="M755,56 Q762,49 769,56" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-        <path d="M769,56 Q776,49 783,56" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-        {/* Seagull 3 — above sun, center-left */}
-        <path d="M700,44 Q707,37 714,44" stroke="white" strokeWidth="1.6" fill="none" strokeLinecap="round" />
-        <path d="M714,44 Q721,37 728,44" stroke="white" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+        <path d="M655,68 Q661,61 667,68" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        <path d="M667,68 Q673,61 679,68" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        <path d="M756,54 Q763,47 770,54" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        <path d="M770,54 Q777,47 784,54" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+        <path d="M698,42 Q705,35 712,42" stroke="white" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+        <path d="M712,42 Q719,35 726,42" stroke="white" strokeWidth="1.6" fill="none" strokeLinecap="round" />
 
         {/* ── Clouds — varied heights ───────────────────────────────── */}
         <g fill="white" opacity="0.74">
-          {/* Cloud 1 — high left */}
           <rect x="55"   y="38"  width="78" height="14" />
           <rect x="71"   y="26"  width="46" height="14" />
           <rect x="85"   y="16"  width="22" height="12" />
-          {/* Cloud 2 — mid left, lower */}
           <rect x="310"  y="72"  width="88" height="14" />
           <rect x="328"  y="59"  width="52" height="14" />
           <rect x="344"  y="48"  width="22" height="12" />
-          {/* Cloud 3 — high center-left */}
           <rect x="545"  y="28"  width="70" height="13" />
           <rect x="559"  y="17"  width="42" height="13" />
           <rect x="571"  y="8"   width="20" height="11" />
-          {/* Cloud 4 — lower center-right */}
           <rect x="880"  y="76"  width="86" height="14" />
           <rect x="898"  y="63"  width="50" height="14" />
           <rect x="914"  y="52"  width="24" height="12" />
-          {/* Cloud 5 — high far right */}
           <rect x="1195" y="38"  width="74" height="13" />
           <rect x="1209" y="27"  width="46" height="13" />
           <rect x="1221" y="17"  width="22" height="11" />
-          {/* Cloud 6 — mid right */}
           <rect x="1045" y="58"  width="62" height="12" />
           <rect x="1057" y="48"  width="38" height="12" />
         </g>
 
-        {/* ── Far mountains — light green ──────────────────────────── */}
+        {/* ── Far mountains ────────────────────────────────────────── */}
         <polygon fill="#7DB060"
           points="0,320 0,200 40,200 40,176 80,176 80,152 120,152 120,128
                   160,128 160,104 200,104 200,88 240,88 240,104 280,104 280,128
@@ -99,7 +95,7 @@ export default function CoffeeFarmScene() {
                   1380,146 1420,146 1420,171 1440,171 1440,320 1400,320"
         />
 
-        {/* ── Mid mountains — medium green ─────────────────────────── */}
+        {/* ── Mid mountains ────────────────────────────────────────── */}
         <polygon fill="#4D7F2A"
           points="0,320 0,242 40,242 40,222 80,222 80,202 120,202 120,182
                   160,182 160,159 200,159 200,139 240,139 240,122 280,122
@@ -142,240 +138,243 @@ export default function CoffeeFarmScene() {
                   1360,229 1360,242 1400,242 1400,256 1440,256 1440,320"
         />
 
-        {/* ── Trail / road toward mountain ─────────────────────────── */}
-        {/* Road surface — winding from bottom center toward mid mountain */}
-        <polygon fill="#1E4010" opacity="0.75"
-          points="688,320 752,320 746,295 738,275 728,257 720,242 714,229 716,217 722,208
-                  718,208 712,217 708,229 700,242 692,257 682,275 674,295"
-        />
-        {/* Road edge shadow */}
-        <polygon fill="#0A1A06" opacity="0.45"
-          points="746,295 752,295 744,275 734,257 726,242 720,229 722,217 718,208
-                  716,208 714,217 716,229 720,242 728,257 738,275"
-        />
-
         {/* ── Ground strip ─────────────────────────────────────────── */}
         <rect x="0" y="282" width="1440" height="38" fill="#1A3A0E" />
         <rect x="0" y="282" width="1440" height="4"  fill="#0E2208" opacity="0.5" />
 
         {/* ══════════════════════════════════════════════════════════
-            COFFEE PLANTS — bushy/organic (ellipse-based, not triangles)
-            Left side: L1–L10 (x ≈ 50–620)
-            Right side: R1–R5 (x ≈ 860–1400)
+            COFFEE PLANTS — realistic bush silhouette
+            Wide spreading oval canopy, horizontal branches, cherry clusters
+            Left: L1–L10 (x ≈ 50–600)   Right: R1–R5 (x ≈ 860–1390)
         ══════════════════════════════════════════════════════════ */}
 
-        {/* ── Left side plants ─────────────────────────────────────── */}
-
-        {/* L1 */}
-        <g transform="translate(55,278)">
-          <rect x="-2" y="-22" width="5" height="22" fill="#0E2208" />
-          <ellipse cx="-8" cy="-18" rx="11" ry="8"  fill="#2A5A18" />
-          <ellipse cx="8"  cy="-18" rx="11" ry="8"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-26" rx="13" ry="9"  fill="#3A7A28" />
-          <ellipse cx="-5" cy="-32" rx="9"  ry="6"  fill="#3A7A28" />
-          <ellipse cx="5"  cy="-32" rx="9"  ry="6"  fill="#4A8C38" />
-          <circle cx="-9"  cy="-16" r="2.5" fill="#C84040" />
-          <circle cx="9"   cy="-16" r="2.5" fill="#B82020" />
-          <circle cx="-4"  cy="-26" r="2"   fill="#D4A020" />
-          <circle cx="4"   cy="-31" r="1.8" fill="#C84040" />
+        {/* L1 — medium */}
+        <g transform="translate(58,280)">
+          <rect x="-3" y="-26" width="6" height="26" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-32" rx="26" ry="14" fill="#1A4A0A" />
+          <ellipse cx="-14" cy="-30" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="14"  cy="-30" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="0"   cy="-36" rx="20" ry="12" fill="#326A1C" />
+          <ellipse cx="-5"  cy="-44" rx="13" ry="8"  fill="#3E7E24" />
+          <ellipse cx="4"   cy="-44" rx="11" ry="7"  fill="#4A8C2C" />
+          <circle cx="-18"  cy="-27" r="3"   fill="#C84040" />
+          <circle cx="-13"  cy="-25" r="2.5" fill="#B82020" />
+          <circle cx="17"   cy="-27" r="3"   fill="#D4A020" />
+          <circle cx="13"   cy="-25" r="2.5" fill="#C84040" />
         </g>
 
         {/* L2 — tall */}
-        <g transform="translate(112,272)">
-          <rect x="-3" y="-30" width="6" height="30" fill="#0E2208" />
-          <ellipse cx="-10" cy="-16" rx="14" ry="10" fill="#2A5A18" />
-          <ellipse cx="10"  cy="-16" rx="14" ry="10" fill="#2A5A18" />
-          <ellipse cx="0"   cy="-24" rx="16" ry="11" fill="#3A7A28" />
-          <ellipse cx="-7"  cy="-32" rx="11" ry="8"  fill="#3A7A28" />
-          <ellipse cx="7"   cy="-32" rx="11" ry="8"  fill="#3A7A28" />
-          <ellipse cx="0"   cy="-40" rx="12" ry="8"  fill="#4A8C38" />
-          <circle cx="-12"  cy="-14" r="3"   fill="#C84040" />
-          <circle cx="12"   cy="-14" r="3"   fill="#B82020" />
-          <circle cx="-5"   cy="-25" r="2.5" fill="#D4A020" />
-          <circle cx="5"    cy="-25" r="2.5" fill="#C84040" />
-          <circle cx="-7"   cy="-33" r="2"   fill="#B82020" />
-          <circle cx="0"    cy="-39" r="2"   fill="#D4A020" />
+        <g transform="translate(115,274)">
+          <rect x="-3" y="-34" width="6" height="34" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-36" rx="28" ry="15" fill="#1A4A0A" />
+          <ellipse cx="-16" cy="-33" rx="14" ry="10" fill="#286018" />
+          <ellipse cx="16"  cy="-33" rx="14" ry="10" fill="#286018" />
+          <ellipse cx="0"   cy="-40" rx="22" ry="13" fill="#326A1C" />
+          <ellipse cx="-8"  cy="-50" rx="14" ry="9"  fill="#3E7E24" />
+          <ellipse cx="6"   cy="-52" rx="12" ry="8"  fill="#4A8C2C" />
+          <ellipse cx="0"   cy="-58" rx="9"  ry="6"  fill="#56A034" />
+          <circle cx="-20"  cy="-30" r="3"   fill="#C84040" />
+          <circle cx="-14"  cy="-28" r="2.5" fill="#D4A020" />
+          <circle cx="19"   cy="-30" r="3"   fill="#B82020" />
+          <circle cx="14"   cy="-28" r="2.5" fill="#C84040" />
+          <circle cx="-6"   cy="-44" r="2.5" fill="#D4A020" />
+          <circle cx="5"    cy="-46" r="2"   fill="#B82020" />
         </g>
 
-        {/* L3 */}
-        <g transform="translate(174,276)">
-          <rect x="-2" y="-20" width="5" height="20" fill="#0E2208" />
-          <ellipse cx="-7" cy="-20" rx="11" ry="8"  fill="#2A5A18" />
-          <ellipse cx="7"  cy="-20" rx="11" ry="8"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-27" rx="13" ry="9"  fill="#3A7A28" />
-          <ellipse cx="0"  cy="-34" rx="9"  ry="6"  fill="#4A8C38" />
-          <circle cx="-8"  cy="-18" r="2.5" fill="#B82020" />
-          <circle cx="8"   cy="-18" r="2.5" fill="#D4A020" />
-          <circle cx="0"   cy="-27" r="2"   fill="#C84040" />
+        {/* L3 — short */}
+        <g transform="translate(172,282)">
+          <rect x="-2" y="-20" width="5" height="20" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-24" rx="22" ry="12" fill="#1A4A0A" />
+          <ellipse cx="-12" cy="-22" rx="11" ry="8"  fill="#286018" />
+          <ellipse cx="12"  cy="-22" rx="11" ry="8"  fill="#286018" />
+          <ellipse cx="0"   cy="-30" rx="16" ry="10" fill="#326A1C" />
+          <ellipse cx="0"   cy="-37" rx="10" ry="6"  fill="#4A8C2C" />
+          <circle cx="-15"  cy="-20" r="2.5" fill="#D4A020" />
+          <circle cx="14"   cy="-20" r="2.5" fill="#C84040" />
+          <circle cx="-4"   cy="-30" r="2"   fill="#B82020" />
         </g>
 
-        {/* L4 */}
-        <g transform="translate(228,274)">
-          <rect x="-3" y="-26" width="6" height="26" fill="#0E2208" />
-          <ellipse cx="-9" cy="-18" rx="13" ry="9"  fill="#2A5A18" />
-          <ellipse cx="9"  cy="-18" rx="13" ry="9"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-26" rx="15" ry="10" fill="#3A7A28" />
-          <ellipse cx="-5" cy="-33" rx="10" ry="7"  fill="#3A7A28" />
-          <ellipse cx="5"  cy="-33" rx="10" ry="7"  fill="#4A8C38" />
-          <circle cx="-10" cy="-16" r="2.5" fill="#C84040" />
-          <circle cx="10"  cy="-16" r="2.5" fill="#D4A020" />
-          <circle cx="-3"  cy="-26" r="2"   fill="#B82020" />
-          <circle cx="4"   cy="-32" r="2"   fill="#C84040" />
-          <circle cx="-6"  cy="-33" r="1.8" fill="#D4A020" />
+        {/* L4 — medium-tall */}
+        <g transform="translate(228,277)">
+          <rect x="-3" y="-28" width="6" height="28" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-32" rx="26" ry="14" fill="#1A4A0A" />
+          <ellipse cx="-15" cy="-29" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="15"  cy="-29" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="0"   cy="-38" rx="20" ry="12" fill="#326A1C" />
+          <ellipse cx="-4"  cy="-47" rx="13" ry="8"  fill="#3E7E24" />
+          <ellipse cx="5"   cy="-48" rx="11" ry="7"  fill="#4A8C2C" />
+          <circle cx="-19"  cy="-26" r="3"   fill="#B82020" />
+          <circle cx="-13"  cy="-24" r="2.5" fill="#D4A020" />
+          <circle cx="18"   cy="-26" r="3"   fill="#C84040" />
+          <circle cx="13"   cy="-24" r="2.5" fill="#D4A020" />
+          <circle cx="0"    cy="-40" r="2.5" fill="#B82020" />
         </g>
 
-        {/* L5 — short */}
-        <g transform="translate(278,279)">
-          <rect x="-2" y="-16" width="4" height="16" fill="#0E2208" />
-          <ellipse cx="-6" cy="-18" rx="10" ry="7"  fill="#2A5A18" />
-          <ellipse cx="6"  cy="-18" rx="10" ry="7"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-24" rx="12" ry="8"  fill="#3A7A28" />
-          <circle cx="-7"  cy="-16" r="2"   fill="#D4A020" />
-          <circle cx="7"   cy="-16" r="2"   fill="#C84040" />
-          <circle cx="0"   cy="-23" r="1.8" fill="#B82020" />
+        {/* L5 — short back-row */}
+        <g transform="translate(278,283)">
+          <rect x="-2" y="-18" width="4" height="18" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-22" rx="20" ry="11" fill="#1A4A0A" />
+          <ellipse cx="-11" cy="-20" rx="10" ry="7"  fill="#286018" />
+          <ellipse cx="11"  cy="-20" rx="10" ry="7"  fill="#286018" />
+          <ellipse cx="0"   cy="-28" rx="14" ry="8"  fill="#3E7E24" />
+          <circle cx="-14"  cy="-18" r="2.5" fill="#C84040" />
+          <circle cx="13"   cy="-18" r="2.5" fill="#D4A020" />
         </g>
 
-        {/* L6 */}
-        <g transform="translate(330,273)">
-          <rect x="-2" y="-24" width="5" height="24" fill="#0E2208" />
-          <ellipse cx="-8" cy="-18" rx="12" ry="9"  fill="#2A5A18" />
-          <ellipse cx="8"  cy="-18" rx="12" ry="9"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-26" rx="14" ry="10" fill="#3A7A28" />
-          <ellipse cx="0"  cy="-34" rx="10" ry="7"  fill="#4A8C38" />
-          <circle cx="-9"  cy="-16" r="2.5" fill="#B82020" />
-          <circle cx="9"   cy="-16" r="2.5" fill="#D4A020" />
-          <circle cx="3"   cy="-26" r="2"   fill="#C84040" />
-          <circle cx="-3"  cy="-33" r="2"   fill="#D4A020" />
+        {/* L6 — medium */}
+        <g transform="translate(334,278)">
+          <rect x="-3" y="-26" width="6" height="26" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-30" rx="26" ry="14" fill="#1A4A0A" />
+          <ellipse cx="-14" cy="-28" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="14"  cy="-28" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="0"   cy="-37" rx="19" ry="11" fill="#326A1C" />
+          <ellipse cx="0"   cy="-46" rx="12" ry="7"  fill="#4A8C2C" />
+          <circle cx="-18"  cy="-25" r="3"   fill="#D4A020" />
+          <circle cx="-12"  cy="-23" r="2.5" fill="#C84040" />
+          <circle cx="17"   cy="-25" r="3"   fill="#B82020" />
+          <circle cx="12"   cy="-23" r="2"   fill="#D4A020" />
+          <circle cx="3"    cy="-38" r="2"   fill="#C84040" />
         </g>
 
         {/* L7 — tallest */}
-        <g transform="translate(390,269)">
-          <rect x="-3" y="-34" width="6" height="34" fill="#0E2208" />
-          <ellipse cx="-11" cy="-18" rx="15" ry="10" fill="#2A5A18" />
-          <ellipse cx="11"  cy="-18" rx="15" ry="10" fill="#2A5A18" />
-          <ellipse cx="0"   cy="-26" rx="17" ry="12" fill="#3A7A28" />
-          <ellipse cx="-7"  cy="-34" rx="12" ry="8"  fill="#3A7A28" />
-          <ellipse cx="7"   cy="-34" rx="12" ry="8"  fill="#3A7A28" />
-          <ellipse cx="0"   cy="-42" rx="12" ry="8"  fill="#4A8C38" />
-          <circle cx="-13"  cy="-16" r="3"   fill="#C84040" />
-          <circle cx="13"   cy="-16" r="3"   fill="#D4A020" />
-          <circle cx="-5"   cy="-27" r="2.5" fill="#B82020" />
-          <circle cx="5"    cy="-27" r="2.5" fill="#C84040" />
-          <circle cx="-7"   cy="-35" r="2"   fill="#D4A020" />
-          <circle cx="7"    cy="-35" r="2"   fill="#B82020" />
+        <g transform="translate(392,272)">
+          <rect x="-3" y="-36" width="6" height="36" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-38" rx="30" ry="16" fill="#1A4A0A" />
+          <ellipse cx="-18" cy="-35" rx="15" ry="10" fill="#286018" />
+          <ellipse cx="18"  cy="-35" rx="15" ry="10" fill="#286018" />
+          <ellipse cx="0"   cy="-44" rx="24" ry="14" fill="#326A1C" />
+          <ellipse cx="-9"  cy="-54" rx="15" ry="9"  fill="#3E7E24" />
+          <ellipse cx="8"   cy="-56" rx="13" ry="8"  fill="#4A8C2C" />
+          <ellipse cx="0"   cy="-63" rx="10" ry="6"  fill="#56A034" />
+          <circle cx="-22"  cy="-32" r="3.5" fill="#C84040" />
+          <circle cx="-15"  cy="-30" r="2.5" fill="#D4A020" />
+          <circle cx="21"   cy="-32" r="3.5" fill="#B82020" />
+          <circle cx="15"   cy="-30" r="2.5" fill="#C84040" />
+          <circle cx="-7"   cy="-47" r="2.5" fill="#D4A020" />
+          <circle cx="6"    cy="-49" r="2.5" fill="#B82020" />
+          <circle cx="0"    cy="-60" r="2"   fill="#C84040" />
+        </g>
+
+        {/* L8 — medium */}
+        <g transform="translate(458,279)">
+          <rect x="-3" y="-26" width="6" height="26" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-30" rx="26" ry="14" fill="#1A4A0A" />
+          <ellipse cx="-14" cy="-28" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="14"  cy="-28" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="0"   cy="-38" rx="20" ry="12" fill="#326A1C" />
+          <ellipse cx="0"   cy="-46" rx="12" ry="7"  fill="#4A8C2C" />
+          <circle cx="-18"  cy="-25" r="3"   fill="#D4A020" />
+          <circle cx="-12"  cy="-23" r="2.5" fill="#B82020" />
+          <circle cx="17"   cy="-25" r="3"   fill="#C84040" />
+          <circle cx="12"   cy="-23" r="2"   fill="#D4A020" />
+        </g>
+
+        {/* L9 — short back-row */}
+        <g transform="translate(510,283)">
+          <rect x="-2" y="-18" width="4" height="18" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-22" rx="20" ry="11" fill="#1A4A0A" />
+          <ellipse cx="-11" cy="-20" rx="10" ry="7"  fill="#286018" />
+          <ellipse cx="11"  cy="-20" rx="10" ry="7"  fill="#286018" />
+          <ellipse cx="0"   cy="-28" rx="14" ry="8"  fill="#3E7E24" />
+          <circle cx="-14"  cy="-18" r="2.5" fill="#C84040" />
+          <circle cx="13"   cy="-18" r="2"   fill="#D4A020" />
+        </g>
+
+        {/* L10 — medium, near center */}
+        <g transform="translate(566,277)">
+          <rect x="-3" y="-28" width="6" height="28" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-32" rx="26" ry="14" fill="#1A4A0A" />
+          <ellipse cx="-15" cy="-29" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="15"  cy="-29" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="0"   cy="-39" rx="20" ry="12" fill="#326A1C" />
+          <ellipse cx="-4"  cy="-48" rx="13" ry="8"  fill="#3E7E24" />
+          <ellipse cx="5"   cy="-49" rx="11" ry="7"  fill="#4A8C2C" />
+          <circle cx="-19"  cy="-26" r="3"   fill="#B82020" />
+          <circle cx="-13"  cy="-24" r="2.5" fill="#C84040" />
+          <circle cx="18"   cy="-26" r="3"   fill="#D4A020" />
+          <circle cx="13"   cy="-24" r="2.5" fill="#B82020" />
           <circle cx="0"    cy="-41" r="2"   fill="#C84040" />
-        </g>
-
-        {/* L8 */}
-        <g transform="translate(453,275)">
-          <rect x="-2" y="-22" width="5" height="22" fill="#0E2208" />
-          <ellipse cx="-7" cy="-20" rx="12" ry="8"  fill="#2A5A18" />
-          <ellipse cx="7"  cy="-20" rx="12" ry="8"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-28" rx="14" ry="9"  fill="#3A7A28" />
-          <ellipse cx="-4" cy="-34" rx="9"  ry="6"  fill="#4A8C38" />
-          <ellipse cx="4"  cy="-34" rx="9"  ry="6"  fill="#4A8C38" />
-          <circle cx="-8"  cy="-18" r="2.5" fill="#D4A020" />
-          <circle cx="8"   cy="-18" r="2.5" fill="#C84040" />
-          <circle cx="-3"  cy="-27" r="2"   fill="#B82020" />
-          <circle cx="4"   cy="-27" r="2"   fill="#D4A020" />
-        </g>
-
-        {/* L9 — short background filler */}
-        <g transform="translate(506,278)">
-          <rect x="-2" y="-18" width="4" height="18" fill="#0E2208" />
-          <ellipse cx="-6" cy="-20" rx="10" ry="7"  fill="#2A5A18" />
-          <ellipse cx="6"  cy="-20" rx="10" ry="7"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-26" rx="12" ry="8"  fill="#3A7A28" />
-          <circle cx="-6"  cy="-18" r="2"   fill="#C84040" />
-          <circle cx="6"   cy="-18" r="2"   fill="#D4A020" />
-          <circle cx="0"   cy="-25" r="1.8" fill="#B82020" />
-        </g>
-
-        {/* L10 — near trail */}
-        <g transform="translate(562,272)">
-          <rect x="-3" y="-26" width="6" height="26" fill="#0E2208" />
-          <ellipse cx="-9" cy="-18" rx="13" ry="9"  fill="#2A5A18" />
-          <ellipse cx="9"  cy="-18" rx="13" ry="9"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-26" rx="15" ry="10" fill="#3A7A28" />
-          <ellipse cx="-5" cy="-34" rx="10" ry="7"  fill="#3A7A28" />
-          <ellipse cx="5"  cy="-34" rx="10" ry="7"  fill="#4A8C38" />
-          <circle cx="-10" cy="-16" r="2.5" fill="#B82020" />
-          <circle cx="10"  cy="-16" r="2.5" fill="#D4A020" />
-          <circle cx="0"   cy="-25" r="2.5" fill="#C84040" />
-          <circle cx="-4"  cy="-33" r="2"   fill="#D4A020" />
-          <circle cx="5"   cy="-33" r="2"   fill="#B82020" />
         </g>
 
         {/* ── Right side plants ────────────────────────────────────── */}
 
-        {/* R1 */}
-        <g transform="translate(865,276)">
-          <rect x="-2" y="-20" width="5" height="20" fill="#0E2208" />
-          <ellipse cx="-7" cy="-22" rx="12" ry="8"  fill="#2A5A18" />
-          <ellipse cx="7"  cy="-22" rx="12" ry="8"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-29" rx="14" ry="9"  fill="#3A7A28" />
-          <ellipse cx="0"  cy="-36" rx="9"  ry="6"  fill="#4A8C38" />
-          <circle cx="-8"  cy="-20" r="2.5" fill="#C84040" />
-          <circle cx="8"   cy="-20" r="2.5" fill="#D4A020" />
-          <circle cx="0"   cy="-29" r="2"   fill="#B82020" />
-          <circle cx="-3"  cy="-35" r="1.8" fill="#C84040" />
+        {/* R1 — medium */}
+        <g transform="translate(868,279)">
+          <rect x="-3" y="-26" width="6" height="26" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-30" rx="26" ry="14" fill="#1A4A0A" />
+          <ellipse cx="-14" cy="-28" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="14"  cy="-28" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="0"   cy="-37" rx="19" ry="11" fill="#326A1C" />
+          <ellipse cx="0"   cy="-45" rx="12" ry="7"  fill="#4A8C2C" />
+          <circle cx="-18"  cy="-25" r="3"   fill="#C84040" />
+          <circle cx="-12"  cy="-23" r="2.5" fill="#D4A020" />
+          <circle cx="17"   cy="-25" r="3"   fill="#B82020" />
+          <circle cx="12"   cy="-23" r="2"   fill="#C84040" />
         </g>
 
         {/* R2 — tall */}
-        <g transform="translate(995,270)">
-          <rect x="-3" y="-30" width="6" height="30" fill="#0E2208" />
-          <ellipse cx="-10" cy="-16" rx="14" ry="10" fill="#2A5A18" />
-          <ellipse cx="10"  cy="-16" rx="14" ry="10" fill="#2A5A18" />
-          <ellipse cx="0"   cy="-24" rx="16" ry="11" fill="#3A7A28" />
-          <ellipse cx="-6"  cy="-32" rx="11" ry="8"  fill="#3A7A28" />
-          <ellipse cx="6"   cy="-32" rx="11" ry="8"  fill="#4A8C38" />
-          <circle cx="-11"  cy="-14" r="3"   fill="#D4A020" />
-          <circle cx="11"   cy="-14" r="3"   fill="#C84040" />
-          <circle cx="-4"   cy="-25" r="2.5" fill="#B82020" />
-          <circle cx="5"    cy="-25" r="2.5" fill="#D4A020" />
-          <circle cx="0"    cy="-31" r="2"   fill="#C84040" />
-          <circle cx="-6"   cy="-33" r="1.8" fill="#B82020" />
+        <g transform="translate(998,273)">
+          <rect x="-3" y="-34" width="6" height="34" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-36" rx="28" ry="15" fill="#1A4A0A" />
+          <ellipse cx="-16" cy="-33" rx="14" ry="10" fill="#286018" />
+          <ellipse cx="16"  cy="-33" rx="14" ry="10" fill="#286018" />
+          <ellipse cx="0"   cy="-42" rx="22" ry="13" fill="#326A1C" />
+          <ellipse cx="-8"  cy="-52" rx="14" ry="9"  fill="#3E7E24" />
+          <ellipse cx="6"   cy="-54" rx="12" ry="8"  fill="#4A8C2C" />
+          <ellipse cx="0"   cy="-60" rx="9"  ry="6"  fill="#56A034" />
+          <circle cx="-20"  cy="-30" r="3"   fill="#D4A020" />
+          <circle cx="-14"  cy="-28" r="2.5" fill="#C84040" />
+          <circle cx="19"   cy="-30" r="3"   fill="#B82020" />
+          <circle cx="14"   cy="-28" r="2.5" fill="#D4A020" />
+          <circle cx="-5"   cy="-45" r="2.5" fill="#C84040" />
+          <circle cx="5"    cy="-47" r="2"   fill="#B82020" />
         </g>
 
-        {/* R3 */}
-        <g transform="translate(1110,273)">
-          <rect x="-2" y="-24" width="5" height="24" fill="#0E2208" />
-          <ellipse cx="-8" cy="-20" rx="12" ry="9"  fill="#2A5A18" />
-          <ellipse cx="8"  cy="-20" rx="12" ry="9"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-28" rx="14" ry="10" fill="#3A7A28" />
-          <ellipse cx="-4" cy="-36" rx="9"  ry="6"  fill="#4A8C38" />
-          <ellipse cx="4"  cy="-36" rx="9"  ry="6"  fill="#4A8C38" />
-          <circle cx="-9"  cy="-18" r="2.5" fill="#C84040" />
-          <circle cx="9"   cy="-18" r="2.5" fill="#D4A020" />
-          <circle cx="3"   cy="-28" r="2"   fill="#B82020" />
-          <circle cx="-3"  cy="-35" r="2"   fill="#C84040" />
+        {/* R3 — medium */}
+        <g transform="translate(1115,278)">
+          <rect x="-3" y="-26" width="6" height="26" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-30" rx="26" ry="14" fill="#1A4A0A" />
+          <ellipse cx="-14" cy="-28" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="14"  cy="-28" rx="13" ry="9"  fill="#286018" />
+          <ellipse cx="0"   cy="-38" rx="20" ry="12" fill="#326A1C" />
+          <ellipse cx="-4"  cy="-47" rx="13" ry="8"  fill="#3E7E24" />
+          <ellipse cx="5"   cy="-48" rx="11" ry="7"  fill="#4A8C2C" />
+          <circle cx="-18"  cy="-25" r="3"   fill="#C84040" />
+          <circle cx="-12"  cy="-23" r="2.5" fill="#B82020" />
+          <circle cx="17"   cy="-25" r="3"   fill="#D4A020" />
+          <circle cx="12"   cy="-23" r="2"   fill="#C84040" />
+          <circle cx="3"    cy="-40" r="2"   fill="#D4A020" />
         </g>
 
         {/* R4 — short */}
-        <g transform="translate(1248,277)">
-          <rect x="-2" y="-18" width="4" height="18" fill="#0E2208" />
-          <ellipse cx="-6" cy="-20" rx="11" ry="8"  fill="#2A5A18" />
-          <ellipse cx="6"  cy="-20" rx="11" ry="8"  fill="#2A5A18" />
-          <ellipse cx="0"  cy="-27" rx="13" ry="9"  fill="#3A7A28" />
-          <circle cx="-7"  cy="-18" r="2.5" fill="#D4A020" />
-          <circle cx="7"   cy="-18" r="2.5" fill="#C84040" />
-          <circle cx="0"   cy="-26" r="2"   fill="#B82020" />
+        <g transform="translate(1248,282)">
+          <rect x="-2" y="-20" width="5" height="20" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-24" rx="22" ry="12" fill="#1A4A0A" />
+          <ellipse cx="-12" cy="-22" rx="11" ry="8"  fill="#286018" />
+          <ellipse cx="12"  cy="-22" rx="11" ry="8"  fill="#286018" />
+          <ellipse cx="0"   cy="-30" rx="16" ry="10" fill="#326A1C" />
+          <ellipse cx="0"   cy="-37" rx="10" ry="6"  fill="#4A8C2C" />
+          <circle cx="-15"  cy="-20" r="2.5" fill="#D4A020" />
+          <circle cx="14"   cy="-20" r="2.5" fill="#C84040" />
+          <circle cx="-4"   cy="-30" r="2"   fill="#B82020" />
         </g>
 
         {/* R5 — tall */}
-        <g transform="translate(1375,271)">
-          <rect x="-3" y="-28" width="6" height="28" fill="#0E2208" />
-          <ellipse cx="-10" cy="-16" rx="14" ry="10" fill="#2A5A18" />
-          <ellipse cx="10"  cy="-16" rx="14" ry="10" fill="#2A5A18" />
-          <ellipse cx="0"   cy="-24" rx="16" ry="11" fill="#3A7A28" />
-          <ellipse cx="-6"  cy="-32" rx="10" ry="7"  fill="#3A7A28" />
-          <ellipse cx="6"   cy="-32" rx="10" ry="7"  fill="#4A8C38" />
-          <circle cx="-11"  cy="-14" r="3"   fill="#C84040" />
-          <circle cx="11"   cy="-14" r="3"   fill="#D4A020" />
-          <circle cx="-4"   cy="-25" r="2.5" fill="#C84040" />
-          <circle cx="5"    cy="-25" r="2.5" fill="#B82020" />
-          <circle cx="0"    cy="-31" r="2"   fill="#D4A020" />
-          <circle cx="6"    cy="-33" r="1.8" fill="#C84040" />
+        <g transform="translate(1380,274)">
+          <rect x="-3" y="-34" width="6" height="34" fill="#1E3A0A" />
+          <ellipse cx="0"   cy="-36" rx="28" ry="15" fill="#1A4A0A" />
+          <ellipse cx="-16" cy="-33" rx="14" ry="10" fill="#286018" />
+          <ellipse cx="16"  cy="-33" rx="14" ry="10" fill="#286018" />
+          <ellipse cx="0"   cy="-42" rx="22" ry="13" fill="#326A1C" />
+          <ellipse cx="-7"  cy="-52" rx="14" ry="9"  fill="#3E7E24" />
+          <ellipse cx="6"   cy="-53" rx="12" ry="8"  fill="#4A8C2C" />
+          <ellipse cx="0"   cy="-59" rx="9"  ry="6"  fill="#56A034" />
+          <circle cx="-20"  cy="-30" r="3"   fill="#C84040" />
+          <circle cx="-14"  cy="-28" r="2.5" fill="#D4A020" />
+          <circle cx="19"   cy="-30" r="3"   fill="#B82020" />
+          <circle cx="14"   cy="-28" r="2.5" fill="#C84040" />
+          <circle cx="4"    cy="-45" r="2.5" fill="#D4A020" />
+          <circle cx="-4"   cy="-46" r="2"   fill="#B82020" />
         </g>
 
       </svg>

@@ -11,7 +11,7 @@ interface Props {
 
 function useFadeUp() {
   useEffect(() => {
-    const els = document.querySelectorAll('.fade-up')
+    const els = document.querySelectorAll('.fade-up, .fade-left, .fade-right, .fade-in, .scale-in')
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(e => {
@@ -21,7 +21,7 @@ function useFadeUp() {
           }
         })
       },
-      { threshold: 0.12 }
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
     )
     els.forEach(el => observer.observe(el))
     return () => observer.disconnect()
@@ -90,11 +90,10 @@ export default function LandingPage({ loggedIn }: Props) {
               Open Dashboard
             </a>
           ) : (
-            <a href="/login" className="lp-signin" style={{
-              fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
-              color: 'white', padding: '10px 16px', opacity: 0.85,
-            }}>
+            <a href="/login" className="t-nav lp-signin">
+              <span className="t-brk" aria-hidden="true">[</span>
               Sign In
+              <span className="t-brk" aria-hidden="true">]</span>
             </a>
           )}
         </div>
@@ -130,13 +129,6 @@ export default function LandingPage({ loggedIn }: Props) {
           lineHeight: 1.7, marginBottom: 12,
         }}>
           Manage your team, track your business performance with intelligence.
-        </p>
-
-        <p className="fade-up delay-2" style={{
-          fontFamily: token.mono, fontSize: 11, color: token.muted, letterSpacing: '0.14em',
-          textTransform: 'uppercase', marginBottom: 32,
-        }}>
-          Built by a working espresso technician.
         </p>
 
         <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -178,17 +170,17 @@ export default function LandingPage({ loggedIn }: Props) {
       <section style={{ padding: 'clamp(24px, 4vw, 48px) clamp(24px, 8vw, 120px)' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 40, justifyContent: 'space-between' }}>
           <div style={{ maxWidth: 480 }}>
-            <p className="fade-up" style={{ fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
+            <p className="fade-left" style={{ fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
               Mobile
             </p>
-            <h2 className="fade-up delay-1" style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, marginBottom: 16, lineHeight: 1.2 }}>
+            <h2 className="fade-left delay-1" style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, marginBottom: 16, lineHeight: 1.2 }}>
               Download the app.
             </h2>
-            <p className="fade-up delay-2" style={{ fontSize: 14, color: token.subtle, lineHeight: 1.8, marginBottom: 32 }}>
+            <p className="fade-left delay-2" style={{ fontSize: 14, color: token.subtle, lineHeight: 1.8, marginBottom: 32 }}>
               The Ully mobile app is coming soon to iOS and Android. Dial-in assistance, shot troubleshooting,
               and unlimited resources to unleash the barista champion inside you.
             </p>
-            <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <div className="fade-left delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               {[
                 {
                   label: 'App Store',
@@ -215,7 +207,7 @@ export default function LandingPage({ loggedIn }: Props) {
             </div>
           </div>
 
-          <div className="fade-up delay-2 terminal-deco" style={{
+          <div className="fade-right delay-2 terminal-deco" style={{
             background: token.card, border: `1px solid ${token.line}`, borderRadius: 4,
             padding: '29px 34px', minWidth: 312, maxWidth: 408,
           }}>
@@ -242,10 +234,10 @@ export default function LandingPage({ loggedIn }: Props) {
             padding: 'clamp(80px, 10vw, 120px) 24px', textAlign: 'center',
             background: `radial-gradient(ellipse 50% 60% at 50% 50%, rgba(200, 146, 60, 0.05) 0%, transparent 70%)`,
           }}>
-            <h2 className="fade-up" style={{ fontSize: 'clamp(26px, 4vw, 44px)', fontWeight: 700, marginBottom: 20, letterSpacing: '-0.01em' }}>
+            <h2 className="scale-in" style={{ fontSize: 'clamp(26px, 4vw, 44px)', fontWeight: 700, marginBottom: 20, letterSpacing: '-0.01em' }}>
               Ready to run a smarter cafe?
             </h2>
-            <div className="fade-up delay-2" style={{ marginTop: 32 }}>
+            <div className="fade-up delay-1" style={{ marginTop: 32 }}>
               <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C4B8AA', marginBottom: 18 }}>
                 Sign up for updates on our latest innovations
               </p>

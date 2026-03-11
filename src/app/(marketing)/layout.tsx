@@ -40,12 +40,11 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
             ))}
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <Link href="/login" className="mkt-signin" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.85)', padding: '9px 16px', textDecoration: 'none' }}>
+        <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+          <Link href="/login" className="t-nav mkt-signin">
+            <span className="t-brk" aria-hidden="true">[</span>
             Sign In
-          </Link>
-          <Link href="/signup" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', background: '#C8923C', color: '#0E0C0A', padding: '9px 20px', borderRadius: 3, fontWeight: 700, textDecoration: 'none' }}>
-            Get Started
+            <span className="t-brk" aria-hidden="true">]</span>
           </Link>
         </div>
       </nav>

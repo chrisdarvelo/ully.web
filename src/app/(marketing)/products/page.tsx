@@ -89,16 +89,18 @@ export default function ProductsPage() {
             Built for cafe operators who are tired of switching between tools, losing context, and spending
             time on admin instead of coffee. Every module feeds one AI that knows your whole operation.
           </p>
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
             <a href="/signup" style={{
               background: '#C8923C', color: '#0E0C0A', padding: '13px 28px', borderRadius: 3,
-              fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', textDecoration: 'none',
+              fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.16em',
+              textTransform: 'uppercase', textDecoration: 'none', display: 'inline-block',
             }}>
               Start Free Trial
             </a>
             <a href="/pricing" style={{
-              border: '1px solid #1E1A17', color: '#C4B8AA', padding: '13px 24px', borderRadius: 3,
-              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', textDecoration: 'none',
+              border: '1px solid #2A2218', color: '#C4B8AA', padding: '13px 24px', borderRadius: 3,
+              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em',
+              textTransform: 'uppercase', textDecoration: 'none', display: 'inline-block',
             }}>
               View Pricing →
             </a>

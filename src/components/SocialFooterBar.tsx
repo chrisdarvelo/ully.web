@@ -44,7 +44,7 @@ export default function SocialFooterBar() {
       padding: 'clamp(32px, 5vw, 56px) clamp(24px, 8vw, 120px)',
       background: '#0E0C0A',
     }}>
-      <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 14 }}>
+      <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C4B8AA', marginBottom: 14 }}>
         Follow us
       </p>
       <div style={{ display: 'flex', gap: 10 }}>
@@ -57,9 +57,9 @@ export default function SocialFooterBar() {
             aria-label={s.label}
             style={ICON_STYLE}
             onMouseEnter={e => {
-              e.currentTarget.style.color = '#C8923C'
-              e.currentTarget.style.borderColor = '#C8923C'
-              e.currentTarget.style.background = 'rgba(200,146,60,0.06)'
+              e.currentTarget.style.color = '#C4B8AA'
+              e.currentTarget.style.borderColor = '#C4B8AA'
+              e.currentTarget.style.background = 'rgba(196,184,170,0.06)'
             }}
             onMouseLeave={e => {
               e.currentTarget.style.color = '#6B5E52'

@@ -215,7 +215,7 @@ export async function POST(req: NextRequest) {
         try {
           // ── First Claude call ───────────────────────────────────────────────
           const stream1 = client.messages.stream({
-            model: 'claude-sonnet-4-20250514',
+            model: 'claude-sonnet-4-6',
             max_tokens: 1024,
             system: systemPrompt,
             tools: [EMAIL_TOOL],
@@ -259,7 +259,7 @@ export async function POST(req: NextRequest) {
 
               // ── Second Claude call — confirmation response ─────────────────
               const stream2 = client.messages.stream({
-                model: 'claude-sonnet-4-20250514',
+                model: 'claude-sonnet-4-6',
                 max_tokens: 512,
                 system: systemPrompt,
                 tools: [EMAIL_TOOL],

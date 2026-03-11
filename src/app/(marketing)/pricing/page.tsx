@@ -275,23 +275,6 @@ export default function PricingPage() {
 
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────────────────────── */}
-      <section style={{ padding: 'clamp(60px,8vw,100px) clamp(24px,8vw,120px)', textAlign: 'center', borderTop: '1px solid #1E1A17' }}>
-        <h2 style={{ fontSize: 'clamp(26px,4vw,44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 12 }}>
-          Start your free trial today.
-        </h2>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#4A4440', letterSpacing: '0.1em', marginBottom: 36 }}>
-          14-day full trial · No credit card required · Cancel anytime
-        </p>
-        <a href="/signup" style={{
-          display: 'inline-block',
-          background: '#C8923C', color: '#0E0C0A', padding: '14px 40px', borderRadius: 3,
-          fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700,
-          letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none',
-        }}>
-          Get Started Free
-        </a>
-      </section>
     </>
   )
 }

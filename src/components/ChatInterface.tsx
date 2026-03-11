@@ -20,7 +20,8 @@ interface ChatInterfaceProps {
   userName: string
 }
 
-// ── Rotating quotes (like mobile app) ────────────────────────────────────────
+// ── Session quotes ────────────────────────────────────────────────────────────
+// One quote per session — picked randomly on mount, stays static.
 
 const QUOTES = [
   "espresso o'clock.",
@@ -33,22 +34,9 @@ const QUOTES = [
   'grind size: optimal.',
 ]
 
-function useRotatingQuote() {
-  const [idx, setIdx] = useState(0)
-  const [visible, setVisible] = useState(true)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setVisible(false)
-      setTimeout(() => {
-        setIdx(i => (i + 1) % QUOTES.length)
-        setVisible(true)
-      }, 350)
-    }, 4000)
-    return () => clearInterval(timer)
-  }, [])
-
-  return { quote: QUOTES[idx], visible }
+function useSessionQuote() {
+  const [quote] = useState(() => QUOTES[Math.floor(Math.random() * QUOTES.length)])
+  return quote
 }
 
 // ── Message bubble ────────────────────────────────────────────────────────────
@@ -166,6 +154,136 @@ function DocPill({ doc, onRemove }: { doc: UploadedDoc; onRemove: () => void }) 
   )
 }
 
+// ── Input bar ────────────────────────────────────────────────────────────────
+// Must be top-level (not nested inside ChatInterface) to preserve textarea focus across re-renders.
+
+interface InputBarProps {
+  input: string
+  setInput: (v: string) => void
+  loading: boolean
+  uploading: boolean
+  uploadError: string
+  uploadedDoc: UploadedDoc | null
+  setUploadedDoc: (v: UploadedDoc | null) => void
+  fileInputRef: React.RefObject<HTMLInputElement | null>
+  textareaRef: React.RefObject<HTMLTextAreaElement | null>
+  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void
+  sendMessage: () => void
+}
+
+function InputBar({
+  input, setInput, loading, uploading, uploadError,
+  uploadedDoc, setUploadedDoc, fileInputRef, textareaRef,
+  handleFileChange, handleKeyDown, sendMessage,
+}: InputBarProps) {
+  const canSend = (input.trim() || uploadedDoc) && !loading
+
+  return (
+    <div style={{ width: '100%' }}>
+      {uploadedDoc && <DocPill doc={uploadedDoc} onRemove={() => setUploadedDoc(null)} />}
+
+      {uploadError && (
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#E07070', marginBottom: 6 }}>
+          {uploadError}
+        </div>
+      )}
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".csv,.txt,.xlsx,.xls,.docx"
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+      />
+
+      <div
+        style={{
+          display: 'flex',
+          gap: 8,
+          alignItems: 'flex-end',
+          background: '#1A1614',
+          border: '1px solid #1E1A17',
+          borderRadius: 8,
+          padding: '10px 12px',
+          transition: 'border-color 0.15s',
+        }}
+      >
+        {/* Attach */}
+        <button
+          onClick={() => fileInputRef.current?.click()}
+          disabled={uploading}
+          title="Attach spreadsheet or document"
+          style={{
+            background: 'none', border: 'none',
+            cursor: uploading ? 'wait' : 'pointer',
+            color: uploading ? '#C8923C' : '#4A4440',
+            padding: '2px 4px', flexShrink: 0,
+            display: 'flex', alignItems: 'center',
+            transition: 'color 0.15s', marginBottom: 2,
+          }}
+          onMouseEnter={e => { if (!uploading) (e.currentTarget as HTMLElement).style.color = '#C8923C' }}
+          onMouseLeave={e => { if (!uploading) (e.currentTarget as HTMLElement).style.color = '#4A4440' }}
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13.5 9.5v2.5a1 1 0 01-1 1h-9a1 1 0 01-1-1V9.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+            <path d="M8 2v8M5.5 4.5L8 2l2.5 2.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        <textarea
+          ref={textareaRef}
+          value={input}
+          onChange={e => {
+            setInput(e.target.value)
+            e.target.style.height = 'auto'
+            e.target.style.height = Math.min(e.target.scrollHeight, 160) + 'px'
+          }}
+          onKeyDown={handleKeyDown}
+          onFocus={e => (e.currentTarget.parentElement!.style.borderColor = '#C8923C')}
+          onBlur={e => (e.currentTarget.parentElement!.style.borderColor = '#1E1A17')}
+          placeholder={uploadedDoc ? 'Ask anything about this document…' : 'How can I help you?'}
+          rows={1}
+          disabled={loading}
+          style={{
+            flex: 1, background: 'none', border: 'none', outline: 'none',
+            color: '#C4B8AA', fontSize: 15, lineHeight: 1.6,
+            resize: 'none', maxHeight: 160, overflow: 'auto',
+            fontFamily: 'inherit',
+          }}
+        />
+
+        {/* Send */}
+        <button
+          onClick={sendMessage}
+          disabled={!canSend}
+          style={{
+            background: canSend ? '#C8923C' : 'transparent',
+            color: canSend ? '#0E0C0A' : '#4A4440',
+            border: canSend ? 'none' : '1px solid #1E1A17',
+            borderRadius: 6,
+            width: 34, height: 34,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: canSend ? 'pointer' : 'not-allowed',
+            flexShrink: 0, transition: 'all 0.15s',
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 13L13 7L1 1V5.5L9 7L1 8.5V13Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+
+      <div style={{
+        fontFamily: 'var(--font-mono)', fontSize: 9, color: '#2A2218',
+        letterSpacing: '0.1em', textAlign: 'center', marginTop: 7,
+      }}>
+        supports .csv · .xlsx · .xls · .docx · .txt
+      </div>
+    </div>
+  )
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
 
 export default function ChatInterface({ orgName, userName }: ChatInterfaceProps) {
@@ -180,7 +298,7 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const { quote, visible } = useRotatingQuote()
+  const quote = useSessionQuote()
   const firstName = userName?.split(' ')[0] ?? 'there'
   const hasMessages = messages.length > 0
 
@@ -302,116 +420,6 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
     }
   }
 
-  // ── Input bar ───────────────────────────────────────────────────────────────
-
-  function InputBar() {
-    const canSend = (input.trim() || uploadedDoc) && !loading
-
-    return (
-      <div style={{ width: '100%' }}>
-        {uploadedDoc && <DocPill doc={uploadedDoc} onRemove={() => setUploadedDoc(null)} />}
-
-        {uploadError && (
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#E07070', marginBottom: 6 }}>
-            {uploadError}
-          </div>
-        )}
-
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".csv,.txt,.xlsx,.xls,.docx"
-          onChange={handleFileChange}
-          style={{ display: 'none' }}
-        />
-
-        <div
-          style={{
-            display: 'flex',
-            gap: 8,
-            alignItems: 'flex-end',
-            background: '#1A1614',
-            border: '1px solid #1E1A17',
-            borderRadius: 8,
-            padding: '10px 12px',
-            transition: 'border-color 0.15s',
-          }}
-        >
-          {/* Attach */}
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            disabled={uploading}
-            title="Attach spreadsheet or document"
-            style={{
-              background: 'none', border: 'none',
-              cursor: uploading ? 'wait' : 'pointer',
-              color: uploading ? '#C8923C' : '#4A4440',
-              padding: '2px 4px', flexShrink: 0,
-              display: 'flex', alignItems: 'center',
-              transition: 'color 0.15s', marginBottom: 2,
-            }}
-            onMouseEnter={e => { if (!uploading) (e.currentTarget as HTMLElement).style.color = '#C8923C' }}
-            onMouseLeave={e => { if (!uploading) (e.currentTarget as HTMLElement).style.color = '#4A4440' }}
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M13.5 9.5v2.5a1 1 0 01-1 1h-9a1 1 0 01-1-1V9.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-              <path d="M8 2v8M5.5 4.5L8 2l2.5 2.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-
-          <textarea
-            ref={textareaRef}
-            value={input}
-            onChange={e => {
-              setInput(e.target.value)
-              e.target.style.height = 'auto'
-              e.target.style.height = Math.min(e.target.scrollHeight, 160) + 'px'
-            }}
-            onKeyDown={handleKeyDown}
-            onFocus={e => (e.currentTarget.parentElement!.style.borderColor = '#C8923C')}
-            onBlur={e => (e.currentTarget.parentElement!.style.borderColor = '#1E1A17')}
-            placeholder={uploadedDoc ? 'Ask anything about this document…' : 'How can I help you?'}
-            rows={1}
-            disabled={loading}
-            style={{
-              flex: 1, background: 'none', border: 'none', outline: 'none',
-              color: '#C4B8AA', fontSize: 15, lineHeight: 1.6,
-              resize: 'none', maxHeight: 160, overflow: 'auto',
-              fontFamily: 'inherit',
-            }}
-          />
-
-          {/* Send */}
-          <button
-            onClick={sendMessage}
-            disabled={!canSend}
-            style={{
-              background: canSend ? '#C8923C' : 'transparent',
-              color: canSend ? '#0E0C0A' : '#4A4440',
-              border: canSend ? 'none' : '1px solid #1E1A17',
-              borderRadius: 6,
-              width: 34, height: 34,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              cursor: canSend ? 'pointer' : 'not-allowed',
-              flexShrink: 0, transition: 'all 0.15s',
-            }}
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 13L13 7L1 1V5.5L9 7L1 8.5V13Z" fill="currentColor" />
-            </svg>
-          </button>
-        </div>
-
-        <div style={{
-          fontFamily: 'var(--font-mono)', fontSize: 9, color: '#2A2218',
-          letterSpacing: '0.1em', textAlign: 'center', marginTop: 7,
-        }}>
-          supports .csv · .xlsx · .xls · .docx · .txt
-        </div>
-      </div>
-    )
-  }
-
   // ── Welcome state ───────────────────────────────────────────────────────────
 
   if (!hasMessages) {
@@ -426,27 +434,26 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, marginBottom: 24 }}>
           <FlowerIcon size={52} glow />
           <div style={{
-            fontFamily: 'var(--font-mono)', fontSize: 28, fontWeight: 700,
+            fontFamily: 'var(--font-mono)', fontSize: 31, fontWeight: 700,
             color: '#C8923C', letterSpacing: '0.24em',
-            textShadow: '0 0 16px rgba(200,146,60,0.5), 0 0 40px rgba(200,146,60,0.2)',
+            textShadow: '0 0 20px rgba(200,146,60,0.6), 0 0 48px rgba(200,146,60,0.25)',
           }}>
             ULLY
           </div>
         </div>
 
-        {/* Rotating quote */}
+        {/* Session quote */}
         <div style={{
-          fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52',
+          fontFamily: 'var(--font-mono)', fontSize: 13, color: '#8B7B6E',
           letterSpacing: '0.2em', textTransform: 'lowercase',
-          marginBottom: 10, height: 18,
-          opacity: visible ? 1 : 0, transition: 'opacity 0.35s ease',
+          marginBottom: 10,
         }}>
           {quote}
         </div>
 
         {/* Personalized greeting */}
         <div style={{
-          fontFamily: 'var(--font-mono)', fontSize: 13, color: '#4A4440',
+          fontFamily: 'var(--font-mono)', fontSize: 14, color: '#6B5E52',
           letterSpacing: '0.14em', marginBottom: 36, textAlign: 'center',
         }}>
           how can I assist you today, {firstName}?
@@ -454,7 +461,14 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
 
         {/* Centered input */}
         <div style={{ width: '100%', maxWidth: 640 }}>
-          <InputBar />
+          <InputBar
+            input={input} setInput={setInput} loading={loading}
+            uploading={uploading} uploadError={uploadError}
+            uploadedDoc={uploadedDoc} setUploadedDoc={setUploadedDoc}
+            fileInputRef={fileInputRef} textareaRef={textareaRef}
+            handleFileChange={handleFileChange} handleKeyDown={handleKeyDown}
+            sendMessage={sendMessage}
+          />
         </div>
       </div>
     )
@@ -503,7 +517,14 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
 
       {/* Input */}
       <div style={{ padding: '12px 20px 16px', borderTop: '1px solid #1E1A17', flexShrink: 0 }}>
-        <InputBar />
+        <InputBar
+          input={input} setInput={setInput} loading={loading}
+          uploading={uploading} uploadError={uploadError}
+          uploadedDoc={uploadedDoc} setUploadedDoc={setUploadedDoc}
+          fileInputRef={fileInputRef} textareaRef={textareaRef}
+          handleFileChange={handleFileChange} handleKeyDown={handleKeyDown}
+          sendMessage={sendMessage}
+        />
       </div>
     </div>
   )

@@ -28,20 +28,24 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
 
       <CoffeeFarmScene />
 
-      <footer style={{ padding: '32px 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, borderTop: '1px solid #1E1A17' }}>
-        <span style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 11, color: '#C8923C', letterSpacing: '0.1em' }}>ULLY</span>
-        <ul style={{ display: 'flex', gap: 24, listStyle: 'none', flexWrap: 'wrap' }}>
-          {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Support', '/support']].map(([label, href]) => (
-            <li key={href}>
-              <Link href={href} className="t-nav">
-                <span className="t-brk" aria-hidden="true">[</span>
-                {label}
-                <span className="t-brk" aria-hidden="true">]</span>
-              </Link>
-            </li>
+      <footer style={{
+        padding: '32px 48px', background: '#0E0C0A',
+        borderTop: '1px solid #1E1A17',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 12, color: '#C8923C', letterSpacing: '0.1em', textDecoration: 'none' }}>ULLY</Link>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em' }}>© 2026 Ully</span>
+        </div>
+        <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+          {[['Products', '/products'], ['Pricing', '/pricing'], ['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
+            <Link key={href} href={href} className="t-nav" style={{ fontSize: 11 }}>
+              <span className="t-brk" aria-hidden="true">[</span>
+              {label}
+              <span className="t-brk" aria-hidden="true">]</span>
+            </Link>
           ))}
-        </ul>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em' }}>© 2026 Ully</span>
+        </div>
       </footer>
     </div>
   )

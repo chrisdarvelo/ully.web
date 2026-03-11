@@ -56,29 +56,29 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       {/* Social + Newsletter */}
       <SocialFooterBar />
 
-      {/* Farm scene + footer overlaid */}
-      <div style={{ position: 'relative' }}>
-        <CoffeeFarmScene />
-        <footer className="mkt-footer" style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          padding: '22px 48px',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 14, color: '#D9A04A', letterSpacing: '0.12em', textDecoration: 'none' }}>ULLY</Link>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#9B8B7E', letterSpacing: '0.09em' }}>© 2026 Ully</span>
-          </div>
-          <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
-            {FOOTER_LINKS.map(([label, href]) => (
-              <Link key={href} href={href} className="t-nav" style={{ fontSize: 12 }}>
-                <span className="t-brk" aria-hidden="true">[</span>
-                {label}
-                <span className="t-brk" aria-hidden="true">]</span>
-              </Link>
-            ))}
-          </div>
-        </footer>
-      </div>
+      {/* Farm scene */}
+      <CoffeeFarmScene />
+
+      {/* Footer */}
+      <footer style={{
+        padding: '32px 48px', background: '#0E0C0A',
+        borderTop: '1px solid #1E1A17',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 12, color: '#C8923C', letterSpacing: '0.1em', textDecoration: 'none' }}>ULLY</Link>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em' }}>© 2026 Ully</span>
+        </div>
+        <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+          {FOOTER_LINKS.map(([label, href]) => (
+            <Link key={href} href={href} className="t-nav" style={{ fontSize: 11 }}>
+              <span className="t-brk" aria-hidden="true">[</span>
+              {label}
+              <span className="t-brk" aria-hidden="true">]</span>
+            </Link>
+          ))}
+        </div>
+      </footer>
     </div>
   )
 }

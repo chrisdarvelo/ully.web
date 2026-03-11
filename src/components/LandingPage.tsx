@@ -276,29 +276,29 @@ export default function LandingPage({ loggedIn }: Props) {
       {/* ── Social + Newsletter ─────────────────────────── */}
       <SocialFooterBar />
 
-      {/* ── Farm Scene + Footer ──────────────────────────── */}
-      <div style={{ position: 'relative' }}>
-        <CoffeeFarmScene />
-        <footer style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          padding: '22px 48px',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <a href="/" style={{ fontFamily: token.pixel, fontSize: 14, color: '#D9A04A', letterSpacing: '0.12em', textDecoration: 'none' }}>ULLY</a>
-            <span style={{ fontFamily: token.mono, fontSize: 12, color: '#9B8B7E', letterSpacing: '0.09em' }}>© 2026 Ully</span>
-          </div>
-          <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
-            {[['Products', '/products'], ['Pricing', '/pricing'], ['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
-              <a key={href} href={href} className="t-nav" style={{ fontSize: 12 }}>
-                <span className="t-brk" aria-hidden="true">[</span>
-                {label}
-                <span className="t-brk" aria-hidden="true">]</span>
-              </a>
-            ))}
-          </div>
-        </footer>
-      </div>
+      {/* ── Farm Scene ───────────────────────────────────── */}
+      <CoffeeFarmScene />
+
+      {/* ── Footer ───────────────────────────────────────── */}
+      <footer style={{
+        padding: '32px 48px', background: token.bg,
+        borderTop: `1px solid ${token.line}`,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <a href="/" style={{ fontFamily: token.pixel, fontSize: 12, color: token.gold, letterSpacing: '0.1em', textDecoration: 'none' }}>ULLY</a>
+          <span style={{ fontFamily: token.mono, fontSize: 10, color: token.muted, letterSpacing: '0.08em' }}>© 2026 Ully</span>
+        </div>
+        <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+          {[['Products', '/products'], ['Pricing', '/pricing'], ['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
+            <a key={href} href={href} className="t-nav" style={{ fontSize: 11 }}>
+              <span className="t-brk" aria-hidden="true">[</span>
+              {label}
+              <span className="t-brk" aria-hidden="true">]</span>
+            </a>
+          ))}
+        </div>
+      </footer>
 
     </div>
   )

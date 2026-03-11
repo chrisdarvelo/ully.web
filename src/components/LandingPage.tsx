@@ -90,20 +90,12 @@ export default function LandingPage({ loggedIn }: Props) {
               Open Dashboard
             </a>
           ) : (
-            <>
-              <a href="/login" className="lp-signin" style={{
-                fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
-                color: 'white', padding: '10px 16px', opacity: 0.85,
-              }}>
-                Sign In
-              </a>
-              <a href="/signup" style={{
-                fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
-                background: token.gold, color: token.bg, padding: '10px 20px', borderRadius: 3, fontWeight: 700,
-              }}>
-                Try Ully Free
-              </a>
-            </>
+            <a href="/login" className="lp-signin" style={{
+              fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
+              color: 'white', padding: '10px 16px', opacity: 0.85,
+            }}>
+              Sign In
+            </a>
           )}
         </div>
       </nav>

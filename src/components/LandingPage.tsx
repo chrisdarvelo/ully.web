@@ -111,11 +111,11 @@ export default function LandingPage({ loggedIn }: Props) {
       {/* ── Hero ────────────────────────────────────────── */}
       <section style={{
         minHeight: '100vh', display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center',
-        padding: '120px 24px 80px', textAlign: 'center',
+        alignItems: 'center', justifyContent: 'flex-start',
+        padding: '96px 24px 60px', textAlign: 'center',
         background: `radial-gradient(ellipse 60% 50% at 50% 40%, rgba(200, 146, 60, 0.07) 0%, transparent 70%)`,
       }}>
-        <div className="fade-up" style={{ marginBottom: 20 }}>
+        <div className="fade-up" style={{ marginBottom: 16 }}>
           <span style={{
             fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',
             color: token.gold, border: `1px solid rgba(200, 146, 60, 0.4)`,
@@ -127,7 +127,7 @@ export default function LandingPage({ loggedIn }: Props) {
 
         <h1 className="fade-up delay-1" style={{
           fontSize: 'clamp(36px, 6vw, 72px)', fontWeight: 700, lineHeight: 1.1,
-          letterSpacing: '-0.02em', maxWidth: 780, marginBottom: 24,
+          letterSpacing: '-0.02em', maxWidth: 780, marginBottom: 16,
         }}>
           Brewing with AI<br />
           <span style={{ color: token.gold }}>at the edge of technology.</span>
@@ -135,14 +135,14 @@ export default function LandingPage({ loggedIn }: Props) {
 
         <p className="fade-up delay-2" style={{
           fontSize: 'clamp(15px, 2vw, 18px)', color: token.subtle, maxWidth: 520,
-          lineHeight: 1.7, marginBottom: 24,
+          lineHeight: 1.7, marginBottom: 12,
         }}>
           Manage your team, track your business performance with intelligence.
         </p>
 
         <p className="fade-up delay-2" style={{
           fontFamily: token.mono, fontSize: 11, color: token.muted, letterSpacing: '0.14em',
-          textTransform: 'uppercase', marginBottom: 44,
+          textTransform: 'uppercase', marginBottom: 32,
         }}>
           Built by a working espresso technician.
         </p>
@@ -183,7 +183,7 @@ export default function LandingPage({ loggedIn }: Props) {
       {/* ── Mobile App + Terminal ────────────────────────── */}
       <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
 
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)' }}>
+      <section style={{ padding: 'clamp(40px, 6vw, 72px) clamp(24px, 8vw, 120px)' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 40, justifyContent: 'space-between' }}>
           <div style={{ maxWidth: 480 }}>
             <p className="fade-up" style={{ fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>

@@ -196,22 +196,6 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)', textAlign: 'center' }}>
-        <h2 style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 16 }}>
-          Ready to run a smarter operation?
-        </h2>
-        <p style={{ fontSize: 16, color: '#C4B8AA', marginBottom: 36 }}>
-          14-day free trial. No credit card required.
-        </p>
-        <a href="/signup" style={{
-          display: 'inline-block',
-          background: '#C8923C', color: '#0E0C0A', padding: '14px 36px', borderRadius: 3,
-          fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', textDecoration: 'none',
-        }}>
-          Start Free Trial
-        </a>
-      </section>
     </>
   )
 }

@@ -212,14 +212,11 @@ You can send emails on behalf of ${ctx.userName}. When the user asks you to send
 3. Confirm the recipient, subject, and content with the user before calling send_email
 4. After sending, confirm it was delivered
 
-## Guidelines
-- Answer directly using the data above — never say "I don't have access to that" if the data is shown
-- Keep responses concise and actionable
-- For financial questions, reference the actual numbers
-- For team/schedule questions, reference actual names and shifts
-- For equipment issues, reference the specific machine and its service history
-- Use bullet points for multi-step processes
-- Focus on coffee and food service operations`
+## Formatting rules
+- Plain text only. No markdown. No bold (**text**), no headers (###), no tables, no code blocks.
+- No emojis. Ever.
+- No filler phrases like "Great question!" or "Anything else?" — just answer.
+- Use simple dashes for lists if needed. Keep responses short and direct.`
 }
 
 // ── Email tool definition ─────────────────────────────────────────────────────

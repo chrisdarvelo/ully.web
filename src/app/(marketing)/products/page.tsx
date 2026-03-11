@@ -136,7 +136,7 @@ export default function ProductsPage() {
           </div>
 
           {/* Terminal mock */}
-          <div style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 6, padding: '28px 32px', maxWidth: 440 }}>
+          <div className="terminal-deco" style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 6, padding: '28px 32px', maxWidth: 440 }}>
             <div style={{ display: 'flex', gap: 7, marginBottom: 24 }}>
               {['#C84040', '#C89040', '#4A8C5C'].map(c => (
                 <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, opacity: 0.6 }} />

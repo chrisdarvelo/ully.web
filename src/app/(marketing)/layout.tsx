@@ -18,7 +18,7 @@ const FOOTER_LINKS = [
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ minHeight: '100vh', background: '#0E0C0A' }}>
-      <nav style={{
+      <nav className="mkt-nav" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 48px', height: 60,
@@ -30,7 +30,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
             <FlowerIcon size={30} glow />
           </Link>
-          <div style={{ display: 'flex', gap: 24 }}>
+          <div className="mkt-nav-links" style={{ display: 'flex', gap: 24 }}>
             {NAV_LINKS.map(([label, href]) => (
               <Link key={href} href={href} className="t-nav">
                 <span className="t-brk" aria-hidden="true">[</span>
@@ -41,7 +41,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           </div>
         </div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <Link href="/login" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.85)', padding: '9px 16px', textDecoration: 'none' }}>
+          <Link href="/login" className="mkt-signin" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.85)', padding: '9px 16px', textDecoration: 'none' }}>
             Sign In
           </Link>
           <Link href="/signup" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', background: '#C8923C', color: '#0E0C0A', padding: '9px 20px', borderRadius: 3, fontWeight: 700, textDecoration: 'none' }}>
@@ -60,7 +60,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       {/* Farm scene + footer overlaid */}
       <div style={{ position: 'relative' }}>
         <CoffeeFarmScene />
-        <footer style={{
+        <footer className="mkt-footer" style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
           padding: '22px 48px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,

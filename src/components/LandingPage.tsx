@@ -49,7 +49,7 @@ export default function LandingPage({ loggedIn }: Props) {
     <div style={{ background: token.bg, color: 'white', fontFamily: token.sans, overflowX: 'hidden' }}>
 
       {/* ── Nav ─────────────────────────────────────────── */}
-      <nav style={{
+      <nav className="lp-nav" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 40px', height: 64,
@@ -61,7 +61,7 @@ export default function LandingPage({ loggedIn }: Props) {
           <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
             <FlowerIcon size={30} glow />
           </a>
-          <div style={{ display: 'flex', gap: 24 }}>
+          <div className="lp-nav-links" style={{ display: 'flex', gap: 24 }}>
             {[['Products', '/products'], ['Pricing', '/pricing']].map(([label, href]) => (
               <a key={href} href={href} className="t-nav">
                 <span className="t-brk" aria-hidden="true">[</span>
@@ -82,7 +82,7 @@ export default function LandingPage({ loggedIn }: Props) {
             </a>
           ) : (
             <>
-              <a href="/login" style={{
+              <a href="/login" className="lp-signin" style={{
                 fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
                 color: 'white', padding: '10px 16px', opacity: 0.85,
               }}>
@@ -92,7 +92,7 @@ export default function LandingPage({ loggedIn }: Props) {
                 fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
                 background: token.gold, color: token.bg, padding: '10px 20px', borderRadius: 3, fontWeight: 700,
               }}>
-                Get Started
+                Try Ully Free
               </a>
             </>
           )}
@@ -126,9 +126,16 @@ export default function LandingPage({ loggedIn }: Props) {
 
         <p className="fade-up delay-2" style={{
           fontSize: 'clamp(15px, 2vw, 18px)', color: token.subtle, maxWidth: 520,
-          lineHeight: 1.7, marginBottom: 44,
+          lineHeight: 1.7, marginBottom: 24,
         }}>
           Manage your team, track your business performance with intelligence.
+        </p>
+
+        <p className="fade-up delay-2" style={{
+          fontFamily: token.mono, fontSize: 11, color: token.muted, letterSpacing: '0.14em',
+          textTransform: 'uppercase', marginBottom: 44,
+        }}>
+          Built by a working espresso technician.
         </p>
 
         <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -201,7 +208,7 @@ export default function LandingPage({ loggedIn }: Props) {
               Download the app.
             </h2>
             <p className="fade-up delay-2" style={{ fontSize: 14, color: token.subtle, lineHeight: 1.8, marginBottom: 32 }}>
-              Ully is available in all app stores. Dial-in assistance, troubleshoot your setup,
+              The Ully mobile app is coming soon to iOS and Android. Dial-in assistance, shot troubleshooting,
               and unlimited resources to unleash the barista champion inside you.
             </p>
             <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -237,7 +244,7 @@ export default function LandingPage({ loggedIn }: Props) {
           </div>
 
           {/* Decorative terminal block */}
-          <div className="fade-up delay-2" style={{
+          <div className="fade-up delay-2 terminal-deco" style={{
             background: token.card, border: `1px solid ${token.line}`, borderRadius: 4,
             padding: '29px 34px', minWidth: 312, maxWidth: 408,
           }}>

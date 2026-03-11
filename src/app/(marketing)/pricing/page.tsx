@@ -161,7 +161,7 @@ export default function PricingPage() {
             </div>
 
             {/* Arrow */}
-            <div style={{ display: 'flex', alignItems: 'flex-start', padding: '0 10px', paddingTop: 130, flexShrink: 0 }}>
+            <div className="tier-arrow-wrap" style={{ display: 'flex', alignItems: 'flex-start', padding: '0 10px', paddingTop: 130, flexShrink: 0 }}>
               <div style={{ textAlign: 'center' }}>
                 <div className="tier-arrow" style={{ fontSize: 18, color: '#C8923C' }}>→</div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#4A4440', letterSpacing: '0.14em', marginTop: 4, textTransform: 'uppercase' }}>upgrade</div>
@@ -239,7 +239,7 @@ export default function PricingPage() {
             </div>
 
             {/* Arrow */}
-            <div style={{ display: 'flex', alignItems: 'flex-start', padding: '0 10px', paddingTop: 130, flexShrink: 0 }}>
+            <div className="tier-arrow-wrap" style={{ display: 'flex', alignItems: 'flex-start', padding: '0 10px', paddingTop: 130, flexShrink: 0 }}>
               <div style={{ textAlign: 'center' }}>
                 <div className="tier-arrow" style={{ fontSize: 18, color: '#6B5E52', animationDelay: '0.4s' }}>→</div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, color: '#3A3430', letterSpacing: '0.14em', marginTop: 4, textTransform: 'uppercase' }}>scale</div>

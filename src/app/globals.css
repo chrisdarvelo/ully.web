@@ -127,13 +127,31 @@ input, textarea, select, button {
   color: #C8923C;
 }
 
+/* ── Mobile responsive ─────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Nav padding */
+  .lp-nav  { padding: 0 16px !important; }
+  .mkt-nav { padding: 0 16px !important; }
+  /* Hide nav text links + sign-in on small screens */
+  .lp-nav-links  { display: none !important; }
+  .mkt-nav-links { display: none !important; }
+  .lp-signin     { display: none !important; }
+  .mkt-signin    { display: none !important; }
+  /* Footer padding */
+  .mkt-footer { padding: 16px 20px !important; }
+  /* Pricing tier arrows break layout when cards wrap — hide them */
+  .tier-arrow-wrap { display: none !important; }
+  /* Terminal deco blocks — allow them to shrink to fit */
+  .terminal-deco { min-width: 0 !important; width: 100% !important; max-width: 100% !important; }
+}
+
 /* Ully AI flower spin */
 @keyframes ully-spin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 .ully-spin {
-  animation: ully-spin 1.6s linear infinite;
+  animation: ully-spin 5s linear infinite;
   display: inline-block;
   transform-origin: center;
 }

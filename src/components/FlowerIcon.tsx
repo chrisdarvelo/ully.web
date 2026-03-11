@@ -9,7 +9,7 @@ const STAMENS = [30, 90, 150, 210, 270, 330]
 const PETAL_PATH = 'M100,100 C115,98 108,60 108,35 C108,15 104,8 100,5 C96,8 92,15 92,35 C92,60 85,98 100,100 Z'
 const STAMEN_PATH = 'M100,100 Q102,85 100,68 L103,64 L100,58 L97,64 L100,68'
 
-export default function FlowerIcon({ size = 28, color = '#C8923C', glow = false }: FlowerIconProps) {
+export default function FlowerIcon({ size = 28, color = '#FFFFFF', glow = false }: FlowerIconProps) {
   return (
     <svg
       width={size}

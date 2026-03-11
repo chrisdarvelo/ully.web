@@ -175,7 +175,7 @@ export default function LandingPage({ loggedIn }: Props) {
       {/* ── Mobile App + Terminal ────────────────────────── */}
       <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
 
-      <section style={{ padding: 'clamp(40px, 6vw, 72px) clamp(24px, 8vw, 120px)' }}>
+      <section style={{ padding: 'clamp(24px, 4vw, 48px) clamp(24px, 8vw, 120px)' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 40, justifyContent: 'space-between' }}>
           <div style={{ maxWidth: 480 }}>
             <p className="fade-up" style={{ fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>

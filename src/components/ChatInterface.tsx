@@ -276,7 +276,7 @@ function InputBar({
       </div>
 
       <div style={{
-        fontFamily: 'var(--font-mono)', fontSize: 9, color: '#2A2218',
+        fontFamily: 'var(--font-mono)', fontSize: 11, color: '#6B5E52',
         letterSpacing: '0.1em', textAlign: 'center', marginTop: 7,
       }}>
         supports .csv · .xlsx · .xls · .docx · .txt

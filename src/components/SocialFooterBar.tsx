@@ -1,7 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-
 const SOCIALS = [
   {
     label: 'X',
@@ -40,94 +38,39 @@ const ICON_STYLE: React.CSSProperties = {
 }
 
 export default function SocialFooterBar() {
-  const [email, setEmail] = useState('')
-  const [sent, setSent] = useState(false)
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!email) return
-    setSent(true)
-    setEmail('')
-  }
-
   return (
     <div style={{
       borderTop: '1px solid #1E1A17',
       padding: 'clamp(32px, 5vw, 56px) clamp(24px, 8vw, 120px)',
-      display: 'flex', flexWrap: 'wrap', alignItems: 'center',
-      justifyContent: 'space-between', gap: 32,
       background: '#0E0C0A',
     }}>
-
-      {/* Social icons */}
-      <div>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 14 }}>
-          Follow us
-        </p>
-        <div style={{ display: 'flex', gap: 10 }}>
-          {SOCIALS.map(s => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={s.label}
-              style={ICON_STYLE}
-              onMouseEnter={e => {
-                e.currentTarget.style.color = '#C8923C'
-                e.currentTarget.style.borderColor = '#C8923C'
-                e.currentTarget.style.background = 'rgba(200,146,60,0.06)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.color = '#6B5E52'
-                e.currentTarget.style.borderColor = '#1E1A17'
-                e.currentTarget.style.background = 'transparent'
-              }}
-            >
-              {s.icon}
-            </a>
-          ))}
-        </div>
+      <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 14 }}>
+        Follow us
+      </p>
+      <div style={{ display: 'flex', gap: 10 }}>
+        {SOCIALS.map(s => (
+          <a
+            key={s.label}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={s.label}
+            style={ICON_STYLE}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#C8923C'
+              e.currentTarget.style.borderColor = '#C8923C'
+              e.currentTarget.style.background = 'rgba(200,146,60,0.06)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = '#6B5E52'
+              e.currentTarget.style.borderColor = '#1E1A17'
+              e.currentTarget.style.background = 'transparent'
+            }}
+          >
+            {s.icon}
+          </a>
+        ))}
       </div>
-
-      {/* Newsletter */}
-      <div>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C4B8AA', marginBottom: 14 }}>
-          Sign up for updates on our latest innovations
-        </p>
-        {sent ? (
-          <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#4A8C5C', letterSpacing: '0.08em' }}>
-            ✓ You&apos;re on the list.
-          </p>
-        ) : (
-          <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-              style={{
-                background: '#1A1614', border: '1px solid #2A2218', borderRadius: 3,
-                padding: '10px 16px', color: '#FFFFFF', fontSize: 13,
-                fontFamily: 'var(--font-mono)', outline: 'none', minWidth: 220,
-              }}
-            />
-            <button
-              type="submit"
-              style={{
-                background: '#C8923C', color: '#0E0C0A', border: 'none', borderRadius: 3,
-                padding: '10px 20px', fontFamily: 'var(--font-mono)', fontSize: 10,
-                fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase',
-                cursor: 'pointer',
-              }}
-            >
-              Subscribe
-            </button>
-          </form>
-        )}
-      </div>
-
     </div>
   )
 }

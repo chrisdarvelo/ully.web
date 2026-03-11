@@ -75,8 +75,9 @@ function MessageBubble({ msg }: { msg: Message }) {
         border: isUser
           ? '1px solid rgba(200,146,60,0.22)'
           : '1px solid #1E1A17',
-        fontSize: 15,
-        lineHeight: 1.75,
+        fontFamily: 'var(--font-mono)',
+        fontSize: 13,
+        lineHeight: 1.8,
         color: isUser ? '#E8D8C0' : '#C4B8AA',
         whiteSpace: 'pre-wrap',
         wordBreak: 'break-word',
@@ -247,9 +248,9 @@ function InputBar({
           disabled={loading}
           style={{
             flex: 1, background: 'none', border: 'none', outline: 'none',
-            color: '#C4B8AA', fontSize: 15, lineHeight: 1.6,
+            color: '#C4B8AA', fontSize: 13, lineHeight: 1.6,
             resize: 'none', maxHeight: 160, overflow: 'auto',
-            fontFamily: 'inherit',
+            fontFamily: 'var(--font-mono)',
           }}
         />
 

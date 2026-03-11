@@ -253,20 +253,7 @@ export default function LandingPage({ loggedIn }: Props) {
             <h2 className="fade-up" style={{ fontSize: 'clamp(26px, 4vw, 44px)', fontWeight: 700, marginBottom: 20, letterSpacing: '-0.01em' }}>
               Ready to run a smarter cafe?
             </h2>
-            <p className="fade-up delay-1" style={{ fontSize: 16, color: token.subtle, marginBottom: 40, maxWidth: 420, margin: '0 auto 40px' }}>
-              Create your organization, add your team, and let Ully do the heavy lifting.
-            </p>
-            <div className="fade-up delay-2">
-              <a href="/signup" style={{
-                background: token.gold, color: token.bg, padding: '15px 40px', borderRadius: 3,
-                fontFamily: token.mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700,
-                display: 'inline-block',
-              }}>
-                Create Free Account
-              </a>
-            </div>
-
-            <div className="fade-up delay-3" style={{ marginTop: 56, borderTop: `1px solid ${token.line}`, paddingTop: 48 }}>
+            <div className="fade-up delay-2" style={{ marginTop: 32 }}>
               <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C4B8AA', marginBottom: 18 }}>
                 Sign up for updates on our latest innovations
               </p>

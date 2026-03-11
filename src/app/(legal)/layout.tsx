@@ -10,7 +10,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
           <FlowerIcon size={28} glow />
         </Link>
         <ul style={{ display: 'flex', gap: 32, listStyle: 'none' }}>
-          {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Support', '/support'], ['Platform', '/login']].map(([label, href]) => (
+          {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Platform', '/login']].map(([label, href]) => (
             <li key={href}>
               <Link href={href} className="t-nav">
                 <span className="t-brk" aria-hidden="true">[</span>
@@ -37,7 +37,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
           <Link href="/" style={{ fontFamily: 'var(--font-pixel-family)', fontSize: 12, color: '#C8923C', letterSpacing: '0.1em', textDecoration: 'none' }}>ULLY</Link>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em' }}>© 2026 Ully</span>
         </div>
-        <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 28, flexWrap: 'wrap' }}>
           {[['Products', '/products'], ['Pricing', '/pricing'], ['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
             <Link key={href} href={href} className="t-nav" style={{ fontSize: 11 }}>
               <span className="t-brk" aria-hidden="true">[</span>
@@ -45,6 +45,10 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
               <span className="t-brk" aria-hidden="true">]</span>
             </Link>
           ))}
+          <a href="mailto:support@ullyapp.com" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em', textDecoration: 'none', transition: 'color 0.15s' }}
+            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#C8923C')}
+            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#6B5E52')}
+          >support@ullyapp.com</a>
         </div>
       </footer>
     </div>

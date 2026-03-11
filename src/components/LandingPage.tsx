@@ -289,7 +289,7 @@ export default function LandingPage({ loggedIn }: Props) {
           <a href="/" style={{ fontFamily: token.pixel, fontSize: 12, color: token.gold, letterSpacing: '0.1em', textDecoration: 'none' }}>ULLY</a>
           <span style={{ fontFamily: token.mono, fontSize: 10, color: token.muted, letterSpacing: '0.08em' }}>© 2026 Ully</span>
         </div>
-        <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 28, flexWrap: 'wrap' }}>
           {[['Products', '/products'], ['Pricing', '/pricing'], ['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
             <a key={href} href={href} className="t-nav" style={{ fontSize: 11 }}>
               <span className="t-brk" aria-hidden="true">[</span>
@@ -297,6 +297,10 @@ export default function LandingPage({ loggedIn }: Props) {
               <span className="t-brk" aria-hidden="true">]</span>
             </a>
           ))}
+          <a href="mailto:support@ullyapp.com" style={{ fontFamily: token.mono, fontSize: 10, color: token.muted, letterSpacing: '0.08em', textDecoration: 'none', transition: 'color 0.15s' }}
+            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = token.gold)}
+            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = token.muted)}
+          >support@ullyapp.com</a>
         </div>
       </footer>
 

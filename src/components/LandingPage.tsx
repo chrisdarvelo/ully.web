@@ -104,7 +104,7 @@ export default function LandingPage({ loggedIn }: Props) {
       <section style={{
         minHeight: '100vh', display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'flex-start',
-        padding: '140px 24px 60px', textAlign: 'center',
+        padding: '200px 24px 60px', textAlign: 'center',
         background: `radial-gradient(ellipse 60% 50% at 50% 40%, rgba(200, 146, 60, 0.07) 0%, transparent 70%)`,
       }}>
         <div className="fade-up" style={{ marginBottom: 16 }}>

@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
 import { getSession, clearSessionCookie } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { organizations, users } from '@/lib/schema'
+import { organizations, users, schedules, inventory, expenseRecords, revenueRecords, serviceRecords, teamMembers, equipment, invites, trainingLogs } from '@/lib/schema'
 import { eq } from 'drizzle-orm'
 
 export const runtime = 'nodejs'
@@ -104,8 +104,6 @@ export async function DELETE() {
   }
 
   // Delete all org data in reverse dependency order (FK enforcement is on)
-  const { schedules, inventory, expenseRecords, revenueRecords, serviceRecords, teamMembers, equipment, invites, trainingLogs } = await import('@/lib/schema')
-
   db.delete(trainingLogs).where(eq(trainingLogs.orgId, session.orgId)).run()
   db.delete(schedules).where(eq(schedules.orgId, session.orgId)).run()
   db.delete(inventory).where(eq(inventory.orgId, session.orgId)).run()

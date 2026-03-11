@@ -9,6 +9,23 @@ const mammoth = require('mammoth')
 
 const MAX_BYTES = 10 * 1024 * 1024 // 10 MB
 
+const MAGIC_BYTES: Record<string, number[]> = {
+  xlsx: [0x50, 0x4B, 0x03, 0x04], // ZIP (used by xlsx and docx)
+  xls:  [0xD0, 0xCF, 0x11, 0xE0], // OLE2
+}
+
+function validateMagicBytes(buffer: Buffer, ext: string): boolean {
+  if (ext === 'xlsx' || ext === 'docx') {
+    const sig = MAGIC_BYTES.xlsx
+    return sig.every((b, i) => buffer[i] === b)
+  }
+  if (ext === 'xls') {
+    const sig = MAGIC_BYTES.xls
+    return sig.every((b, i) => buffer[i] === b)
+  }
+  return true // csv/txt are plaintext — no magic bytes needed
+}
+
 function parseCSV(text: string): string {
   const lines = text.trim().split('\n').filter(Boolean)
   if (lines.length === 0) return '(empty file)'
@@ -68,7 +85,12 @@ export async function POST(req: NextRequest) {
     if (file.size > MAX_BYTES) return NextResponse.json({ error: 'File too large (max 10 MB)' }, { status: 413 })
 
     const name = file.name.toLowerCase()
+    const ext = name.split('.').pop() ?? ''
     const buffer = Buffer.from(await file.arrayBuffer())
+
+    if (['xlsx', 'xls', 'docx'].includes(ext) && !validateMagicBytes(buffer, ext)) {
+      return NextResponse.json({ error: 'File content does not match its extension' }, { status: 400 })
+    }
 
     let content = ''
     let fileType = ''

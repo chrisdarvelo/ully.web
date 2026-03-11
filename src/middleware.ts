@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import { jwtVerify } from 'jose'
 
 function getSecret() {
-  const secret = process.env.JWT_SECRET ?? 'dev-secret-change-in-production-32chars'
+  const secret = process.env.JWT_SECRET
+  if (!secret) {
+    if (process.env.NODE_ENV === 'production') throw new Error('JWT_SECRET is required in production')
+    return new TextEncoder().encode('dev-secret-change-in-production-32chars')
+  }
   return new TextEncoder().encode(secret)
 }
 

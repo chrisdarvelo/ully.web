@@ -61,7 +61,7 @@ It is purpose-built for coffee professionals.**
 | Landing page — marketing, app download links | Done |
 | Email (Resend) | Wired, not actively used yet |
 | Report generation (Excel, PDF, DOCX) | Wired, not actively used yet |
-| Deployment to ullycoffee.com | Pending (Railway, tomorrow) |
+| Deployment to ullyapp.com | Pending (Railway, tomorrow) |
 
 ---
 
@@ -69,7 +69,7 @@ It is purpose-built for coffee professionals.**
 
 ### Near-term (pre-launch)
 
-- **Deploy to ullycoffee.com** via Railway — SQLite filesystem requires persistent
+- **Deploy to ullyapp.com** via Railway — SQLite filesystem requires persistent
   Node.js server, not Vercel serverless
 - **Persistent AI chat history** — currently ephemeral per session; persist to
   SQLite per user so history survives logout

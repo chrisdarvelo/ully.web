@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: 'Support' }
 const FAQ = [
   { q: 'How do I add my team members?', a: 'Go to Team in the left sidebar. Click "+ Add Member" and fill in their name, role, and contact details.' },
   { q: 'How does Ully AI use my business data?', a: 'Ully AI reads your equipment list, team count, and inventory alerts to give context-aware responses. Your data is never sent to third parties or used to train AI models without your explicit consent.' },
-  { q: 'Can I invite other team members to my organization?', a: 'Currently one account per organization owner. Team members are managed inside the platform. Contact support@ullycoffee.com if you need expanded access.' },
+  { q: 'Can I invite other team members to my organization?', a: 'Currently one account per organization owner. Team members are managed inside the platform. Contact support@ullyapp.com if you need expanded access.' },
   { q: 'How do I track equipment service history?', a: 'Navigate to Equipment, click on any piece of equipment, and you can log service records including date, type, technician, and cost.' },
   { q: 'Is my financial data secure?', a: 'All data is stored in your private organization account. We do not sell, share, or access your financial data. See our Privacy Policy for details.' },
   { q: 'How do I delete my account?', a: 'Go to Settings in the sidebar. Scroll to the bottom and click "Delete Account". This permanently removes all your organization\'s data.' },
@@ -24,8 +24,8 @@ export default function SupportPage() {
         {/* Contact */}
         <div style={{ padding: '48px 0', borderTop: '1px solid #1E1A17', borderBottom: '1px solid #1E1A17', marginBottom: 56 }}>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 14 }}>Contact</div>
-          <a href="mailto:support@ullycoffee.com" style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(18px, 3vw, 32px)', fontWeight: 700, color: 'white', letterSpacing: '0.02em', display: 'block', marginBottom: 10, transition: 'color 0.15s' }}>
-            support@ullycoffee.com
+          <a href="mailto:support@ullyapp.com" style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(18px, 3vw, 32px)', fontWeight: 700, color: 'white', letterSpacing: '0.02em', display: 'block', marginBottom: 10, transition: 'color 0.15s' }}>
+            support@ullyapp.com
           </a>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#6B5E52', letterSpacing: '0.08em' }}>We respond within 24 hours.</div>
         </div>

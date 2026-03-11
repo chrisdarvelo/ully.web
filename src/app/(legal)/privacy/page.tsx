@@ -27,7 +27,7 @@ export default function PrivacyPage() {
           },
           {
             title: 'Age Requirement',
-            content: ['Ully is intended for users 13 and older. We do not knowingly collect personal information from children under 13. If you believe your child has provided information to us, contact support@ullycoffee.com and we will delete it promptly.']
+            content: ['Ully is intended for users 13 and older. We do not knowingly collect personal information from children under 13. If you believe your child has provided information to us, contact support@ullyapp.com and we will delete it promptly.']
           },
           {
             title: 'What We Collect',
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
           },
           {
             title: 'Contact',
-            content: ['For privacy questions: support@ullycoffee.com']
+            content: ['For privacy questions: support@ullyapp.com']
           }
         ].map(section => (
           <div key={section.title}>

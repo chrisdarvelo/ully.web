@@ -32,7 +32,7 @@ export default function TermsPage() {
           {
             title: 'Your Account',
             content: [
-              'You are responsible for maintaining the confidentiality of your credentials and for all activity under your account. Notify us at support@ullycoffee.com of any unauthorized access.',
+              'You are responsible for maintaining the confidentiality of your credentials and for all activity under your account. Notify us at support@ullyapp.com of any unauthorized access.',
               'One account per organization owner — automated account creation is prohibited.',
             ]
           },
@@ -67,7 +67,7 @@ export default function TermsPage() {
           },
           {
             title: 'Contact',
-            content: ['Questions: support@ullycoffee.com']
+            content: ['Questions: support@ullyapp.com']
           }
         ].map((section, idx) => (
           <div key={section.title}>

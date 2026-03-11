@@ -17,6 +17,8 @@ export async function GET(req: NextRequest) {
 
   const start = startParam ? Number(startParam) : 0
   const end = endParam ? Number(endParam) : Date.now() + 365 * 86400000
+  if (startParam && isNaN(start)) return NextResponse.json({ error: 'Invalid start date' }, { status: 400 })
+  if (endParam && isNaN(end)) return NextResponse.json({ error: 'Invalid end date' }, { status: 400 })
 
   // Join schedules with team member names
   const rows = db
@@ -68,6 +70,27 @@ export async function POST(req: NextRequest) {
 
   const item = db.select().from(schedules).where(eq(schedules.id, id)).get()
   return NextResponse.json(item, { status: 201 })
+}
+
+export async function PUT(req: NextRequest) {
+  const session = await getSession()
+  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  const { id, shiftStart, shiftEnd, position, notes } = await req.json()
+  if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 })
+
+  db.update(schedules)
+    .set({
+      shiftStart: shiftStart ?? '09:00',
+      shiftEnd: shiftEnd ?? '17:00',
+      position: position?.trim() || null,
+      notes: notes?.trim() || null,
+    })
+    .where(and(eq(schedules.id, id), eq(schedules.orgId, session.orgId)))
+    .run()
+
+  const item = db.select().from(schedules).where(eq(schedules.id, id)).get()
+  return NextResponse.json(item)
 }
 
 export async function DELETE(req: NextRequest) {

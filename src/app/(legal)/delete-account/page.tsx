@@ -18,7 +18,7 @@ export default function DeleteAccountPage() {
 
         <div>
           {[
-            { num: '01', text: <span>Sign in to your account at <Link href="/login" style={{ color: '#C4B8AA', borderBottom: '1px solid #4A4440' }}>ullycoffee.com</Link>.</span> },
+            { num: '01', text: <span>Sign in to your account at <Link href="/login" style={{ color: '#C4B8AA', borderBottom: '1px solid #4A4440' }}>ullyapp.com</Link>.</span> },
             { num: '02', text: 'Navigate to Settings in the left sidebar.' },
             { num: '03', text: 'Scroll to the bottom of the page and click "Delete Account".' },
             { num: '04', text: 'Confirm deletion when prompted. Your data will be permanently removed within 30 days.' },
@@ -35,7 +35,7 @@ export default function DeleteAccountPage() {
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 12 }}>Need help?</div>
           <p style={{ fontSize: 14, color: '#C4B8AA', lineHeight: 1.75, margin: 0 }}>
             If you can&apos;t access your account or need assistance, email us at{' '}
-            <a href="mailto:support@ullycoffee.com" style={{ color: '#C8923C' }}>support@ullycoffee.com</a>
+            <a href="mailto:support@ullyapp.com" style={{ color: '#C8923C' }}>support@ullyapp.com</a>
             {' '}and we&apos;ll delete your data manually.
           </p>
         </div>

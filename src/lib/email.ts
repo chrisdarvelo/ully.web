@@ -22,7 +22,7 @@ function getResend(): Resend {
 }
 
 function getFromAddress(): string {
-  return process.env.EMAIL_FROM ?? 'Ully Business <noreply@ullycoffee.com>'
+  return process.env.EMAIL_FROM ?? 'Ully Business <noreply@ullyapp.com>'
 }
 
 export async function sendEmail(payload: EmailPayload): Promise<EmailResult> {
@@ -52,5 +52,5 @@ export function formatEmailBody(text: string, orgName: string): string {
 
 ---
 Sent via Ully Business Platform
-${orgName} · ullycoffee.com`
+${orgName} · ullyapp.com`
 }

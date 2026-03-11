@@ -258,7 +258,7 @@ export default function PricingPage() {
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#6B5E52', marginBottom: 28 }}>
                 {annual ? 'Billed $659/location/year' : 'or $659/location/year — save 31%'}
               </p>
-              <a href="mailto:support@ullycoffee.com" style={{
+              <a href="mailto:support@ullyapp.com" style={{
                 display: 'block', textAlign: 'center', marginBottom: 28,
                 border: '1px solid #2A2218', color: '#C4B8AA', padding: '11px', borderRadius: 3,
                 fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none',

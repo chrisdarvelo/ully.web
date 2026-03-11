@@ -142,7 +142,7 @@ Set all `.env.example` variables in your hosting environment before deploying.
 
 ## Contact
 
-Support: [support@ullycoffee.com](mailto:support@ullycoffee.com)
+Support: [support@ullyapp.com](mailto:support@ullyapp.com)
 
 ---
 

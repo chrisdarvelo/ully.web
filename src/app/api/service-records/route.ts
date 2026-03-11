@@ -34,6 +34,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'equipmentId, date, and type are required' }, { status: 400 })
   }
 
+  // Verify equipment belongs to this org
+  const ownerCheck = db.select({ id: equipment.id }).from(equipment)
+    .where(and(eq(equipment.id, equipmentId), eq(equipment.orgId, session.orgId))).get()
+  if (!ownerCheck) return NextResponse.json({ error: 'Equipment not found' }, { status: 404 })
+
   const id = crypto.randomUUID()
   const now = Date.now()
 

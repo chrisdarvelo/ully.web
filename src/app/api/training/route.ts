@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { trainingLogs } from '@/lib/schema'
+import { trainingLogs, teamMembers } from '@/lib/schema'
 import { eq, and, desc } from 'drizzle-orm'
 
 export const runtime = 'nodejs'
@@ -36,6 +36,11 @@ export async function POST(req: NextRequest) {
   if (!memberId || !memberName || !date || !topic) {
     return NextResponse.json({ error: 'memberId, memberName, date, and topic are required' }, { status: 400 })
   }
+
+  // Verify member belongs to this org
+  const memberCheck = db.select({ id: teamMembers.id }).from(teamMembers)
+    .where(and(eq(teamMembers.id, memberId), eq(teamMembers.orgId, session.orgId))).get()
+  if (!memberCheck) return NextResponse.json({ error: 'Team member not found' }, { status: 404 })
 
   const id = crypto.randomUUID()
   const now = Date.now()

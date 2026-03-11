@@ -435,8 +435,8 @@ export default function ChatInterface({ orgName, userName }: ChatInterfaceProps)
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, marginBottom: 24 }}>
           <FlowerIcon size={52} glow />
           <div style={{
-            fontFamily: 'var(--font-mono)', fontSize: 31, fontWeight: 700,
-            color: '#C8923C', letterSpacing: '0.24em',
+            fontFamily: 'var(--font-pixel-family)', fontSize: 28, fontWeight: 700,
+            color: '#C8923C', letterSpacing: '0.18em',
             textShadow: '0 0 20px rgba(200,146,60,0.6), 0 0 48px rgba(200,146,60,0.25)',
           }}>
             ULLY

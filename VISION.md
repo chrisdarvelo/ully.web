@@ -5,7 +5,7 @@
 >
 > For the full Ully product vision — crop-to-cup data platform, vertical expansion,
 > GTM strategy, and pricing — see the canonical vision document in the mobile app repo:
-> **[Ully-Coffee / VISION.md](https://github.com/chrisdarvelo/Ully-Coffee/blob/main/VISION.md)**
+> **[Ully.app / VISION.md](https://github.com/chrisdarvelo/Ully.app/blob/main/VISION.md)**
 
 ---
 

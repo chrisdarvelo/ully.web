@@ -19,7 +19,7 @@ Ully Business Platform is a web-based operations suite for cafe owners and multi
 
 Business at **$49.99/location/month**. Business Pro at **$79/location/month**.
 
-> For individual baristas and enthusiasts, see [Ully AI — Mobile App](https://github.com/chrisdarvelo/Ully-Coffee).
+> For individual baristas and enthusiasts, see [Ully AI — Mobile App](https://github.com/chrisdarvelo/Ully.app).
 
 ---
 

@@ -290,7 +290,7 @@ export default function LandingPage({ loggedIn }: Props) {
           <span style={{ fontFamily: token.mono, fontSize: 10, color: token.muted, letterSpacing: '0.08em' }}>© 2026 Ully</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 28, flexWrap: 'wrap' }}>
-          {[['Products', '/products'], ['Pricing', '/pricing'], ['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
+          {[['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
             <a key={href} href={href} className="t-nav" style={{ fontSize: 11 }}>
               <span className="t-brk" aria-hidden="true">[</span>
               {label}

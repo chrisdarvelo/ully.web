@@ -40,7 +40,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em' }}>© 2026 Ully</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 28, flexWrap: 'wrap' }}>
-          {[['Products', '/products'], ['Pricing', '/pricing'], ['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
+          {[['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
             <Link key={href} href={href} className="t-nav" style={{ fontSize: 11 }}>
               <span className="t-brk" aria-hidden="true">[</span>
               {label}

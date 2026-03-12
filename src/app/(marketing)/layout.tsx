@@ -11,8 +11,6 @@ const NAV_LINKS = [
 ]
 
 const FOOTER_LINKS = [
-  ['Products', '/products'],
-  ['Pricing', '/pricing'],
   ['Privacy', '/privacy'],
   ['Terms', '/terms'],
 ]

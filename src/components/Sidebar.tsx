@@ -190,6 +190,18 @@ export default function Sidebar({ orgName, userName, role, onClose }: SidebarPro
           Revenue
         </Link>
 
+        {/* Billing */}
+        <Link href="/billing" onClick={onClose} style={linkStyle(isActive('/billing'))}>
+          <span style={{ color: iconColor(isActive('/billing')), flexShrink: 0 }}>
+            <svg width="18" height="18" viewBox="0 0 15 15" fill="none">
+              <rect x="1" y="3.5" width="13" height="8" rx="1" stroke="currentColor" strokeWidth="1.2" opacity="0.8" />
+              <path d="M1 6.5h13" stroke="currentColor" strokeWidth="1.2" opacity="0.8" />
+              <rect x="3" y="9" width="3" height="1" rx="0.5" fill="currentColor" opacity="0.6" />
+            </svg>
+          </span>
+          Billing
+        </Link>
+
         {/* Settings */}
         <Link href="/settings" onClick={onClose} style={linkStyle(isActive('/settings'))}>
           <span style={{ color: iconColor(isActive('/settings')), flexShrink: 0 }}>

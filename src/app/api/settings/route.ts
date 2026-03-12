@@ -103,18 +103,20 @@ export async function DELETE() {
     return NextResponse.json({ error: 'Only org owners can delete the organization' }, { status: 403 })
   }
 
-  // Delete all org data in reverse dependency order (FK enforcement is on)
-  db.delete(trainingLogs).where(eq(trainingLogs.orgId, session.orgId)).run()
-  db.delete(schedules).where(eq(schedules.orgId, session.orgId)).run()
-  db.delete(inventory).where(eq(inventory.orgId, session.orgId)).run()
-  db.delete(expenseRecords).where(eq(expenseRecords.orgId, session.orgId)).run()
-  db.delete(revenueRecords).where(eq(revenueRecords.orgId, session.orgId)).run()
-  db.delete(serviceRecords).where(eq(serviceRecords.orgId, session.orgId)).run()
-  db.delete(teamMembers).where(eq(teamMembers.orgId, session.orgId)).run()
-  db.delete(equipment).where(eq(equipment.orgId, session.orgId)).run()
-  db.delete(invites).where(eq(invites.orgId, session.orgId)).run()
-  db.delete(users).where(eq(users.orgId, session.orgId)).run()
-  db.delete(organizations).where(eq(organizations.id, session.orgId)).run()
+  // Delete all org data atomically in reverse dependency order
+  ;(db as unknown as { transaction: (fn: () => void) => void }).transaction(() => {
+    db.delete(trainingLogs).where(eq(trainingLogs.orgId, session.orgId)).run()
+    db.delete(schedules).where(eq(schedules.orgId, session.orgId)).run()
+    db.delete(inventory).where(eq(inventory.orgId, session.orgId)).run()
+    db.delete(expenseRecords).where(eq(expenseRecords.orgId, session.orgId)).run()
+    db.delete(revenueRecords).where(eq(revenueRecords.orgId, session.orgId)).run()
+    db.delete(serviceRecords).where(eq(serviceRecords.orgId, session.orgId)).run()
+    db.delete(teamMembers).where(eq(teamMembers.orgId, session.orgId)).run()
+    db.delete(equipment).where(eq(equipment.orgId, session.orgId)).run()
+    db.delete(invites).where(eq(invites.orgId, session.orgId)).run()
+    db.delete(users).where(eq(users.orgId, session.orgId)).run()
+    db.delete(organizations).where(eq(organizations.id, session.orgId)).run()
+  })
 
   await clearSessionCookie()
 

@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Check email uniqueness
-    const existing = db.select().from(users).where(eq(users.email, email.toLowerCase())).get()
+    const existing = db.select().from(users).where(eq(users.email, email.toLowerCase().trim())).get()
     if (existing) {
       return NextResponse.json({ error: 'An account with this email already exists.' }, { status: 409 })
     }
@@ -29,12 +29,16 @@ export async function POST(req: NextRequest) {
     const orgId = crypto.randomUUID()
     const userId = crypto.randomUUID()
     const passwordHash = await bcrypt.hash(password, 12)
+    const trialEndsAt = now + 14 * 24 * 60 * 60 * 1000 // 14-day trial
 
     // Create org
     db.insert(organizations).values({
       id: orgId,
       name: orgName.trim(),
       type: orgType,
+      plan: 'trial',
+      planStatus: 'trialing',
+      trialEndsAt,
       createdAt: now,
     }).run()
 

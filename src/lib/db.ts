@@ -160,6 +160,16 @@ function createDb() {
     );
   `)
 
+  // Stripe billing columns migration (safe — ignored if column already exists)
+  const addCol = (col: string) => {
+    try { sqlite.exec(col) } catch { /* column already exists */ }
+  }
+  addCol(`ALTER TABLE organizations ADD COLUMN stripe_customer_id TEXT`)
+  addCol(`ALTER TABLE organizations ADD COLUMN stripe_subscription_id TEXT`)
+  addCol(`ALTER TABLE organizations ADD COLUMN plan TEXT DEFAULT 'trial'`)
+  addCol(`ALTER TABLE organizations ADD COLUMN plan_status TEXT DEFAULT 'trialing'`)
+  addCol(`ALTER TABLE organizations ADD COLUMN trial_ends_at INTEGER`)
+
   return db
 }
 

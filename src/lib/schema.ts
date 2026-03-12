@@ -8,6 +8,12 @@ export const organizations = sqliteTable('organizations', {
   phone: text('phone'),
   email: text('email'),
   timezone: text('timezone').default('America/New_York'),
+  // Stripe billing
+  stripeCustomerId: text('stripe_customer_id'),
+  stripeSubscriptionId: text('stripe_subscription_id'),
+  plan: text('plan').default('trial'), // trial | business | bizpro | cancelled
+  planStatus: text('plan_status').default('trialing'), // trialing | active | past_due | cancelled
+  trialEndsAt: integer('trial_ends_at'),
   createdAt: integer('created_at').notNull(),
 })
 
@@ -138,6 +144,8 @@ export const trainingLogs = sqliteTable('training_logs', {
 })
 
 export type Organization = typeof organizations.$inferSelect
+export type Plan = 'trial' | 'business' | 'bizpro' | 'cancelled'
+export type PlanStatus = 'trialing' | 'active' | 'past_due' | 'cancelled'
 export type User = typeof users.$inferSelect
 export type Equipment = typeof equipment.$inferSelect
 export type ServiceRecord = typeof serviceRecords.$inferSelect

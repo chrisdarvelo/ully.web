@@ -22,7 +22,8 @@
     "pdf-lib": "^1.17.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "resend": "^6.9.3"
+    "resend": "^6.9.3",
+    "stripe": "^20.4.1"
   },
   "optionalDependencies": {
     "@tailwindcss/oxide-linux-x64-gnu": "4.2.1",

@@ -1,23 +1,50 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-  <!-- Petals: 0, 60, 120, 180, 240, 300 -->
-  <path d="M100,100 C115,98 108,60 108,35 C108,15 104,8 100,5 C96,8 92,15 92,35 C92,60 85,98 100,100 Z" fill="#C8923C" fill-opacity="0.92"/>
-  <path transform="rotate(60,100,100)" d="M100,100 C115,98 108,60 108,35 C108,15 104,8 100,5 C96,8 92,15 92,35 C92,60 85,98 100,100 Z" fill="#C8923C" fill-opacity="0.92"/>
-  <path transform="rotate(120,100,100)" d="M100,100 C115,98 108,60 108,35 C108,15 104,8 100,5 C96,8 92,15 92,35 C92,60 85,98 100,100 Z" fill="#C8923C" fill-opacity="0.92"/>
-  <path transform="rotate(180,100,100)" d="M100,100 C115,98 108,60 108,35 C108,15 104,8 100,5 C96,8 92,15 92,35 C92,60 85,98 100,100 Z" fill="#C8923C" fill-opacity="0.92"/>
-  <path transform="rotate(240,100,100)" d="M100,100 C115,98 108,60 108,35 C108,15 104,8 100,5 C96,8 92,15 92,35 C92,60 85,98 100,100 Z" fill="#C8923C" fill-opacity="0.92"/>
-  <path transform="rotate(300,100,100)" d="M100,100 C115,98 108,60 108,35 C108,15 104,8 100,5 C96,8 92,15 92,35 C92,60 85,98 100,100 Z" fill="#C8923C" fill-opacity="0.92"/>
+  <!-- Black circle background -->
+  <circle cx="100" cy="100" r="100" fill="#0E0C0A"/>
 
-  <!-- Center shadow -->
-  <circle cx="100" cy="100" r="15" fill="rgba(0,0,0,0.3)"/>
+  <!-- 6 white elongated petals at 60° intervals -->
+  <path d="M100,100 C106,80 109,46 100,18 C91,46 94,80 100,100 Z" fill="white" fill-opacity="0.96"/>
+  <path transform="rotate(60,100,100)"  d="M100,100 C106,80 109,46 100,18 C91,46 94,80 100,100 Z" fill="white" fill-opacity="0.96"/>
+  <path transform="rotate(120,100,100)" d="M100,100 C106,80 109,46 100,18 C91,46 94,80 100,100 Z" fill="white" fill-opacity="0.96"/>
+  <path transform="rotate(180,100,100)" d="M100,100 C106,80 109,46 100,18 C91,46 94,80 100,100 Z" fill="white" fill-opacity="0.96"/>
+  <path transform="rotate(240,100,100)" d="M100,100 C106,80 109,46 100,18 C91,46 94,80 100,100 Z" fill="white" fill-opacity="0.96"/>
+  <path transform="rotate(300,100,100)" d="M100,100 C106,80 109,46 100,18 C91,46 94,80 100,100 Z" fill="white" fill-opacity="0.96"/>
 
-  <!-- Stamens: 30, 90, 150, 210, 270, 330 -->
-  <path d="M100,100 Q102,85 100,68 L103,64 L100,58 L97,64 L100,68" fill="#F5B041" fill-opacity="0.9"/>
-  <path transform="rotate(60,100,100)" d="M100,100 Q102,85 100,68 L103,64 L100,58 L97,64 L100,68" fill="#F5B041" fill-opacity="0.9"/>
-  <path transform="rotate(120,100,100)" d="M100,100 Q102,85 100,68 L103,64 L100,58 L97,64 L100,68" fill="#F5B041" fill-opacity="0.9"/>
-  <path transform="rotate(180,100,100)" d="M100,100 Q102,85 100,68 L103,64 L100,58 L97,64 L100,68" fill="#F5B041" fill-opacity="0.9"/>
-  <path transform="rotate(240,100,100)" d="M100,100 Q102,85 100,68 L103,64 L100,58 L97,64 L100,68" fill="#F5B041" fill-opacity="0.9"/>
-  <path transform="rotate(300,100,100)" d="M100,100 Q102,85 100,68 L103,64 L100,58 L97,64 L100,68" fill="#F5B041" fill-opacity="0.9"/>
+  <!-- Gold midrib vein along each petal -->
+  <line x1="100" y1="100" x2="100" y2="20" stroke="#C8923C" stroke-width="0.7" stroke-opacity="0.7"/>
+  <line transform="rotate(60,100,100)"  x1="100" y1="100" x2="100" y2="20" stroke="#C8923C" stroke-width="0.7" stroke-opacity="0.7"/>
+  <line transform="rotate(120,100,100)" x1="100" y1="100" x2="100" y2="20" stroke="#C8923C" stroke-width="0.7" stroke-opacity="0.7"/>
+  <line transform="rotate(180,100,100)" x1="100" y1="100" x2="100" y2="20" stroke="#C8923C" stroke-width="0.7" stroke-opacity="0.7"/>
+  <line transform="rotate(240,100,100)" x1="100" y1="100" x2="100" y2="20" stroke="#C8923C" stroke-width="0.7" stroke-opacity="0.7"/>
+  <line transform="rotate(300,100,100)" x1="100" y1="100" x2="100" y2="20" stroke="#C8923C" stroke-width="0.7" stroke-opacity="0.7"/>
+
+  <!-- Gold stamens at 30° (between petals) — line + diamond tip -->
+  <g transform="rotate(30,100,100)">
+    <line x1="100" y1="86" x2="100" y2="57" stroke="#C8923C" stroke-width="0.9"/>
+    <polygon points="100,52 104.5,57 100,62 95.5,57" fill="#C8923C"/>
+  </g>
+  <g transform="rotate(90,100,100)">
+    <line x1="100" y1="86" x2="100" y2="57" stroke="#C8923C" stroke-width="0.9"/>
+    <polygon points="100,52 104.5,57 100,62 95.5,57" fill="#C8923C"/>
+  </g>
+  <g transform="rotate(150,100,100)">
+    <line x1="100" y1="86" x2="100" y2="57" stroke="#C8923C" stroke-width="0.9"/>
+    <polygon points="100,52 104.5,57 100,62 95.5,57" fill="#C8923C"/>
+  </g>
+  <g transform="rotate(210,100,100)">
+    <line x1="100" y1="86" x2="100" y2="57" stroke="#C8923C" stroke-width="0.9"/>
+    <polygon points="100,52 104.5,57 100,62 95.5,57" fill="#C8923C"/>
+  </g>
+  <g transform="rotate(270,100,100)">
+    <line x1="100" y1="86" x2="100" y2="57" stroke="#C8923C" stroke-width="0.9"/>
+    <polygon points="100,52 104.5,57 100,62 95.5,57" fill="#C8923C"/>
+  </g>
+  <g transform="rotate(330,100,100)">
+    <line x1="100" y1="86" x2="100" y2="57" stroke="#C8923C" stroke-width="0.9"/>
+    <polygon points="100,52 104.5,57 100,62 95.5,57" fill="#C8923C"/>
+  </g>
 
   <!-- Center dot -->
-  <circle cx="100" cy="100" r="4.2" fill="rgba(0,0,0,0.65)"/>
+  <circle cx="100" cy="100" r="5" fill="#0A0A0A"/>
+  <circle cx="100" cy="100" r="2.5" fill="#1A1614"/>
 </svg>

@@ -13,7 +13,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
           <FlowerIcon size={28} glow />
         </Link>
         <ul style={{ display: 'flex', gap: 32, listStyle: 'none' }}>
-          {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Platform', '/login']].map(([label, href]) => (
+          {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Data', '/data'], ['Delete Account', '/delete-account'], ['Platform', '/login']].map(([label, href]) => (
             <li key={href}>
               <Link href={href} className="t-nav">
                 <span className="t-brk" aria-hidden="true">[</span>
@@ -41,7 +41,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C4B8AA', letterSpacing: '0.08em' }}>© 2026 Ully App</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 28, flexWrap: 'wrap' }}>
-          {[['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (
+          {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Data', '/data'], ['Delete Account', '/delete-account']].map(([label, href]) => (
             <Link key={href} href={href} className="t-nav" style={{ fontSize: 11 }}>
               <span className="t-brk" aria-hidden="true">[</span>
               {label}

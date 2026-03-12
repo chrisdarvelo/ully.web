@@ -63,7 +63,7 @@ function SignupForm() {
         return
       }
 
-      router.push('/dashboard')
+      router.push('/billing')
       router.refresh()
     } catch {
       setError('Something went wrong. Try again.')

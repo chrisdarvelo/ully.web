@@ -12,7 +12,7 @@ const pressStart2P = Press_Start_2P({
 export const metadata: Metadata = {
   title: { default: 'Ully — Coffee Business Platform', template: '%s — Ully' },
   description: 'The AI-powered operations platform for coffee professionals.',
-  icons: { icon: '/images/favicon.png' },
+  icons: { icon: '/icon.svg', shortcut: '/icon.svg', apple: '/icon.svg' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
@@ -163,6 +164,20 @@ export default function TermsPage() {
             )}
           </div>
         ))}
+
+        {/* Related links */}
+        <div style={{ marginTop: 64, paddingTop: 48, borderTop: '1px solid #1E1A17' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4A4440', marginBottom: 20 }}>Related</div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {[['Privacy Policy', '/privacy'], ['Full Data Usage Breakdown', '/data'], ['Delete Account', '/delete-account']].map(([label, href]) => (
+              <Link key={href} href={href} style={{ fontSize: 14, color: '#C4B8AA', textDecoration: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 0', borderBottom: '1px solid #1E1A17' }}>
+                <span>{label}</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440' }}>→</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
       </div>
     </>
   )

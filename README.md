@@ -34,8 +34,26 @@ Business at **$49.99/location/month**. Business Pro at **$79/location/month**.
 | Schedule | `/schedule` | Weekly shift calendar |
 | Inventory | `/inventory` | Stock tracking with par levels and low-stock alerts |
 | Revenue | `/revenue` | Revenue and expense tracking |
-| Training | `/training` | Barista training logs with scores and topics |
+| Training | `/training` | Barista training logs + Apprentice Competency Map (coming) |
 | Settings | `/settings` | Org profile, account, password, danger zone |
+
+---
+
+## Ully Learn — Team Progress (coming)
+
+The Business Platform will surface each team member's apprentice rank from the
+mobile app — giving managers a live competency map and exportable certifications.
+
+| Barista | Rank | Stages | Skill Gap |
+|---|---|---|---|
+| Alex | Barista | 14/20 | Extraction science |
+| Jamie | Amateur | 6/10 | Milk texturing |
+
+**Tier structure (same as mobile):**
+Amateur → Barista → Hero → Champion
+
+Certification export (PDF) per team member — ready for HR records or café display.
+Progress syncs from mobile via Firestore. Planned for Phase 1b alongside Ully Learn mobile launch.
 
 ---
 

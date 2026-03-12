@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
-  description: 'Terms of Use for Ully AI — mobile app and business platform.',
+  description: 'Terms of Use for Ully AI — your coffee companion.',
 }
 
 const SECTIONS = [
@@ -16,7 +16,7 @@ const SECTIONS = [
   {
     title: 'What Ully Is',
     content: [
-      'Ully AI is a mobile app for iOS that provides an AI coffee assistant, espresso dial-in analysis, personal recipe library, cafe bookmarking, barista content, and coffee news.',
+      'Ully AI is a mobile app for iOS that provides an AI coffee assistant, espresso dial-in analysis, personal recipe library, and cafe bookmarking.',
       'Ully Business Platform is a web application for cafe owners, roasters, and coffee businesses that provides team management, equipment tracking, inventory, scheduling, revenue reporting, and an AI assistant with full business context.',
       'Both products are powered by Claude, an AI model developed by Anthropic. The AI assistant is designed for coffee-related topics and business operations. It will not respond to requests outside that scope.',
     ],
@@ -126,7 +126,7 @@ export default function TermsPage() {
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Legal</div>
         <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, color: 'white', lineHeight: 1, letterSpacing: '-0.01em', marginBottom: 20 }}>Terms of Use</h1>
         <p style={{ fontSize: 17, color: '#C4B8AA', lineHeight: 1.6, maxWidth: 560, marginBottom: 24 }}>
-          Plain language. Clear rules. Covers both the Ully AI mobile app and the Ully Business Platform.
+          Plain language. Clear rules. Covers both the Ully AI mobile app and the Ully Business Platform web app.
         </p>
         <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', letterSpacing: '0.1em' }}>

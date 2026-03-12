@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy Policy for Ully AI — mobile app and business platform.',
+  description: 'Privacy Policy for Ully AI — your coffee companion.',
 }
 
 const SECTIONS = [
@@ -25,7 +25,7 @@ const SECTIONS = [
     callout: 'The only personal information we collect and store on our servers is your email address — used solely to create and authenticate your account. We do not use it for marketing.',
     content: [
       'Business Platform: Organization data you enter (equipment, team members, inventory, schedules, revenue) is stored on our servers and is private to your organization.',
-      'Mobile App: Your profile, recipes, saved cafes, barista follows, and chat history are stored on your device only using local storage. None of this reaches our servers.',
+      'Mobile App: Your profile, recipes, saved cafes, and chat history are stored on your device only using local storage. None of this reaches our servers.',
     ],
   },
   {
@@ -48,7 +48,6 @@ const SECTIONS = [
       'Chat history with Ully AI',
       'Personal recipe library',
       'Saved cafes and notes',
-      'Barista follows',
       'Profile and onboarding preferences',
     ],
   },

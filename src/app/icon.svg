@@ -1,7 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-  <!-- Background -->
-  <rect width="200" height="200" rx="44" fill="#0E0C0A"/>
-
   <!-- Petals: 0, 60, 120, 180, 240, 300 -->
   <path d="M100,100 C115,98 108,60 108,35 C108,15 104,8 100,5 C96,8 92,15 92,35 C92,60 85,98 100,100 Z" fill="#C8923C" fill-opacity="0.92"/>
   <path transform="rotate(60,100,100)" d="M100,100 C115,98 108,60 108,35 C108,15 104,8 100,5 C96,8 92,15 92,35 C92,60 85,98 100,100 Z" fill="#C8923C" fill-opacity="0.92"/>
@@ -23,5 +20,4 @@
 
   <!-- Center dot -->
   <circle cx="100" cy="100" r="4.2" fill="rgba(0,0,0,0.65)"/>
-  <circle cx="100" cy="100" r="2.5" fill="#0E0C0A"/>
 </svg>

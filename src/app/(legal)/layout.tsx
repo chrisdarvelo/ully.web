@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import FlowerIcon from '@/components/FlowerIcon'
 import CoffeeFarmScene from '@/components/CoffeeFarmScene'
+import ContactEmailModal from '@/components/ContactEmailModal'
 
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -47,10 +48,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
               <span className="t-brk" aria-hidden="true">]</span>
             </Link>
           ))}
-          <a href="mailto:support@ullyapp.com" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#6B5E52', letterSpacing: '0.08em', textDecoration: 'none', transition: 'color 0.15s' }}
-            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#C8923C')}
-            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#6B5E52')}
-          >support@ullyapp.com</a>
+          <ContactEmailModal />
         </div>
       </footer>
     </div>

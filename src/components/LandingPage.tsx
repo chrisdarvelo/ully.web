@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import FlowerIcon from './FlowerIcon'
 import CoffeeFarmScene from './CoffeeFarmScene'
 import SocialFooterBar from './SocialFooterBar'
+import ContactEmailModal from './ContactEmailModal'
 
 interface Props {
   loggedIn: boolean
@@ -297,10 +298,7 @@ export default function LandingPage({ loggedIn }: Props) {
               <span className="t-brk" aria-hidden="true">]</span>
             </a>
           ))}
-          <a href="mailto:support@ullyapp.com" style={{ fontFamily: token.mono, fontSize: 10, color: token.muted, letterSpacing: '0.08em', textDecoration: 'none', transition: 'color 0.15s' }}
-            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = token.gold)}
-            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = token.muted)}
-          >support@ullyapp.com</a>
+          <ContactEmailModal />
         </div>
       </footer>
 

@@ -288,7 +288,7 @@ export default function LandingPage({ loggedIn }: Props) {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <a href="/" style={{ fontFamily: token.pixel, fontSize: 12, color: token.gold, letterSpacing: '0.1em', textDecoration: 'none' }}>ULLY</a>
-          <span style={{ fontFamily: token.mono, fontSize: 10, color: token.muted, letterSpacing: '0.08em' }}>© 2026 Ully</span>
+          <span style={{ fontFamily: token.mono, fontSize: 11, color: '#C4B8AA', letterSpacing: '0.08em' }}>© 2026 Ully App</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 28, flexWrap: 'wrap' }}>
           {[['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (

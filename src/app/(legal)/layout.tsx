@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import FlowerIcon from '@/components/FlowerIcon'
 import CoffeeFarmScene from '@/components/CoffeeFarmScene'

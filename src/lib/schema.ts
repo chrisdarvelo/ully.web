@@ -143,6 +143,18 @@ export const trainingLogs = sqliteTable('training_logs', {
   createdAt: integer('created_at').notNull(),
 })
 
+export const chatSessions = sqliteTable('chat_sessions', {
+  id: text('id').primaryKey(),
+  orgId: text('org_id').references(() => organizations.id).notNull(),
+  userId: text('user_id').references(() => users.id).notNull(),
+  title: text('title').notNull(),
+  messages: text('messages').notNull(), // JSON array of {role, content}
+  createdAt: integer('created_at').notNull(),
+  updatedAt: integer('updated_at').notNull(),
+})
+
+export type ChatSession = typeof chatSessions.$inferSelect
+
 export type Organization = typeof organizations.$inferSelect
 export type Plan = 'trial' | 'business' | 'bizpro' | 'cancelled'
 export type PlanStatus = 'trialing' | 'active' | 'past_due' | 'cancelled'

@@ -9,7 +9,7 @@ import { eq, and } from 'drizzle-orm'
 export const runtime = 'nodejs'
 
 function generateCode() {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789' // 32 chars — power of 2, no modulo bias
   const bytes = new Uint8Array(8)
   crypto.getRandomValues(bytes)
   let code = ''

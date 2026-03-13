@@ -33,6 +33,10 @@ export async function POST(req: NextRequest) {
   if (!equipmentId || !date || !type) {
     return NextResponse.json({ error: 'equipmentId, date, and type are required' }, { status: 400 })
   }
+  const dateNum = Number(date)
+  if (!Number.isFinite(dateNum) || dateNum <= 0) {
+    return NextResponse.json({ error: 'Invalid date' }, { status: 400 })
+  }
 
   // Verify equipment belongs to this org
   const ownerCheck = db.select({ id: equipment.id }).from(equipment)
@@ -46,7 +50,7 @@ export async function POST(req: NextRequest) {
     id,
     orgId: session.orgId,
     equipmentId,
-    date: Number(date),
+    date: dateNum,
     type,
     description: description?.trim() || null,
     technician: technician?.trim() || null,
@@ -56,7 +60,7 @@ export async function POST(req: NextRequest) {
 
   // Update equipment lastService timestamp
   db.update(equipment)
-    .set({ lastService: Number(date) })
+    .set({ lastService: dateNum })
     .where(and(eq(equipment.id, equipmentId), eq(equipment.orgId, session.orgId)))
     .run()
 

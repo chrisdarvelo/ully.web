@@ -27,12 +27,23 @@ function validateMagicBytes(buffer: Buffer, ext: string): boolean {
 }
 
 function parseCSV(text: string): string {
-  const lines = text.trim().split('\n').filter(Boolean)
-  if (lines.length === 0) return '(empty file)'
-  // Cap at 500 rows to stay within context limits
-  const capped = lines.slice(0, 500)
-  const suffix = lines.length > 500 ? `\n... (${lines.length - 500} more rows truncated)` : ''
-  return capped.join('\n') + suffix
+  // Scan for newlines manually to avoid allocating a full lines array for large files
+  let lineCount = 0
+  let lastIdx = 0
+  const parts: string[] = []
+  for (let i = 0; i <= text.length; i++) {
+    if (i === text.length || text[i] === '\n') {
+      const line = text.slice(lastIdx, i).trim()
+      if (line) {
+        if (lineCount < 500) parts.push(line)
+        lineCount++
+      }
+      lastIdx = i + 1
+    }
+  }
+  if (parts.length === 0) return '(empty file)'
+  const suffix = lineCount > 500 ? `\n... (${lineCount - 500} more rows truncated)` : ''
+  return parts.join('\n') + suffix
 }
 
 async function parseXLSX(buffer: Buffer<ArrayBufferLike>): Promise<string> {

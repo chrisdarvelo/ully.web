@@ -3,10 +3,7 @@ import { jwtVerify } from 'jose'
 
 function getSecret() {
   const secret = process.env.JWT_SECRET
-  if (!secret) {
-    if (process.env.NODE_ENV === 'production') throw new Error('JWT_SECRET is required in production')
-    return new TextEncoder().encode('dev-secret-change-in-production-32chars')
-  }
+  if (!secret) throw new Error('JWT_SECRET is not set — add it to .env.local')
   return new TextEncoder().encode(secret)
 }
 
@@ -20,6 +17,7 @@ const PROTECTED_PREFIXES = [
   '/schedule',
   '/revenue',
   '/settings',
+  '/billing',
   '/api/chat',
   '/api/equipment',
   '/api/team',
@@ -30,6 +28,9 @@ const PROTECTED_PREFIXES = [
   '/api/service-records',
   '/api/settings',
   '/api/invites',
+  '/api/billing',
+  '/api/stripe/checkout',
+  '/api/stripe/portal',
 ]
 
 const AUTH_ONLY_PATHS = ['/login', '/signup', '/join']

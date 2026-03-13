@@ -6,10 +6,10 @@ const COOKIE_MAX_AGE = 60 * 60 * 24 * 7 // 7 days
 
 function getSecret() {
   const secret = process.env.JWT_SECRET
-  if (!secret && process.env.NODE_ENV === 'production') {
-    throw new Error('JWT_SECRET environment variable is required in production')
+  if (!secret) {
+    throw new Error('JWT_SECRET is not set — add it to .env.local (generate with: openssl rand -hex 32)')
   }
-  return new TextEncoder().encode(secret ?? 'dev-secret-change-in-production-32chars')
+  return new TextEncoder().encode(secret)
 }
 
 export interface SessionPayload {

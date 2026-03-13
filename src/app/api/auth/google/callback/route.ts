@@ -64,7 +64,11 @@ export async function GET(req: NextRequest) {
     // Look up existing user
     const user = db.select().from(users).where(eq(users.email, email)).get()
 
-    if (user && user.orgId) {
+    if (user) {
+      if (!user.orgId) {
+        return NextResponse.redirect(new URL('/login?error=account_error', BASE_URL))
+      }
+
       // Existing user with org — sign them in
       const org = db.select().from(organizations).where(eq(organizations.id, user.orgId)).get()
 

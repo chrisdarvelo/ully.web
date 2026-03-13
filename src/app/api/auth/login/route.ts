@@ -28,11 +28,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 })
     }
 
-    const org = db.select().from(organizations).where(eq(organizations.id, user.orgId!)).get()
+    if (!user.orgId) {
+      return NextResponse.json({ error: 'Account is not associated with an organization.' }, { status: 403 })
+    }
+
+    const org = db.select().from(organizations).where(eq(organizations.id, user.orgId)).get()
 
     const token = await signToken({
       userId: user.id,
-      orgId: user.orgId!,
+      orgId: user.orgId,
       role: user.role,
       email: user.email,
       name: user.name,

@@ -158,6 +158,16 @@ function createDb() {
       notes TEXT,
       created_at INTEGER NOT NULL
     );
+
+    CREATE TABLE IF NOT EXISTS chat_sessions (
+      id TEXT PRIMARY KEY,
+      org_id TEXT NOT NULL REFERENCES organizations(id),
+      user_id TEXT NOT NULL REFERENCES users(id),
+      title TEXT NOT NULL,
+      messages TEXT NOT NULL,
+      created_at INTEGER NOT NULL,
+      updated_at INTEGER NOT NULL
+    );
   `)
 
   // Stripe billing columns migration (safe — ignored if column already exists)

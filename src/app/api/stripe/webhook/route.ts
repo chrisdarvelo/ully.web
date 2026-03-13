@@ -10,11 +10,12 @@ import type { Plan, PlanStatus } from '@/lib/schema'
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!
 
-function planFromPriceId(priceId: string): Plan {
+function planFromPriceId(priceId: string | undefined): Plan {
+  if (!priceId) return 'business'
   const bizpro = [
     process.env.STRIPE_PRICE_BIZPRO_MONTHLY,
     process.env.STRIPE_PRICE_BIZPRO_ANNUAL,
-  ]
+  ].filter(Boolean)
   return bizpro.includes(priceId) ? 'bizpro' : 'business'
 }
 
@@ -48,7 +49,7 @@ export async function POST(req: NextRequest) {
       const orgId = sub.metadata?.orgId
       if (!orgId) break
 
-      const priceId = sub.items.data[0]?.price?.id
+      const priceId = sub.items.data[0]?.price?.id ?? undefined
       const plan = planFromPriceId(priceId)
       const planStatus = statusFromStripe(sub.status)
 

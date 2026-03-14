@@ -129,7 +129,7 @@ export default function LandingPage({ loggedIn }: Props) {
           fontSize: 'clamp(15px, 2vw, 18px)', color: token.subtle, maxWidth: 560,
           lineHeight: 1.7, marginBottom: 12,
         }}>
-          Ully is the espresso instructor. The curriculum takes you from your first shot to certified Barista Champion — a professional who reads instruments, diagnoses under pressure, and maintains their machine.
+          This curriculum takes you from your first shot to certified Barista Champion. A professional who reads instruments, diagnoses under pressure, and maintains their machine.
         </p>
 
         <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>

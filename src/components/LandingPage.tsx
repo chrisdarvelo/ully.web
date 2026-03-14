@@ -104,7 +104,7 @@ export default function LandingPage({ loggedIn }: Props) {
       <section style={{
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'flex-start',
-        padding: '160px 24px 80px', textAlign: 'center',
+        padding: '160px 24px 120px', textAlign: 'center',
         background: `radial-gradient(ellipse 60% 50% at 50% 40%, rgba(200, 146, 60, 0.07) 0%, transparent 70%)`,
       }}>
         <div className="fade-up" style={{ marginBottom: 16 }}>
@@ -160,10 +160,17 @@ export default function LandingPage({ loggedIn }: Props) {
 
       </section>
 
-      {/* ── Ully AI — Copilot ────────────────────────────── */}
-      <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
+      {/* ── Transition ───────────────────────────────────── */}
+      <div style={{
+        height: 80,
+        background: `linear-gradient(to bottom, transparent, ${token.bg})`,
+        marginTop: -80,
+        position: 'relative',
+        zIndex: 1,
+      }} />
 
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)', background: token.bg }}>
+      {/* ── Ully AI — Copilot ────────────────────────────── */}
+      <section style={{ padding: 'clamp(80px, 10vw, 120px) clamp(24px, 8vw, 120px)', background: token.bg }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 64, alignItems: 'center', maxWidth: 1100, margin: '0 auto' }}>
           <div>
             <div style={{ fontFamily: token.mono, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>

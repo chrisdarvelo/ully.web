@@ -113,23 +113,23 @@ export default function LandingPage({ loggedIn }: Props) {
             color: token.gold, border: `1px solid rgba(200, 146, 60, 0.4)`,
             padding: '7px 16px', borderRadius: 2,
           }}>
-            Ully Business Platform
+            Ully AI — Flight Instructor
           </span>
         </div>
 
         <h1 className="fade-up delay-1" style={{
           fontSize: 'clamp(36px, 6vw, 72px)', fontWeight: 700, lineHeight: 1.1,
-          letterSpacing: '-0.02em', maxWidth: 780, marginBottom: 16,
+          letterSpacing: '-0.02em', maxWidth: 820, marginBottom: 16,
         }}>
-          Brewing with AI<br />
-          <span style={{ color: token.gold }}>at the edge of technology.</span>
+          Most baristas operate their machine.<br />
+          <span style={{ color: token.gold }}>Certified pilots fly it.</span>
         </h1>
 
         <p className="fade-up delay-2" style={{
-          fontSize: 'clamp(15px, 2vw, 18px)', color: token.subtle, maxWidth: 520,
+          fontSize: 'clamp(15px, 2vw, 18px)', color: token.subtle, maxWidth: 560,
           lineHeight: 1.7, marginBottom: 12,
         }}>
-          Manage your team, track your business performance with intelligence.
+          Ully is the flight instructor. The curriculum takes you from ground school to certified Barista Champion — a professional who reads instruments, diagnoses mid-flight, and maintains their aircraft.
         </p>
 
         <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -175,11 +175,10 @@ export default function LandingPage({ loggedIn }: Props) {
               Mobile
             </p>
             <h2 className="fade-left delay-1" style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, marginBottom: 16, lineHeight: 1.2 }}>
-              Download the app.
+              Your copilot. In your pocket.
             </h2>
             <p className="fade-left delay-2" style={{ fontSize: 14, color: token.subtle, lineHeight: 1.8, marginBottom: 32 }}>
-              The Ully mobile app is coming soon to iOS and Android. Dial-in assistance, shot troubleshooting,
-              and unlimited resources to unleash the barista champion inside you.
+              The Ully mobile app is coming soon to iOS and Android. Your flight instructor available for every pre-flight check, mid-rush squawk, and post-shift debrief — full curriculum and AI copilot, always on deck.
             </p>
             <div className="fade-left delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               {[
@@ -218,10 +217,12 @@ export default function LandingPage({ loggedIn }: Props) {
               ))}
             </div>
             <div style={{ fontFamily: token.mono, fontSize: 13, lineHeight: 2, color: token.subtle }}>
-              <div><span style={{ color: token.gold }}>ully</span> &gt; what&apos;s my espresso extraction?</div>
-              <div style={{ color: '#6EAB7E', marginTop: 4 }}>— Your Slayer has 3 active shots.</div>
-              <div style={{ color: '#6EAB7E' }}>{'  '}Check your last service: 12 days ago.</div>
-              <div style={{ color: '#6EAB7E' }}>{'  '}Suggested: 9 bars, 28s, 36g out.</div>
+              <div><span style={{ color: token.gold }}>pilot</span> &gt; pre-shift check — machine ready?</div>
+              <div style={{ color: '#6EAB7E', marginTop: 4 }}>Boiler at 93°C. Pressure nominal.</div>
+              <div style={{ color: '#6EAB7E' }}>{'  '}Flush the group. Ready for first pull.</div>
+              <div style={{ marginTop: 8 }}><span style={{ color: token.gold }}>pilot</span> &gt; shots pulling fast and thin</div>
+              <div style={{ color: '#6EAB7E', marginTop: 4 }}>Under-extracted. OPV first, then grind.</div>
+              <div style={{ color: '#6EAB7E' }}>{'  '}Target: 9 bar, 27–30s, 1:2 ratio.</div>
             </div>
           </div>
         </div>
@@ -236,7 +237,7 @@ export default function LandingPage({ loggedIn }: Props) {
             background: `radial-gradient(ellipse 50% 60% at 50% 50%, rgba(200, 146, 60, 0.05) 0%, transparent 70%)`,
           }}>
             <h2 className="scale-in" style={{ fontSize: 'clamp(26px, 4vw, 44px)', fontWeight: 700, marginBottom: 20, letterSpacing: '-0.01em' }}>
-              Ready to run a smarter cafe?
+              Ready to earn your wings?
             </h2>
             <div className="fade-up delay-1" style={{ marginTop: 32 }}>
               <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C4B8AA', marginBottom: 18 }}>

@@ -11,8 +11,9 @@ interface BillingInfo {
 
 const PLAN_LABELS: Record<string, string> = {
   trial: '14-Day Free Trial',
-  business: 'Business',
-  bizpro: 'Business Pro',
+  free: 'Free',
+  pro: 'Pro',
+  pro_annual: 'Pro Annual',
   cancelled: 'Cancelled',
 }
 
@@ -25,26 +26,19 @@ const STATUS_COLOR: Record<string, string> = {
 
 const PLANS = [
   {
-    key: 'business_monthly' as const,
-    label: 'Business',
-    price: '$49.99',
+    key: 'pro_monthly' as const,
+    label: 'Pro',
+    price: '$7.99',
     period: '/month',
-    features: ['Unlimited Ully AI for your team', 'Equipment & service history', 'Team management', 'Scheduling & inventory', 'Revenue tracking'],
+    features: ['Unlimited Ully AI messages', 'Full 4-tier barista curriculum', 'Dial-in assistant', 'Equipment tracker', 'Unlimited recipe library'],
   },
   {
-    key: 'business_annual' as const,
-    label: 'Business Annual',
-    price: '$33',
-    period: '/month',
-    badge: 'Save 33%',
-    features: ['Everything in Business', 'Billed $399/location/year'],
-  },
-  {
-    key: 'bizpro_monthly' as const,
-    label: 'Business Pro',
+    key: 'pro_annual' as const,
+    label: 'Pro Annual',
     price: '$79',
-    period: '/month',
-    features: ['Everything in Business', 'Multi-location', 'POS integration', 'API access', 'Priority support'],
+    period: '/year',
+    badge: '2 months free',
+    features: ['Everything in Pro', 'Business Platform access', 'Team management & scheduling', 'Equipment register & service history', 'Revenue & expense tracking'],
   },
 ]
 

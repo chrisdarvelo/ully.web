@@ -148,7 +148,7 @@ export default function ProductsPage() {
               Curriculum
             </div>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 14 }}>
-              From the first shot to the final assessment.
+              From first shot to Certified Espresso Pilot.
             </h2>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#C4B8AA', lineHeight: 1.9, maxWidth: 540, letterSpacing: '0.03em' }}>
               Theory first. Machine systems second. Hands-on repair third. The same structure used to build professionals in any high-stakes craft. No shortcuts.

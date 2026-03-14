@@ -126,8 +126,8 @@ export default function LandingPage({ loggedIn }: Props) {
         </h1>
 
         <p className="fade-up delay-2" style={{
-          fontSize: 'clamp(15px, 2vw, 18px)', color: token.subtle, maxWidth: 560,
-          lineHeight: 1.7, marginBottom: 12,
+          fontFamily: token.mono, fontSize: 'clamp(12px, 1.4vw, 14px)', color: token.subtle, maxWidth: 560,
+          lineHeight: 1.9, marginBottom: 12, letterSpacing: '0.03em',
         }}>
           This curriculum takes you from your first shot to certified Barista Champion. A professional who reads instruments, diagnoses under pressure, and maintains their machine.
         </p>
@@ -179,7 +179,7 @@ export default function LandingPage({ loggedIn }: Props) {
             <h2 className="fade-left" style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.01em', color: 'white', marginBottom: 20 }}>
               Your copilot.<br />Every shift.
             </h2>
-            <p className="fade-left delay-1" style={{ fontSize: 16, color: token.subtle, lineHeight: 1.75, marginBottom: 28 }}>
+            <p className="fade-left delay-1" style={{ fontFamily: token.mono, fontSize: 13, color: token.subtle, lineHeight: 1.9, marginBottom: 28, letterSpacing: '0.03em' }}>
               Ully is the espresso instructor in your ear during every service — machine-level vocabulary, specific numbers, direct diagnosis. Pre-shift checks, mid-rush faults, post-shift debriefs. No hedging. Powered by Claude Sonnet.
             </p>
             <div className="fade-left delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
-  description: 'Terms of Use for Ully AI — your coffee companion.',
+  description: 'Terms of Use for Ully AI — the espresso instructor and certification platform for baristas.',
 }
 
 const SECTIONS = [
@@ -16,9 +16,10 @@ const SECTIONS = [
   {
     title: 'What Ully Is',
     content: [
-      'Ully AI is a mobile app for iOS that provides an AI coffee assistant, espresso dial-in analysis, personal recipe library, and cafe bookmarking.',
-      'Ully Business Platform is a web application for cafe owners, roasters, and coffee businesses that provides team management, equipment tracking, inventory, scheduling, revenue reporting, and an AI assistant with full business context.',
-      'Both products are powered by Claude, an AI model developed by Anthropic. The AI assistant is designed for coffee-related topics and business operations. It will not respond to requests outside that scope.',
+      'Ully AI is a mobile app and certification platform that trains baristas to achieve instrument-level espresso machine mastery. It includes an AI espresso instructor (copilot), a structured curriculum, a personal recipe logbook, and equipment tracking.',
+      'The Ully curriculum is a four-tier program — Apprentice through Hero-Champion — covering espresso fundamentals, machine systems, extraction science, and maintenance. Completing the full curriculum unlocks access to Test Prep and the Barista Champion Certificate examination.',
+      'Control Tower is the web-based business platform for café owners and managers, providing team management, equipment registers, inventory, shift scheduling, revenue tracking, and a business-context-aware AI assistant.',
+      'All products are powered by Claude, an AI model developed by Anthropic. The AI is scoped to espresso craft, machine knowledge, and coffee business operations. It will not respond to requests outside that scope.',
     ],
   },
   {
@@ -31,17 +32,20 @@ const SECTIONS = [
   {
     title: 'Mobile App — Additional Terms',
     content: [
-      'The Ully AI mobile app is distributed through the Apple App Store. Your use is also subject to Apple\'s Media Services Terms and Conditions.',
-      'In-app purchases and subscriptions on iOS are processed through Apple and are subject to Apple\'s payment terms.',
-      'The mobile app stores your personal data (recipes, chat history, cafes, profile) on your device only. Uninstalling the app or resetting your device will permanently delete this data — it cannot be recovered.',
+      'The Ully AI mobile app is distributed through the Apple App Store and Google Play. Your use is also subject to the applicable platform\'s Terms and Conditions.',
+      'In-app purchases and subscriptions on iOS are processed through Apple and are subject to Apple\'s payment terms. Android purchases are subject to Google Play\'s payment terms.',
+      'The mobile app stores your personal data (recipes, chat history, profile, equipment) on your device only. Uninstalling the app or resetting your device will permanently delete this data — it cannot be recovered.',
+      'Curriculum progress is stored in our system to enable cross-device access and certification tracking.',
     ],
   },
   {
-    title: 'Business Platform — Additional Terms',
+    title: 'Subscription Plans & Certification',
     content: [
-      'Business Platform subscriptions are processed through Stripe. Your subscription plan (Business or Business Pro) determines your access level. Billing terms and cancellation are managed through the Stripe Customer Portal accessible from your Billing page.',
-      'A 14-day free trial is included with every new Business Platform account. After the trial, continued access requires an active subscription.',
-      'Organization owners are responsible for all activity by team members they invite to the platform.',
+      'Ully offers three access tiers: Free (limited AI messages and module 1 access), Pro Monthly ($7.99/month), and Pro Annual ($79/year). Pro plans include full curriculum access, unlimited AI copilot, equipment tracking, and the Control Tower business platform.',
+      'Subscriptions are processed through Stripe. Billing terms and cancellation are managed through the Stripe Customer Portal accessible from your Billing page.',
+      'A free trial is included with new Pro subscriptions. After the trial, continued Pro access requires an active subscription.',
+      'The Barista Champion Certificate is a one-time purchase ($150) available only after completing the full Hero-Champion curriculum tier. The certificate is a permanent credential and is not tied to an active subscription — it remains yours after purchase regardless of subscription status.',
+      'Organization owners are responsible for all activity by team members they invite to the Control Tower platform.',
     ],
   },
   {
@@ -58,9 +62,9 @@ const SECTIONS = [
   },
   {
     title: 'AI Limitations',
-    callout: 'AI responses are generated in real-time and provided for informational purposes only. They may not be accurate, complete, or current. You are responsible for any decisions made based on AI-generated content.',
+    callout: 'AI responses are generated in real-time and provided for informational purposes only. They may not be accurate, complete, or current. You are responsible for any decisions made based on AI-generated content — including maintenance procedures, machine diagnosis, or business recommendations.',
     content: [
-      'Ully AI is not a substitute for professional advice from qualified technicians, medical professionals, legal counsel, or financial advisors.',
+      'Ully AI is an espresso instructor and training copilot, not a licensed technician. For machine repairs that exceed your skill level, consult a qualified espresso machine technician.',
       'AI responses are proxied through a secure server — your messages are forwarded to Anthropic\'s Claude API and are subject to Anthropic\'s Usage Policy at anthropic.com/legal/aup.',
     ],
   },
@@ -126,14 +130,14 @@ export default function TermsPage() {
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>Legal</div>
         <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, color: 'white', lineHeight: 1, letterSpacing: '-0.01em', marginBottom: 20 }}>Terms of Use</h1>
         <p style={{ fontSize: 17, color: '#C4B8AA', lineHeight: 1.6, maxWidth: 560, marginBottom: 24 }}>
-          Plain language. Clear rules. Covers both the Ully AI mobile app and the Ully Business Platform web app.
+          Plain language. Clear rules. Covers the Ully AI mobile app, the certification program, and the Control Tower business platform.
         </p>
         <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', letterSpacing: '0.1em' }}>
-            Effective March 12, 2026 &nbsp;·&nbsp; Last updated March 12, 2026
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#8A7E72', letterSpacing: '0.1em' }}>
+            Effective March 14, 2026 &nbsp;·&nbsp; Last updated March 14, 2026
           </span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', letterSpacing: '0.1em' }}>
-            Applies to: Ully AI (iOS) &nbsp;·&nbsp; Ully Business Platform (web)
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#8A7E72', letterSpacing: '0.1em' }}>
+            Applies to: Ully AI (iOS / Android) &nbsp;·&nbsp; Control Tower (web)
           </span>
         </div>
       </div>

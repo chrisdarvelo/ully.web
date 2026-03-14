@@ -220,7 +220,7 @@ export default function LandingPage({ loggedIn }: Props) {
               Mobile
             </p>
             <h2 className="fade-left delay-1" style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 700, marginBottom: 16, lineHeight: 1.2 }}>
-              Your copilot. In your pocket.
+              Download the app.
             </h2>
             <p className="fade-left delay-2" style={{ fontSize: 14, color: token.subtle, lineHeight: 1.8, marginBottom: 32 }}>
               The Ully mobile app is coming soon to iOS and Android. Your espresso instructor available for every pre-shift check, mid-rush fault, and post-shift debrief — full curriculum and AI copilot, always on deck.

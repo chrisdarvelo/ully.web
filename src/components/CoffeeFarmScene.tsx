@@ -50,6 +50,11 @@ export default function CoffeeFarmScene() {
                 <rect x="-12" y="-26" width="3" height="3" /><rect x="-8" y="-28" width="3" height="3" />
                 <rect x="6"   y="-24" width="3" height="3" /><rect x="10"  y="-27" width="3" height="3" />
                 <rect x="-3"  y="-32" width="3" height="3" /><rect x="1.5"   y="-30" width="3" height="3" />
+                {/* 7 new red fruits */}
+                <rect x="-17" y="-20" width="3" height="3" /><rect x="14"  y="-19" width="2.5" height="2.5" />
+                <rect x="-9"  y="-23" width="3" height="3" /><rect x="8"   y="-32" width="2.5" height="2.5" />
+                <rect x="-13" y="-35" width="3" height="3" /><rect x="4"   y="-38" width="2.5" height="2.5" />
+                <rect x="-7"  y="-45" width="2.5" height="2.5" />
               </g>
               <g fill="#e8a840">
                 <rect x="-1.5" y="-53" width="2.5" height="2.5" />
@@ -57,12 +62,17 @@ export default function CoffeeFarmScene() {
                 <rect x="-5" y="-42" width="2.5" height="2.5" />
                 <rect x="1.5"  y="-37" width="2.5" height="2.5" />
                 <rect x="-2.5" y="-47" width="2.5" height="2.5" />
+                {/* 2 new yellow fruits */}
+                <rect x="6"   y="-25" width="2.5" height="2.5" />
+                <rect x="-11" y="-33" width="2.5" height="2.5" />
               </g>
               <g fill="#7fb041">
                 <rect x="-14" y="-18" width="2.5" height="2.5" />
                 <rect x="11"  y="-22" width="2.5" height="2.5" />
                 <rect x="0"   y="-36" width="2.5" height="2.5" />
                 <rect x="-8" y="-46" width="2.5" height="2.5" />
+                {/* 1 new green fruit */}
+                <rect x="12"  y="-16" width="2.5" height="2.5" />
               </g>
             </g>
           </symbol>
@@ -168,6 +178,9 @@ export default function CoffeeFarmScene() {
           />
         </g>
 
+        {/* ── Big mountain behind the plantation (scale 3.36 = biggest + 5%) ── */}
+        <use href="#pixel-mountain" x="280" y="286" transform="scale(3.36)" opacity="0.85" />
+
         {/* ── Ground ───────────────────────────────────────────────── */}
         <rect x="0" y="286" width="1440" height="34" fill="#1A3A0E" />
         <rect x="0" y="286" width="1440" height="4"  fill="#0E2208" opacity="0.4" />
@@ -229,6 +242,21 @@ export default function CoffeeFarmScene() {
           <use href="#coffee-plant" x="374" y="25" transform="scale(0.77)" />
           <use href="#coffee-plant" x="422" y="25" transform="scale(0.70)" />
           <use href="#coffee-plant" x="470" y="25" transform="scale(0.74)" />
+
+          {/* 10 extra trees — same area, roots at ground (y ≥ 0) */}
+          {/* Back row extension (y=0) */}
+          <use href="#coffee-plant" x="500" y="0" transform="scale(0.44)" />
+          <use href="#coffee-plant" x="518" y="0" transform="scale(0.47)" />
+          <use href="#coffee-plant" x="538" y="0" transform="scale(0.41)" />
+          <use href="#coffee-plant" x="558" y="0" transform="scale(0.49)" />
+          {/* Middle row extension (y=10) */}
+          <use href="#coffee-plant" x="519" y="10" transform="scale(0.57)" />
+          <use href="#coffee-plant" x="557" y="10" transform="scale(0.61)" />
+          <use href="#coffee-plant" x="593" y="10" transform="scale(0.55)" />
+          {/* Front row extension (y=25) */}
+          <use href="#coffee-plant" x="518" y="25" transform="scale(0.70)" />
+          <use href="#coffee-plant" x="566" y="25" transform="scale(0.73)" />
+          <use href="#coffee-plant" x="614" y="25" transform="scale(0.67)" />
         </g>
       </svg>
     </div>

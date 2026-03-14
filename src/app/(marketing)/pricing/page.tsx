@@ -80,8 +80,14 @@ export default function PricingPage() {
         {/* Header */}
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ marginBottom: 56, textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 14 }}>
-              Ully AI — Pricing
+            <div style={{ marginBottom: 14, display: 'flex', justifyContent: 'center' }}>
+              <span style={{
+                fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase',
+                color: '#C8923C', border: '1px solid rgba(200, 146, 60, 0.4)',
+                padding: '7px 16px', borderRadius: 2,
+              }}>
+                Ully AI — Espresso Instructor
+              </span>
             </div>
             <h1 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, letterSpacing: '-0.02em', color: 'white', marginBottom: 14 }}>
               Choose your plan.

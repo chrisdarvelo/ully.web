@@ -193,7 +193,7 @@ export default function ProductsPage() {
               The business owner&apos;s view<br />
               <span style={{ color: '#C4B8AA' }}>of the training program.</span>
             </h2>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#C4B8AA', lineHeight: 1.9, maxWidth: 580, letterSpacing: '0.03em' }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#4A9EE0', lineHeight: 1.9, maxWidth: 580, letterSpacing: '0.03em' }}>
               The web platform gives operators the full picture — which baristas are progressing through the curriculum, which machines are due for service, and what the operation needs next. Ully AI advises both the barista at the bar and the owner at the desk. Included in Pro Annual.
             </p>
           </div>

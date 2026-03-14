@@ -115,7 +115,7 @@ export default function ProductsPage() {
             Master your craft.<br />
             <span style={{ color: '#C8923C' }}>Earn your wings.</span>
           </h1>
-          <p style={{ fontSize: 'clamp(15px, 2vw, 18px)', color: '#C4B8AA', lineHeight: 1.7, maxWidth: 580, marginBottom: 40 }}>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(12px, 1.2vw, 14px)', color: '#C4B8AA', lineHeight: 1.9, maxWidth: 580, marginBottom: 40, letterSpacing: '0.03em' }}>
             A structured certification program for espresso mastery. Every barista starts with the fundamentals — flavor science, machine systems, extraction. They advance to hands-on bar work. The best earn their wings as certified Barista Champions.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -147,7 +147,7 @@ export default function ProductsPage() {
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 14 }}>
               From the first shot to the final assessment.
             </h2>
-            <p style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.7, maxWidth: 540 }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#C4B8AA', lineHeight: 1.9, maxWidth: 540, letterSpacing: '0.03em' }}>
               Theory first. Machine systems second. Hands-on repair third. The same structure used to build professionals in any high-stakes craft. No shortcuts.
             </p>
           </div>
@@ -190,7 +190,7 @@ export default function ProductsPage() {
               The business owner&apos;s view<br />
               <span style={{ color: '#C4B8AA' }}>of the training program.</span>
             </h2>
-            <p style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.7, maxWidth: 580 }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#C4B8AA', lineHeight: 1.9, maxWidth: 580, letterSpacing: '0.03em' }}>
               The web platform gives operators the full picture — which baristas are progressing through the curriculum, which machines are due for service, and what the operation needs next. Ully AI advises both the barista at the bar and the owner at the desk. Included in Pro Annual.
             </p>
           </div>

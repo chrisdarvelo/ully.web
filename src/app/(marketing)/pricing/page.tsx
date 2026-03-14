@@ -64,8 +64,8 @@ function CheckItem({ text, gold }: { text: string; gold?: boolean }) {
 function EmptyItem({ text }: { text: string }) {
   return (
     <li style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#2E2A27', flexShrink: 0, marginTop: 2 }}>○</span>
-      <span style={{ fontSize: 13, color: '#4A4440', lineHeight: 1.55 }}>{text}</span>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', flexShrink: 0, marginTop: 2 }}>○</span>
+      <span style={{ fontSize: 13, color: '#8A7E72', lineHeight: 1.55 }}>{text}</span>
     </li>
   )
 }

@@ -73,17 +73,22 @@ export default function CoffeeFarmScene() {
             <rect x="-25" y="-60" width="50"  height="20" fill="#7DB060" />
             <rect x="-45" y="-40" width="10"  height="20" fill="#9cd67a" opacity="0.3" />
             <rect x="-25" y="-60" width="10"  height="20" fill="#9cd67a" opacity="0.3" />
-            <rect x="-8" y="-35" width="4" height="12" fill="#000000" />
-            <rect x="4"  y="-35" width="4" height="12" fill="#000000" />
           </symbol>
 
           <symbol id="seagull" overflow="visible">
             <g fill="white">
-              <rect x="-6" y="-2" width="4" height="2" />
-              <rect x="-2" y="0"  width="4" height="2" />
-              <rect x="2"  y="-2" width="4" height="2" />
-              <animateTransform attributeName="transform" type="translate"
-                values="0 0; 0 -2; 0 0" dur="0.8s" repeatCount="indefinite" />
+              {/* Body — static */}
+              <rect x="-2" y="0" width="4" height="2" />
+              {/* Left wing */}
+              <rect x="-6" y="-2" width="4" height="2">
+                <animateTransform attributeName="transform" type="translate"
+                  values="0 0; 0 -2; 0 0" dur="0.8s" repeatCount="indefinite" />
+              </rect>
+              {/* Right wing */}
+              <rect x="2" y="-2" width="4" height="2">
+                <animateTransform attributeName="transform" type="translate"
+                  values="0 0; 0 -2; 0 0" dur="0.8s" repeatCount="indefinite" />
+              </rect>
             </g>
           </symbol>
         </defs>
@@ -164,8 +169,7 @@ export default function CoffeeFarmScene() {
         </g>
 
         {/* ── Ground ───────────────────────────────────────────────── */}
-        <rect x="0" y="286" width="1440" height="34" fill="#1A3A0E" /> {/* Entire green ground */}
-        <rect x="0" y="286" width="650"  height="34" fill="#3d2b1f" /> {/* Brown ground under trees */}
+        <rect x="0" y="286" width="1440" height="34" fill="#1A3A0E" />
         <rect x="0" y="286" width="1440" height="4"  fill="#0E2208" opacity="0.4" />
 
         {/* ── Dense Coffee Plantation (20% smaller, 20% tighter spacing) ── */}

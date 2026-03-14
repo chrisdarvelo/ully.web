@@ -102,9 +102,9 @@ export default function LandingPage({ loggedIn }: Props) {
 
       {/* ── Hero ────────────────────────────────────────── */}
       <section style={{
-        minHeight: '100vh', display: 'flex', flexDirection: 'column',
+        display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'flex-start',
-        padding: '200px 24px 60px', textAlign: 'center',
+        padding: '160px 24px 80px', textAlign: 'center',
         background: `radial-gradient(ellipse 60% 50% at 50% 40%, rgba(200, 146, 60, 0.07) 0%, transparent 70%)`,
       }}>
         <div className="fade-up" style={{ marginBottom: 16 }}>
@@ -158,11 +158,6 @@ export default function LandingPage({ loggedIn }: Props) {
           )}
         </div>
 
-        {/* Scroll indicator */}
-        <div className="fade-up delay-4" style={{ position: 'absolute', bottom: 40, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-          <span style={{ fontFamily: token.mono, fontSize: 8, letterSpacing: '0.2em', color: token.muted, textTransform: 'uppercase' }}>Scroll</span>
-          <div style={{ width: 1, height: 32, background: `linear-gradient(to bottom, ${token.muted}, transparent)` }} />
-        </div>
       </section>
 
       {/* ── Ully AI — Copilot ────────────────────────────── */}

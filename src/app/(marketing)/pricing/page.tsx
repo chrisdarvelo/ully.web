@@ -192,7 +192,7 @@ export default function PricingPage() {
               Graduation
             </div>
             <h2 style={{ fontSize: 'clamp(24px, 4vw, 40px)', fontWeight: 700, letterSpacing: '-0.02em', color: 'white', marginBottom: 14 }}>
-              Become a Certified Barista Champion.
+              Become a Certified Espresso Pilot.
             </h2>
             <p style={{ fontSize: 14, color: '#6B5E52', fontFamily: 'var(--font-mono)', lineHeight: 1.7, letterSpacing: '0.04em' }}>
               Unlocked after completing the Hero-Champion curriculum. One-time purchase.

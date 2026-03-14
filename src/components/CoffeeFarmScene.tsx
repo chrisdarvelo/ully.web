@@ -1,5 +1,5 @@
 // Coffee plantation scene — footer of all public pages.
-// Pure SVG + SMIL animation. No external dependencies, no client JS.
+// Pure SVG SMIL animation. Minecraft/8-bit aesthetic. No curves.
 
 export default function CoffeeFarmScene() {
   return (
@@ -25,169 +25,195 @@ export default function CoffeeFarmScene() {
             <stop offset="100%" stopColor="#7EC8E8" />
           </linearGradient>
 
-          {/* ── Coffee plant symbol — Minecraft style, small & square ── */}
+          {/* ── Minecraft Coffee Plant Symbol ─────────────────────────── */}
           <symbol id="coffee-plant" overflow="visible">
-            {/* Short blocky trunk */}
-            <rect x="-4" y="-22" width="8" height="22" fill="#4A2912" />
-            <rect x="-4" y="-22" width="4" height="6" fill="#5E3418" />
-            <rect x="0"  y="-16" width="4" height="6" fill="#5E3418" />
-            <rect x="-4" y="-10" width="4" height="6" fill="#5E3418" />
-            <rect x="0"  y="-4"  width="4" height="6" fill="#5E3418" />
+            {/* Trunk */}
+            <rect x="-2" y="-60" width="4" height="60" fill="#2d1e14" />
+            
+            {/* Foliage Blocks */}
+            <rect x="-24" y="-20" width="48" height="12" fill="#0d2607" />
+            <rect x="-20" y="-36" width="40" height="12" fill="#113309" />
+            <rect x="-14" y="-52" width="28" height="12" fill="#16400c" />
+            <rect x="-6"  y="-64" width="12" height="12" fill="#1b4d0f" />
 
-            {/* Square leaf canopy block */}
-            <rect x="-16" y="-42" width="32" height="22" fill="#1B5C0A" />
-            {/* Leaf pixel texture */}
-            <rect x="-16" y="-42" width="8"  height="8"  fill="#236E0C" />
-            <rect x="-6"  y="-42" width="6"  height="6"  fill="#145006" />
-            <rect x="2"   y="-42" width="8"  height="8"  fill="#1E6608" />
-            <rect x="-14" y="-32" width="6"  height="7"  fill="#145006" />
-            <rect x="-5"  y="-34" width="8"  height="8"  fill="#236E0C" />
-            <rect x="7"   y="-32" width="7"  height="7"  fill="#1E6608" />
-            {/* Bottom shadow edge */}
-            <rect x="-16" y="-22" width="32" height="3" fill="#0A2E04" opacity="0.5" />
-
-            {/* Cherry clusters — left vine */}
-            <rect x="-10" y="-19" width="3" height="3" fill="#C41E3A" />
-            <rect x="-7"  y="-19" width="3" height="3" fill="#A01830" />
-            <rect x="-10" y="-12" width="3" height="3" fill="#A01830" />
-            <rect x="-7"  y="-12" width="3" height="3" fill="#C41E3A" />
-            <rect x="-10" y="-5"  width="3" height="3" fill="#C41E3A" />
-
-            {/* Cherry clusters — right vine */}
-            <rect x="4"  y="-17" width="3" height="3" fill="#C41E3A" />
-            <rect x="7"  y="-17" width="3" height="3" fill="#A01830" />
-            <rect x="4"  y="-10" width="3" height="3" fill="#A01830" />
-            <rect x="7"  y="-10" width="3" height="3" fill="#C41E3A" />
-            <rect x="4"  y="-3"  width="3" height="3" fill="#C41E3A" />
+            {/* Masses of Fruits (Small Squares) */}
+            <g fill="#c41e3a">
+              <rect x="-20" y="-18" width="4" height="4" /><rect x="-14" y="-16" width="4" height="4" />
+              <rect x="10"  y="-19" width="4" height="4" /><rect x="16"  y="-15" width="4" height="4" />
+              <rect x="-2"  y="-12" width="4" height="4" /><rect x="4"   y="-14" width="4" height="4" />
+              <rect x="-15" y="-32" width="4" height="4" /><rect x="-10" y="-35" width="4" height="4" />
+              <rect x="8"   y="-30" width="4" height="4" /><rect x="12"  y="-34" width="4" height="4" />
+              <rect x="-4"  y="-40" width="4" height="4" /><rect x="2"   y="-38" width="4" height="4" />
+              <rect x="-8"  y="-48" width="4" height="4" /><rect x="4"   y="-50" width="4" height="4" />
+              <rect x="-2"  y="-58" width="4" height="4" />
+              <rect x="-18" y="-22" width="3" height="3" fill="#7fb041" />
+              <rect x="14"  y="-28" width="3" height="3" fill="#7fb041" />
+              <rect x="0"   y="-45" width="3" height="3" fill="#7fb041" />
+            </g>
           </symbol>
 
-          <symbol id="mario-mountain" overflow="visible">
-            <path d="M-60,0 A60,60 0 0,1 60,0 L-60,0 Z" fill="#7DB060" stroke="#3a5a24" strokeWidth="3" />
-            <path d="M-45,0 A45,45 0 0,1 0,-45 L0,0 Z" fill="#9cd67a" opacity="0.4" />
-            <rect x="-8" y="-35" width="4" height="12" rx="2" fill="#000000" />
-            <rect x="4"  y="-35" width="4" height="12" rx="2" fill="#000000" />
+          {/* ── Blocky Mario Mountain Symbol ─────────────────────────── */}
+          <symbol id="pixel-mountain" overflow="visible">
+            <rect x="-60" y="-20" width="120" height="20" fill="#7DB060" />
+            <rect x="-45" y="-40" width="90"  height="20" fill="#7DB060" />
+            <rect x="-25" y="-60" width="50"  height="20" fill="#7DB060" />
+            <rect x="-45" y="-40" width="10"  height="20" fill="#9cd67a" opacity="0.3" />
+            <rect x="-25" y="-60" width="10"  height="20" fill="#9cd67a" opacity="0.3" />
+            {/* Eyes */}
+            <rect x="-8" y="-35" width="4" height="12" fill="#000000" />
+            <rect x="4"  y="-35" width="4" height="12" fill="#000000" />
           </symbol>
 
+          {/* ── Blocky Seagull ────────────────────────────────────────── */}
           <symbol id="seagull" overflow="visible">
-            <path d="M-6,0 Q-3,-3 0,0 Q3,-3 6,0" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round">
-              <animate attributeName="d" 
-                values="M-6,0 Q-3,-3 0,0 Q3,-3 6,0; M-6,-2 Q-3,1 0,-2 Q3,1 6,-2; M-6,0 Q-3,-3 0,0 Q3,-3 6,0"
-                dur="1.5s" repeatCount="indefinite" />
-            </path>
+            <g fill="white">
+              <rect x="-6" y="-2" width="4" height="2" />
+              <rect x="-2" y="0"  width="4" height="2" />
+              <rect x="2"  y="-2" width="4" height="2" />
+              <animateTransform attributeName="transform" type="translate"
+                values="0 0; 0 -2; 0 0" dur="0.8s" repeatCount="indefinite" />
+            </g>
           </symbol>
         </defs>
 
+        {/* ── Sky ─────────────────────────────────────────────────── */}
         <rect width="1440" height="320" fill="url(#skyGrad)" />
-        <circle cx="900" cy="70" r="40" fill="#F5D140" stroke="#d4973e" strokeWidth="2" />
-        <circle cx="890" cy="60" r="8" fill="#ffffff" opacity="0.3" />
 
-        <g fill="white" opacity="0.9">
-          <path d="M100,60 A20,20 0 0,1 140,60 A20,20 0 0,1 180,60 L180,80 L100,80 Z" />
-          <path d="M400,40 A20,20 0 0,1 440,40 A20,20 0 0,1 480,40 L480,60 L400,60 Z" />
-          <path d="M750,50 A20,20 0 0,1 790,50 A20,20 0 0,1 830,50 L830,70 L750,70 Z" />
-          <path d="M1150,30 A20,20 0 0,1 1190,30 A20,20 0 0,1 1230,30 L1230,50 L1150,50 Z" />
+        {/* ── Sun ─────────────────────────────────────────────────── */}
+        <rect x="870" y="40" width="60" height="60" fill="#F5D140" />
+        <rect x="880" y="50" width="15" height="15" fill="#ffffff" opacity="0.4" />
+
+        {/* ── Pixel Clouds ─────────────────────────────────────────── */}
+        <g fill="white" opacity="0.85">
+          <rect x="100" y="60" width="80" height="20" />
+          <rect x="120" y="40" width="40" height="20" />
+          <rect x="450" y="30" width="100" height="25" />
+          <rect x="470" y="15" width="60" height="15" />
+          <rect x="800" y="50" width="70" height="20" />
+          <rect x="1100" y="40" width="90" height="20" />
+          <rect x="1120" y="25" width="50" height="15" />
         </g>
 
-        <use href="#mario-mountain" x="200"  y="286" transform="scale(1.8)" fill="#5ba3d0" opacity="0.3" />
-        <use href="#mario-mountain" x="1100" y="286" transform="scale(1.5)" fill="#5ba3d0" opacity="0.2" />
+        {/* ── Background Mountains ─────────────────────────────────── */}
+        <use href="#pixel-mountain" x="250"  y="286" transform="scale(1.8)" fill="#5ba3d0" opacity="0.3" />
+        <use href="#pixel-mountain" x="1150" y="286" transform="scale(1.5)" fill="#5ba3d0" opacity="0.2" />
+        <use href="#pixel-mountain" x="600"  y="286" transform="scale(2.2)" fill="#5ba3d0" opacity="0.15" />
+        <use href="#pixel-mountain" x="1350" y="286" transform="scale(1.3)" fill="#5ba3d0" opacity="0.25" />
         
         <g transform="translate(0, 286)">
-          <use href="#mario-mountain" x="150"  y="0" transform="scale(1.2)" />
-          <use href="#mario-mountain" x="450"  y="0" transform="scale(0.9)" />
-          <use href="#mario-mountain" x="750"  y="0" transform="scale(1.4)" />
-          <use href="#mario-mountain" x="1050" y="0" transform="scale(1.1)" />
-          <use href="#mario-mountain" x="1350" y="0" transform="scale(1.3)" />
+          <use href="#pixel-mountain" x="150"  y="0" transform="scale(1.2)" />
+          <use href="#pixel-mountain" x="480"  y="0" transform="scale(1.0)" />
+          <use href="#pixel-mountain" x="800"  y="0" transform="scale(1.4)" />
+          <use href="#pixel-mountain" x="1080" y="0" transform="scale(1.1)" />
+          <use href="#pixel-mountain" x="1380" y="0" transform="scale(1.3)" />
         </g>
 
+        {/* ── Birds ────────────────────────────────────────────────── */}
         <use href="#seagull" x="300" y="100" />
         <use href="#seagull" x="340" y="120" />
         <use href="#seagull" x="1200" y="80" />
 
-        {/* ── Cessna 150 — Minecraft block style, 10% smaller ─────── */}
-        <g opacity="0.95">
-          {/* WING — topmost, sits over the cabin box */}
-          <rect x="-12" y="-20" width="96" height="5" fill="#F0EDEA" />
-          <rect x="-12" y="-20" width="12" height="5" fill="#CC2020" />
-          <rect x="72"  y="-20" width="12" height="5" fill="#CC2020" />
+        {/* ── Minecraft Cessna 150 ──────────────────────────────────── */}
+        <g opacity="0.98">
+          {/* Fuselage Body */}
+          <rect x="0" y="10" width="12" height="10" fill="#333" /> {/* Engine Cowl */}
+          <rect x="12" y="6" width="35" height="16" fill="#F0EDEA" /> {/* Cabin */}
+          <rect x="47" y="10" width="45" height="10" fill="#F0EDEA" /> {/* Rear Body */}
+          
+          {/* Red Stripe */}
+          <rect x="12" y="12" width="80" height="4" fill="#CC2020" /> 
+          
+          {/* Cockpit Windows */}
+          <rect x="15" y="8" width="22" height="6" fill="#1A1A1A" />
+          <rect x="17" y="9" width="18" height="4" fill="#5BA3D0" opacity="0.4" />
 
-          {/* WING STRUTS — blocky gray pillars connecting wing to fuselage */}
-          <rect x="16" y="-15" width="5" height="12" fill="#B8B4B0" />
-          <rect x="46" y="-15" width="5" height="12" fill="#B8B4B0" />
+          {/* High Wing */}
+          <rect x="5" y="4" width="55" height="4" fill="#F0EDEA" />
+          <rect x="5" y="4" width="8"  height="4" fill="#CC2020" /> {/* Tip */}
+          <rect x="52" y="4" width="8"  height="4" fill="#CC2020" /> {/* Tip */}
+          
+          {/* Tail Fin */}
+          <rect x="82" y="4" width="10" height="6" fill="#F0EDEA" />
+          <rect x="86" y="-2" width="8" height="6" fill="#F0EDEA" />
+          <rect x="90" y="-8" width="6" height="6" fill="#F0EDEA" />
+          <rect x="90" y="-8" width="6" height="2" fill="#CC2020" />
 
-          {/* CABIN BOX — black, sits on top of fuselage, directly under wing */}
-          <rect x="10" y="-15" width="40" height="13" fill="#1A1A1A" />
-          {/* Cabin windows — blue glass strip */}
-          <rect x="13" y="-13" width="34" height="9" fill="rgba(80,140,200,0.55)" />
+          {/* Stabilizer */}
+          <rect x="85" y="12" width="12" height="2" fill="#F0EDEA" />
 
-          {/* FUSELAGE — red upper body */}
-          <rect x="0"  y="-2" width="72" height="6" fill="#CC2020" />
-          {/* FUSELAGE — white belly */}
-          <rect x="0"  y="4"  width="72" height="6" fill="#F0EDEA" />
-
-          {/* TAIL FIN */}
-          <rect x="60" y="-18" width="10" height="20" fill="#F0EDEA" />
-          <rect x="64" y="-22" width="6"  height="5"  fill="#CC2020" />
-          {/* HORIZONTAL STABILIZER */}
-          <rect x="62" y="4"   width="18" height="4"  fill="#F0EDEA" />
-
-          {/* ENGINE COWL */}
-          <rect x="-8" y="-2" width="10" height="10" fill="#252220" />
-          {/* PROPELLER */}
-          <g transform="translate(-8, 3)">
-            <ellipse cx="0" cy="0" rx="1.5" ry="13" fill="rgba(140,110,70,0.35)">
+          {/* Propeller */}
+          <g transform="translate(-2, 15)">
+            <rect x="-1" y="-12" width="2" height="24" fill="#5A5452" opacity="0.3">
               <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="0.1s" repeatCount="indefinite" />
-            </ellipse>
-            <rect x="-1" y="-2" width="2" height="4" fill="#5A5452" />
+            </rect>
+            <rect x="-1" y="-2" width="2" height="4" fill="#333" />
           </g>
 
-          {/* LANDING GEAR — nose + two mains under strut points */}
-          <rect x="3"  y="10" width="2" height="6" fill="#9A9288" />
-          <circle cx="4"  cy="16" r="3" fill="#252220" />
-          <rect x="19" y="10" width="2" height="6" fill="#9A9288" />
-          <circle cx="20" cy="16" r="3" fill="#252220" />
-          <rect x="49" y="10" width="2" height="6" fill="#9A9288" />
-          <circle cx="50" cy="16" r="3" fill="#252220" />
+          {/* Landing Gear */}
+          <rect x="10" y="22" width="2" height="6" fill="#9A9288" />
+          <rect x="8"  y="28" width="6" height="4" fill="#252220" />
+          <rect x="40" y="22" width="2" height="8" fill="#9A9288" />
+          <rect x="38" y="30" width="6" height="4" fill="#252220" />
 
           <animateTransform
             attributeName="transform"
             type="translate"
             from="1560 60"
-            to="-220 60"
-            dur="55s"
+            to="-250 60"
+            dur="45s"
             repeatCount="indefinite"
           />
         </g>
 
+        {/* ── Ground ───────────────────────────────────────────────── */}
         <rect x="0" y="286" width="1440" height="34" fill="#1A3A0E" />
         <rect x="0" y="286" width="1440" height="4"  fill="#0E2208" opacity="0.4" />
 
+        {/* ── Dense Coffee Plantation ──────────────────────────────── */}
         <g transform="translate(20, 286)">
-          <use href="#coffee-plant" x="0"   y="-10" transform="scale(0.7)" />
-          <use href="#coffee-plant" x="60"  y="-8"  transform="scale(0.7)" />
-          <use href="#coffee-plant" x="120" y="-11" transform="scale(0.7)" />
-          <use href="#coffee-plant" x="180" y="-9"  transform="scale(0.7)" />
-          <use href="#coffee-plant" x="240" y="-12" transform="scale(0.7)" />
-          <use href="#coffee-plant" x="300" y="-10" transform="scale(0.7)" />
-          <use href="#coffee-plant" x="360" y="-13" transform="scale(0.7)" />
-          <use href="#coffee-plant" x="420" y="-11" transform="scale(0.7)" />
-          <use href="#coffee-plant" x="480" y="-14" transform="scale(0.7)" />
-          
-          <use href="#coffee-plant" x="30"  y="2"   transform="scale(0.9)" />
-          <use href="#coffee-plant" x="100" y="5"   transform="scale(0.9)" />
-          <use href="#coffee-plant" x="170" y="3"   transform="scale(0.9)" />
-          <use href="#coffee-plant" x="240" y="6"   transform="scale(0.9)" />
-          <use href="#coffee-plant" x="310" y="4"   transform="scale(0.9)" />
-          <use href="#coffee-plant" x="380" y="7"   transform="scale(0.9)" />
-          <use href="#coffee-plant" x="450" y="5"   transform="scale(0.9)" />
-          
-          <use href="#coffee-plant" x="-10" y="18"  transform="scale(1.1)" />
-          <use href="#coffee-plant" x="80"  y="22"  transform="scale(1.1)" />
-          <use href="#coffee-plant" x="170" y="20"  transform="scale(1.1)" />
-          <use href="#coffee-plant" x="260" y="24"  transform="scale(1.1)" />
-          <use href="#coffee-plant" x="350" y="22"  transform="scale(1.1)" />
-          <use href="#coffee-plant" x="440" y="26"  transform="scale(1.1)" />
-        </g>
+          {/* Back Row */}
+          <use href="#coffee-plant" x="0"   y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="40"  y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="80"  y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="120" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="160" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="200" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="240" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="280" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="320" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="360" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="400" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="440" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="480" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="520" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="560" y="0" transform="scale(0.7)" />
+          <use href="#coffee-plant" x="600" y="0" transform="scale(0.7)" />
 
+          {/* Middle Row */}
+          <use href="#coffee-plant" x="20"  y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="70"  y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="120" y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="170" y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="220" y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="270" y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="320" y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="370" y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="420" y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="470" y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="520" y="10" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="570" y="10" transform="scale(0.9)" />
+
+          {/* Front Row */}
+          <use href="#coffee-plant" x="-10" y="25" transform="scale(1.1)" />
+          <use href="#coffee-plant" x="60"  y="25" transform="scale(1.1)" />
+          <use href="#coffee-plant" x="130" y="25" transform="scale(1.1)" />
+          <use href="#coffee-plant" x="200" y="25" transform="scale(1.1)" />
+          <use href="#coffee-plant" x="270" y="25" transform="scale(1.1)" />
+          <use href="#coffee-plant" x="340" y="25" transform="scale(1.1)" />
+          <use href="#coffee-plant" x="410" y="25" transform="scale(1.1)" />
+          <use href="#coffee-plant" x="480" y="25" transform="scale(1.1)" />
+          <use href="#coffee-plant" x="550" y="25" transform="scale(1.1)" />
+        </g>
       </svg>
     </div>
   )

@@ -122,19 +122,19 @@ export default function ProductsPage() {
             A structured certification program for espresso mastery. Every barista starts with the fundamentals — flavor science, machine systems, extraction. They advance to hands-on bar work. The best earn their wings as certified Barista Champions.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href="/signup" style={{
-              background: '#C8923C', color: '#0E0C0A', padding: '13px 28px', borderRadius: 3,
-              fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.16em',
+            <a href="/signup" className="btn-pixel" style={{
+              background: '#C8923C', color: '#0E0C0A', padding: '14px 32px', borderRadius: 3,
+              fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.16em',
               textTransform: 'uppercase', textDecoration: 'none', display: 'inline-block',
             }}>
               Start the Course
             </a>
-            <a href="/pricing" style={{
-              border: '1px solid #2A2218', color: '#C4B8AA', padding: '13px 24px', borderRadius: 3,
-              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em',
+            <a href="/pricing" className="btn-pixel-ghost" style={{
+              border: '1px solid #1E1A17', color: '#C4B8AA', padding: '14px 28px', borderRadius: 3,
+              fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em',
               textTransform: 'uppercase', textDecoration: 'none', display: 'inline-block',
             }}>
-              View Pricing →
+              View Pricing
             </a>
           </div>
         </div>

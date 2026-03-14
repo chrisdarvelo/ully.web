@@ -178,11 +178,17 @@ input, textarea, select, button {
   .lp-signin     { display: none !important; }
   .mkt-signin    { display: none !important; }
   /* Footer padding */
-  .mkt-footer { padding: 16px 20px !important; }
-  /* Pricing tier arrows break layout when cards wrap — hide them */
+  .lp-footer  { padding: 20px !important; }
+  .mkt-footer { padding: 20px !important; }
+  /* Pricing tier arrows — hide when cards stack vertically */
   .tier-arrow-wrap { display: none !important; }
   /* Terminal deco blocks — allow them to shrink to fit */
   .terminal-deco { min-width: 0 !important; width: 100% !important; max-width: 100% !important; }
+  /* About page principles grid — stack label above body */
+  .about-grid { grid-template-columns: 1fr !important; gap: 6px !important; }
+  /* About page section padding */
+  .about-header { padding: 48px 20px 40px !important; }
+  .about-body   { padding: 48px 20px 80px !important; }
 }
 
 /* Ully AI flower spin */

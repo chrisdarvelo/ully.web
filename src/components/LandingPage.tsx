@@ -211,7 +211,7 @@ export default function LandingPage({ loggedIn }: Props) {
       </section>
 
       {/* ── Mobile App ───────────────────────────────────── */}
-      <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
+      <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 clamp(16px, 4vw, 40px)' }} />
 
       <section style={{ padding: 'clamp(60px, 4vw, 80px) clamp(24px, 8vw, 120px)' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 40, justifyContent: 'space-between' }}>
@@ -257,7 +257,7 @@ export default function LandingPage({ loggedIn }: Props) {
       {/* ── CTA ─────────────────────────────────────────── */}
       {!loggedIn && (
         <>
-          <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
+          <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 clamp(16px, 4vw, 40px)' }} />
           <section style={{
             padding: 'clamp(80px, 10vw, 120px) 24px', textAlign: 'center',
             background: `radial-gradient(ellipse 50% 60% at 50% 50%, rgba(200, 146, 60, 0.05) 0%, transparent 70%)`,
@@ -285,7 +285,7 @@ export default function LandingPage({ loggedIn }: Props) {
       <CoffeeFarmScene />
 
       {/* ── Footer ───────────────────────────────────────── */}
-      <footer style={{
+      <footer className="lp-footer" style={{
         padding: '32px 48px', background: token.bg,
         borderTop: `1px solid ${token.line}`,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,

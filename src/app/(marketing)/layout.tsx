@@ -61,7 +61,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       <CoffeeFarmScene />
 
       {/* Footer */}
-      <footer style={{
+      <footer className="mkt-footer" style={{
         padding: '32px 48px', background: '#0E0C0A',
         borderTop: '1px solid #1E1A17',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,

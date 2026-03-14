@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: 'About — Ully' }
 export default function AboutPage() {
   return (
     <>
-      <div style={{ padding: '80px 48px 56px', borderBottom: '1px solid #1E1A17', maxWidth: 1080, margin: '0 auto' }}>
+      <div className="about-header" style={{ padding: '80px 48px 56px', borderBottom: '1px solid #1E1A17', maxWidth: 1080, margin: '0 auto' }}>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>About</div>
         <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, color: 'white', lineHeight: 1, letterSpacing: '-0.01em', marginBottom: 20 }}>
           Built for baristas<br />who want mastery.
@@ -15,7 +15,7 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div style={{ maxWidth: 680, margin: '0 auto', padding: '64px 48px 120px' }}>
+      <div className="about-body" style={{ maxWidth: 680, margin: '0 auto', padding: '64px 48px 120px' }}>
 
         <div style={{ paddingBottom: 48, borderBottom: '1px solid #1E1A17', marginBottom: 48 }}>
           <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 18 }}>
@@ -51,7 +51,7 @@ export default function AboutPage() {
             ['Purpose-built', 'Every feature is designed for the coffee professional\'s workflow. Not adapted from generic SaaS.'],
             ['Honest pricing', 'Flat subscription pricing. No seat fees, no surprise overages. The certificate is a one-time purchase — yours to keep forever.'],
           ].map(([title, body]) => (
-            <div key={title} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 32, padding: '20px 0', borderTop: '1px solid #1E1A17' }}>
+            <div key={title} className="about-grid" style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 32, padding: '20px 0', borderTop: '1px solid #1E1A17' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, color: 'white', letterSpacing: '0.06em', paddingTop: 2 }}>{title}</div>
               <div style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.75 }}>{body}</div>
             </div>

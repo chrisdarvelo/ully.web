@@ -103,47 +103,50 @@ export default function CoffeeFarmScene() {
         <use href="#seagull" x="340" y="120" />
         <use href="#seagull" x="1200" y="80" />
 
+        {/* ── Cessna 150 — Minecraft block style, 10% smaller ─────── */}
         <g opacity="0.95">
-          {/* High Wing — flush on fuselage roof at y=0 */}
-          <rect x="-15" y="-3" width="112" height="5" rx="2" fill="#F0EDEA" />
-          <rect x="-15" y="-3" width="13" height="5" rx="1" fill="#CC2020" />
-          <rect x="84"  y="-3" width="13" height="5" rx="1" fill="#CC2020" />
+          {/* WING — topmost, sits over the cabin box */}
+          <rect x="-12" y="-20" width="96" height="5" fill="#F0EDEA" />
+          <rect x="-12" y="-20" width="12" height="5" fill="#CC2020" />
+          <rect x="72"  y="-20" width="12" height="5" fill="#CC2020" />
 
-          {/* Cockpit / Canopy */}
-          <path d="M16,-3 L48,-3 L43,-13 L21,-13 Z" fill="#1A1A1A" />
-          <path d="M19,-4 L45,-4 L41,-11 L23,-11 Z" fill="rgba(90,150,210,0.6)" />
+          {/* WING STRUTS — blocky gray pillars connecting wing to fuselage */}
+          <rect x="16" y="-15" width="5" height="12" fill="#B8B4B0" />
+          <rect x="46" y="-15" width="5" height="12" fill="#B8B4B0" />
 
-          {/* Wing Struts — front at x=23, rear at x=56 */}
-          <line x1="23" y1="2" x2="23" y2="12" stroke="#C0BCBA" strokeWidth="1.5" />
-          <line x1="56" y1="2" x2="56" y2="12" stroke="#C0BCBA" strokeWidth="1.5" />
+          {/* CABIN BOX — black, sits on top of fuselage, directly under wing */}
+          <rect x="10" y="-15" width="40" height="13" fill="#1A1A1A" />
+          {/* Cabin windows — blue glass strip */}
+          <rect x="13" y="-13" width="34" height="9" fill="rgba(80,140,200,0.55)" />
 
-          {/* Fuselage */}
-          <path d="M0,0 L80,0 L75,12 L5,12 Z" fill="#F0EDEA" />
-          <path d="M0,6 L80,6 L78,12 L5,12 Z" fill="#CC2020" />
+          {/* FUSELAGE — red upper body */}
+          <rect x="0"  y="-2" width="72" height="6" fill="#CC2020" />
+          {/* FUSELAGE — white belly */}
+          <rect x="0"  y="4"  width="72" height="6" fill="#F0EDEA" />
 
-          {/* Tail Fin */}
-          <path d="M75,0 L93,0 L99,-18 L83,-18 Z" fill="#F0EDEA" />
-          <rect x="93" y="-21" width="7" height="5" fill="#CC2020" />
-          {/* Horizontal Stabilizer */}
-          <rect x="81" y="8" width="22" height="4" fill="#F0EDEA" />
+          {/* TAIL FIN */}
+          <rect x="60" y="-18" width="10" height="20" fill="#F0EDEA" />
+          <rect x="64" y="-22" width="6"  height="5"  fill="#CC2020" />
+          {/* HORIZONTAL STABILIZER */}
+          <rect x="62" y="4"   width="18" height="4"  fill="#F0EDEA" />
 
-          {/* Engine Cowl */}
-          <rect x="-10" y="1" width="12" height="10" rx="2" fill="#252220" />
-          {/* Propeller */}
-          <g transform="translate(-10, 6)">
-            <ellipse cx="0" cy="0" rx="2" ry="16" fill="rgba(154,125,82,0.3)">
+          {/* ENGINE COWL */}
+          <rect x="-8" y="-2" width="10" height="10" fill="#252220" />
+          {/* PROPELLER */}
+          <g transform="translate(-8, 3)">
+            <ellipse cx="0" cy="0" rx="1.5" ry="13" fill="rgba(140,110,70,0.35)">
               <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="0.1s" repeatCount="indefinite" />
             </ellipse>
             <rect x="-1" y="-2" width="2" height="4" fill="#5A5452" />
           </g>
 
-          {/* Landing Gear — nose under nose, mains under strut attach points */}
-          <rect x="4"  y="12" width="2" height="7" fill="#9A9288" />
-          <circle cx="5"  cy="19" r="3" fill="#252220" />
-          <rect x="22" y="12" width="2" height="7" fill="#9A9288" />
-          <circle cx="23" cy="19" r="3" fill="#252220" />
-          <rect x="55" y="12" width="2" height="7" fill="#9A9288" />
-          <circle cx="56" cy="19" r="3" fill="#252220" />
+          {/* LANDING GEAR — nose + two mains under strut points */}
+          <rect x="3"  y="10" width="2" height="6" fill="#9A9288" />
+          <circle cx="4"  cy="16" r="3" fill="#252220" />
+          <rect x="19" y="10" width="2" height="6" fill="#9A9288" />
+          <circle cx="20" cy="16" r="3" fill="#252220" />
+          <rect x="49" y="10" width="2" height="6" fill="#9A9288" />
+          <circle cx="50" cy="16" r="3" fill="#252220" />
 
           <animateTransform
             attributeName="transform"

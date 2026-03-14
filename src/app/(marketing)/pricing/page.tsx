@@ -107,7 +107,7 @@ export default function PricingPage() {
                 <span style={{ fontSize: 48, fontWeight: 700, color: 'white', letterSpacing: '-0.03em' }}>$0</span>
               </div>
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#4A4440', marginBottom: 28 }}>Always free</p>
-              <a href="/signup" style={{
+              <a href="/signup" className="btn-pixel-ghost" style={{
                 display: 'block', textAlign: 'center', marginBottom: 28,
                 border: '1px solid #2A2218', color: '#6B5E52', padding: '11px', borderRadius: 3,
                 fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none',
@@ -137,7 +137,7 @@ export default function PricingPage() {
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#6B5E52', marginBottom: 28 }}>
                 Billed monthly
               </p>
-              <a href="/signup" style={{
+              <a href="/signup" className="btn-pixel" style={{
                 display: 'block', textAlign: 'center', marginBottom: 28,
                 background: '#C8923C', color: '#0E0C0A', padding: '13px', borderRadius: 3,
                 fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none',
@@ -176,7 +176,7 @@ export default function PricingPage() {
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C8923C', marginBottom: 28 }}>
                 2 months free — vs monthly
               </p>
-              <a href="/signup" style={{
+              <a href="/signup" className="btn-pixel" style={{
                 display: 'block', textAlign: 'center', marginBottom: 28,
                 background: '#C8923C', color: '#0E0C0A', padding: '13px', borderRadius: 3,
                 fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none',
@@ -223,7 +223,7 @@ export default function PricingPage() {
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C8923C', marginBottom: 28, letterSpacing: '0.04em' }}>
                   Unlocked at Hero-Champion tier
                 </p>
-                <a href="/signup" style={{
+                <a href="/signup" className="btn-pixel" style={{
                   display: 'inline-block', textAlign: 'center',
                   background: '#C8923C', color: '#0E0C0A', padding: '13px 32px', borderRadius: 3,
                   fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', textDecoration: 'none',

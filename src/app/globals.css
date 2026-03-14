@@ -191,6 +191,35 @@ input, textarea, select, button {
   .about-body   { padding: 48px 20px 80px !important; }
 }
 
+/* ── Pixel (Minecraft-style) button hover states ───────────── */
+.btn-pixel {
+  box-shadow: 4px 4px 0 #7A5018;
+  transition: transform 0.06s steps(1), box-shadow 0.06s steps(1);
+}
+.btn-pixel:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #7A5018;
+}
+.btn-pixel:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #7A5018;
+}
+
+.btn-pixel-ghost {
+  box-shadow: 3px 3px 0 #2A2218;
+  transition: transform 0.06s steps(1), box-shadow 0.06s steps(1), border-color 0.06s steps(1), color 0.06s steps(1);
+}
+.btn-pixel-ghost:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #C8923C;
+  border-color: #C8923C !important;
+  color: white !important;
+}
+.btn-pixel-ghost:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 #C8923C;
+}
+
 /* Ully AI flower spin */
 @keyframes ully-spin {
   from { transform: rotate(0deg); }

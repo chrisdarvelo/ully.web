@@ -75,7 +75,7 @@ export default function LandingPage({ loggedIn }: Props) {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           {loggedIn ? (
-            <a href="/dashboard" style={{
+            <a href="/dashboard" className="btn-pixel" style={{
               fontFamily: token.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase',
               background: token.gold, color: token.bg, padding: '10px 20px', borderRadius: 3, fontWeight: 700,
             }}>
@@ -117,8 +117,8 @@ export default function LandingPage({ loggedIn }: Props) {
         </h1>
 
         <p className="fade-up delay-2" style={{
-          fontFamily: token.mono, fontSize: 'clamp(12px, 1.4vw, 14px)', color: token.subtle, maxWidth: 560,
-          lineHeight: 1.9, marginBottom: 12, letterSpacing: '0.03em',
+          fontSize: 'clamp(13px, 1.4vw, 15px)', color: token.subtle, maxWidth: 560,
+          lineHeight: 1.85, marginBottom: 12,
         }}>
           This curriculum takes you from your first shot to certified Barista Champion. A professional who reads instruments, diagnoses under pressure, and maintains their machine.
         </p>
@@ -133,13 +133,13 @@ export default function LandingPage({ loggedIn }: Props) {
             </a>
           ) : (
             <>
-              <a href="/signup" style={{
+              <a href="/signup" className="btn-pixel" style={{
                 background: token.gold, color: token.bg, padding: '14px 32px', borderRadius: 3,
                 fontFamily: token.mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700,
               }}>
                 Start Free
               </a>
-              <a href="/login" style={{
+              <a href="/login" className="btn-pixel-ghost" style={{
                 border: `1px solid ${token.line}`, color: token.subtle, padding: '14px 28px', borderRadius: 3,
                 fontFamily: token.mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase',
               }}>
@@ -170,7 +170,7 @@ export default function LandingPage({ loggedIn }: Props) {
             <h2 className="fade-left" style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.01em', color: 'white', marginBottom: 20 }}>
               Your copilot.<br />Every shift.
             </h2>
-            <p className="fade-left delay-1" style={{ fontFamily: token.mono, fontSize: 13, color: token.subtle, lineHeight: 1.9, marginBottom: 28, letterSpacing: '0.03em' }}>
+            <p className="fade-left delay-1" style={{ fontSize: 15, color: token.subtle, lineHeight: 1.85, marginBottom: 28 }}>
               Ully is the espresso instructor in your ear during every service — machine-level vocabulary, specific numbers, direct diagnosis. Pre-shift checks, mid-rush faults, post-shift debriefs. No hedging. Powered by Claude Sonnet.
             </p>
             <div className="fade-left delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -266,7 +266,7 @@ export default function LandingPage({ loggedIn }: Props) {
               Ready to earn your wings?
             </h2>
             <div className="fade-up delay-1" style={{ marginTop: 32 }}>
-              <a href="/signup" style={{
+              <a href="/signup" className="btn-pixel" style={{
                 display: 'inline-block',
                 background: token.gold, color: token.bg, padding: '14px 40px', borderRadius: 3,
                 fontFamily: token.mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700,

@@ -113,7 +113,7 @@ export default function LandingPage({ loggedIn }: Props) {
             color: token.gold, border: `1px solid rgba(200, 146, 60, 0.4)`,
             padding: '7px 16px', borderRadius: 2,
           }}>
-            Ully AI — Flight Instructor
+            Ully AI — Espresso Instructor
           </span>
         </div>
 
@@ -129,7 +129,7 @@ export default function LandingPage({ loggedIn }: Props) {
           fontSize: 'clamp(15px, 2vw, 18px)', color: token.subtle, maxWidth: 560,
           lineHeight: 1.7, marginBottom: 12,
         }}>
-          Ully is the flight instructor. The curriculum takes you from ground school to certified Barista Champion — a professional who reads instruments, diagnoses mid-flight, and maintains their aircraft.
+          Ully is the espresso instructor. The curriculum takes you from your first shot to certified Barista Champion — a professional who reads instruments, diagnoses under pressure, and maintains their machine.
         </p>
 
         <div className="fade-up delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -178,7 +178,7 @@ export default function LandingPage({ loggedIn }: Props) {
               Your copilot. In your pocket.
             </h2>
             <p className="fade-left delay-2" style={{ fontSize: 14, color: token.subtle, lineHeight: 1.8, marginBottom: 32 }}>
-              The Ully mobile app is coming soon to iOS and Android. Your flight instructor available for every pre-flight check, mid-rush squawk, and post-shift debrief — full curriculum and AI copilot, always on deck.
+              The Ully mobile app is coming soon to iOS and Android. Your espresso instructor available for every pre-shift check, mid-rush fault, and post-shift debrief — full curriculum and AI copilot, always on deck.
             </p>
             <div className="fade-left delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               {[

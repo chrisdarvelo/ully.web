@@ -24,7 +24,7 @@ Ully Logistics      →  lot tracking, shipping, transit
 Ully Roaster        →  roast profiles, cupping scores, blend formulation
 Ully Business       →  ← THIS PLATFORM
                         cafe operations, team, equipment, revenue, inventory
-Ully Coffee (app)   →  barista technique, consumer feedback, brew preference
+Ully AI (app)       →  barista training, espresso mastery, pilot certification
 ```
 
 The Business Platform gives café owners and managers the operational layer that

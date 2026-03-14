@@ -8,10 +8,10 @@ export default function AboutPage() {
       <div style={{ padding: '80px 48px 56px', borderBottom: '1px solid #1E1A17', maxWidth: 1080, margin: '0 auto' }}>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>About</div>
         <h1 style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(32px, 6vw, 64px)', fontWeight: 700, color: 'white', lineHeight: 1, letterSpacing: '-0.01em', marginBottom: 20 }}>
-          Built for the people<br />behind the coffee.
+          Built for baristas<br />who want mastery.
         </h1>
         <p style={{ fontSize: 17, color: '#C4B8AA', lineHeight: 1.6, maxWidth: 560 }}>
-          Ully is an AI-powered operations platform for coffee professionals — from single-location cafes to multi-site roasters and distributors.
+          Ully is the professional training and AI platform for espresso machine mastery — the path from barista to certified Barista Champion.
         </p>
       </div>
 
@@ -22,22 +22,22 @@ export default function AboutPage() {
             The Problem
           </h2>
           <p style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.85, marginBottom: 16 }}>
-            Running a coffee business means juggling equipment maintenance, team scheduling, inventory, and financials — often across tools that don&apos;t talk to each other, or no tools at all.
+            Most baristas learn to operate their machine. Very few learn to understand it. When something goes wrong — a pressure drop, a temperature swing, a solenoid fault — the answer is usually a $300 technician call and a machine down for hours.
           </p>
           <p style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.85 }}>
-            Most software built for hospitality is bloated, expensive, and designed for chains — not for the independent operators who define specialty coffee.
+            The knowledge exists. It just isn&apos;t taught. There is no structured, accessible path from &ldquo;I can pull a shot&rdquo; to &ldquo;I understand every system on this machine.&rdquo;
           </p>
         </div>
 
         <div style={{ paddingBottom: 48, borderBottom: '1px solid #1E1A17', marginBottom: 48 }}>
           <h2 style={{ fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 18 }}>
-            What Ully Does
+            What Ully Is
           </h2>
           <p style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.85, marginBottom: 16 }}>
-            Ully brings your operations into one place — equipment tracking, service records, team management, scheduling, inventory, and revenue reporting — with an AI assistant that actually understands your business context.
+            A structured certification program and AI instructor built for baristas who want instrument-level machine knowledge — and for café owners who want to build that capability into their team.
           </p>
           <p style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.85 }}>
-            Ask Ully about your maintenance backlog. Get shift coverage suggestions. Spot inventory gaps before they become problems. The AI reads your data so you don&apos;t have to explain it every time.
+            The curriculum runs from espresso fundamentals to advanced machine systems, maintenance, and a final AI-evaluated certification examination. The AI copilot — Ully — is available during every shift for diagnosis, dial-in, and troubleshooting. The web platform gives owners visibility into their team&apos;s progress and their equipment&apos;s service status.
           </p>
         </div>
 
@@ -46,9 +46,10 @@ export default function AboutPage() {
             Our Principles
           </h2>
           {[
+            ['No shortcuts', 'The certification means something because it is hard to earn. AI-evaluated open-ended examination — not multiple choice, not trivia.'],
             ['Privacy first', 'Your business data is private by default. We never sell it, share it, or use it to train AI without explicit consent.'],
-            ['No bloat', 'We build what coffee operators actually need. No feature roadmap driven by enterprise sales.'],
-            ['Honest pricing', 'Flat per-location pricing. No seat fees, no surprise overages.'],
+            ['Purpose-built', 'Every feature is designed for the coffee professional\'s workflow. Not adapted from generic SaaS.'],
+            ['Honest pricing', 'Flat subscription pricing. No seat fees, no surprise overages. The certificate is a one-time purchase — yours to keep forever.'],
           ].map(([title, body]) => (
             <div key={title} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 32, padding: '20px 0', borderTop: '1px solid #1E1A17' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, color: 'white', letterSpacing: '0.06em', paddingTop: 2 }}>{title}</div>

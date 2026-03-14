@@ -17,13 +17,13 @@ const MODULE_CARD_STYLES = `
   }
 `
 
-// Ground school → bar → certification
+// Course structure: fundamentals → bar → certification
 const CURRICULUM_MODULES = [
   {
     num: '02',
     name: 'Machine Systems',
     tag: 'Ground School',
-    desc: 'Before you pull a shot, you understand the machine. Boilers, pumps, hydraulics, pressure systems, and electrical — every system explained from first principles, the way a pilot learns their instruments before takeoff.',
+    desc: 'Before you pull a shot, you understand the machine. Boilers, pumps, hydraulics, pressure systems, and electrical — every system explained from first principles. Know it before you touch it.',
     points: [
       'HX, dual-boiler, single, and thermoblock architectures',
       'Full water circuit: inlet, pressure drop, gauge interpretation',
@@ -35,7 +35,7 @@ const CURRICULUM_MODULES = [
     num: '03',
     name: 'Extraction Science',
     tag: 'Ground School → Bar',
-    desc: 'Certified pilots read their instruments — they do not guess. This module builds the mental model that separates a barista who diagnoses from one who guesses: TDS, pressure, temperature, extraction yield.',
+    desc: 'Certified baristas read their instruments — they do not guess. This module builds the mental model that separates a barista who diagnoses from one who guesses: TDS, pressure, temperature, extraction yield.',
     points: [
       'Dial-in methodology: dose, yield, time, and the variables between them',
       'Reading your gauges: pressure, temperature, shot timer',
@@ -47,7 +47,7 @@ const CURRICULUM_MODULES = [
     num: '04',
     name: 'Maintenance & Repair',
     tag: 'Bar',
-    desc: 'Every certified pilot is responsible for keeping their machine in service. Preventive maintenance schedules, rebuild intervals, and step-by-step repair procedures for the most common failure points.',
+    desc: 'A certified barista champion is responsible for keeping their machine in service. Preventive maintenance schedules, rebuild intervals, and step-by-step repair procedures for the most common failure points.',
     points: [
       'Pre-shift checklists: daily, weekly, monthly, and annual cadences',
       'Gasket replacement, backflush protocol, descaling, OPV calibration',
@@ -61,7 +61,7 @@ const CERT_MODULE = {
   num: '05',
   name: 'Test Prep & Certification',
   tag: 'Earn Your Wings — $150 one-time',
-  desc: 'The final stage. Unlocked only after completing the Hero-Champion curriculum. Exclusive test prep material, a structured final assessment, and your official Barista Champion Certificate — your pilot\'s license for espresso.',
+  desc: 'The final stage. Unlocked only after completing the Hero-Champion curriculum. Exclusive test prep material, a structured final assessment, and your official Barista Champion Certificate — the credential that proves machine-level mastery.',
   points: [
     'Exclusive Test Prep material — final tier only, not available earlier',
     'Structured final assessment across all four curriculum modules',
@@ -76,7 +76,7 @@ const TOWER_MODULES = [
     num: '06',
     name: 'Crew Management',
     tag: 'Control Tower',
-    desc: 'Track every pilot on your team — their curriculum progress, skill level, certification status, and shift schedule. Know who is ready to fly solo and who needs more hours.',
+    desc: 'Track every barista on your team — their curriculum progress, skill level, certification status, and shift schedule. Know who is ready to run the machine solo and who needs more training.',
     points: [
       'Full crew roster with roles, progress, and certification status',
       'Weekly shift planner across all staff',
@@ -87,7 +87,7 @@ const TOWER_MODULES = [
     num: '07',
     name: 'Fleet Register',
     tag: 'Control Tower',
-    desc: 'A complete airworthiness register for every machine in your operation. Full service history, maintenance intervals, and overdue alerts — so no aircraft slips out of airworthiness.',
+    desc: 'A complete service register for every machine in your operation. Full maintenance history, service intervals, and overdue alerts — so nothing gets missed.',
     points: [
       'Track make, model, serial number, and in-service date',
       'Log every service event: type, technician, cost, and date',
@@ -121,15 +121,15 @@ export default function ProductsPage() {
       }}>
         <div style={{ maxWidth: 720 }}>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 20 }}>
-            Flight School
+            The Curriculum
           </div>
           <h1 style={{ fontSize: 'clamp(36px, 6vw, 68px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: 24, color: 'white' }}>
-            Ground school.<br />
-            Flight deck.<br />
+            Learn the machine.<br />
+            Master the craft.<br />
             <span style={{ color: '#C8923C' }}>Earn your wings.</span>
           </h1>
           <p style={{ fontSize: 'clamp(15px, 2vw, 18px)', color: '#C4B8AA', lineHeight: 1.7, maxWidth: 580, marginBottom: 40 }}>
-            Aviation methodology applied to espresso mastery. Every barista starts in ground school — machine theory, systems, instrument reading. They advance to the flight deck. The best earn their wings as certified Barista Champions.
+            A structured certification program for espresso mastery. Every barista starts with the fundamentals — machine theory, systems, extraction science. They advance to hands-on bar work. The best earn their wings as certified Barista Champions.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
             <a href="/signup" style={{
@@ -137,7 +137,7 @@ export default function ProductsPage() {
               fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.16em',
               textTransform: 'uppercase', textDecoration: 'none', display: 'inline-block',
             }}>
-              Start Flight School
+              Start the Course
             </a>
             <a href="/pricing" style={{
               border: '1px solid #2A2218', color: '#C4B8AA', padding: '13px 24px', borderRadius: 3,
@@ -161,7 +161,7 @@ export default function ProductsPage() {
               Your copilot.<br />Every shift.
             </h2>
             <p style={{ fontSize: 16, color: '#C4B8AA', lineHeight: 1.75, marginBottom: 28 }}>
-              Ully is the flight instructor in your ear during every service — machine-level vocabulary, specific numbers, direct diagnosis. Pre-flight checks, mid-rush squawks, post-shift debriefs. No hedging. Powered by Claude Sonnet.
+              Ully is the espresso instructor in your ear during every service — machine-level vocabulary, specific numbers, direct diagnosis. Pre-shift checks, mid-rush faults, post-shift debriefs. No hedging. Powered by Claude Sonnet.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
@@ -206,10 +206,10 @@ export default function ProductsPage() {
               Curriculum
             </div>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 14 }}>
-              From ground school to flight deck.
+              From fundamentals to the bar.
             </h2>
             <p style={{ fontSize: 15, color: '#6B5E52', lineHeight: 1.7, maxWidth: 540 }}>
-              The same structure aviation uses to build pilots — theory first, instruments second, maintenance third. No shortcuts.
+              Theory first. Extraction science second. Maintenance third. The same structure used to build professionals in any high-stakes craft. No shortcuts.
             </p>
           </div>
 
@@ -291,10 +291,10 @@ export default function ProductsPage() {
             </div>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 14 }}>
               The owner&apos;s view<br />
-              <span style={{ color: '#C8923C' }}>of the flight school.</span>
+              <span style={{ color: '#C8923C' }}>of the training program.</span>
             </h2>
             <p style={{ fontSize: 15, color: '#6B5E52', lineHeight: 1.7, maxWidth: 580 }}>
-              The web platform gives operators the full picture — which baristas are progressing through the curriculum, which machines need airworthiness checks, and what the operation needs next. Ully AI advises from both the cockpit and the tower. Included in Pro Annual.
+              The web platform gives operators the full picture — which baristas are progressing through the curriculum, which machines are due for service, and what the operation needs next. Ully AI advises both the barista at the bar and the owner at the desk. Included in Pro Annual.
             </p>
           </div>
 

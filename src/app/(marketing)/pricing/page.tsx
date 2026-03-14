@@ -22,7 +22,7 @@ const STYLES = `
 
 const FREE_FEATURES = [
   '20 AI copilot messages / day',
-  'Ground school — module 1 access',
+  'Espresso fundamentals — module 1 access',
   'Core espresso knowledge base',
   'Save up to 5 recipes',
 ]
@@ -81,13 +81,13 @@ export default function PricingPage() {
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ marginBottom: 56, textAlign: 'center' }}>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 14 }}>
-              Flight School — Pricing
+              Ully AI — Pricing
             </div>
             <h1 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, letterSpacing: '-0.02em', color: 'white', marginBottom: 14 }}>
-              Choose your flight plan.
+              Choose your plan.
             </h1>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#6B5E52', letterSpacing: '0.06em', maxWidth: 480, margin: '0 auto' }}>
-              Start in ground school. Earn your wings when you&apos;re ready.
+              Start with the basics. Earn your wings when you&apos;re ready.
             </p>
           </div>
 

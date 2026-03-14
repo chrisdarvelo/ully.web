@@ -190,8 +190,8 @@ export default function LandingPage({ loggedIn }: Props) {
                 'Walk me through an OPV calibration procedure',
               ].map(q => (
                 <div key={q} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                  <span style={{ fontFamily: token.mono, fontSize: 11, color: token.gold, marginTop: 2, flexShrink: 0 }}>→</span>
-                  <span style={{ fontFamily: token.mono, fontSize: 12, color: token.subtle, lineHeight: 1.5 }}>{q}</span>
+                  <span style={{ fontFamily: token.mono, fontSize: 11, color: '#6EAB7E', marginTop: 2, flexShrink: 0 }}>→</span>
+                  <span style={{ fontFamily: token.mono, fontSize: 12, color: '#6EAB7E', lineHeight: 1.5 }}>{q}</span>
                 </div>
               ))}
             </div>

@@ -221,27 +221,56 @@ export default function CoffeeFarmScene() {
           <rect x="1350" y="56" width="28" height="16"/>
         </g>
 
-        {/* ── Cessna 150 — flies right→left across the sky ────────── */}
-        <g opacity="0.92">
-          <path d="M2,7 C4,3 14,2 24,2 L64,2 C72,2 78,4 82,7 C78,10 72,12 64,12 L24,12 C14,12 4,11 2,7Z" fill="#DDD4C0" />
-          <path d="M16,2 C20,-1 30,-2 42,-2 C52,-2 60,-0.5 64,2Z" fill="#B8B0A0" />
-          <path d="M18,2 C22,-0.5 30,-1.5 40,-1.5 C48,-1.5 56,-0.5 60,2Z" fill="rgba(130,185,240,0.62)" />
-          <path d="M24,2 L24,1 L-42,-1 L-44,0 L-42,1 L24,2Z"  fill="#CECAB4" />
-          <path d="M46,2 L46,1 L108,-1 L110,0 L108,1 L46,2Z" fill="#CCC8B4" />
-          <line x1="12"  y1="2"  x2="8"  y2="12" stroke="#A09A84" strokeWidth="1" />
-          <line x1="56"  y1="2"  x2="60" y2="12" stroke="#A09A84" strokeWidth="1" />
-          <ellipse cx="-2" cy="7" rx="7" ry="6" fill="#9A9080" />
-          <ellipse cx="-8" cy="7" rx="1" ry="10" fill="rgba(50,50,50,0.28)" />
-          <path d="M78,2 L82,-5 L84,-2 L84,2Z" fill="#CCC8B4" />
-          <path d="M76,10 L68,12 L68,13 L76,11Z" fill="#CCC8B4" />
-          <path d="M78,10 L86,12 L86,13 L78,11Z" fill="#CCC8B4" />
-          <line x1="18" y1="12" x2="15" y2="18" stroke="#6A6050" strokeWidth="1.5" />
-          <ellipse cx="14" cy="18" rx="4" ry="2.5" fill="#3C3830" />
-          <line x1="54" y1="12" x2="57" y2="18" stroke="#6A6050" strokeWidth="1.5" />
-          <ellipse cx="58" cy="18" rx="4" ry="2.5" fill="#3C3830" />
-          <line x1="0"  y1="12" x2="-2" y2="17"  stroke="#6A6050" strokeWidth="1.5" />
-          <ellipse cx="-3" cy="17" rx="3" ry="2" fill="#3C3830" />
-          <rect x="12" y="4" width="54" height="4" fill="#C84040" opacity="0.55" rx="1" />
+        {/* ── Cessna 150 — Minecraft block style, flies right→left ── */}
+        <g opacity="0.95">
+          {/* HIGH WING — flat white slab on top, red wingtips */}
+          <rect x="-44" y="-1" width="68" height="4" fill="#F0EDEA" />
+          <rect x="24"  y="-1" width="86" height="4" fill="#F0EDEA" />
+          <rect x="-52" y="-1" width="10" height="4" fill="#CC2020" />
+          <rect x="108" y="-1" width="10" height="4" fill="#CC2020" />
+
+          {/* Wing struts */}
+          <rect x="13" y="2" width="3" height="10" fill="#C0BCBA" />
+          <rect x="54" y="2" width="3" height="10" fill="#C0BCBA" />
+
+          {/* Engine cowl — solid dark block */}
+          <rect x="-14" y="2"  width="15" height="10" fill="#252220" />
+          <rect x="-16" y="3"  width="4"  height="8"  fill="#3A3633" />
+
+          {/* Fuselage — white top, red bottom */}
+          <rect x="0"  y="2" width="78" height="5" fill="#F0EDEA" />
+          <rect x="0"  y="7" width="78" height="5" fill="#CC2020" />
+          <rect x="76" y="2" width="6"  height="10" fill="#F0EDEA" />
+
+          {/* Cockpit canopy — dark block windows */}
+          <rect x="8"  y="-5" width="26" height="7" fill="#1A1A1A" />
+          <rect x="10" y="-4" width="22" height="5" fill="rgba(90,150,210,0.50)" />
+
+          {/* Vertical tail fin — white block */}
+          <rect x="74" y="-13" width="8" height="15" fill="#F0EDEA" />
+          {/* Red beacon block on top */}
+          <rect x="74" y="-18" width="8" height="6"  fill="#CC2020" />
+
+          {/* Horizontal stabilizers */}
+          <rect x="62" y="10" width="16" height="4" fill="#F0EDEA" />
+          <rect x="78" y="10" width="16" height="4" fill="#F0EDEA" />
+
+          {/* Propeller — wooden Minecraft planks */}
+          <rect x="-22" y="-10" width="7" height="8"  fill="#9A7D52" />
+          <rect x="-22" y="16"  width="7" height="8"  fill="#9A7D52" />
+          {/* spinning blur */}
+          <ellipse cx="-18" cy="7" rx="2" ry="16" fill="rgba(154,125,82,0.28)" />
+          {/* prop hub block */}
+          <rect x="-21" y="4" width="7" height="6" fill="#5A5452" />
+
+          {/* Landing gear — blocky struts + black wheel blocks */}
+          <rect x="-7"  y="12" width="4"  height="5"  fill="#9A9288" />
+          <rect x="-10" y="17" width="10" height="4"  fill="#252220" />
+          <rect x="14"  y="12" width="4"  height="6"  fill="#9A9288" />
+          <rect x="11"  y="18" width="10" height="4"  fill="#252220" />
+          <rect x="54"  y="12" width="4"  height="6"  fill="#9A9288" />
+          <rect x="51"  y="18" width="10" height="4"  fill="#252220" />
+
           <animateTransform
             attributeName="transform"
             type="translate"

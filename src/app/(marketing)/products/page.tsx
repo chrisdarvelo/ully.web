@@ -22,6 +22,7 @@ const CURRICULUM_MODULES = [
     num: '01',
     name: 'Espresso Fundamentals',
     tag: 'Foundation',
+    descColor: '#6EAB7E',
     desc: 'Start with the science behind the shot. Understand what is happening inside the cup before you touch the machine — flavor development, roast chemistry, brewing variables, and sensory calibration.',
     points: [
       'Flavor wheel: identifying taste, acidity, body, and finish',
@@ -35,6 +36,7 @@ const CURRICULUM_MODULES = [
     num: '02',
     name: 'Machine Instruments',
     tag: 'Systems',
+    descColor: '#F5D040',
     desc: 'Before you diagnose a problem, you understand the machine. Every gauge, every system, every component — explained from first principles so you know what you are reading and why it matters.',
     points: [
       'Gauge reading: pressure, temperature, shot timer interpretation',
@@ -48,6 +50,7 @@ const CURRICULUM_MODULES = [
     num: '03',
     name: 'Troubleshoot & Maintenance',
     tag: 'Bar',
+    descColor: '#E05555',
     desc: 'Ully walks you through step-by-step. Using the camera and AI diagnosis, identify the problem, follow the procedure, and keep the machine in service. Preventive schedules, fault tracing, and hands-on repair.',
     points: [
       'Computer vision-assisted diagnosis — point and identify',
@@ -162,7 +165,7 @@ export default function ProductsPage() {
                 <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: 16, fontWeight: 700, color: 'white', marginBottom: 10, letterSpacing: '0.02em' }}>
                   {mod.name}
                 </h3>
-                <p style={{ fontSize: 14, color: '#C4B8AA', lineHeight: 1.7, marginBottom: 20 }}>
+                <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: mod.descColor, lineHeight: 1.85, marginBottom: 20, letterSpacing: '0.02em' }}>
                   {mod.desc}
                 </p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 7 }}>
@@ -190,7 +193,7 @@ export default function ProductsPage() {
               The business owner&apos;s view<br />
               <span style={{ color: '#C4B8AA' }}>of the training program.</span>
             </h2>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#C4B8AA', lineHeight: 1.9, maxWidth: 580, letterSpacing: '0.03em' }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#6EAB7E', lineHeight: 1.9, maxWidth: 580, letterSpacing: '0.03em' }}>
               The web platform gives operators the full picture — which baristas are progressing through the curriculum, which machines are due for service, and what the operation needs next. Ully AI advises both the barista at the bar and the owner at the desk. Included in Pro Annual.
             </p>
           </div>

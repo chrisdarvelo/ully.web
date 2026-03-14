@@ -25,67 +25,40 @@ export default function CoffeeFarmScene() {
             <stop offset="100%" stopColor="#7EC8E8" />
           </linearGradient>
 
-          {/* ── Coffee plant symbol (Upgraded V2) ────────────────────────
-              Taller, more columnar "tree" look like the reference. 
-              Massive fruit clusters along branches. 
-              Dark glossy foliage.
-          ────────────────────────────────────────────────────────────── */}
+          {/* ── Coffee plant symbol — Minecraft style, small & square ── */}
           <symbol id="coffee-plant" overflow="visible">
-            {/* Trunk */}
-            <rect x="-1.5" y="-60" width="3" height="60" fill="#2d1e14" />
-            
-            {/* Foliage Structure - Taller Columnar Shape */}
-            <g>
-              {/* Lower Tier */}
-              <ellipse cx="0" cy="-18" rx="36" ry="14" fill="#0d2607" />
-              <g fill="#c41e3a">
-                <circle cx="-25" cy="-16" r="2.5" /><circle cx="-20" cy="-18" r="2.2" /><circle cx="-28" cy="-20" r="2.3" />
-                <circle cx="25" cy="-16" r="2.5" /><circle cx="20" cy="-18" r="2.2" /><circle cx="28" cy="-20" r="2.3" />
-                <circle cx="-10" cy="-14" r="2.4" /><circle cx="10" cy="-14" r="2.4" />
-                <circle cx="0" cy="-12" r="2.6" />
-                <circle cx="-15" cy="-15" r="2" fill="#7fb041" />
-                <circle cx="15" cy="-15" r="2" fill="#7fb041" />
-              </g>
+            {/* Short blocky trunk */}
+            <rect x="-4" y="-22" width="8" height="22" fill="#4A2912" />
+            <rect x="-4" y="-22" width="4" height="6" fill="#5E3418" />
+            <rect x="0"  y="-16" width="4" height="6" fill="#5E3418" />
+            <rect x="-4" y="-10" width="4" height="6" fill="#5E3418" />
+            <rect x="0"  y="-4"  width="4" height="6" fill="#5E3418" />
 
-              {/* Mid-Lower Tier */}
-              <ellipse cx="0" cy="-34" rx="32" ry="12" fill="#113309" />
-              <g fill="#c41e3a">
-                <circle cx="-18" cy="-34" r="2.4" /><circle cx="-24" cy="-36" r="2.2" /><circle cx="-12" cy="-32" r="2.3" />
-                <circle cx="18" cy="-34" r="2.4" /><circle cx="24" cy="-36" r="2.2" /><circle cx="12" cy="-32" r="2.3" />
-                <circle cx="0" cy="-38" r="2.5" />
-                <circle cx="-5" cy="-30" r="2.1" fill="#7fb041" />
-                <circle cx="5" cy="-30" r="2.1" fill="#7fb041" />
-              </g>
+            {/* Square leaf canopy block */}
+            <rect x="-16" y="-42" width="32" height="22" fill="#1B5C0A" />
+            {/* Leaf pixel texture */}
+            <rect x="-16" y="-42" width="8"  height="8"  fill="#236E0C" />
+            <rect x="-6"  y="-42" width="6"  height="6"  fill="#145006" />
+            <rect x="2"   y="-42" width="8"  height="8"  fill="#1E6608" />
+            <rect x="-14" y="-32" width="6"  height="7"  fill="#145006" />
+            <rect x="-5"  y="-34" width="8"  height="8"  fill="#236E0C" />
+            <rect x="7"   y="-32" width="7"  height="7"  fill="#1E6608" />
+            {/* Bottom shadow edge */}
+            <rect x="-16" y="-22" width="32" height="3" fill="#0A2E04" opacity="0.5" />
 
-              {/* Mid-Upper Tier */}
-              <ellipse cx="0" cy="-48" rx="26" ry="10" fill="#16400c" />
-              <g fill="#c41e3a">
-                <circle cx="-12" cy="-48" r="2.3" /><circle cx="-18" cy="-50" r="2.1" />
-                <circle cx="12" cy="-48" r="2.3" /><circle cx="18" cy="-50" r="2.1" />
-                <circle cx="0" cy="-52" r="2.4" />
-                <circle cx="-6" cy="-45" r="1.9" fill="#7fb041" />
-                <circle cx="6" cy="-45" r="1.9" fill="#7fb041" />
-              </g>
+            {/* Cherry clusters — left vine */}
+            <rect x="-10" y="-19" width="3" height="3" fill="#C41E3A" />
+            <rect x="-7"  y="-19" width="3" height="3" fill="#A01830" />
+            <rect x="-10" y="-12" width="3" height="3" fill="#A01830" />
+            <rect x="-7"  y="-12" width="3" height="3" fill="#C41E3A" />
+            <rect x="-10" y="-5"  width="3" height="3" fill="#C41E3A" />
 
-              {/* Top Tier */}
-              <ellipse cx="0" cy="-60" rx="18" ry="8" fill="#1b4d0f" />
-              <g fill="#c41e3a">
-                <circle cx="-8" cy="-60" r="2.2" /><circle cx="8" cy="-60" r="2.2" />
-                <circle cx="0" cy="-64" r="2.3" />
-                <circle cx="0" cy="-58" r="1.8" fill="#7fb041" />
-              </g>
-            </g>
-
-            {/* Glossy Leaves Details */}
-            <g fill="#2a631c" opacity="0.8">
-              <path d="M-30,-18 q-5,-5 -15,0 t5,5 z" />
-              <path d="M30,-18 q5,-5 15,0 t-5,5 z" />
-              <path d="M-25,-34 q-4,-4 -12,0 t4,4 z" />
-              <path d="M25,-34 q4,-4 12,0 t-4,4 z" />
-              <path d="M-20,-48 q-3,-3 -10,0 t3,3 z" />
-              <path d="M20,-48 q3,-3 10,0 t-3,3 z" />
-              <path d="M0,-68 l-2,-8 l4,0 z" />
-            </g>
+            {/* Cherry clusters — right vine */}
+            <rect x="4"  y="-17" width="3" height="3" fill="#C41E3A" />
+            <rect x="7"  y="-17" width="3" height="3" fill="#A01830" />
+            <rect x="4"  y="-10" width="3" height="3" fill="#A01830" />
+            <rect x="7"  y="-10" width="3" height="3" fill="#C41E3A" />
+            <rect x="4"  y="-3"  width="3" height="3" fill="#C41E3A" />
           </symbol>
 
           <symbol id="mario-mountain" overflow="visible">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import FlowerIcon from './FlowerIcon'
 import CoffeeFarmScene from './CoffeeFarmScene'
 import SocialFooterBar from './SocialFooterBar'
@@ -45,15 +45,6 @@ const token = {
 
 export default function LandingPage({ loggedIn }: Props) {
   useFadeUp()
-  const [newsEmail, setNewsEmail] = useState('')
-  const [newsSent, setNewsSent] = useState(false)
-
-  function handleNewsSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!newsEmail) return
-    setNewsSent(true)
-    setNewsEmail('')
-  }
 
   return (
     <div style={{ background: token.bg, color: 'white', fontFamily: token.sans, overflowX: 'hidden' }}>
@@ -174,7 +165,7 @@ export default function LandingPage({ loggedIn }: Props) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 64, alignItems: 'center', maxWidth: 1100, margin: '0 auto' }}>
           <div>
             <div style={{ fontFamily: token.mono, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
-              01 — Ully AI
+              Ully AI
             </div>
             <h2 className="fade-left" style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.01em', color: 'white', marginBottom: 20 }}>
               Your copilot.<br />Every shift.
@@ -275,36 +266,13 @@ export default function LandingPage({ loggedIn }: Props) {
               Ready to earn your wings?
             </h2>
             <div className="fade-up delay-1" style={{ marginTop: 32 }}>
-              <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: token.subtle, marginBottom: 18 }}>
-                Sign up for updates on our latest innovations
-              </p>
-              {newsSent ? (
-                <p style={{ fontFamily: token.mono, fontSize: 12, color: '#4A8C5C', letterSpacing: '0.08em' }}>
-                  ✓ You&apos;re on the list.
-                </p>
-              ) : (
-                <form onSubmit={handleNewsSubmit} style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    value={newsEmail}
-                    onChange={e => setNewsEmail(e.target.value)}
-                    required
-                    style={{
-                      background: '#1A1614', border: `1px solid #2A2218`, borderRadius: 3,
-                      padding: '10px 16px', color: '#FFFFFF', fontSize: 13,
-                      fontFamily: token.mono, outline: 'none', minWidth: 240,
-                    }}
-                  />
-                  <button type="submit" style={{
-                    background: token.gold, color: token.bg, border: 'none', borderRadius: 3,
-                    padding: '10px 24px', fontFamily: token.mono, fontSize: 10,
-                    fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', cursor: 'pointer',
-                  }}>
-                    Subscribe
-                  </button>
-                </form>
-              )}
+              <a href="/signup" style={{
+                display: 'inline-block',
+                background: token.gold, color: token.bg, padding: '14px 40px', borderRadius: 3,
+                fontFamily: token.mono, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700,
+              }}>
+                Start Free
+              </a>
             </div>
           </section>
         </>

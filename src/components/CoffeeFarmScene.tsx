@@ -25,411 +25,194 @@ export default function CoffeeFarmScene() {
             <stop offset="100%" stopColor="#7EC8E8" />
           </linearGradient>
 
-          {/* ── Coffee bush symbol ─────────────────────────────────────────
-              Compact wide-dome shrub. Base at (0,0), grows upward (negative y).
-              7 stems spread wide. Width ≈ 76px, height ≈ 41px at scale 1.
+          {/* ── Coffee plant symbol (Upgraded) ───────────────────────────
+              Pruned Coffea Arabica shrub. Glossy leaves, white blooms, red cherries.
           ────────────────────────────────────────────────────────────── */}
-          <symbol id="bush" overflow="visible">
-            <line x1="0"  y1="0"  x2="0"   y2="-23" stroke="#4a2a0a" strokeWidth="2.5"/>
-            <line x1="0"  y1="0"  x2="-14" y2="-19" stroke="#4a2a0a" strokeWidth="2.2"/>
-            <line x1="0"  y1="0"  x2="14"  y2="-19" stroke="#4a2a0a" strokeWidth="2.2"/>
-            <line x1="0"  y1="-2" x2="-28" y2="-14" stroke="#4a2a0a" strokeWidth="2"/>
-            <line x1="0"  y1="-2" x2="28"  y2="-14" stroke="#4a2a0a" strokeWidth="2"/>
-            <line x1="0"  y1="-4" x2="-38" y2="-11" stroke="#4a2a0a" strokeWidth="1.8"/>
-            <line x1="0"  y1="-4" x2="38"  y2="-11" stroke="#4a2a0a" strokeWidth="1.8"/>
-            <ellipse cx="0"   cy="-14" rx="38" ry="10" fill="#1a3d14"/>
-            <ellipse cx="-24" cy="-13" rx="17" ry="9"  fill="#1e4218"/>
-            <ellipse cx="24"  cy="-13" rx="17" ry="9"  fill="#1e4218"/>
-            <ellipse cx="0"   cy="-20" rx="32" ry="10" fill="#224820"/>
-            <ellipse cx="-16" cy="-23" rx="19" ry="9"  fill="#274d22"/>
-            <ellipse cx="16"  cy="-23" rx="19" ry="9"  fill="#274d22"/>
-            <ellipse cx="0"   cy="-28" rx="24" ry="10" fill="#2c5226"/>
-            <ellipse cx="-8"  cy="-31" rx="15" ry="8"  fill="#305530"/>
-            <ellipse cx="8"   cy="-31" rx="15" ry="8"  fill="#305530"/>
-            <ellipse cx="0"   cy="-36" rx="14" ry="8"  fill="#3a6030"/>
-            <ellipse cx="0"   cy="-41" rx="8"  ry="5"  fill="#446834"/>
-            {/* red cherries */}
-            <circle cx="-35" cy="-10" r="4"   fill="#4a7a28"/>
-            <circle cx="-31" cy="-12" r="3.5" fill="#3d7020"/>
-            <circle cx="-37" cy="-13" r="3.5" fill="#5a8a30"/>
-            <circle cx="-33" cy="-15" r="3.5" fill="#4a7a28"/>
-            <circle cx="-29" cy="-13" r="3"   fill="#3d7020"/>
-            <circle cx="-39" cy="-11" r="3"   fill="#4a7a28"/>
-            <circle cx="-27" cy="-16" r="3"   fill="#5a8a30"/>
-            <circle cx="-22" cy="-19" r="4"   fill="#C84040"/>
-            <circle cx="-18" cy="-21" r="3.5" fill="#B82020"/>
-            <circle cx="-25" cy="-21" r="3.5" fill="#C84040"/>
-            <circle cx="-20" cy="-24" r="3.5" fill="#a82d24"/>
-            <circle cx="-16" cy="-18" r="3"   fill="#C84040"/>
-            <circle cx="-24" cy="-25" r="3"   fill="#B82020"/>
-            <circle cx="-14" cy="-23" r="3"   fill="#C84040"/>
-            <circle cx="-4"  cy="-14" r="4"   fill="#C84040"/>
-            <circle cx="0"   cy="-13" r="3.5" fill="#e8a840"/>
-            <circle cx="4"   cy="-14" r="3.5" fill="#4a7a28"/>
-            <circle cx="-2"  cy="-11" r="3"   fill="#C84040"/>
-            <circle cx="2"   cy="-11" r="3"   fill="#d4973e"/>
-            <circle cx="-6"  cy="-12" r="3"   fill="#B82020"/>
-            <circle cx="6"   cy="-12" r="3"   fill="#C84040"/>
-            <circle cx="22"  cy="-19" r="4"   fill="#e8a840"/>
-            <circle cx="18"  cy="-21" r="3.5" fill="#d4973e"/>
-            <circle cx="25"  cy="-21" r="3.5" fill="#C84040"/>
-            <circle cx="20"  cy="-24" r="3.5" fill="#B82020"/>
-            <circle cx="16"  cy="-18" r="3"   fill="#e8a840"/>
-            <circle cx="24"  cy="-25" r="3"   fill="#C84040"/>
-            <circle cx="14"  cy="-23" r="3"   fill="#d4973e"/>
-            <circle cx="35"  cy="-10" r="4"   fill="#e8a840"/>
-            <circle cx="31"  cy="-12" r="3.5" fill="#d4973e"/>
-            <circle cx="37"  cy="-13" r="3.5" fill="#c8923c"/>
-            <circle cx="33"  cy="-15" r="3.5" fill="#e8a840"/>
-            <circle cx="29"  cy="-13" r="3"   fill="#d4973e"/>
-            <circle cx="39"  cy="-11" r="3"   fill="#e8a840"/>
-            <circle cx="27"  cy="-16" r="3"   fill="#c8923c"/>
-            <circle cx="-20" cy="-27" r="3.5" fill="#4a7a28"/>
-            <circle cx="-14" cy="-28" r="3.5" fill="#C84040"/>
-            <circle cx="-10" cy="-31" r="3"   fill="#4a7a28"/>
-            <circle cx="-17" cy="-32" r="3"   fill="#e8a840"/>
-            <circle cx="-12" cy="-35" r="3"   fill="#C84040"/>
-            <circle cx="-8"  cy="-29" r="3"   fill="#B82020"/>
-            <circle cx="20"  cy="-27" r="3.5" fill="#4a7a28"/>
-            <circle cx="14"  cy="-28" r="3.5" fill="#C84040"/>
-            <circle cx="10"  cy="-31" r="3"   fill="#e8a840"/>
-            <circle cx="17"  cy="-32" r="3"   fill="#4a7a28"/>
-            <circle cx="12"  cy="-35" r="3"   fill="#C84040"/>
-            <circle cx="8"   cy="-29" r="3"   fill="#B82020"/>
-            <circle cx="-5"  cy="-15" r="3"   fill="#e8a840"/>
-            <circle cx="5"   cy="-15" r="3"   fill="#C84040"/>
-            <circle cx="-3"  cy="-32" r="3.5" fill="#4a7a28"/>
-            <circle cx="0"   cy="-35" r="3.5" fill="#C84040"/>
-            <circle cx="3"   cy="-32" r="3"   fill="#e8a840"/>
-            <circle cx="-2"  cy="-39" r="3"   fill="#C84040"/>
-            <circle cx="3"   cy="-39" r="3"   fill="#4a7a28"/>
-            <circle cx="0"   cy="-42" r="2.5" fill="#e8a840"/>
+          <symbol id="coffee-plant" overflow="visible">
+            {/* Main stem */}
+            <rect x="-2" y="-35" width="4" height="35" fill="#3d2b1f" />
+            
+            {/* Foliage layers - deep waxy green */}
+            <ellipse cx="0" cy="-15" rx="35" ry="12" fill="#14330b" />
+            <ellipse cx="0" cy="-25" rx="28" ry="10" fill="#1a4010" />
+            <ellipse cx="0" cy="-35" rx="18" ry="8"  fill="#225216" />
+            
+            {/* Individual glossy leaves */}
+            <g fill="#2a631c">
+              <path d="M-30,-15 Q-35,-20 -25,-18 Z" />
+              <path d="M30,-15 Q35,-20 25,-18 Z" />
+              <path d="M-20,-28 Q-25,-32 -15,-30 Z" />
+              <path d="M20,-28 Q25,-32 15,-30 Z" />
+              <path d="M-10,-38 Q-15,-42 -5,-40 Z" />
+              <path d="M10,-38 Q15,-42 5,-40 Z" />
+            </g>
+
+            {/* Coffee Snow (White Flowers) */}
+            <g fill="#ffffff" opacity="0.9">
+              <circle cx="-12" cy="-22" r="1.5" />
+              <circle cx="8"   cy="-26" r="1.2" />
+              <circle cx="-5"  cy="-32" r="1.5" />
+              <circle cx="15"  cy="-18" r="1.2" />
+            </g>
+
+            {/* Ripe Coffee Cherries */}
+            <g fill="#c41e3a">
+              <circle cx="-18" cy="-14" r="2.2" />
+              <circle cx="-22" cy="-16" r="2" />
+              <circle cx="18"  cy="-14" r="2.2" />
+              <circle cx="24"  cy="-12" r="2" />
+              <circle cx="0"   cy="-28" r="2.5" />
+              <circle cx="-8"  cy="-24" r="2" />
+              <circle cx="10"  cy="-22" r="2" />
+            </g>
+            
+            {/* Unripe Green Cherries */}
+            <g fill="#7fb041">
+              <circle cx="-14" cy="-16" r="1.8" />
+              <circle cx="12"  cy="-18" r="1.8" />
+              <circle cx="5"   cy="-30" r="1.5" />
+            </g>
+          </symbol>
+
+          {/* ── Mario Mountain ────────────────────────────────────────── */}
+          <symbol id="mario-mountain" overflow="visible">
+            {/* Main body - rounded hill shape */}
+            <path d="M-60,0 A60,60 0 0,1 60,0 L-60,0 Z" fill="#7DB060" stroke="#3a5a24" strokeWidth="3" />
+            {/* Highlight */}
+            <path d="M-45,0 A45,45 0 0,1 0,-45 L0,0 Z" fill="#9cd67a" opacity="0.4" />
+            {/* Eyes */}
+            <rect x="-8" y="-35" width="4" height="12" rx="2" fill="#000000" />
+            <rect x="4"  y="-35" width="4" height="12" rx="2" fill="#000000" />
+          </symbol>
+
+          {/* ── Seagull ───────────────────────────────────────────────── */}
+          <symbol id="seagull" overflow="visible">
+            <path d="M-6,0 Q-3,-3 0,0 Q3,-3 6,0" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round">
+              <animate attributeName="d" 
+                values="M-6,0 Q-3,-3 0,0 Q3,-3 6,0; M-6,-2 Q-3,1 0,-2 Q3,1 6,-2; M-6,0 Q-3,-3 0,0 Q3,-3 6,0"
+                dur="1.2s" repeatCount="indefinite" />
+            </path>
           </symbol>
         </defs>
 
         {/* ── Sky ─────────────────────────────────────────────────── */}
         <rect width="1440" height="320" fill="url(#skyGrad)" />
 
-        {/* ── Sun ─────────────────────────────────────────────────── */}
-        <circle cx="900" cy="70" r="58" fill="#F5D140" opacity="0.11" />
-        <circle cx="900" cy="70" r="40" fill="#F5D140" opacity="0.19" />
-        <circle cx="900" cy="70" r="26" fill="#F8E04A" />
+        {/* ── Sun (Mario Style) ────────────────────────────────────── */}
+        <circle cx="900" cy="70" r="40" fill="#F5D140" stroke="#d4973e" strokeWidth="2" />
+        <circle cx="890" cy="60" r="8" fill="#ffffff" opacity="0.3" />
 
-        {/* ══════════════════════════════════════════════════════════
-            MINECRAFT CLOUDS — pixel-block rectangles, 28×16 per block.
-            5 formations, each with a distinct silhouette.
-        ══════════════════════════════════════════════════════════ */}
-
-        {/* Cloud 1 — wide irregular formation, upper-left */}
-        <g fill="white" opacity="0.88">
-          {/* row 1 */}
-          <rect x="68"  y="24" width="28" height="16"/>
-          <rect x="96"  y="24" width="28" height="16"/>
-          <rect x="124" y="24" width="28" height="16"/>
-          <rect x="152" y="24" width="28" height="16"/>
-          <rect x="180" y="24" width="28" height="16"/>
-          {/* row 2 — wider base */}
-          <rect x="40"  y="40" width="28" height="16"/>
-          <rect x="68"  y="40" width="28" height="16"/>
-          <rect x="96"  y="40" width="28" height="16"/>
-          <rect x="124" y="40" width="28" height="16"/>
-          <rect x="152" y="40" width="28" height="16"/>
-          <rect x="180" y="40" width="28" height="16"/>
-          <rect x="208" y="40" width="28" height="16"/>
-          {/* row 3 — narrow bottom */}
-          <rect x="68"  y="56" width="28" height="16"/>
-          <rect x="96"  y="56" width="28" height="16"/>
-          <rect x="124" y="56" width="28" height="16"/>
-          <rect x="152" y="56" width="28" height="16"/>
+        {/* ── Mario Clouds ─────────────────────────────────────────── */}
+        <g fill="white" opacity="0.9">
+          {/* Cloud 1 */}
+          <path d="M100,60 A20,20 0 0,1 140,60 A20,20 0 0,1 180,60 L180,80 L100,80 Z" />
+          {/* Cloud 2 */}
+          <path d="M400,40 A20,20 0 0,1 440,40 A20,20 0 0,1 480,40 L480,60 L400,60 Z" />
+          {/* Cloud 3 */}
+          <path d="M750,50 A20,20 0 0,1 790,50 A20,20 0 0,1 830,50 L830,70 L750,70 Z" />
+          {/* Cloud 4 */}
+          <path d="M1150,30 A20,20 0 0,1 1190,30 A20,20 0 0,1 1230,30 L1230,50 L1150,50 Z" />
         </g>
 
-        {/* Cloud 2 — compact vertical tower, center-left */}
-        <g fill="white" opacity="0.82">
-          {/* row 1 — narrow top */}
-          <rect x="398" y="16" width="28" height="16"/>
-          <rect x="426" y="16" width="28" height="16"/>
-          {/* row 2 — wide middle */}
-          <rect x="370" y="32" width="28" height="16"/>
-          <rect x="398" y="32" width="28" height="16"/>
-          <rect x="426" y="32" width="28" height="16"/>
-          <rect x="454" y="32" width="28" height="16"/>
-          {/* row 3 — slightly inset bottom */}
-          <rect x="384" y="48" width="28" height="16"/>
-          <rect x="412" y="48" width="28" height="16"/>
-          <rect x="440" y="48" width="28" height="16"/>
+        {/* ── Mountains (Mario Style) ──────────────────────────────── */}
+        <use href="#mario-mountain" x="200"  y="286" transform="scale(1.8)" fill="#5ba3d0" opacity="0.3" />
+        <use href="#mario-mountain" x="1100" y="286" transform="scale(1.5)" fill="#5ba3d0" opacity="0.2" />
+        
+        <g transform="translate(0, 286)">
+          <use href="#mario-mountain" x="150"  y="0" transform="scale(1.2)" />
+          <use href="#mario-mountain" x="450"  y="0" transform="scale(0.9)" />
+          <use href="#mario-mountain" x="750"  y="0" transform="scale(1.4)" />
+          <use href="#mario-mountain" x="1050" y="0" transform="scale(1.1)" />
+          <use href="#mario-mountain" x="1350" y="0" transform="scale(1.3)" />
         </g>
 
-        {/* Cloud 3 — wide flat stratocumulus bank, upper center */}
-        <g fill="white" opacity="0.76">
-          {/* row 1 — top, narrower */}
-          <rect x="648" y="24" width="28" height="16"/>
-          <rect x="676" y="24" width="28" height="16"/>
-          <rect x="704" y="24" width="28" height="16"/>
-          <rect x="732" y="24" width="28" height="16"/>
-          <rect x="760" y="24" width="28" height="16"/>
-          <rect x="788" y="24" width="28" height="16"/>
-          <rect x="816" y="24" width="28" height="16"/>
-          <rect x="844" y="24" width="28" height="16"/>
-          {/* row 2 — wider base */}
-          <rect x="620" y="40" width="28" height="16"/>
-          <rect x="648" y="40" width="28" height="16"/>
-          <rect x="676" y="40" width="28" height="16"/>
-          <rect x="704" y="40" width="28" height="16"/>
-          <rect x="732" y="40" width="28" height="16"/>
-          <rect x="760" y="40" width="28" height="16"/>
-          <rect x="788" y="40" width="28" height="16"/>
-          <rect x="816" y="40" width="28" height="16"/>
-          <rect x="844" y="40" width="28" height="16"/>
-          <rect x="872" y="40" width="28" height="16"/>
-        </g>
+        {/* ── Seagulls ─────────────────────────────────────────────── */}
+        <use href="#seagull" x="300" y="100" />
+        <use href="#seagull" x="340" y="120" />
+        <use href="#seagull" x="1200" y="80" />
 
-        {/* Cloud 4 — tall isolated tower, right-center */}
-        <g fill="white" opacity="0.80">
-          {/* row 1 — small top */}
-          <rect x="1056" y="8"  width="28" height="16"/>
-          <rect x="1084" y="8"  width="28" height="16"/>
-          {/* row 2 */}
-          <rect x="1042" y="24" width="28" height="16"/>
-          <rect x="1070" y="24" width="28" height="16"/>
-          <rect x="1098" y="24" width="28" height="16"/>
-          {/* row 3 — widest */}
-          <rect x="1042" y="40" width="28" height="16"/>
-          <rect x="1070" y="40" width="28" height="16"/>
-          <rect x="1098" y="40" width="28" height="16"/>
-          <rect x="1126" y="40" width="28" height="16"/>
-          {/* row 4 — bottom, steps back in */}
-          <rect x="1056" y="56" width="28" height="16"/>
-          <rect x="1084" y="56" width="28" height="16"/>
-          <rect x="1112" y="56" width="28" height="16"/>
-        </g>
-
-        {/* Cloud 5 — chunky square cluster, far right */}
-        <g fill="white" opacity="0.74">
-          {/* row 1 */}
-          <rect x="1294" y="24" width="28" height="16"/>
-          <rect x="1322" y="24" width="28" height="16"/>
-          <rect x="1350" y="24" width="28" height="16"/>
-          {/* row 2 — widest */}
-          <rect x="1280" y="40" width="28" height="16"/>
-          <rect x="1308" y="40" width="28" height="16"/>
-          <rect x="1336" y="40" width="28" height="16"/>
-          <rect x="1364" y="40" width="28" height="16"/>
-          <rect x="1392" y="40" width="28" height="16"/>
-          {/* row 3 */}
-          <rect x="1294" y="56" width="28" height="16"/>
-          <rect x="1322" y="56" width="28" height="16"/>
-          <rect x="1350" y="56" width="28" height="16"/>
-        </g>
-
-        {/* ── Cessna 150 — Minecraft block style, flies right→left ── */}
+        {/* ── Cessna 150 (Upgraded) ────────────────────────────────── */}
         <g opacity="0.95">
-          {/* HIGH WING — flat white slab on top, red wingtips */}
-          <rect x="-44" y="-1" width="68" height="4" fill="#F0EDEA" />
-          <rect x="24"  y="-1" width="86" height="4" fill="#F0EDEA" />
-          <rect x="-52" y="-1" width="10" height="4" fill="#CC2020" />
-          <rect x="108" y="-1" width="10" height="4" fill="#CC2020" />
+          {/* Fuselage - aerodynamic but pixel-conscious */}
+          <path d="M0,0 L80,0 L75,12 L5,12 Z" fill="#F0EDEA" transform="translate(0, 5)" />
+          <path d="M0,6 L80,6 L78,12 L5,12 Z" fill="#CC2020" transform="translate(0, 5)" />
+          
+          {/* High Wing */}
+          <rect x="-10" y="0" width="100" height="4" rx="2" fill="#F0EDEA" />
+          <rect x="-10" y="0" width="10" height="4" rx="1" fill="#CC2020" />
+          <rect x="80"  y="0" width="10" height="4" rx="1" fill="#CC2020" />
+          
+          {/* Wing Struts */}
+          <line x1="15" y1="4" x2="15" y2="12" stroke="#C0BCBA" strokeWidth="2" />
+          <line x1="65" y1="4" x2="65" y2="12" stroke="#C0BCBA" strokeWidth="2" />
 
-          {/* Wing struts */}
-          <rect x="13" y="2" width="3" height="10" fill="#C0BCBA" />
-          <rect x="54" y="2" width="3" height="10" fill="#C0BCBA" />
+          {/* Cockpit / Canopy */}
+          <path d="M15,0 L45,0 L40,-8 L20,-8 Z" fill="#1A1A1A" />
+          <path d="M18,-1 L42,-1 L38,-6 L22,-6 Z" fill="rgba(90,150,210,0.6)" />
 
-          {/* Engine cowl — solid dark block */}
-          <rect x="-14" y="2"  width="15" height="10" fill="#252220" />
-          <rect x="-16" y="3"  width="4"  height="8"  fill="#3A3633" />
+          {/* Tail Section - Swept back like a real C150 */}
+          <path d="M75,5 L95,5 L100,-15 L85,-15 Z" fill="#F0EDEA" />
+          <rect x="95" y="-18" width="6" height="4" fill="#CC2020" /> {/* Tail beacon */}
+          
+          {/* Horizontal Stabilizer */}
+          <rect x="85" y="5" width="20" height="3" fill="#F0EDEA" />
 
-          {/* Fuselage — white top, red bottom */}
-          <rect x="0"  y="2" width="78" height="5" fill="#F0EDEA" />
-          <rect x="0"  y="7" width="78" height="5" fill="#CC2020" />
-          <rect x="76" y="2" width="6"  height="10" fill="#F0EDEA" />
+          {/* Engine & Propeller */}
+          <rect x="-8" y="4" width="10" height="10" rx="2" fill="#252220" />
+          <g transform="translate(-8, 9)">
+            <ellipse cx="0" cy="0" rx="2" ry="18" fill="rgba(154,125,82,0.3)">
+              <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="0.1s" repeatCount="indefinite" />
+            </ellipse>
+            <rect x="-1" y="-2" width="2" height="4" fill="#5A5452" />
+          </g>
 
-          {/* Cockpit canopy — dark block windows */}
-          <rect x="8"  y="-5" width="26" height="7" fill="#1A1A1A" />
-          <rect x="10" y="-4" width="22" height="5" fill="rgba(90,150,210,0.50)" />
-
-          {/* Vertical tail fin — white block */}
-          <rect x="74" y="-13" width="8" height="15" fill="#F0EDEA" />
-          {/* Red beacon block on top */}
-          <rect x="74" y="-18" width="8" height="6"  fill="#CC2020" />
-
-          {/* Horizontal stabilizers */}
-          <rect x="62" y="10" width="16" height="4" fill="#F0EDEA" />
-          <rect x="78" y="10" width="16" height="4" fill="#F0EDEA" />
-
-          {/* Propeller — wooden Minecraft planks */}
-          <rect x="-22" y="-10" width="7" height="8"  fill="#9A7D52" />
-          <rect x="-22" y="16"  width="7" height="8"  fill="#9A7D52" />
-          {/* spinning blur */}
-          <ellipse cx="-18" cy="7" rx="2" ry="16" fill="rgba(154,125,82,0.28)" />
-          {/* prop hub block */}
-          <rect x="-21" y="4" width="7" height="6" fill="#5A5452" />
-
-          {/* Landing gear — blocky struts + black wheel blocks */}
-          <rect x="-7"  y="12" width="4"  height="5"  fill="#9A9288" />
-          <rect x="-10" y="17" width="10" height="4"  fill="#252220" />
-          <rect x="14"  y="12" width="4"  height="6"  fill="#9A9288" />
-          <rect x="11"  y="18" width="10" height="4"  fill="#252220" />
-          <rect x="54"  y="12" width="4"  height="6"  fill="#9A9288" />
-          <rect x="51"  y="18" width="10" height="4"  fill="#252220" />
+          {/* Landing Gear (Tricycle) */}
+          <rect x="5"  y="17" width="2" height="6" fill="#9A9288" />
+          <circle cx="6" cy="23" r="3" fill="#252220" />
+          <rect x="50" y="17" width="2" height="6" fill="#9A9288" />
+          <circle cx="51" cy="23" r="3" fill="#252220" />
+          <rect x="65" y="17" width="2" height="6" fill="#9A9288" />
+          <circle cx="66" cy="23" r="3" fill="#252220" />
 
           <animateTransform
             attributeName="transform"
             type="translate"
-            from="1560 52"
-            to="-220 52"
-            dur="68s"
+            from="1560 60"
+            to="-220 60"
+            dur="55s"
             repeatCount="indefinite"
           />
         </g>
 
-        {/* ══════════════════════════════════════════════════════════
-            MINECRAFT MOUNTAINS — stepped block terrain.
-            All paths use only H (horizontal) and V (vertical) segments.
-            No curves. Three depth layers, each a distinct color.
-        ══════════════════════════════════════════════════════════ */}
-
-        {/* Far mountains — 40px blocks, two prominent peaks */}
-        <path fill="#7DB060" d="
-          M0,320 V200
-          H40  V180
-          H80  V160
-          H120 V120
-          H160 V80
-          H200 V100
-          H240 V120
-          H280 V160
-          H320 V180
-          H360 V200
-          H400 V180
-          H440 V160
-          H480 V120
-          H520 V80
-          H560 V100
-          H600 V140
-          H640 V160
-          H680 V180
-          H720 V200
-          H760 V180
-          H800 V200
-          H840 V220
-          H880 V200
-          H920 V220
-          H960 V240
-          H1000 V220
-          H1040 V240
-          H1080 V220
-          H1120 V240
-          H1160 V260
-          H1200 V240
-          H1240 V260
-          H1280 V280
-          H1320 V260
-          H1360 V280
-          H1400 V300
-          H1440 V320 Z
-        " />
-
-        {/* Mid mountains — 60px blocks, one central peak */}
-        <path fill="#4D7F2A" d="
-          M0,320 V270
-          H60  V250
-          H120 V230
-          H180 V210
-          H240 V190
-          H300 V170
-          H360 V150
-          H420 V170
-          H480 V190
-          H540 V210
-          H600 V230
-          H660 V250
-          H720 V240
-          H780 V230
-          H840 V240
-          H900 V250
-          H960 V260
-          H1020 V250
-          H1080 V260
-          H1140 V270
-          H1200 V260
-          H1260 V270
-          H1320 V278
-          H1380 V284
-          H1440 V286
-          H1460 V320 Z
-        " />
-
-        {/* Foreground ridge — 80px blocks, low rolling steps */}
-        <path fill="#2D5215" d="
-          M0,320 V280
-          H80  V270
-          H160 V260
-          H240 V255
-          H320 V260
-          H400 V255
-          H480 V250
-          H560 V255
-          H640 V260
-          H720 V265
-          H800 V260
-          H880 V265
-          H960 V270
-          H1040 V265
-          H1120 V270
-          H1200 V275
-          H1280 V280
-          H1360 V284
-          H1440 V286
-          H1460 V320 Z
-        " />
-
-        {/* ── Ground strip ─────────────────────────────────────────── */}
+        {/* ── Ground ───────────────────────────────────────────────── */}
         <rect x="0" y="286" width="1440" height="34" fill="#1A3A0E" />
-        <rect x="0" y="286" width="1440" height="3"  fill="#0E2208" opacity="0.6" />
+        <rect x="0" y="286" width="1440" height="4"  fill="#0E2208" opacity="0.4" />
 
-        {/* ══════════════════════════════════════════════════════════
-            COFFEE PLANTATION — 30 plants clustered on the LEFT side.
-            The right 65% of the scene is open sky and mountains.
-
-            Extra-far row (8):  scale 0.19, y=263, x=8–282
-            Back row     (12):  scale 0.29–0.30, y=274–277, x=0–388
-            Front row    (10):  scale 0.37–0.39, y=287, x=4–404
-        ══════════════════════════════════════════════════════════ */}
-
-        {/* Extra-far row */}
-        <use href="#bush" transform="translate(8,   263) scale(0.19)" />
-        <use href="#bush" transform="translate(46,  261) scale(0.19)" />
-        <use href="#bush" transform="translate(84,  263) scale(0.19)" />
-        <use href="#bush" transform="translate(122, 261) scale(0.19)" />
-        <use href="#bush" transform="translate(160, 263) scale(0.19)" />
-        <use href="#bush" transform="translate(198, 261) scale(0.19)" />
-        <use href="#bush" transform="translate(236, 263) scale(0.19)" />
-        <use href="#bush" transform="translate(274, 261) scale(0.19)" />
-
-        {/* Back row */}
-        <use href="#bush" transform="translate(0,   276) scale(0.29)" />
-        <use href="#bush" transform="translate(34,  274) scale(0.30)" />
-        <use href="#bush" transform="translate(68,  276) scale(0.29)" />
-        <use href="#bush" transform="translate(102, 274) scale(0.30)" />
-        <use href="#bush" transform="translate(136, 276) scale(0.29)" />
-        <use href="#bush" transform="translate(170, 274) scale(0.30)" />
-        <use href="#bush" transform="translate(204, 277) scale(0.29)" />
-        <use href="#bush" transform="translate(238, 274) scale(0.30)" />
-        <use href="#bush" transform="translate(272, 276) scale(0.29)" />
-        <use href="#bush" transform="translate(306, 274) scale(0.30)" />
-        <use href="#bush" transform="translate(340, 277) scale(0.29)" />
-        <use href="#bush" transform="translate(374, 274) scale(0.30)" />
-
-        {/* Front row */}
-        <use href="#bush" transform="translate(4,   287) scale(0.38)" />
-        <use href="#bush" transform="translate(48,  287) scale(0.39)" />
-        <use href="#bush" transform="translate(92,  287) scale(0.37)" />
-        <use href="#bush" transform="translate(136, 287) scale(0.38)" />
-        <use href="#bush" transform="translate(180, 287) scale(0.39)" />
-        <use href="#bush" transform="translate(224, 287) scale(0.37)" />
-        <use href="#bush" transform="translate(268, 287) scale(0.38)" />
-        <use href="#bush" transform="translate(312, 287) scale(0.39)" />
-        <use href="#bush" transform="translate(356, 287) scale(0.37)" />
-        <use href="#bush" transform="translate(400, 287) scale(0.38)" />
+        {/* ── Coffee Plantation Cluster ────────────────────────────── */}
+        <g transform="translate(20, 286)">
+          {/* Far plants */}
+          <use href="#coffee-plant" x="0"   y="-2" transform="scale(0.8)" />
+          <use href="#coffee-plant" x="60"  y="2"  transform="scale(0.75)" />
+          <use href="#coffee-plant" x="120" y="-1" transform="scale(0.82)" />
+          <use href="#coffee-plant" x="180" y="3"  transform="scale(0.78)" />
+          <use href="#coffee-plant" x="240" y="-3" transform="scale(0.81)" />
+          <use href="#coffee-plant" x="300" y="1"  transform="scale(0.76)" />
+          <use href="#coffee-plant" x="360" y="-2" transform="scale(0.79)" />
+          
+          {/* Mid plants */}
+          <use href="#coffee-plant" x="30"  y="8"  transform="scale(0.95)" />
+          <use href="#coffee-plant" x="100" y="12" transform="scale(0.9)" />
+          <use href="#coffee-plant" x="170" y="10" transform="scale(0.98)" />
+          <use href="#coffee-plant" x="240" y="14" transform="scale(0.92)" />
+          <use href="#coffee-plant" x="310" y="9"  transform="scale(0.96)" />
+          
+          {/* Front plants */}
+          <use href="#coffee-plant" x="-10" y="22" transform="scale(1.2)" />
+          <use href="#coffee-plant" x="80"  y="25" transform="scale(1.15)" />
+          <use href="#coffee-plant" x="170" y="20" transform="scale(1.25)" />
+          <use href="#coffee-plant" x="260" y="24" transform="scale(1.18)" />
+          <use href="#coffee-plant" x="350" y="21" transform="scale(1.22)" />
+        </g>
 
       </svg>
     </div>

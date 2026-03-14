@@ -17,39 +17,41 @@ const MODULE_CARD_STYLES = `
   }
 `
 
-// Course structure: fundamentals → bar → certification
 const CURRICULUM_MODULES = [
   {
-    num: '02',
-    name: 'Machine Systems',
-    tag: 'Ground School',
-    desc: 'Before you pull a shot, you understand the machine. Boilers, pumps, hydraulics, pressure systems, and electrical — every system explained from first principles. Know it before you touch it.',
+    num: '01',
+    name: 'Espresso Fundamentals',
+    tag: 'Foundation',
+    desc: 'Start with the science behind the shot. Understand what is happening inside the cup before you touch the machine — flavor development, roast chemistry, brewing variables, and sensory calibration.',
     points: [
-      'HX, dual-boiler, single, and thermoblock architectures',
-      'Full water circuit: inlet, pressure drop, gauge interpretation',
-      'Electrical systems: heating elements, PID wiring, fuses, thermal cutouts',
+      'Flavor wheel: identifying taste, acidity, body, and finish',
+      'Roast profiles: light, medium, dark and their extraction behavior',
+      'Brewing science: dose, yield, time, and the variables between them',
+      'Water chemistry and its measurable effect on extraction',
+      'Sensory calibration: tasting with intention, not guessing',
+    ],
+  },
+  {
+    num: '02',
+    name: 'Machine Instruments',
+    tag: 'Systems',
+    desc: 'Before you diagnose a problem, you understand the machine. Every gauge, every system, every component — explained from first principles so you know what you are reading and why it matters.',
+    points: [
+      'Gauge reading: pressure, temperature, shot timer interpretation',
+      'Hydraulics: full water circuit, inlet pressure, pressure drop under load',
+      'Electronics: heating elements, PID wiring, fuses, thermal cutouts',
+      'Boiler architectures: HX, dual-boiler, single, and thermoblock',
       'Control boards: sensors, pressure transducers, relay logic',
     ],
   },
   {
     num: '03',
-    name: 'Extraction Science',
-    tag: 'Ground School → Bar',
-    desc: 'Certified baristas read their instruments — they do not guess. This module builds the mental model that separates a barista who diagnoses from one who guesses: TDS, pressure, temperature, extraction yield.',
-    points: [
-      'Dial-in methodology: dose, yield, time, and the variables between them',
-      'Reading your gauges: pressure, temperature, shot timer',
-      'Channeling diagnosis — identify the cause, not just the symptom',
-      'Water chemistry and its measurable effect on extraction',
-    ],
-  },
-  {
-    num: '04',
-    name: 'Maintenance & Repair',
+    name: 'Troubleshoot & Maintenance',
     tag: 'Bar',
-    desc: 'A certified barista champion is responsible for keeping their machine in service. Preventive maintenance schedules, rebuild intervals, and step-by-step repair procedures for the most common failure points.',
+    desc: 'Ully walks you through step-by-step. Using the camera and AI diagnosis, identify the problem, follow the procedure, and keep the machine in service. Preventive schedules, fault tracing, and hands-on repair.',
     points: [
-      'Pre-shift checklists: daily, weekly, monthly, and annual cadences',
+      'Computer vision-assisted diagnosis — point and identify',
+      'Daily, weekly, monthly, and annual maintenance cadences',
       'Gasket replacement, backflush protocol, descaling, OPV calibration',
       'Solenoid cleaning, pump rebuild, and electrical fault tracing',
       'Diagnosing under service pressure — troubleshooting mid-rush',
@@ -57,23 +59,9 @@ const CURRICULUM_MODULES = [
   },
 ]
 
-const CERT_MODULE = {
-  num: '05',
-  name: 'Test Prep & Certification',
-  tag: 'Earn Your Wings — $150 one-time',
-  desc: 'The final stage. Unlocked only after completing the Hero-Champion curriculum. Exclusive test prep material, a structured final assessment, and your official Barista Champion Certificate — the credential that proves machine-level mastery.',
-  points: [
-    'Exclusive Test Prep material — final tier only, not available earlier',
-    'Structured final assessment across all four curriculum modules',
-    'Official Barista Champion Certificate on passing',
-    'Permanent credential — yours to keep, independent of subscription',
-    'Requires full completion of the apprentice curriculum',
-  ],
-}
-
 const TOWER_MODULES = [
   {
-    num: '06',
+    num: '04',
     name: 'Crew Management',
     tag: 'Control Tower',
     desc: 'Track every barista on your team — their curriculum progress, skill level, certification status, and shift schedule. Know who is ready to run the machine solo and who needs more training.',
@@ -84,7 +72,7 @@ const TOWER_MODULES = [
     ],
   },
   {
-    num: '07',
+    num: '05',
     name: 'Fleet Register',
     tag: 'Control Tower',
     desc: 'A complete service register for every machine in your operation. Full maintenance history, service intervals, and overdue alerts — so nothing gets missed.',
@@ -95,10 +83,10 @@ const TOWER_MODULES = [
     ],
   },
   {
-    num: '08',
+    num: '06',
     name: 'Operations Intelligence',
     tag: 'Control Tower',
-    desc: 'Ully AI grounded in your real business data — revenue, inventory, team, and fleet — gives the owner answers, not dashboards. The kind of intelligence that keeps the operation flying.',
+    desc: 'Ully AI grounded in your real business data — revenue, inventory, team, and fleet — gives the owner answers, not dashboards. Intelligence that keeps your operation running at full capacity.',
     points: [
       'Revenue and expense tracking with category-level detail',
       'Inventory with par-level alerts before you run low',
@@ -124,12 +112,11 @@ export default function ProductsPage() {
             The Curriculum
           </div>
           <h1 style={{ fontSize: 'clamp(36px, 6vw, 68px)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: 24, color: 'white' }}>
-            Learn the machine.<br />
-            Master the craft.<br />
+            Master your craft.<br />
             <span style={{ color: '#C8923C' }}>Earn your wings.</span>
           </h1>
           <p style={{ fontSize: 'clamp(15px, 2vw, 18px)', color: '#C4B8AA', lineHeight: 1.7, maxWidth: 580, marginBottom: 40 }}>
-            A structured certification program for espresso mastery. Every barista starts with the fundamentals — machine theory, systems, extraction science. They advance to hands-on bar work. The best earn their wings as certified Barista Champions.
+            A structured certification program for espresso mastery. Every barista starts with the fundamentals — flavor science, machine systems, extraction. They advance to hands-on bar work. The best earn their wings as certified Barista Champions.
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
             <a href="/signup" style={{
@@ -150,54 +137,6 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* ── Ully AI — The Copilot ────────────────────────────────────── */}
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)', borderBottom: '1px solid #1E1A17', background: '#0E0C0A' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 64, alignItems: 'center', maxWidth: 1100, margin: '0 auto' }}>
-          <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 16 }}>
-              01 — Ully AI
-            </div>
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.01em', color: 'white', marginBottom: 20 }}>
-              Your copilot.<br />Every shift.
-            </h2>
-            <p style={{ fontSize: 16, color: '#C4B8AA', lineHeight: 1.75, marginBottom: 28 }}>
-              Ully is the espresso instructor in your ear during every service — machine-level vocabulary, specific numbers, direct diagnosis. Pre-shift checks, mid-rush faults, post-shift debriefs. No hedging. Powered by Claude Sonnet.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {[
-                'Pre-shift check — what do I inspect before first pull?',
-                'Solenoid not releasing pressure between shots',
-                'Shot channeling badly — third attempt, same result',
-                'Walk me through an OPV calibration procedure',
-              ].map(q => (
-                <div key={q} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: '#C8923C', marginTop: 2, flexShrink: 0 }}>→</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: '#C4B8AA', lineHeight: 1.5 }}>{q}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Terminal mock */}
-          <div className="terminal-deco" style={{ background: '#1A1614', border: '1px solid #1E1A17', borderRadius: 6, padding: '28px 32px', maxWidth: 440 }}>
-            <div style={{ display: 'flex', gap: 7, marginBottom: 24 }}>
-              {['#C84040', '#C89040', '#4A8C5C'].map(c => (
-                <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, opacity: 0.6 }} />
-              ))}
-            </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, lineHeight: 2.1, color: '#C4B8AA' }}>
-              <div><span style={{ color: '#6B5E52' }}>pilot</span> <span style={{ color: '#C8923C' }}>›</span> pre-shift check — boiler ready?</div>
-              <div style={{ color: '#6EAB7E', paddingLeft: 12 }}>Boiler at 93°C. Pressure nominal.</div>
-              <div style={{ color: '#6EAB7E', paddingLeft: 12 }}>Flush the group. Ready for first pull.</div>
-              <div style={{ marginTop: 16 }}><span style={{ color: '#6B5E52' }}>pilot</span> <span style={{ color: '#C8923C' }}>›</span> solenoid not releasing between shots</div>
-              <div style={{ color: '#6EAB7E', paddingLeft: 12 }}>Classic three-way valve clog.</div>
-              <div style={{ color: '#6EAB7E', paddingLeft: 12 }}>Backflush with Cafiza — 5 cycles.</div>
-              <div style={{ color: '#C89040', paddingLeft: 12 }}>If persists: disassemble and inspect.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Curriculum ──────────────────────────────────────────────── */}
       <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)', borderBottom: '1px solid #1E1A17' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
@@ -206,10 +145,10 @@ export default function ProductsPage() {
               Curriculum
             </div>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 14 }}>
-              From fundamentals to the bar.
+              From the first shot to the final assessment.
             </h2>
-            <p style={{ fontSize: 15, color: '#6B5E52', lineHeight: 1.7, maxWidth: 540 }}>
-              Theory first. Extraction science second. Maintenance third. The same structure used to build professionals in any high-stakes craft. No shortcuts.
+            <p style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.7, maxWidth: 540 }}>
+              Theory first. Machine systems second. Hands-on repair third. The same structure used to build professionals in any high-stakes craft. No shortcuts.
             </p>
           </div>
 
@@ -218,7 +157,7 @@ export default function ProductsPage() {
               <div key={mod.num} className="mod-card" style={{ background: '#1A1614', padding: '32px 28px', borderRadius: 4 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C8923C', letterSpacing: '0.16em' }}>{mod.num}</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B5E52', background: '#0E0C0A', padding: '3px 8px', borderRadius: 2 }}>{mod.tag}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C4B8AA', background: '#0E0C0A', padding: '3px 8px', borderRadius: 2 }}>{mod.tag}</span>
                 </div>
                 <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: 16, fontWeight: 700, color: 'white', marginBottom: 10, letterSpacing: '0.02em' }}>
                   {mod.name}
@@ -240,48 +179,6 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* ── Earn Your Wings ─────────────────────────────────────────── */}
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)', borderBottom: '1px solid #1E1A17', background: 'radial-gradient(ellipse 60% 50% at 50% 100%, rgba(200,146,60,0.05) 0%, transparent 70%)' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ marginBottom: 48 }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.24em', textTransform: 'uppercase', color: '#C8923C', marginBottom: 14 }}>
-              Certification
-            </div>
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 14 }}>
-              Earn your wings.
-            </h2>
-            <p style={{ fontSize: 15, color: '#6B5E52', lineHeight: 1.7, maxWidth: 520 }}>
-              Complete the Hero-Champion curriculum. Unlock Test Prep. Pass the final assessment. Graduate as a certified Barista Champion.
-            </p>
-          </div>
-
-          <div style={{ background: 'linear-gradient(135deg, #1C1A14 0%, #1A1610 60%, #1C1A14 100%)', border: '1px solid rgba(200,146,60,0.4)', borderRadius: 6, padding: '40px 36px', maxWidth: 720 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#C8923C', letterSpacing: '0.16em' }}>{CERT_MODULE.num}</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#C8923C', background: 'rgba(200,146,60,0.1)', padding: '3px 10px', borderRadius: 2, border: '1px solid rgba(200,146,60,0.3)' }}>
-                {CERT_MODULE.tag}
-              </span>
-            </div>
-            <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: 20, fontWeight: 700, color: 'white', marginBottom: 12, letterSpacing: '0.02em' }}>
-              {CERT_MODULE.name}
-            </h3>
-            <p style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.7, marginBottom: 24 }}>
-              {CERT_MODULE.desc}
-            </p>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {CERT_MODULE.points.map((p, i) => (
-                <li key={p} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: i === 0 ? '#C8923C' : '#4A8C5C', flexShrink: 0, marginTop: 1 }}>
-                    {i === 0 ? '★' : '✓'}
-                  </span>
-                  <span style={{ fontSize: 13, color: i === 0 ? '#C8923C' : '#C4B8AA', lineHeight: 1.55, fontWeight: i === 0 ? 600 : 400 }}>{p}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
       {/* ── Control Tower (Business Platform) ───────────────────────── */}
       <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
@@ -290,10 +187,10 @@ export default function ProductsPage() {
               Control Tower
             </div>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, letterSpacing: '-0.01em', color: 'white', marginBottom: 14 }}>
-              The owner&apos;s view<br />
-              <span style={{ color: '#C8923C' }}>of the training program.</span>
+              The business owner&apos;s view<br />
+              <span style={{ color: '#C4B8AA' }}>of the training program.</span>
             </h2>
-            <p style={{ fontSize: 15, color: '#6B5E52', lineHeight: 1.7, maxWidth: 580 }}>
+            <p style={{ fontSize: 15, color: '#C4B8AA', lineHeight: 1.7, maxWidth: 580 }}>
               The web platform gives operators the full picture — which baristas are progressing through the curriculum, which machines are due for service, and what the operation needs next. Ully AI advises both the barista at the bar and the owner at the desk. Included in Pro Annual.
             </p>
           </div>

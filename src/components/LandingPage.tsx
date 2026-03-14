@@ -165,10 +165,62 @@ export default function LandingPage({ loggedIn }: Props) {
         </div>
       </section>
 
-      {/* ── Mobile App + Terminal ────────────────────────── */}
+      {/* ── Ully AI — Copilot ────────────────────────────── */}
       <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
 
-      <section style={{ padding: 'clamp(24px, 4vw, 48px) clamp(24px, 8vw, 120px)' }}>
+      <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(24px, 8vw, 120px)', background: token.bg }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 64, alignItems: 'center', maxWidth: 1100, margin: '0 auto' }}>
+          <div>
+            <div style={{ fontFamily: token.mono, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
+              01 — Ully AI
+            </div>
+            <h2 className="fade-left" style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.01em', color: 'white', marginBottom: 20 }}>
+              Your copilot.<br />Every shift.
+            </h2>
+            <p className="fade-left delay-1" style={{ fontSize: 16, color: token.subtle, lineHeight: 1.75, marginBottom: 28 }}>
+              Ully is the espresso instructor in your ear during every service — machine-level vocabulary, specific numbers, direct diagnosis. Pre-shift checks, mid-rush faults, post-shift debriefs. No hedging. Powered by Claude Sonnet.
+            </p>
+            <div className="fade-left delay-2" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                'Pre-shift check — what do I inspect before first pull?',
+                'Solenoid not releasing pressure between shots',
+                'Shot channeling badly — third attempt, same result',
+                'Walk me through an OPV calibration procedure',
+              ].map(q => (
+                <div key={q} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                  <span style={{ fontFamily: token.mono, fontSize: 11, color: token.gold, marginTop: 2, flexShrink: 0 }}>→</span>
+                  <span style={{ fontFamily: token.mono, fontSize: 12, color: token.subtle, lineHeight: 1.5 }}>{q}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="fade-right delay-1 terminal-deco" style={{
+            background: token.card, border: `1px solid ${token.line}`, borderRadius: 6,
+            padding: '28px 32px', maxWidth: 440,
+          }}>
+            <div style={{ display: 'flex', gap: 7, marginBottom: 24 }}>
+              {['#C84040', '#C89040', '#4A8C5C'].map(c => (
+                <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, opacity: 0.6 }} />
+              ))}
+            </div>
+            <div style={{ fontFamily: token.mono, fontSize: 12, lineHeight: 2.1, color: token.subtle }}>
+              <div><span style={{ color: token.muted }}>pilot</span> <span style={{ color: token.gold }}>›</span> pre-shift check — boiler ready?</div>
+              <div style={{ color: '#6EAB7E', paddingLeft: 12 }}>Boiler at 93°C. Pressure nominal.</div>
+              <div style={{ color: '#6EAB7E', paddingLeft: 12 }}>Flush the group. Ready for first pull.</div>
+              <div style={{ marginTop: 16 }}><span style={{ color: token.muted }}>pilot</span> <span style={{ color: token.gold }}>›</span> solenoid not releasing between shots</div>
+              <div style={{ color: '#6EAB7E', paddingLeft: 12 }}>Classic three-way valve clog.</div>
+              <div style={{ color: '#6EAB7E', paddingLeft: 12 }}>Backflush with Cafiza — 5 cycles.</div>
+              <div style={{ color: '#C89040', paddingLeft: 12 }}>If persists: disassemble and inspect.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Mobile App ───────────────────────────────────── */}
+      <div style={{ height: 1, background: `linear-gradient(to right, transparent, ${token.line}, transparent)`, margin: '0 40px' }} />
+
+      <section style={{ padding: 'clamp(60px, 4vw, 80px) clamp(24px, 8vw, 120px)' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 40, justifyContent: 'space-between' }}>
           <div style={{ maxWidth: 480 }}>
             <p className="fade-left" style={{ fontFamily: token.mono, fontSize: 12, letterSpacing: '0.22em', textTransform: 'uppercase', color: token.gold, marginBottom: 16 }}>
@@ -201,28 +253,9 @@ export default function LandingPage({ loggedIn }: Props) {
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">{icon}</svg>
                   <span style={{ fontFamily: token.mono, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase' }}>{label}</span>
-                  <span style={{ fontFamily: token.mono, fontSize: 10, color: token.subtle, letterSpacing: '0.1em' }}>Coming Soon</span>
+                  <span style={{ fontFamily: token.mono, fontSize: 10, color: token.muted, letterSpacing: '0.1em' }}>Coming Soon</span>
                 </a>
               ))}
-            </div>
-          </div>
-
-          <div className="fade-right delay-2 terminal-deco" style={{
-            background: token.card, border: `1px solid ${token.line}`, borderRadius: 4,
-            padding: '29px 34px', minWidth: 312, maxWidth: 408,
-          }}>
-            <div style={{ display: 'flex', gap: 7, marginBottom: 24 }}>
-              {['#C84040', '#C89040', '#4A8C5C'].map(c => (
-                <div key={c} style={{ width: 11, height: 11, borderRadius: '50%', background: c, opacity: 0.7 }} />
-              ))}
-            </div>
-            <div style={{ fontFamily: token.mono, fontSize: 13, lineHeight: 2, color: token.subtle }}>
-              <div><span style={{ color: token.gold }}>pilot</span> &gt; pre-shift check — machine ready?</div>
-              <div style={{ color: '#6EAB7E', marginTop: 4 }}>Boiler at 93°C. Pressure nominal.</div>
-              <div style={{ color: '#6EAB7E' }}>{'  '}Flush the group. Ready for first pull.</div>
-              <div style={{ marginTop: 8 }}><span style={{ color: token.gold }}>pilot</span> &gt; shots pulling fast and thin</div>
-              <div style={{ color: '#6EAB7E', marginTop: 4 }}>Under-extracted. OPV first, then grind.</div>
-              <div style={{ color: '#6EAB7E' }}>{'  '}Target: 9 bar, 27–30s, 1:2 ratio.</div>
             </div>
           </div>
         </div>
@@ -240,7 +273,7 @@ export default function LandingPage({ loggedIn }: Props) {
               Ready to earn your wings?
             </h2>
             <div className="fade-up delay-1" style={{ marginTop: 32 }}>
-              <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C4B8AA', marginBottom: 18 }}>
+              <p style={{ fontFamily: token.mono, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: token.subtle, marginBottom: 18 }}>
                 Sign up for updates on our latest innovations
               </p>
               {newsSent ? (
@@ -289,7 +322,7 @@ export default function LandingPage({ loggedIn }: Props) {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <a href="/" style={{ fontFamily: token.pixel, fontSize: 12, color: token.gold, letterSpacing: '0.1em', textDecoration: 'none' }}>ULLY</a>
-          <span style={{ fontFamily: token.mono, fontSize: 11, color: '#C4B8AA', letterSpacing: '0.08em' }}>© 2026 Ully App</span>
+          <span style={{ fontFamily: token.mono, fontSize: 11, color: token.subtle, letterSpacing: '0.08em' }}>© 2026 Ully App</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 28, flexWrap: 'wrap' }}>
           {[['Privacy', '/privacy'], ['Terms', '/terms']].map(([label, href]) => (

@@ -2,10 +2,10 @@ export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
-import { getSession, clearSessionCookie } from '@/lib/auth'
+import { getSession, clearSessionCookie, signToken, setSessionCookie } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { organizations, users, schedules, inventory, expenseRecords, revenueRecords, serviceRecords, teamMembers, equipment, invites, trainingLogs } from '@/lib/schema'
-import { eq } from 'drizzle-orm'
+import { eq, sql } from 'drizzle-orm'
 
 export const runtime = 'nodejs'
 
@@ -86,7 +86,28 @@ export async function PATCH(req: NextRequest) {
     if (!valid) return NextResponse.json({ error: 'Current password is incorrect' }, { status: 401 })
 
     const newHash = await bcrypt.hash(newPassword, 12)
-    db.update(users).set({ passwordHash: newHash }).where(eq(users.id, session.userId)).run()
+    db.update(users)
+      .set({ passwordHash: newHash })
+      .where(eq(users.id, session.userId))
+      .run()
+    // Increment session_version to invalidate existing sessions on other devices
+    db.run(sql`UPDATE users SET session_version = session_version + 1 WHERE id = ${session.userId}`)
+
+    // Re-fetch updated user to get new session_version
+    const updatedUser = db.select().from(users).where(eq(users.id, session.userId)).get()
+    const newSv = (updatedUser as unknown as { session_version?: number }).session_version ?? 1
+
+    const org = db.select().from(organizations).where(eq(organizations.id, session.orgId)).get()
+    const newToken = await signToken({
+      userId: session.userId,
+      orgId: session.orgId,
+      role: session.role,
+      email: session.email,
+      name: session.name,
+      orgName: org?.name ?? session.orgName,
+      sv: newSv,
+    })
+    await setSessionCookie(newToken)
 
     return NextResponse.json({ ok: true })
   }

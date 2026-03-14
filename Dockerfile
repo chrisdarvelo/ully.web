@@ -5,9 +5,9 @@ RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt
 
 WORKDIR /app
 
-# Install dependencies (no lockfile — resolves platform-specific optionals correctly)
-COPY package.json ./
-RUN npm install
+# Install dependencies
+COPY package.json package-lock.json ./
+RUN npm ci
 
 # Copy source and build
 COPY . .

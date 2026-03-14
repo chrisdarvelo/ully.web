@@ -5,12 +5,15 @@ import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { revenueRecords, expenseRecords } from '@/lib/schema'
 import { eq, and, desc } from 'drizzle-orm'
+import { checkPlan } from '@/lib/plan-gate'
 
 export const runtime = 'nodejs'
 
 export async function GET(req: NextRequest) {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const plan = await checkPlan(session.orgId)
+  if (!plan.allowed) return NextResponse.json({ error: 'Active subscription required.' }, { status: 402 })
 
   const type = req.nextUrl.searchParams.get('type')
 
@@ -36,6 +39,8 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const plan = await checkPlan(session.orgId)
+  if (!plan.allowed) return NextResponse.json({ error: 'Active subscription required.' }, { status: 402 })
   if (!['owner', 'manager'].includes(session.role)) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const body = await req.json()

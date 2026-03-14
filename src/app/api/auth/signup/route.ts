@@ -60,6 +60,7 @@ export async function POST(req: NextRequest) {
       email: email.toLowerCase().trim(),
       name: name.trim(),
       orgName: orgName.trim(),
+      sv: 1,
     })
 
     await setSessionCookie(token)

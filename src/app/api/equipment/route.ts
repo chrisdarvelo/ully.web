@@ -5,12 +5,15 @@ import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { equipment, serviceRecords } from '@/lib/schema'
 import { eq, and } from 'drizzle-orm'
+import { checkPlan } from '@/lib/plan-gate'
 
 export const runtime = 'nodejs'
 
 export async function GET() {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const plan = await checkPlan(session.orgId)
+  if (!plan.allowed) return NextResponse.json({ error: 'Active subscription required.' }, { status: 402 })
 
   const items = db.select().from(equipment).where(eq(equipment.orgId, session.orgId)).all()
   return NextResponse.json(items)
@@ -19,6 +22,8 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const session = await getSession()
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const plan = await checkPlan(session.orgId)
+  if (!plan.allowed) return NextResponse.json({ error: 'Active subscription required.' }, { status: 402 })
   if (!['owner', 'manager'].includes(session.role)) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const { name, type, brand, model, serial, status, notes } = await req.json()

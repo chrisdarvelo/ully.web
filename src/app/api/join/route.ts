@@ -58,6 +58,7 @@ export async function POST(req: NextRequest) {
       role: invite.role,
       name: userName.trim(),
       orgName: org.name,
+      sv: 1,
     })
     await setSessionCookie(token)
 

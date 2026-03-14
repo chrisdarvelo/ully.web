@@ -1,5 +1,7 @@
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
+import Database from 'better-sqlite3'
+import path from 'path'
 
 const COOKIE_NAME = 'ully_session'
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 7 // 7 days
@@ -19,6 +21,18 @@ export interface SessionPayload {
   email: string
   name: string
   orgName: string
+  sv: number
+}
+
+function getSessionVersion(userId: string): number | null {
+  try {
+    const sqlite = new Database(path.join(process.cwd(), 'data', 'ully.db'))
+    const row = sqlite.prepare('SELECT session_version FROM users WHERE id = ?').get(userId) as { session_version: number } | undefined
+    sqlite.close()
+    return row?.session_version ?? null
+  } catch {
+    return null
+  }
 }
 
 export async function signToken(payload: SessionPayload): Promise<string> {
@@ -42,7 +56,11 @@ export async function getSession(): Promise<SessionPayload | null> {
   const cookieStore = await cookies()
   const token = cookieStore.get(COOKIE_NAME)?.value
   if (!token) return null
-  return verifyToken(token)
+  const payload = await verifyToken(token)
+  if (!payload) return null
+  const currentVersion = getSessionVersion(payload.userId)
+  if (currentVersion !== null && payload.sv !== currentVersion) return null
+  return payload
 }
 
 export async function setSessionCookie(token: string): Promise<void> {

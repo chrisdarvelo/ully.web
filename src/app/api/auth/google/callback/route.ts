@@ -12,16 +12,29 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const code = searchParams.get('code')
   const errorParam = searchParams.get('error')
+  const stateParam = searchParams.get('state')
+  const stateCookie = req.cookies.get('oauth_state')?.value
+
+  // Validate CSRF state parameter
+  if (!stateParam || !stateCookie || stateParam !== stateCookie) {
+    const res = NextResponse.redirect(new URL('/login?error=invalid_state', BASE_URL))
+    res.cookies.delete('oauth_state')
+    return res
+  }
 
   if (errorParam || !code) {
-    return NextResponse.redirect(new URL('/login?error=google_cancelled', BASE_URL))
+    const res = NextResponse.redirect(new URL('/login?error=google_cancelled', BASE_URL))
+    res.cookies.delete('oauth_state')
+    return res
   }
 
   const clientId = process.env.GOOGLE_CLIENT_ID
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET
 
   if (!clientId || !clientSecret) {
-    return NextResponse.redirect(new URL('/login?error=google_not_configured', BASE_URL))
+    const res = NextResponse.redirect(new URL('/login?error=google_not_configured', BASE_URL))
+    res.cookies.delete('oauth_state')
+    return res
   }
 
   try {
@@ -39,7 +52,9 @@ export async function GET(req: NextRequest) {
     })
 
     if (!tokenRes.ok) {
-      return NextResponse.redirect(new URL('/login?error=google_failed', BASE_URL))
+      const res = NextResponse.redirect(new URL('/login?error=google_failed', BASE_URL))
+      res.cookies.delete('oauth_state')
+      return res
     }
 
     const { access_token } = await tokenRes.json()
@@ -50,7 +65,9 @@ export async function GET(req: NextRequest) {
     })
 
     if (!userRes.ok) {
-      return NextResponse.redirect(new URL('/login?error=google_failed', BASE_URL))
+      const res = NextResponse.redirect(new URL('/login?error=google_failed', BASE_URL))
+      res.cookies.delete('oauth_state')
+      return res
     }
 
     const googleUser = await userRes.json()
@@ -58,7 +75,9 @@ export async function GET(req: NextRequest) {
     const name: string = googleUser.name ?? ''
 
     if (!email) {
-      return NextResponse.redirect(new URL('/login?error=google_no_email', BASE_URL))
+      const res = NextResponse.redirect(new URL('/login?error=google_no_email', BASE_URL))
+      res.cookies.delete('oauth_state')
+      return res
     }
 
     // Look up existing user
@@ -66,7 +85,9 @@ export async function GET(req: NextRequest) {
 
     if (user) {
       if (!user.orgId) {
-        return NextResponse.redirect(new URL('/login?error=account_error', BASE_URL))
+        const res = NextResponse.redirect(new URL('/login?error=account_error', BASE_URL))
+        res.cookies.delete('oauth_state')
+        return res
       }
 
       // Existing user with org — sign them in
@@ -79,17 +100,24 @@ export async function GET(req: NextRequest) {
         email: user.email,
         name: user.name,
         orgName: org?.name ?? '',
+        sv: (user as unknown as { session_version?: number }).session_version ?? 1,
       })
 
       await setSessionCookie(token)
-      return NextResponse.redirect(new URL('/dashboard', BASE_URL))
+      const res = NextResponse.redirect(new URL('/dashboard', BASE_URL))
+      res.cookies.delete('oauth_state')
+      return res
     }
 
     // No account — send to signup with pre-filled fields
     const params = new URLSearchParams({ email, name })
-    return NextResponse.redirect(new URL(`/signup?${params}`, BASE_URL))
+    const res = NextResponse.redirect(new URL(`/signup?${params}`, BASE_URL))
+    res.cookies.delete('oauth_state')
+    return res
   } catch (err) {
     console.error('[google/callback]', err)
-    return NextResponse.redirect(new URL('/login?error=google_failed', BASE_URL))
+    const res = NextResponse.redirect(new URL('/login?error=google_failed', BASE_URL))
+    res.cookies.delete('oauth_state')
+    return res
   }
 }

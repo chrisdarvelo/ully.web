@@ -170,6 +170,19 @@ function createDb() {
     );
   `)
 
+  // DB indexes for high-frequency org_id queries
+  sqlite.exec(`
+    CREATE INDEX IF NOT EXISTS idx_equipment_org ON equipment(org_id);
+    CREATE INDEX IF NOT EXISTS idx_service_records_org ON service_records(org_id);
+    CREATE INDEX IF NOT EXISTS idx_team_members_org ON team_members(org_id);
+    CREATE INDEX IF NOT EXISTS idx_schedules_org_date ON schedules(org_id, date);
+    CREATE INDEX IF NOT EXISTS idx_inventory_org ON inventory(org_id);
+    CREATE INDEX IF NOT EXISTS idx_revenue_org_date ON revenue_records(org_id, date);
+    CREATE INDEX IF NOT EXISTS idx_expense_org_date ON expense_records(org_id, date);
+    CREATE INDEX IF NOT EXISTS idx_training_logs_org ON training_logs(org_id);
+    CREATE INDEX IF NOT EXISTS idx_chat_sessions_org_user ON chat_sessions(org_id, user_id);
+  `)
+
   // Stripe billing columns migration (safe — ignored if column already exists)
   const addCol = (col: string) => {
     try { sqlite.exec(col) } catch { /* column already exists */ }
@@ -179,6 +192,7 @@ function createDb() {
   addCol(`ALTER TABLE organizations ADD COLUMN plan TEXT DEFAULT 'trial'`)
   addCol(`ALTER TABLE organizations ADD COLUMN plan_status TEXT DEFAULT 'trialing'`)
   addCol(`ALTER TABLE organizations ADD COLUMN trial_ends_at INTEGER`)
+  addCol(`ALTER TABLE users ADD COLUMN session_version INTEGER NOT NULL DEFAULT 1`)
 
   return db
 }

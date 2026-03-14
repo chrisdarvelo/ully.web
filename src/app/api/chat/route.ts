@@ -3,6 +3,25 @@ export const runtime = 'nodejs'
 
 import { NextRequest, NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
+
+// ── In-process rate limiter ────────────────────────────────────────────────────
+const chatRateLimit = new Map<string, { count: number; windowStart: number }>()
+const CHAT_LIMIT = 20
+const CHAT_WINDOW_MS = 60_000
+
+function checkRateLimit(userId: string): boolean {
+  const now = Date.now()
+  const entry = chatRateLimit.get(userId)
+  if (!entry || now - entry.windowStart >= CHAT_WINDOW_MS) {
+    chatRateLimit.set(userId, { count: 1, windowStart: now })
+    return false
+  }
+  if (entry.count >= CHAT_LIMIT) {
+    return true
+  }
+  entry.count++
+  return false
+}
 import { getClaudeClient, buildSystemPrompt, EMAIL_TOOL } from '@/lib/claude'
 import type { OrgContext } from '@/lib/claude'
 import { sendEmail, formatEmailBody } from '@/lib/email'
@@ -39,6 +58,10 @@ export async function POST(req: NextRequest) {
   const session = await getSession()
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  if (checkRateLimit(session.userId)) {
+    return NextResponse.json({ error: 'Rate limit exceeded. Try again shortly.' }, { status: 429 })
   }
 
   try {

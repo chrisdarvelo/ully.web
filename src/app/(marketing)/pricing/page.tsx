@@ -86,7 +86,7 @@ export default function PricingPage() {
             <h1 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 700, letterSpacing: '-0.02em', color: 'white', marginBottom: 14 }}>
               Choose your plan.
             </h1>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#6B5E52', letterSpacing: '0.06em', maxWidth: 480, margin: '0 auto' }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: '#8A7E72', letterSpacing: '0.06em', maxWidth: 480, margin: '0 auto' }}>
               Start with the basics. Earn your wings when you&apos;re ready.
             </p>
           </div>

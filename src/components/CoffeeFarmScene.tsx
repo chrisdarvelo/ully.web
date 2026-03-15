@@ -28,24 +28,38 @@ export default function CoffeeFarmScene() {
             <stop offset="100%" stopColor="#7EC8E8" />
           </linearGradient>
 
-          {/* ── Mario-style Rounded Mountain ────────────────────────── */}
-          <symbol id="mario-mountain" overflow="visible">
-            {/* Layers for rounded effect */}
-            <rect x="-25" y="-5"  width="50" height="5" fill="#4DB14D" />
-            <rect x="-22" y="-10" width="44" height="5" fill="#4DB14D" />
-            <rect x="-18" y="-15" width="36" height="5" fill="#4DB14D" />
-            <rect x="-13" y="-20" width="26" height="5" fill="#4DB14D" />
-            <rect x="-7"  y="-25" width="14" height="5" fill="#4DB14D" />
-            {/* Side Shadow */}
-            <rect x="5"   y="-5"  width="20" height="5" fill="#3A8E3A" />
-            <rect x="8"   y="-10" width="14" height="5" fill="#3A8E3A" />
-            <rect x="5"   y="-15" width="13" height="5" fill="#3A8E3A" />
-            <rect x="2"   y="-20" width="11" height="5" fill="#3A8E3A" />
-            <rect x="0"   y="-25" width="7"  height="5" fill="#3A8E3A" />
-            {/* Texture dots */}
-            <rect x="-12" y="-12" width="3"  height="3" fill="#6ACD6A" opacity="0.5" />
-            <rect x="-4"  y="-18" width="3"  height="3" fill="#6ACD6A" opacity="0.5" />
-            <rect x="8"   y="-8"  width="3"  height="3" fill="#2E752E" opacity="0.3" />
+          {/* ── Realistic Pixel Mountain ──────────────────────────── */}
+          <symbol id="pixel-mountain" overflow="visible">
+            {/* Main structural blocks (Lush Green) */}
+            <rect x="-80" y="-12" width="160" height="12" fill="#228B22" />
+            <rect x="-65" y="-28" width="130" height="16" fill="#228B22" />
+            <rect x="-45" y="-48" width="90"  height="20" fill="#228B22" />
+            <rect x="-25" y="-72" width="50"  height="24" fill="#228B22" />
+            <rect x="-10" y="-90" width="20"  height="18" fill="#228B22" />
+
+            {/* Shadow Side (Left side shadow as sun is at x=870) */}
+            <g opacity="0.35" fill="#004400">
+              <rect x="-80" y="-12" width="60" height="12" />
+              <rect x="-65" y="-28" width="55" height="16" />
+              <rect x="-45" y="-48" width="40" height="20" />
+              <rect x="-25" y="-72" width="22" height="24" />
+              <rect x="-10" y="-90" width="10" height="18" />
+            </g>
+
+            {/* Light side Highlights (Right edge) */}
+            <g opacity="0.2" fill="#90EE90">
+              <rect x="70"  y="-12" width="10" height="12" />
+              <rect x="55"  y="-28" width="10" height="16" />
+              <rect x="35"  y="-48" width="10" height="20" />
+              <rect x="15"  y="-72" width="10" height="24" />
+              <rect x="5"   y="-90" width="5"  height="18" />
+            </g>
+
+            {/* Texture Patches / Crags */}
+            <rect x="-30" y="-15" width="8"  height="4"  fill="#004400" opacity="0.2" />
+            <rect x="20"  y="-35" width="6"  height="10" fill="#004400" opacity="0.1" />
+            <rect x="-5"  y="-55" width="12" height="6"  fill="#004400" opacity="0.15" />
+            <rect x="10"  y="-65" width="4"  height="8"  fill="#90EE90" opacity="0.1" />
           </symbol>
 
           {/* ── Variant A — 6 branches, alternating sides ────────────── */}
@@ -366,24 +380,6 @@ export default function CoffeeFarmScene() {
               <rect x="-7" y="-34" width="2.5" height="2.5" /><rect x="5" y="-35" width="2.5" height="2.5" />
             </g>
           </symbol>
-
-          <symbol id="pixel-mountain" overflow="visible">
-            <rect x="-60" y="-20" width="120" height="20" fill="#228B22" />
-            <rect x="-45" y="-40" width="90"  height="20" fill="#228B22" />
-            <rect x="-25" y="-60" width="50"  height="20" fill="#228B22" />
-            <rect x="-45" y="-40" width="10"  height="20" fill="#2E8B57" opacity="0.4" />
-            <rect x="-25" y="-60" width="10"  height="20" fill="#2E8B57" opacity="0.4" />
-          </symbol>
-
-          {/* ── Palm Tree Variant ─────────────────────────────────── */}
-          <symbol id="cp-palm" overflow="visible">
-            <rect x="-2" y="-60" width="4" height="60" fill="#3d2b1f" />
-            <rect x="-18" y="-62" width="16" height="3" fill="#2e5a1c" />
-            <rect x="2"   y="-62" width="16" height="3" fill="#2e5a1c" />
-            <rect x="-14" y="-66" width="12" height="3" fill="#3a7023" />
-            <rect x="2"   y="-66" width="12" height="3" fill="#3a7023" />
-            <rect x="-8"  y="-70" width="16" height="4" fill="#468a2c" />
-          </symbol>
         </defs>
 
         <rect width="1440" height="320" fill="url(#skyGrad)" />
@@ -402,6 +398,7 @@ export default function CoffeeFarmScene() {
           <rect x="865"  y="65" width="15"  height="5"  opacity="0.9" />
         </g>
 
+        {/* ── Background Realistic Mountains ────────────────────────── */}
         <use href="#pixel-mountain" x="250"  y="286" transform="scale(2.5)" opacity="0.4" />
         <use href="#pixel-mountain" x="1150" y="286" transform="scale(2.2)" opacity="0.35" />
         <use href="#pixel-mountain" x="600"  y="286" transform="scale(3.2)" opacity="0.25" />
@@ -460,16 +457,6 @@ export default function CoffeeFarmScene() {
         <rect x="0" y="300" width="1440" height="5" fill="#2A1408" opacity="0.40" />
 
         <g transform="translate(0, 286)">
-
-          {/* ── Rounded Mario-style Mountains (Behind Palms) ───────── */}
-          <use href="#mario-mountain" x="60"   y="26" transform="scale(1.2)" />
-          <use href="#mario-mountain" x="1380" y="26" transform="scale(1.3)" />
-
-          {/* ── Palm Trees (Edges) ─────────────────────────────────── */}
-          <use href="#cp-palm" x="40"   y="26" transform="scale(0.85)" />
-          <use href="#cp-palm" x="80"   y="26" transform="scale(0.75)" />
-          <use href="#cp-palm" x="1360" y="26" transform="scale(0.90)" />
-          <use href="#cp-palm" x="1400" y="26" transform="scale(0.80)" />
 
           {/*
             COFFEE PLANTATION — Aligned Groups of 5

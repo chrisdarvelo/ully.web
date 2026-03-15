@@ -29,14 +29,45 @@ export default function CoffeeFarmScene() {
           <symbol id="coffee-plant" overflow="visible">
             {/* Trunk */}
             <rect x="-1.5" y="-48" width="3" height="48" fill="#2d1e14" />
-            
-            {/* Foliage Blocks (20% smaller overall) */}
+
+            {/* Foliage Blocks */}
             <rect x="-19" y="-16" width="38" height="10" fill="#0d2607" />
             <rect x="-16" y="-29" width="32" height="10" fill="#113309" />
             <rect x="-11" y="-42" width="22" height="10" fill="#16400c" />
             <rect x="-5"  y="-51" width="10" height="10" fill="#1b4d0f" />
 
-            {/* Masses of Fruits */}
+            {/* ── 6 Branches (3 left, 3 right) with fruits ────────────── */}
+            {/* Upper-right branch — emerges at third foliage layer edge */}
+            <rect x="10" y="-38" width="10" height="2" fill="#2d1e14" />
+            <rect x="19" y="-40" width="3" height="3" fill="#c41e3a" />
+            <rect x="19" y="-37" width="3" height="3" fill="#e8a840" />
+
+            {/* Upper-left branch */}
+            <rect x="-20" y="-35" width="10" height="2" fill="#2d1e14" />
+            <rect x="-23" y="-37" width="3" height="3" fill="#c41e3a" />
+            <rect x="-23" y="-34" width="3" height="3" fill="#7fb041" />
+
+            {/* Mid-right branch — emerges at second foliage layer edge */}
+            <rect x="15" y="-25" width="10" height="2" fill="#2d1e14" />
+            <rect x="24" y="-27" width="3" height="3" fill="#c41e3a" />
+            <rect x="24" y="-24" width="3" height="3" fill="#c41e3a" />
+
+            {/* Mid-left branch */}
+            <rect x="-25" y="-22" width="10" height="2" fill="#2d1e14" />
+            <rect x="-28" y="-24" width="3" height="3" fill="#e8a840" />
+            <rect x="-28" y="-21" width="3" height="3" fill="#c41e3a" />
+
+            {/* Lower-right branch — emerges at bottom foliage layer edge */}
+            <rect x="18" y="-12" width="10" height="2" fill="#2d1e14" />
+            <rect x="27" y="-14" width="3" height="3" fill="#c41e3a" />
+            <rect x="27" y="-11" width="3" height="3" fill="#e8a840" />
+
+            {/* Lower-left branch */}
+            <rect x="-28" y="-9" width="10" height="2" fill="#2d1e14" />
+            <rect x="-31" y="-11" width="3" height="3" fill="#c41e3a" />
+            <rect x="-31" y="-8"  width="3" height="3" fill="#c41e3a" />
+
+            {/* Masses of Fruits (on foliage) */}
             <g>
               <g fill="#c41e3a">
                 <rect x="-3" y="-50" width="2.5" height="2.5" /><rect x="1.5" y="-52" width="2.5" height="2.5" />
@@ -50,7 +81,6 @@ export default function CoffeeFarmScene() {
                 <rect x="-12" y="-26" width="3" height="3" /><rect x="-8" y="-28" width="3" height="3" />
                 <rect x="6"   y="-24" width="3" height="3" /><rect x="10"  y="-27" width="3" height="3" />
                 <rect x="-3"  y="-32" width="3" height="3" /><rect x="1.5"   y="-30" width="3" height="3" />
-                {/* 7 new red fruits */}
                 <rect x="-17" y="-20" width="3" height="3" /><rect x="14"  y="-19" width="2.5" height="2.5" />
                 <rect x="-9"  y="-23" width="3" height="3" /><rect x="8"   y="-32" width="2.5" height="2.5" />
                 <rect x="-13" y="-35" width="3" height="3" /><rect x="4"   y="-38" width="2.5" height="2.5" />
@@ -62,7 +92,6 @@ export default function CoffeeFarmScene() {
                 <rect x="-5" y="-42" width="2.5" height="2.5" />
                 <rect x="1.5"  y="-37" width="2.5" height="2.5" />
                 <rect x="-2.5" y="-47" width="2.5" height="2.5" />
-                {/* 2 new yellow fruits */}
                 <rect x="6"   y="-25" width="2.5" height="2.5" />
                 <rect x="-11" y="-33" width="2.5" height="2.5" />
               </g>
@@ -71,7 +100,6 @@ export default function CoffeeFarmScene() {
                 <rect x="11"  y="-22" width="2.5" height="2.5" />
                 <rect x="0"   y="-36" width="2.5" height="2.5" />
                 <rect x="-8" y="-46" width="2.5" height="2.5" />
-                {/* 1 new green fruit */}
                 <rect x="12"  y="-16" width="2.5" height="2.5" />
               </g>
             </g>
@@ -185,78 +213,78 @@ export default function CoffeeFarmScene() {
         <rect x="0" y="286" width="1440" height="34" fill="#1A3A0E" />
         <rect x="0" y="286" width="1440" height="4"  fill="#0E2208" opacity="0.4" />
 
-        {/* ── Dense Coffee Plantation (20% smaller, 20% tighter spacing) ── */}
+        {/* ── Dense Coffee Plantation ── */}
         <g transform="translate(20, 286)">
           {/* Back Row - X step 20 */}
-          <use href="#coffee-plant" x="0"   y="0" transform="scale(0.46)" />
-          <use href="#coffee-plant" x="20"  y="0" transform="scale(0.42)" />
-          <use href="#coffee-plant" x="40"  y="0" transform="scale(0.50)" />
-          <use href="#coffee-plant" x="60"  y="0" transform="scale(0.43)" />
-          <use href="#coffee-plant" x="80"  y="0" transform="scale(0.48)" />
-          <use href="#coffee-plant" x="100" y="0" transform="scale(0.40)" />
-          <use href="#coffee-plant" x="120" y="0" transform="scale(0.51)" />
-          <use href="#coffee-plant" x="140" y="0" transform="scale(0.45)" />
-          <use href="#coffee-plant" x="160" y="0" transform="scale(0.47)" />
-          <use href="#coffee-plant" x="180" y="0" transform="scale(0.42)" />
-          <use href="#coffee-plant" x="200" y="0" transform="scale(0.50)" />
-          <use href="#coffee-plant" x="220" y="0" transform="scale(0.44)" />
-          <use href="#coffee-plant" x="240" y="0" transform="scale(0.46)" />
-          <use href="#coffee-plant" x="260" y="0" transform="scale(0.41)" />
-          <use href="#coffee-plant" x="280" y="0" transform="scale(0.49)" />
-          <use href="#coffee-plant" x="300" y="0" transform="scale(0.46)" />
-          <use href="#coffee-plant" x="320" y="0" transform="scale(0.42)" />
-          <use href="#coffee-plant" x="340" y="0" transform="scale(0.50)" />
-          <use href="#coffee-plant" x="360" y="0" transform="scale(0.43)" />
-          <use href="#coffee-plant" x="380" y="0" transform="scale(0.48)" />
-          <use href="#coffee-plant" x="400" y="0" transform="scale(0.40)" />
-          <use href="#coffee-plant" x="420" y="0" transform="scale(0.51)" />
-          <use href="#coffee-plant" x="440" y="0" transform="scale(0.45)" />
-          <use href="#coffee-plant" x="460" y="0" transform="scale(0.47)" />
-          <use href="#coffee-plant" x="480" y="0" transform="scale(0.42)" />
+          <use href="#coffee-plant" x="0"   y="0" transform="scale(0.44)" />
+          <use href="#coffee-plant" x="20"  y="0" transform="scale(0.40)" />
+          <use href="#coffee-plant" x="40"  y="0" transform="scale(0.48)" />
+          <use href="#coffee-plant" x="60"  y="0" transform="scale(0.41)" />
+          <use href="#coffee-plant" x="80"  y="0" transform="scale(0.46)" />
+          <use href="#coffee-plant" x="100" y="0" transform="scale(0.38)" />
+          <use href="#coffee-plant" x="120" y="0" transform="scale(0.48)" />
+          <use href="#coffee-plant" x="140" y="0" transform="scale(0.43)" />
+          <use href="#coffee-plant" x="160" y="0" transform="scale(0.45)" />
+          <use href="#coffee-plant" x="180" y="0" transform="scale(0.40)" />
+          <use href="#coffee-plant" x="200" y="0" transform="scale(0.48)" />
+          <use href="#coffee-plant" x="220" y="0" transform="scale(0.42)" />
+          <use href="#coffee-plant" x="240" y="0" transform="scale(0.44)" />
+          <use href="#coffee-plant" x="260" y="0" transform="scale(0.39)" />
+          <use href="#coffee-plant" x="280" y="0" transform="scale(0.47)" />
+          <use href="#coffee-plant" x="300" y="0" transform="scale(0.44)" />
+          <use href="#coffee-plant" x="320" y="0" transform="scale(0.40)" />
+          <use href="#coffee-plant" x="340" y="0" transform="scale(0.48)" />
+          <use href="#coffee-plant" x="360" y="0" transform="scale(0.41)" />
+          <use href="#coffee-plant" x="380" y="0" transform="scale(0.46)" />
+          <use href="#coffee-plant" x="400" y="0" transform="scale(0.38)" />
+          <use href="#coffee-plant" x="420" y="0" transform="scale(0.48)" />
+          <use href="#coffee-plant" x="440" y="0" transform="scale(0.43)" />
+          <use href="#coffee-plant" x="460" y="0" transform="scale(0.45)" />
+          <use href="#coffee-plant" x="480" y="0" transform="scale(0.40)" />
 
           {/* Middle Row - X step 36 */}
-          <use href="#coffee-plant" x="15"  y="10" transform="scale(0.59)" />
-          <use href="#coffee-plant" x="51"  y="10" transform="scale(0.54)" />
-          <use href="#coffee-plant" x="87"  y="10" transform="scale(0.62)" />
-          <use href="#coffee-plant" x="123" y="10" transform="scale(0.56)" />
-          <use href="#coffee-plant" x="159" y="10" transform="scale(0.61)" />
-          <use href="#coffee-plant" x="195" y="10" transform="scale(0.53)" />
-          <use href="#coffee-plant" x="231" y="10" transform="scale(0.64)" />
-          <use href="#coffee-plant" x="267" y="10" transform="scale(0.58)" />
-          <use href="#coffee-plant" x="303" y="10" transform="scale(0.60)" />
-          <use href="#coffee-plant" x="339" y="10" transform="scale(0.55)" />
-          <use href="#coffee-plant" x="375" y="10" transform="scale(0.58)" />
-          <use href="#coffee-plant" x="411" y="10" transform="scale(0.57)" />
-          <use href="#coffee-plant" x="447" y="10" transform="scale(0.58)" />
-          <use href="#coffee-plant" x="483" y="10" transform="scale(0.54)" />
+          <use href="#coffee-plant" x="15"  y="10" transform="scale(0.56)" />
+          <use href="#coffee-plant" x="51"  y="10" transform="scale(0.51)" />
+          <use href="#coffee-plant" x="87"  y="10" transform="scale(0.59)" />
+          <use href="#coffee-plant" x="123" y="10" transform="scale(0.53)" />
+          <use href="#coffee-plant" x="159" y="10" transform="scale(0.58)" />
+          <use href="#coffee-plant" x="195" y="10" transform="scale(0.50)" />
+          <use href="#coffee-plant" x="231" y="10" transform="scale(0.61)" />
+          <use href="#coffee-plant" x="267" y="10" transform="scale(0.55)" />
+          <use href="#coffee-plant" x="303" y="10" transform="scale(0.57)" />
+          <use href="#coffee-plant" x="339" y="10" transform="scale(0.52)" />
+          <use href="#coffee-plant" x="375" y="10" transform="scale(0.55)" />
+          <use href="#coffee-plant" x="411" y="10" transform="scale(0.54)" />
+          <use href="#coffee-plant" x="447" y="10" transform="scale(0.55)" />
+          <use href="#coffee-plant" x="483" y="10" transform="scale(0.51)" />
 
           {/* Front Row - X step 48 */}
-          <use href="#coffee-plant" x="-10" y="25" transform="scale(0.74)" />
-          <use href="#coffee-plant" x="38"  y="25" transform="scale(0.67)" />
-          <use href="#coffee-plant" x="86"  y="25" transform="scale(0.78)" />
-          <use href="#coffee-plant" x="134" y="25" transform="scale(0.70)" />
-          <use href="#coffee-plant" x="182" y="25" transform="scale(0.80)" />
-          <use href="#coffee-plant" x="230" y="25" transform="scale(0.69)" />
-          <use href="#coffee-plant" x="278" y="25" transform="scale(0.75)" />
-          <use href="#coffee-plant" x="326" y="25" transform="scale(0.72)" />
-          <use href="#coffee-plant" x="374" y="25" transform="scale(0.77)" />
-          <use href="#coffee-plant" x="422" y="25" transform="scale(0.70)" />
-          <use href="#coffee-plant" x="470" y="25" transform="scale(0.74)" />
+          <use href="#coffee-plant" x="-10" y="25" transform="scale(0.70)" />
+          <use href="#coffee-plant" x="38"  y="25" transform="scale(0.64)" />
+          <use href="#coffee-plant" x="86"  y="25" transform="scale(0.74)" />
+          <use href="#coffee-plant" x="134" y="25" transform="scale(0.67)" />
+          <use href="#coffee-plant" x="182" y="25" transform="scale(0.76)" />
+          <use href="#coffee-plant" x="230" y="25" transform="scale(0.66)" />
+          <use href="#coffee-plant" x="278" y="25" transform="scale(0.71)" />
+          <use href="#coffee-plant" x="326" y="25" transform="scale(0.68)" />
+          <use href="#coffee-plant" x="374" y="25" transform="scale(0.73)" />
+          <use href="#coffee-plant" x="422" y="25" transform="scale(0.67)" />
+          <use href="#coffee-plant" x="470" y="25" transform="scale(0.70)" />
 
-          {/* 10 extra trees — same area, roots at ground (y ≥ 0) */}
+          {/* 10 extra trees */}
           {/* Back row extension (y=0) */}
-          <use href="#coffee-plant" x="500" y="0" transform="scale(0.44)" />
-          <use href="#coffee-plant" x="518" y="0" transform="scale(0.47)" />
-          <use href="#coffee-plant" x="538" y="0" transform="scale(0.41)" />
-          <use href="#coffee-plant" x="558" y="0" transform="scale(0.49)" />
+          <use href="#coffee-plant" x="500" y="0" transform="scale(0.42)" />
+          <use href="#coffee-plant" x="518" y="0" transform="scale(0.45)" />
+          <use href="#coffee-plant" x="538" y="0" transform="scale(0.39)" />
+          <use href="#coffee-plant" x="558" y="0" transform="scale(0.47)" />
           {/* Middle row extension (y=10) */}
-          <use href="#coffee-plant" x="519" y="10" transform="scale(0.57)" />
-          <use href="#coffee-plant" x="557" y="10" transform="scale(0.61)" />
-          <use href="#coffee-plant" x="593" y="10" transform="scale(0.55)" />
+          <use href="#coffee-plant" x="519" y="10" transform="scale(0.54)" />
+          <use href="#coffee-plant" x="557" y="10" transform="scale(0.58)" />
+          <use href="#coffee-plant" x="593" y="10" transform="scale(0.52)" />
           {/* Front row extension (y=25) */}
-          <use href="#coffee-plant" x="518" y="25" transform="scale(0.70)" />
-          <use href="#coffee-plant" x="566" y="25" transform="scale(0.73)" />
-          <use href="#coffee-plant" x="614" y="25" transform="scale(0.67)" />
+          <use href="#coffee-plant" x="518" y="25" transform="scale(0.67)" />
+          <use href="#coffee-plant" x="566" y="25" transform="scale(0.69)" />
+          <use href="#coffee-plant" x="614" y="25" transform="scale(0.64)" />
         </g>
       </svg>
     </div>

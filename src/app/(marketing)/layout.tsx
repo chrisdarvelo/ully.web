@@ -12,7 +12,6 @@ const NAV_LINKS = [
 ]
 
 const FOOTER_LINKS = [
-  ['About', '/about'],
   ['Privacy', '/privacy'],
   ['Terms', '/terms'],
 ]

@@ -257,10 +257,10 @@ export default function CoffeeFarmScene() {
             <rect x="-31" y="-18" width="2"   height="2"   fill="#c41e3a" />
             {/* Branch R3 — mid right */}
             <rect x="20"  y="-29" width="9"  height="2" fill="#2d1e14" />
+            <rect x="31"  y="-31" width="2"   height="2"   fill="#c41e3a" />
             <rect x="28"  y="-32" width="2.5" height="2.5" fill="#c41e3a" />
             <rect x="28"  y="-29" width="2.5" height="2.5" fill="#c41e3a" />
             <rect x="28"  y="-26" width="2.5" height="2.5" fill="#c41e3a" />
-            <rect x="31"  y="-31" width="2"   height="2"   fill="#c41e3a" />
             {/* Branch L3 — mid left */}
             <rect x="-28" y="-31" width="9"  height="2" fill="#2d1e14" />
             <rect x="-31" y="-34" width="2.5" height="2.5" fill="#c41e3a" />
@@ -385,157 +385,46 @@ export default function CoffeeFarmScene() {
         <rect x="0" y="286" width="1440" height="34" fill="#1A3A0E" />
         <rect x="0" y="286" width="1440" height="4"  fill="#0E2208" opacity="0.4" />
 
-        {/*
-          ── Coffee Plantation ─────────────────────────────────────────
-          Grid layout: groups of trees separated by both horizontal
-          (between depth rows) and vertical (between column groups) paths.
-
-          Column block = 90px trees + 18px path = 108px × 7 groups
-          Row spacing: y=0 (back) → y=14 (mid) → y=26 (front)
-
-          Back  row: 5 trees/group × 7 groups = 35 trees, spacing 18px
-          Mid   row: 4 trees/group × 7 groups = 28 trees, spacing 26px
-          Front row: 3 trees/group × 7 groups = 21 trees, spacing 34px
-        */}
-
         {/* Horizontal dirt paths between rows */}
-        <rect x="0" y="290" width="760" height="5" fill="#2A1408" opacity="0.50" />
-        <rect x="0" y="300" width="760" height="5" fill="#2A1408" opacity="0.50" />
-
-        {/* Vertical dirt paths between column groups */}
-        <rect x="90"  y="236" width="18" height="84" fill="#1A2A08" opacity="0.55" />
-        <rect x="198" y="236" width="18" height="84" fill="#1A2A08" opacity="0.55" />
-        <rect x="306" y="236" width="18" height="84" fill="#1A2A08" opacity="0.55" />
-        <rect x="414" y="236" width="18" height="84" fill="#1A2A08" opacity="0.55" />
-        <rect x="522" y="236" width="18" height="84" fill="#1A2A08" opacity="0.55" />
-        <rect x="630" y="236" width="18" height="84" fill="#1A2A08" opacity="0.55" />
+        <rect x="0" y="290" width="1440" height="5" fill="#2A1408" opacity="0.40" />
+        <rect x="0" y="300" width="1440" height="5" fill="#2A1408" opacity="0.40" />
 
         <g transform="translate(0, 286)">
 
           {/*
-            BACK ROW — y=0, scale 0.36–0.45, spacing 18px, 5 trees/group
-            Groups at x: 0–89 | 108–197 | 216–305 | 324–413 | 432–521 | 540–629 | 648–737
+            COFFEE PLANTATION — Aligned Groups of 5
+            Group centers: 120, 320, 520, 720, 920, 1120, 1320
+            Each group has 5 trees. Paths are the spaces between these groups.
           */}
-          {/* G1 */}
-          <use href="#cp-a" x="0"   y="0" transform="scale(0.42)" />
-          <use href="#cp-b" x="18"  y="0" transform="scale(0.38)" />
-          <use href="#cp-c" x="36"  y="0" transform="scale(0.44)" />
-          <use href="#cp-d" x="54"  y="0" transform="scale(0.39)" />
-          <use href="#cp-a" x="72"  y="0" transform="scale(0.42)" />
-          {/* G2 */}
-          <use href="#cp-b" x="108" y="0" transform="scale(0.38)" />
-          <use href="#cp-c" x="126" y="0" transform="scale(0.44)" />
-          <use href="#cp-d" x="144" y="0" transform="scale(0.40)" />
-          <use href="#cp-a" x="162" y="0" transform="scale(0.43)" />
-          <use href="#cp-b" x="180" y="0" transform="scale(0.36)" />
-          {/* G3 */}
-          <use href="#cp-c" x="216" y="0" transform="scale(0.44)" />
-          <use href="#cp-d" x="234" y="0" transform="scale(0.39)" />
-          <use href="#cp-a" x="252" y="0" transform="scale(0.42)" />
-          <use href="#cp-b" x="270" y="0" transform="scale(0.45)" />
-          <use href="#cp-c" x="288" y="0" transform="scale(0.38)" />
-          {/* G4 */}
-          <use href="#cp-d" x="324" y="0" transform="scale(0.41)" />
-          <use href="#cp-a" x="342" y="0" transform="scale(0.44)" />
-          <use href="#cp-b" x="360" y="0" transform="scale(0.36)" />
-          <use href="#cp-c" x="378" y="0" transform="scale(0.42)" />
-          <use href="#cp-d" x="396" y="0" transform="scale(0.39)" />
-          {/* G5 */}
-          <use href="#cp-a" x="432" y="0" transform="scale(0.45)" />
-          <use href="#cp-b" x="450" y="0" transform="scale(0.40)" />
-          <use href="#cp-d" x="468" y="0" transform="scale(0.43)" />
-          <use href="#cp-a" x="486" y="0" transform="scale(0.38)" />
-          <use href="#cp-c" x="504" y="0" transform="scale(0.42)" />
-          {/* G6 */}
-          <use href="#cp-b" x="540" y="0" transform="scale(0.39)" />
-          <use href="#cp-d" x="558" y="0" transform="scale(0.44)" />
-          <use href="#cp-c" x="576" y="0" transform="scale(0.41)" />
-          <use href="#cp-a" x="594" y="0" transform="scale(0.45)" />
-          <use href="#cp-b" x="612" y="0" transform="scale(0.36)" />
-          {/* G7 */}
-          <use href="#cp-d" x="648" y="0" transform="scale(0.43)" />
-          <use href="#cp-c" x="666" y="0" transform="scale(0.38)" />
-          <use href="#cp-a" x="684" y="0" transform="scale(0.44)" />
-          <use href="#cp-b" x="702" y="0" transform="scale(0.40)" />
-          <use href="#cp-d" x="720" y="0" transform="scale(0.42)" />
 
-          {/*
-            MID ROW — y=14, scale 0.48–0.56, spacing 26px, 4 trees/group, offset 8
-            Trees at: G1: 8,34,60,86 | G2: 116,142,168,194 | G3: 224,250,276,302 |
-                      G4: 332,358,384,410 | G5: 440,466,492,518 | G6: 548,574,600,626 | G7: 656,682,708,734
-          */}
-          {/* G1 */}
-          <use href="#cp-c" x="8"   y="14" transform="scale(0.52)" />
-          <use href="#cp-d" x="34"  y="14" transform="scale(0.48)" />
-          <use href="#cp-a" x="60"  y="14" transform="scale(0.55)" />
-          <use href="#cp-b" x="86"  y="14" transform="scale(0.50)" />
-          {/* G2 */}
-          <use href="#cp-d" x="116" y="14" transform="scale(0.54)" />
-          <use href="#cp-a" x="142" y="14" transform="scale(0.48)" />
-          <use href="#cp-b" x="168" y="14" transform="scale(0.56)" />
-          <use href="#cp-c" x="194" y="14" transform="scale(0.51)" />
-          {/* G3 */}
-          <use href="#cp-b" x="224" y="14" transform="scale(0.53)" />
-          <use href="#cp-d" x="250" y="14" transform="scale(0.48)" />
-          <use href="#cp-a" x="276" y="14" transform="scale(0.55)" />
-          <use href="#cp-c" x="302" y="14" transform="scale(0.50)" />
-          {/* G4 */}
-          <use href="#cp-a" x="332" y="14" transform="scale(0.52)" />
-          <use href="#cp-c" x="358" y="14" transform="scale(0.56)" />
-          <use href="#cp-b" x="384" y="14" transform="scale(0.49)" />
-          <use href="#cp-d" x="410" y="14" transform="scale(0.54)" />
-          {/* G5 */}
-          <use href="#cp-c" x="440" y="14" transform="scale(0.48)" />
-          <use href="#cp-a" x="466" y="14" transform="scale(0.51)" />
-          <use href="#cp-d" x="492" y="14" transform="scale(0.55)" />
-          <use href="#cp-b" x="518" y="14" transform="scale(0.48)" />
-          {/* G6 */}
-          <use href="#cp-a" x="548" y="14" transform="scale(0.53)" />
-          <use href="#cp-d" x="574" y="14" transform="scale(0.50)" />
-          <use href="#cp-c" x="600" y="14" transform="scale(0.52)" />
-          <use href="#cp-b" x="626" y="14" transform="scale(0.56)" />
-          {/* G7 */}
-          <use href="#cp-d" x="656" y="14" transform="scale(0.49)" />
-          <use href="#cp-b" x="682" y="14" transform="scale(0.55)" />
-          <use href="#cp-a" x="708" y="14" transform="scale(0.51)" />
-          <use href="#cp-c" x="734" y="14" transform="scale(0.48)" />
+          {[120, 320, 520, 720, 920, 1120, 1320].map((center, gi) => (
+            <g key={`group-${gi}`}>
+              {/* BACK ROW — y=0, scale ~0.42, spacing 18px */}
+              <use href="#cp-a" x={center - 36} y="0" transform="scale(0.42)" />
+              <use href="#cp-b" x={center - 18} y="0" transform="scale(0.38)" />
+              <use href="#cp-c" x={center}      y="0" transform="scale(0.44)" />
+              <use href="#cp-d" x={center + 18} y="0" transform="scale(0.40)" />
+              <use href="#cp-a" x={center + 36} y="0" transform="scale(0.43)" />
 
-          {/*
-            FRONT ROW — y=26, scale 0.62–0.70, spacing 34px, 3 trees/group, offset 6
-            Trees at: G1: 6,40,74 | G2: 114,148,182 | G3: 222,256,290 |
-                      G4: 330,364,398 | G5: 438,472,506 | G6: 546,580,614 | G7: 654,688,722
-          */}
-          {/* G1 */}
-          <use href="#cp-d" x="6"   y="26" transform="scale(0.67)" />
-          <use href="#cp-b" x="40"  y="26" transform="scale(0.62)" />
-          <use href="#cp-a" x="74"  y="26" transform="scale(0.69)" />
-          {/* G2 */}
-          <use href="#cp-c" x="114" y="26" transform="scale(0.63)" />
-          <use href="#cp-d" x="148" y="26" transform="scale(0.70)" />
-          <use href="#cp-b" x="182" y="26" transform="scale(0.64)" />
-          {/* G3 */}
-          <use href="#cp-a" x="222" y="26" transform="scale(0.67)" />
-          <use href="#cp-d" x="256" y="26" transform="scale(0.62)" />
-          <use href="#cp-c" x="290" y="26" transform="scale(0.68)" />
-          {/* G4 */}
-          <use href="#cp-b" x="330" y="26" transform="scale(0.65)" />
-          <use href="#cp-a" x="364" y="26" transform="scale(0.70)" />
-          <use href="#cp-d" x="398" y="26" transform="scale(0.63)" />
-          {/* G5 */}
-          <use href="#cp-c" x="438" y="26" transform="scale(0.67)" />
-          <use href="#cp-b" x="472" y="26" transform="scale(0.64)" />
-          <use href="#cp-a" x="506" y="26" transform="scale(0.69)" />
-          {/* G6 */}
-          <use href="#cp-d" x="546" y="26" transform="scale(0.62)" />
-          <use href="#cp-c" x="580" y="26" transform="scale(0.68)" />
-          <use href="#cp-a" x="614" y="26" transform="scale(0.65)" />
-          {/* G7 */}
-          <use href="#cp-b" x="654" y="26" transform="scale(0.70)" />
-          <use href="#cp-d" x="688" y="26" transform="scale(0.63)" />
-          <use href="#cp-c" x="722" y="26" transform="scale(0.67)" />
+              {/* MID ROW — y=14, scale ~0.52, spacing 26px */}
+              <use href="#cp-c" x={center - 52} y="14" transform="scale(0.52)" />
+              <use href="#cp-d" x={center - 26} y="14" transform="scale(0.48)" />
+              <use href="#cp-a" x={center}      y="14" transform="scale(0.55)" />
+              <use href="#cp-b" x={center + 26} y="14" transform="scale(0.50)" />
+              <use href="#cp-c" x={center + 52} y="14" transform="scale(0.53)" />
+
+              {/* FRONT ROW — y=26, scale ~0.66, spacing 34px */}
+              <use href="#cp-d" x={center - 68} y="26" transform="scale(0.67)" />
+              <use href="#cp-b" x={center - 34} y="26" transform="scale(0.62)" />
+              <use href="#cp-a" x={center}      y="26" transform="scale(0.69)" />
+              <use href="#cp-c" x={center + 34} y="26" transform="scale(0.65)" />
+              <use href="#cp-d" x={center + 68} y="26" transform="scale(0.66)" />
+            </g>
+          ))}
 
         </g>
       </svg>
     </div>
   )
 }
+
